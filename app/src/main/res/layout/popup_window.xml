@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:background="#a50b0b0b"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="@dimen/dp15"
+        android:paddingTop="@dimen/dp15"
+        android:paddingBottom="@dimen/dp10"
+        android:orientation="vertical"
+        android:background="#ffffff">
+
+        <Button
+            android:id="@+id/openPhotos"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_shape_deep_gray"
+            android:text="选 择 图 片"
+            android:paddingTop="@dimen/dp12"
+            android:paddingBottom="@dimen/dp12"
+            android:textSize="@dimen/sp15"
+            android:textColor="@color/color_b1"/>
+
+        <Button
+            android:id="@+id/cancle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/layout_shape_deep_gray"
+            android:text="取  消"
+            android:paddingTop="@dimen/dp12"
+            android:paddingBottom="@dimen/dp12"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp15"/>
+
+    </LinearLayout>
+
+    </LinearLayout>

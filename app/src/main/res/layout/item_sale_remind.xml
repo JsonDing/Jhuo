@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgsGoods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:clickable="false" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/dp05"
+            android:layout_marginTop="@dimen/dp05"
+            style="@style/MyCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvGoodsName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp06"
+        android:clickable="false"
+        android:ellipsize="end"
+        android:lines="2"
+        android:paddingEnd="@dimen/dp05"
+        android:paddingStart="@dimen/dp05"
+        android:textColor="@color/color_b1"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp10"
+        android:clickable="false">
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:lines="1"
+            android:paddingEnd="@dimen/dp08"
+            android:paddingStart="@dimen/dp08"
+            android:text="热卖中"
+            android:textColor="@color/color_b3"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp08"
+            android:clickable="false"
+            android:lines="1"
+            android:text=" 件"
+            android:textColor="@color/color_b2"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tvRemain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/textView"
+            android:clickable="false"
+            android:lines="1"
+            android:text="0"
+            android:textColor="@color/color_b4"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:clickable="false"
+            android:lines="1"
+            android:text="仅剩："
+            android:layout_toStartOf="@+id/tvRemain"
+            android:textColor="@color/color_b2"
+            android:textSize="11sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

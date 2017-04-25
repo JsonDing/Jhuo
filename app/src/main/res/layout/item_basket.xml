@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp111"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/layoutSelected"
+                android:layout_width="@dimen/dp34"
+                android:layout_height="@dimen/dp44"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|right">
+
+                <ImageView
+                    android:id="@+id/imgSelect"
+                    android:layout_width="@dimen/dp14"
+                    android:layout_height="@dimen/dp14"
+                    android:src="@drawable/unchecked"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgGoods"
+                android:layout_width="@dimen/dp86"
+                android:layout_height="@dimen/dp86"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_toEndOf="@+id/layoutSelected"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_default_image"/>
+
+            <TextView
+                android:id="@+id/tvGoodsName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp15"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_toEndOf="@+id/imgGoods"
+                android:textIsSelectable="true"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="NiKe SPORTSWEAR TECH FLEECE AEROLOFT"
+                android:textColor="@color/color_b1"
+                android:textSize="@dimen/sp13"/>
+
+            <TextView
+                android:id="@+id/tvGoodsType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvGoodsName"
+                android:layout_marginEnd="@dimen/dp15"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp08"
+                android:layout_toEndOf="@+id/imgGoods"
+                android:text="颜色分类：708467-657 尺码XXL"
+                android:textColor="@color/color_b2"
+                android:textSize="@dimen/sp12"/>
+
+            <TextView
+                android:id="@+id/tvGoodsPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvGoodsType"
+                android:layout_marginEnd="@dimen/dp15"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_toEndOf="@+id/imgGoods"
+                android:text="￥189.00"
+                android:textColor="@color/color_b4"
+                android:textSize="@dimen/sp12"/>
+
+            <TextView
+                android:id="@+id/tvRemain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="库存："
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_below="@+id/tvGoodsType"
+                android:layout_toEndOf="@+id/tvGoodsPrice"
+                android:textColor="@color/color_b2"
+                android:textSize="11sp"/>
+
+
+            <LinearLayout
+                android:layout_width="@dimen/dp85"
+                android:layout_height="@dimen/dp24"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="@dimen/dp15"
+                android:layout_marginEnd="@dimen/dp15"
+                android:background="@drawable/shopping_count"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:id="@+id/layMinus"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingEnd="5.5dp"
+                        android:paddingStart="5.5dp"
+                        android:src="@drawable/re_minus"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvGoodsNum"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:textColor="@color/color_b1"
+                    android:textSize="@dimen/sp14"/>
+
+                <LinearLayout
+                    android:id="@+id/layoutAdd"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingEnd="5.5dp"
+                        android:paddingStart="5.5dp"
+                        android:src="@drawable/add_more"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp10"
+            android:background="@color/color_a4"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutSaleOut"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp121"
+        android:background="@color/shade"
+        android:clickable="true"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="商品已售空或已下架"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

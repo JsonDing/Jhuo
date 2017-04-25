@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/intro_c"
+    android:clipToPadding="false"
+    android:gravity="center_horizontal"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+
+    <Button
+        android:layout_width="211dp"
+        android:layout_height="@dimen/dp54"
+        android:layout_alignParentBottom="true"
+        android:text="动起来，从J货开始"
+        android:textSize="18sp"
+        android:onClick="startbutton"
+        android:layout_marginBottom="@dimen/dp28"
+        android:theme="@style/OrangeButton"/>
+
+</RelativeLayout>

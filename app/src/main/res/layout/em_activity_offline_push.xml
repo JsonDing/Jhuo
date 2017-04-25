@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eff2f6"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tittle_bar"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44"
+            android:background="@color/white"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:src="@drawable/re_back"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp44"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/push_nick"
+                android:textColor="@color/color_b1"
+                android:textSize="@dimen/sp17"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44"
+            android:background="@color/white">
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/et_input_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:layout_marginStart="15dip"
+            android:layout_marginEnd="15dip"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/em_nickename_input_bg"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:hint="@string/input_new_nick_hint" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="54dip"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
+            android:layout_marginTop="20dip"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:text="@string/save_new_nickname"
+            android:theme="@style/OrangeButton" />
+
+        <TextView
+            android:id="@+id/tv_nickname_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
+            android:layout_marginTop="10dip"
+            android:text="@string/nickname_description" 
+            android:textColor="#cccccc"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+</LinearLayout>

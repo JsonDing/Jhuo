@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:background="@color/tittle_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="@dimen/dp44"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44"
+            android:gravity="center"
+            android:id="@+id/layoutBack">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:src="@drawable/re_back"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的钱包"
+                android:textSize="@dimen/sp17"
+                android:textColor="@color/color_b1"/>
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/white"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp113"
+        android:background="#FE7C36">
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账户余额"
+            android:textSize="@dimen/sp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginStart="@dimen/dp15"
+            android:textColor="#FFFDFC"/>
+
+        <TextView
+            android:id="@+id/tvMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥740.00"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp23"
+            android:gravity="bottom"
+            android:textColor="#FFFDFC"
+            android:layout_below="@+id/btnPay"
+            android:layout_alignStart="@+id/textview"/>
+
+        <Button
+            android:id="@+id/btnWithdraw"
+            android:layout_width="@dimen/dp101"
+            android:layout_height="@dimen/dp33"
+            android:text="提现"
+            android:textColor="#FFFDFC"
+            android:layout_below="@+id/btnPay"
+            android:background="@drawable/bg_button_white"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp17"/>
+
+        <Button
+            android:id="@+id/btnPay"
+            android:layout_width="@dimen/dp101"
+            android:layout_height="@dimen/dp33"
+            android:text="充值"
+            android:textColor="#FFFDFC"
+            android:background="@drawable/bg_button_white"
+            android:layout_alignTop="@+id/textview"
+            android:layout_alignStart="@+id/btnWithdraw"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="@color/color_a4"/>
+
+    <ListView
+        android:id="@+id/lvPayList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:divider="@null"
+        android:background="@color/color_a4"/>
+
+    <View
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:background="@color/black"/>
+
+</LinearLayout>

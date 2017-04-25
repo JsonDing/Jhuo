@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yunma.publish.ReplaceImageActivity">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:layout_width="@dimen/dp44"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingEnd="@dimen/dp44"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更改图片"
+                android:textSize="@dimen/sp17"
+                android:textColor="@color/color_b1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layouStatusBar"
+        android:scrollbars="none"
+        android:background="@color/color_a4"
+        android:layout_above="@+id/btnSubmit">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:text="确认更改"
+        android:background="@drawable/bg_select_orange"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:id="@+id/btnSubmit"/>
+
+
+</RelativeLayout>

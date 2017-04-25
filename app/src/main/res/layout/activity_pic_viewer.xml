@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+
+    <com.yunma.widget.ViewPagerFixed
+        android:id="@+id/viewpager"
+        android:background="#aa000000"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:background="@color/tittle_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44"
+            android:gravity="center"
+            android:id="@+id/layoutBack">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:src="@mipmap/gallery_pick_back_white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:id="@+id/tv_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="30sp"
+                android:textColor="#ffffff"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutDown"
+            android:paddingEnd="@dimen/dp10"
+            android:layout_width="@dimen/dp54"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:id="@+id/imgMessage"
+                android:layout_width="@dimen/dp32"
+                android:layout_height="@dimen/dp32"
+                android:clickable="false"
+                android:layout_centerInParent="true"
+                android:src="@drawable/down_logo" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="match_parent" type="dimen">-1</item>
+    <item name="wrap_content" type="dimen">-2</item>
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="NiceSpinner">
+        <attr name="arrowTint" format="color" />
+        <attr name="hideArrow" format="boolean" />
+        <attr name="backgroundSelector" format="integer"/>
+        <attr name="textTint" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="Passwordinputview">
+        <attr name="passwordLength" format="integer"/>
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="borderRadius" format="dimension"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="passwordWidth" format="dimension"/>
+        <attr name="passwordColor" format="color"/>
+        <attr name="splitLineWidth" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="EditText">
+        <!-- 总共输入长度 -->
+        <attr name="totalLength" format="integer" />
+        <!-- 每组的长度 -->
+        <attr name="eachLength" format="integer" />
+        <!-- 分隔符 -->
+        <attr name="delimiter" format="string" />
+        <!-- 占位符 -->
+        <attr name="placeHolder" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="AlignTextView">
+        <!-- 文本-->
+        <attr name="text" format="string"/>
+        <!-- 后缀符号类型:全角、半角-->
+        <attr name="suffixMode" format="enum">
+            <enum name="full_width" value="1"/>
+            <enum name="half_width" value="2"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SunView">
+        <attr name="sunview_color" format="color"/>
+        <attr name="sunview_size" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="RefreshLayout">
+        <attr name="maxheight"     format="dimension"/>
+        <attr name="minheight"     format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="PullRefreshLayout">
+        <attr name="default_height" format="dimension"/>
+        <attr name="max_height"     format="dimension"/>
+        <attr name="min_height"     format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="NestListView">
+        <attr name="nlv_header_text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ContactItemView">
+        <attr name="contactItemImage" format="reference"/>
+        <attr name="contactItemName" format="string"/>
+    </declare-styleable>
+
+</resources>

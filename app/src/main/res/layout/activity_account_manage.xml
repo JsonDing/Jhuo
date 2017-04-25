@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_a4"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:paddingEnd="10dp"
+            android:layout_width="@dimen/dp44"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/white"
+            android:paddingEnd="@dimen/dp44"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/modifypasswd"
+                android:textSize="@dimen/sp17"
+                android:textColor="@color/color_b1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_layout_item_white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/old_passwd"
+            android:textSize="@dimen/sp14"
+            android:layout_marginStart="@dimen/dp15"
+            android:textColor="@color/color_b1"/>
+
+        <EditText
+            android:id="@+id/etOldPasswd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="@string/original_password"
+            android:inputType="textPassword"
+            android:textSize="@dimen/sp14"
+            android:layout_marginTop="@dimen/dp06"
+            android:layout_marginBottom="@dimen/dp06"
+            android:textColor="@color/color_b1"
+            android:textColorHint="@color/color_b2"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp10"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_layout_item_white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_passwd"
+            android:textSize="@dimen/sp14"
+            android:layout_marginStart="@dimen/dp15"
+            android:textColor="@color/color_b1"/>
+
+        <EditText
+            android:id="@+id/etNewPassWd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="@string/new_password"
+            android:inputType="textPassword"
+            android:textSize="@dimen/sp14"
+            android:layout_marginTop="@dimen/dp06"
+            android:layout_marginBottom="@dimen/dp06"
+            android:textColor="@color/color_b1"
+            android:textColorHint="@color/color_b2"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp10"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirmEdit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp48"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp15"
+        android:text="确认修改"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp15"
+        android:background="@drawable/btn_selector_orange"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="密码由6-20位引文字母、数字或符号组成"
+        android:textColor="@color/color_b2"
+        android:textSize="@dimen/sp14"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <View
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/black"/>
+
+</LinearLayout>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.yunma.jhuo.activity.homepage.SelectedPayWay">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44"
+            android:text="选择支付方式"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp17"/>
+
+        <LinearLayout
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_height="@dimen/dp0.5"
+        android:layout_width="match_parent"
+        android:background="@color/color_a5"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单金额"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp14"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp15"/>
+
+        <TextView
+            android:id="@+id/tvTotalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp11"
+            android:text="898.00"
+            android:textColor="@color/color_b4"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp15"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_height="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:background="@color/color_a4"/>
+
+    <RelativeLayout
+        android:id="@+id/layoutWeChatPay"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="@dimen/dp44">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信支付"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp14"
+            android:layout_toEndOf="@+id/imgWeChat"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp15"/>
+
+        <ImageView
+            android:id="@+id/imgWeChat"
+            android:layout_width="@dimen/dp32"
+            android:layout_height="@dimen/dp32"
+            android:layout_centerVertical="true"
+            android:src="@drawable/we_chat_pay"
+            android:layout_marginStart="@dimen/dp15"/>
+
+        <ImageView
+            android:layout_width="@dimen/dp18"
+            android:layout_height="@dimen/dp18"
+            android:textSize="@dimen/sp14"
+            android:src="@drawable/more_right_big"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp15"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_height="@dimen/dp0.5"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"
+        android:background="@color/color_a4"/>
+
+    <TextView
+        android:id="@+id/tvShowError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"
+        android:visibility="gone"
+        android:text="4466"
+        android:textSize="17sp"
+        android:layout_marginTop="@dimen/dp16"
+        android:layout_marginBottom="@dimen/dp16"
+        android:textColor="@color/color_b4"/>
+
+    <RelativeLayout
+        android:id="@+id/layoutAliPay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付宝支付"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp14"
+            android:clickable="false"
+            android:layout_toEndOf="@+id/imgAliPay"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp15"/>
+
+        <ImageView
+            android:id="@+id/imgAliPay"
+            android:layout_width="@dimen/dp32"
+            android:layout_height="@dimen/dp32"
+            android:layout_centerVertical="true"
+            android:src="@drawable/alipay_pay"
+            android:clickable="false"
+            android:layout_marginStart="@dimen/dp15"/>
+
+        <ImageView
+            android:layout_width="@dimen/dp18"
+            android:layout_height="@dimen/dp18"
+            android:textSize="@dimen/sp14"
+            android:clickable="false"
+            android:src="@drawable/more_right_big"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp15"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_height="@dimen/dp0.5"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"
+        android:background="@color/color_a4"/>
+
+    <RelativeLayout
+        android:id="@+id/layoutJhuoPay"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账户余额支付"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp14"
+            android:clickable="false"
+            android:layout_toEndOf="@+id/imgJhuoPay"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp15"/>
+
+        <ImageView
+            android:id="@+id/imgJhuoPay"
+            android:layout_width="@dimen/dp32"
+            android:layout_height="@dimen/dp32"
+            android:layout_centerVertical="true"
+            android:clickable="false"
+            android:src="@drawable/logo_pay"
+            android:layout_marginStart="@dimen/dp15"/>
+
+        <ImageView
+            android:layout_width="@dimen/dp18"
+            android:layout_height="@dimen/dp18"
+            android:textSize="@dimen/sp14"
+            android:clickable="false"
+            android:src="@drawable/more_right_big"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp15"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:background="@color/color_a4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:paddingStart="@dimen/dp15"
+            android:paddingEnd="@dimen/dp15"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请您在"
+                android:textSize="@dimen/sp12"
+                android:textColor="@color/color_b2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20分钟"
+                android:textSize="@dimen/sp12"
+                android:textColor="@color/color_b4"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内尽快支付订单，超时订单将自动取消"
+                android:textSize="@dimen/sp12"
+                android:textColor="@color/color_b2"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:paddingStart="@dimen/dp15"
+            android:paddingEnd="@dimen/dp15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:textSize="@dimen/sp12"
+            android:textColor="@color/color_b2"
+            android:text="暂时仅开放支付宝支付功能，后期将逐步开放微信等支付方式"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/black"/>
+</LinearLayout>

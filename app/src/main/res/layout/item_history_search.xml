@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvSearchNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp08"
+        android:paddingEnd="@dimen/dp08"
+        android:paddingTop="@dimen/dp04"
+        android:paddingBottom="@dimen/dp04"
+        android:layout_marginBottom="@dimen/dp10"
+        android:layout_marginEnd="@dimen/dp10"
+        android:background="@drawable/bg_tags_gray"
+        android:textColor="@color/color_b1"
+        android:textSize="13sp"/>
+
+</LinearLayout>

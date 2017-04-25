@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.yunma.jhuo.activity.MainActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1">
+
+
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/mLyout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="true">
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:baselineAligned="false"
+        android:paddingBottom="4dp"
+        android:background="@color/white" >
+
+        <RelativeLayout
+            android:id="@+id/layoutHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/imgHome"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:clickable="false"
+                android:layout_marginTop="6dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/tab_home" />
+            <TextView
+                android:id="@+id/tvHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp10"
+                android:clickable="false"
+                android:textStyle="bold"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/imgHome"
+                android:layout_centerHorizontal="true"
+                android:text="主页"
+                android:textColor="@color/color_b3" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutStorage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/imgStorage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:clickable="false"
+                android:layout_marginTop="6dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/tab_entrepot" />
+
+            <TextView
+                android:id="@+id/tvStorage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp10"
+                android:clickable="false"
+                android:textStyle="bold"
+                android:textColor="@color/gray"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/imgStorage"
+                android:layout_centerHorizontal="true"
+                android:text="大仓"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutBasket"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/imgBasket"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:clickable="false"
+                android:layout_marginTop="6dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/tab_shopping" />
+
+            <TextView
+                android:id="@+id/tvBasket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="购物车"
+                android:textSize="@dimen/sp10"
+                android:clickable="false"
+                android:textStyle="bold"
+                android:textColor="#8d8d8d"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/imgBasket"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutMine"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/imgMine"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:clickable="false"
+                android:layout_marginTop="6dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/tab_me" />
+
+            <TextView
+                android:id="@+id/tvMine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/imgMine"
+                android:layout_centerHorizontal="true"
+                android:text="我的"
+                android:textSize="@dimen/sp10"
+                android:clickable="false"
+                android:textStyle="bold"
+                android:textColor="@color/gray" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

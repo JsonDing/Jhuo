@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_a4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp15"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/bg_invoice">
+
+        <TextView
+            android:id="@+id/tvCompanyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp15"
+            android:text="无锡云码创新体育发展有限公司"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp14"/>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp15"
+            android:text="已审核"
+            android:textColor="@color/color_b5"
+            android:textSize="@dimen/sp14"/>
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tvCompanyName"
+            android:layout_below="@+id/tvCompanyName"
+            android:layout_marginTop="@dimen/dp30"
+            android:text="纳税人识别号："
+            android:textColor="@color/color_b2"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tvRatepayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCompanyName"
+            android:layout_marginTop="@dimen/dp30"
+            android:layout_toEndOf="@+id/textview"
+            android:textColor="@color/color_b1"
+            android:textSize="14sp"/>
+
+        <com.yunma.widget.AlignTextView
+            android:id="@+id/textview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textview"
+            android:layout_alignEnd="@+id/textview"
+            android:layout_below="@+id/textview"
+            android:layout_marginTop="@dimen/dp10"
+            app:text="注册地址："
+            app:suffixMode="full_width"
+            android:textColor="@color/color_b2"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tvRegisterAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvRatepayer"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_toEndOf="@+id/textview1"
+            android:textColor="@color/color_b1"
+            android:textSize="14sp"/>
+
+        <com.yunma.widget.AlignTextView
+            android:id="@+id/textview2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textview1"
+            android:layout_alignEnd="@+id/textview"
+            android:layout_below="@+id/textview1"
+            android:layout_marginTop="@dimen/dp10"
+            app:text="注册电话："
+            app:suffixMode="full_width"
+            android:textColor="@color/color_b2"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tvRegisterPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textview2"
+            android:layout_alignBottom="@+id/textview2"
+            android:layout_toEndOf="@+id/textview2"
+            android:textColor="@color/color_b1"
+            android:textSize="14sp"/>
+
+        <com.yunma.widget.AlignTextView
+            android:id="@+id/textview3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textview2"
+            android:layout_alignEnd="@+id/textview"
+            android:layout_below="@+id/textview2"
+            android:layout_marginTop="@dimen/dp10"
+            app:text="开户银行："
+            app:suffixMode="full_width"
+            android:textColor="@color/color_b2"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tvRegisterBank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvRegisterPhone"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_toEndOf="@+id/textview3"
+            android:textColor="@color/color_b1"
+            android:textSize="14sp"/>
+
+        <com.yunma.widget.AlignTextView
+            android:id="@+id/textview4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textview3"
+            android:layout_alignEnd="@+id/textview"
+            android:layout_below="@+id/textview3"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            app:text="银行账户："
+            app:suffixMode="full_width"
+            android:textColor="@color/color_b2"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tvRegisterAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvRegisterBank"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_toEndOf="@+id/textview4"
+            android:textColor="@color/color_b1"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/dp15"
+    android:paddingEnd="@dimen/dp15"
+    android:paddingBottom="@dimen/dp10"
+    android:background="@color/color_a4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/cbButton"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:background="@drawable/favorable_usable_lo">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="@dimen/dp121"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/tvMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:textStyle="bold"
+                    android:textSize="36sp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvCondition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="满1000元可用"
+                android:textSize="12sp"
+                android:layout_marginTop="@dimen/dp05"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout1"
+            android:layout_toEndOf="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvVolumeName"
+                android:layout_width="@dimen/dp36"
+                android:layout_height="wrap_content"
+                android:text="优惠卷"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginStart="@dimen/dp18"
+                android:background="@drawable/fillet_deep_orange"/>
+
+            <TextView
+                android:id="@+id/tvVolumeUseRange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可用作购买结"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:layout_below="@+id/tvVolumeName"
+                android:textColor="@color/color_b1"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_alignStart="@+id/tvVolumeName"/>
+
+            <TextView
+                android:id="@+id/tvVolumeUseTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017.04.06 - 2017.04.30"
+                android:textSize="10sp"
+                android:layout_below="@+id/tvVolumeUseRange"
+                android:textColor="@color/color_b2"
+                android:layout_marginBottom="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginStart="@dimen/dp18"/>
+
+            <ImageView
+                android:id="@+id/imgsVolumeTags"
+                android:layout_width="@dimen/dp56"
+                android:layout_height="@dimen/dp56"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/expiring_mark"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

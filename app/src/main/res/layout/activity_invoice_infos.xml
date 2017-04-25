@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:layout_width="@dimen/dp44"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/white"
+            android:paddingEnd="@dimen/dp44"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发票信息"
+                android:textSize="@dimen/sp17"
+                android:textColor="@color/color_b1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:background="@color/color_a4"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@drawable/envelope"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/layoutAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp10"
+                    android:paddingStart="@dimen/dp15"
+                    android:paddingEnd="@dimen/dp15">
+
+                    <TextView
+                        android:id="@+id/tvReceiver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_b1"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp15"/>
+
+                    <TextView
+                        android:id="@+id/tvNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/tvReceiver"
+                        android:textColor="@color/color_b1"
+                        android:textSize="@dimen/sp15"/>
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:layout_toStartOf="@+id/layoutSelectAddress"
+                        android:layout_alignStart="@+id/tvReceiver"
+                        android:layout_below="@+id/tvReceiver"
+                        android:textColor="@color/color_b1"
+                        android:textSize="@dimen/sp12" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutSelectAddress"
+                        android:layout_width="@dimen/dp40"
+                        android:layout_height="@dimen/dp40"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp18"
+                            android:layout_height="@dimen/dp18"
+                            android:src="@drawable/next"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvAddLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp64"
+                    android:text="添加地址"
+                    android:visibility="visible"
+                    android:gravity="center"
+                    android:textColor="@color/color_b2"
+                    android:textSize="@dimen/sp20"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@drawable/envelope"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp48"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp15"
+                android:paddingEnd="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发票类型"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/color_b1"/>
+
+                <Button
+                    android:layout_width="@dimen/dp81"
+                    android:layout_height="@dimen/dp28"
+                    android:text="增值税发票"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:background="@drawable/layout_shape_orange"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp48"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/dp15"
+                android:background="@color/white"
+                android:paddingStart="@dimen/dp15">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开票金额"
+                    android:textColor="@color/color_b1"
+                    android:textSize="@dimen/sp14"/>
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:text="￥0.00"
+                    android:textColor="@color/color_b4"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp44"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp15"
+                android:background="@color/white"
+                android:paddingEnd="@dimen/dp15"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发票抬头"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/color_b1"/>
+
+                <RadioGroup
+                    android:id="@+id/radioGroupType"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/cbPersonal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="个人"
+                        android:theme="@style/GreenRadioButton"
+                        android:checked="true"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:textColor="@color/color_b1"/>
+
+                    <RadioButton
+                        android:id="@+id/cbCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="单位"
+                        android:theme="@style/GreenRadioButton"
+                        android:layout_marginStart="@dimen/dp16"
+                        android:textColor="@color/color_b1"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutPerson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dp15"
+                android:paddingEnd="@dimen/dp15"
+                android:paddingTop="@dimen/dp08"
+                android:paddingBottom="@dimen/dp08">
+
+                <com.yunma.widget.ContainsEmojiEditText
+                    android:id="@+id/etContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="4"
+                    android:textColor="@color/color_b1"
+                    android:textSize="13sp"
+                    android:hint="输入发票内容"
+                    android:gravity="top"
+                    android:paddingStart="@dimen/dp08"
+                    android:paddingEnd="@dimen/dp08"
+                    android:paddingTop="@dimen/dp05"
+                    android:paddingBottom="@dimen/dp05"
+                    android:textColorHint="@color/color_b2"
+                    android:background="@drawable/bg_edittext_normal"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutCompany"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp15"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp10"
+                android:background="@drawable/bg_invoice">
+
+                <TextView
+                    android:id="@+id/tvCompanyName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:textColor="@color/color_b1"
+                    android:textSize="@dimen/sp14"/>
+
+                <TextView
+                    android:id="@+id/textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tvCompanyName"
+                    android:layout_below="@+id/tvCompanyName"
+                    android:layout_marginTop="@dimen/dp30"
+                    android:text="纳税人识别号："
+                    android:textColor="@color/color_b2"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/tvRatepayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvCompanyName"
+                    android:layout_marginTop="@dimen/dp30"
+                    android:layout_toEndOf="@+id/textview"
+                    android:textColor="@color/color_b1"
+                    android:textSize="14sp"/>
+
+                <com.yunma.widget.AlignTextView
+                    android:id="@+id/textview1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/textview"
+                    android:layout_alignEnd="@+id/textview"
+                    android:layout_below="@+id/textview"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:text="注册地址："
+                    app:suffixMode="full_width"
+                    android:textColor="@color/color_b2"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/tvRegisterAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvRatepayer"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_toEndOf="@+id/textview1"
+                    android:textColor="@color/color_b1"
+                    android:textSize="14sp"/>
+
+                <com.yunma.widget.AlignTextView
+                    android:id="@+id/textview2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/textview1"
+                    android:layout_alignEnd="@+id/textview"
+                    android:layout_below="@+id/textview1"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:text="注册电话："
+                    app:suffixMode="full_width"
+                    android:textColor="@color/color_b2"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/tvRegisterPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textview2"
+                    android:layout_alignBottom="@+id/textview2"
+                    android:layout_toEndOf="@+id/textview2"
+                    android:textColor="@color/color_b1"
+                    android:textSize="14sp"/>
+
+                <com.yunma.widget.AlignTextView
+                    android:id="@+id/textview3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/textview2"
+                    android:layout_alignEnd="@+id/textview"
+                    android:layout_below="@+id/textview2"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:text="开户银行："
+                    app:suffixMode="full_width"
+                    android:textColor="@color/color_b2"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/tvRegisterBank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvRegisterPhone"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_toEndOf="@+id/textview3"
+                    android:textColor="@color/color_b1"
+                    android:textSize="14sp"/>
+
+                <com.yunma.widget.AlignTextView
+                    android:id="@+id/textview4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/textview3"
+                    android:layout_alignEnd="@+id/textview"
+                    android:layout_below="@+id/textview3"
+                    android:layout_marginBottom="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:text="银行账户："
+                    app:suffixMode="full_width"
+                    android:textColor="@color/color_b2"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/tvRegisterAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvRegisterBank"
+                    android:layout_marginBottom="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_toEndOf="@+id/textview4"
+                    android:textColor="@color/color_b1"
+                    android:textSize="14sp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@id/textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发票内容"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/color_b1"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:layout_marginStart="@dimen/dp15"/>
+
+                <RadioGroup
+                    android:id="@+id/radioGroupContent"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_toEndOf="@+id/textview"
+                    android:layout_marginTop="@dimen/dp08"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/cbClothes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="服装"
+                        android:checked="true"
+                        android:theme="@style/GreenRadioButton"
+                        android:layout_marginTop="@dimen/dp05"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:textColor="@color/color_b1"/>
+
+                    <RadioButton
+                        android:id="@+id/cbShoes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="鞋子"
+                        android:theme="@style/GreenRadioButton"
+                        android:layout_marginTop="@dimen/dp05"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:textColor="@color/color_b1"/>
+
+                    <RadioButton
+                        android:id="@+id/cbOther"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="配件"
+                        android:theme="@style/GreenRadioButton"
+                        android:layout_marginTop="@dimen/dp05"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:layout_marginBottom="@dimen/dp10"
+                        android:textColor="@color/color_b1"/>
+                </RadioGroup>
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:minHeight="@dimen/dp36"
+                android:layout_weight="1"
+                android:background="@color/color_a4"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        style="@style/BlockButton"
+        android:theme="@style/OrangeButton"
+        android:text="确定开票"/>
+
+</LinearLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:hyphenate="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:background="@color/white"
+            android:id="@+id/layoutBack"
+            android:gravity="center"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_height="@dimen/dp44"
+            android:text="客服"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp17"/>
+
+        <LinearLayout
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.hyphenate.easeui.widget.EaseConversationList
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+        hyphenate:cvsListPrimaryTextSize="16sp"/>
+
+</LinearLayout>

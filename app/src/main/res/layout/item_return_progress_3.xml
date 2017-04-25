@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp38"
+        android:gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/lineTop2"
+            android:layout_width="@dimen/dp01"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/color_a3"/>
+
+        <ImageView
+            android:id="@+id/circlePoint"
+            android:layout_width="@dimen/dp13"
+            android:layout_height="@dimen/dp13"
+            android:src="@drawable/circle_gray"/>
+
+        <View
+            android:id="@+id/lineBottom2"
+            android:layout_width="@dimen/dp01"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/color_a3"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_item_return_progress_orange"
+        android:layout_marginEnd="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/dp05">
+
+        <TextView
+            android:id="@+id/tvWho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[官方]  拒绝退货申请"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp13"/>
+
+        <TextView
+            android:id="@+id/tvRejectReason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp05"
+            android:maxLines="2"
+            android:text="拒绝原因：萨瓦迪卡"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_below="@+id/tvWho"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"/>
+
+        <TextView
+            android:id="@+id/tvReturnTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp05"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_below="@+id/tvRejectReason"
+            android:text="2016-11-13 20:20:00"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

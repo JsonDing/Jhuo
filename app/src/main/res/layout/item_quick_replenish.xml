@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp106">
+
+        <ImageView
+            android:id="@+id/imgGoods"
+            android:layout_width="@dimen/dp86"
+            android:layout_height="@dimen/dp86"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_pic"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_marginStart="@dimen/dp15"/>
+
+        <TextView
+            android:id="@+id/tvGoodsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp13"
+            android:textIsSelectable="true"
+            android:textStyle="bold"
+            android:layout_alignTop="@+id/imgGoods"
+            android:text="阿迪达斯阿迪带阿迪达斯阿迪带你你阿迪达斯阿迪带你"
+            android:layout_toEndOf="@+id/imgGoods"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginStart="@dimen/dp15"/>
+
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_below="@+id/tvGoodsName"
+            android:textSize="@dimen/sp12"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_toEndOf="@+id/imgGoods"
+            android:text="颜色：如图"
+            android:textColor="@color/color_b2"/>
+
+        <TextView
+            android:id="@+id/tvGoodsSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_toEndOf="@+id/textview1"
+            android:layout_below="@+id/tvGoodsName"
+            android:textSize="@dimen/sp12"
+            android:text="尺码："
+            android:textColor="@color/color_b2"/>
+
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textview1"
+            android:textSize="@dimen/sp12"
+            android:layout_marginTop="@dimen/dp07"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_toEndOf="@+id/imgGoods"
+            android:text="代理价："
+            android:gravity="bottom"
+            android:layout_alignBottom="@+id/imgGoods"
+            android:textColor="@color/color_b2"/>
+
+        <TextView
+            android:id="@+id/tvGoodsPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp07"
+            android:layout_toEndOf="@+id/textview"
+            android:layout_alignBottom="@+id/imgGoods"
+            android:layout_below="@+id/textview1"
+            android:textSize="@dimen/sp12"
+            android:gravity="bottom"
+            android:text="￥189.00"
+            android:textColor="@color/color_b4"/>
+        
+        <Button
+            android:id="@+id/btnQuickReplenish"
+            android:layout_width="@dimen/dp72"
+            android:layout_height="@dimen/dp26"
+            android:textColor="@color/color_b3"
+            android:background="@drawable/bg_button_orange"
+            android:layout_alignBottom="@+id/imgGoods"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp15"
+            android:textSize="13sp"
+            android:text="快速补货"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginStart="@dimen/dp116"
+        android:background="@color/color_a4"/>
+
+</LinearLayout>

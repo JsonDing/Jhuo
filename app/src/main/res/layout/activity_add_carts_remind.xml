@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/shade"
+    tools:context="com.yunma.jhuo.general.AddCartsRemindActivity">
+
+    <RelativeLayout
+        android:layout_width="302dp"
+        android:layout_height="254dp"
+        android:background="@drawable/hint_shop">
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp81"
+            android:text="成功添加至购物车"
+            android:textColor="@color/color_b3"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textview"
+            android:layout_marginEnd="@dimen/dp16"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginTop="@dimen/dp28"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前已添加商品件数："
+                android:textColor="@color/color_b2"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvNums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_b1"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="件"
+                android:textColor="@color/color_b1"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout"
+            android:layout_marginEnd="@dimen/dp16"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginTop="@dimen/dp10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前结算总价："
+                android:textColor="@color/color_b2"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥0.00"
+                android:textColor="@color/color_b1"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginStart="@dimen/dp15"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:text="不再提醒"
+                android:layout_marginEnd="@dimen/dp10"
+                android:textColor="@color/color_b1"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btnGo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_selector_orange"
+                android:text="去购物车看看"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="302dp"
+        android:gravity="center"
+        android:layout_height="@dimen/dp96">
+
+        <ImageView
+            android:id="@+id/imgsClose"
+            android:layout_width="@dimen/dp26"
+            android:layout_height="@dimen/dp26"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:src="@drawable/close_black" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:layout_width="@dimen/dp44"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="优惠卷"
+                android:textSize="@dimen/sp17"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:clickable="false"
+                android:paddingEnd="@dimen/dp44"
+                android:textColor="@color/color_b1"/>
+
+            <LinearLayout
+                android:id="@+id/layoutOperation"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="end"
+                android:clickable="false"
+                android:enabled = "false"
+                android:paddingEnd="@dimen/dp15"
+                android:paddingStart="@dimen/dp15"
+                android:background="@color/white"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvOperation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="操作"
+                    android:textSize="14sp"
+                    android:enabled="false"
+                    android:clickable="false"
+                    android:textColor="@color/color_b1"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0.5"/>
+
+    <LinearLayout
+        android:id="@+id/layoutTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_below="@+id/layouStatusBar"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/volumeUnuse"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:id="@+id/tvUnuse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="未使用()"
+                android:textSize="13sp"
+                android:textColor="@color/color_b3"/>
+            
+            <View
+                android:id="@+id/viewUnuse"
+                android:layout_width="@dimen/dp64"
+                android:layout_height="@dimen/dp01"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_b3"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/volumeTimeOut"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:id="@+id/tvTimeOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="已过期()"
+                android:textSize="13sp"
+                android:textColor="@color/color_b2"/>
+
+            <View
+                android:id="@+id/viewTimeOut"
+                android:layout_width="@dimen/dp64"
+                android:layout_height="@dimen/dp01"
+                android:visibility="invisible"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_b3"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutTab"
+        app:guidance_text_color="@color/colorPrimary"
+        app:guidance_view_bg_color="@color/transparent"
+        app:progress_bar_color="@color/colorPrimary"
+        android:layout_above="@+id/layoutBottom">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_a4"
+            android:divider="@null"
+            android:overScrollMode="never"
+            android:paddingTop="8dp"
+            android:scrollbars="none"/>
+
+    </com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutBottom"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp54"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+
+        <CheckBox
+            android:id="@+id/rbButton"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp15"
+            style="@style/OrangeCheckBoxTheme"
+            android:layout_width="wrap_content"
+            android:text="   全选"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnCancle"
+            android:layout_width="@dimen/dp81"
+            android:layout_height="match_parent"
+            android:text="取消"
+            android:textColor="@color/color_b1"
+            android:textSize="14sp"
+            android:background="@drawable/color_light_orange"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/btnDetele"/>
+
+        <Button
+            android:id="@+id/btnDetele"
+            android:layout_alignParentEnd="true"
+            android:layout_width="@dimen/dp96"
+            android:layout_height="match_parent"
+            android:text="删除(0)"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:background="@drawable/color_deep_orange"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:layout_marginTop="@dimen/dp05"
+    android:layout_marginStart="@dimen/dp15"
+    android:layout_marginEnd="@dimen/dp15"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp05"
+            android:theme="@style/OrangeCheckBox"/>
+
+        <RelativeLayout
+            android:id="@+id/layoutSeeDetials"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp116"
+            android:paddingEnd="@dimen/dp10"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/imgGoods"
+                android:layout_width="@dimen/dp96"
+                android:layout_height="@dimen/dp96"
+                android:scaleType="fitXY"
+                android:clickable="true"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:src="@drawable/default_pic"/>
+
+            <TextView
+                android:id="@+id/tvGoodsName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="阿迪达斯阿迪带阿迪达斯阿迪带你你阿迪达斯阿迪带你"
+                android:textColor="@color/color_b1"
+                android:textSize="@dimen/sp13"
+                android:textStyle="bold"
+                android:textIsSelectable="true"
+                android:lines="2"
+                android:layout_alignTop="@+id/imgGoods"
+                android:layout_alignStart="@+id/textview"/>
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvGoodsName"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_toEndOf="@+id/imgGoods"
+                android:text="零售价："
+                android:textColor="@color/color_b2"
+                android:textSize="@dimen/sp12"/>
+
+            <TextView
+                android:id="@+id/tvGoodsPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textview"
+                android:layout_below="@+id/tvGoodsName"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_toEndOf="@+id/textview"
+                android:text="￥189.00"
+                android:textColor="@color/color_b4"
+                android:textSize="@dimen/sp11"/>
+
+
+            <com.yunma.widget.FlowTagLayout
+                android:id="@+id/tagSize"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/textview"
+                android:layout_marginTop="@dimen/dp05"
+                android:layout_toEndOf="@+id/imgGoods"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp10"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:layout_width="@dimen/dp44"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:id="@+id/tvTittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="快速补货"
+                android:textSize="@dimen/sp17"
+                android:textColor="@color/color_b1"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutNews"
+            android:paddingEnd="10dp"
+            android:background="@color/white"
+            android:layout_width="@dimen/dp54"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:id="@+id/imgMessage"
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:src="@drawable/re_message" />
+
+            <ImageView
+                android:id="@+id/imgRemind"
+                android:layout_width="7dp"
+                android:layout_height="7dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginStart="3dp"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:layout_toEndOf="@+id/imgMessage"
+                android:src="@drawable/red_dot" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0.5"
+        android:background="@color/color_a4"/>
+
+    <com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_a4"
+        app:load_text="加载更多"
+        app:progress_bar_color="@color/color_a1"
+        app:refresh_text="下拉刷新"
+        app:guidance_text_color="@color/color_a2"
+        app:guidance_view_bg_color="@color/transparent">
+
+        <com.scu.miomin.shswiperefresh.view.SHListView
+            android:id="@+id/lvQuickReplenish"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:overScrollMode="never"
+            android:background="@color/color_a4"
+            android:scrollbars="none"/>
+
+    </com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutNull"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:background="@color/color_a4">
+
+        <ImageView
+            android:layout_width="@dimen/dp56"
+            android:layout_height="@dimen/dp56"
+            android:src="@drawable/no_order"
+            android:layout_marginTop="@dimen/dp96"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您还没有浏览、付款记录"
+            android:textSize="@dimen/sp15"
+            android:textColor="@color/color_b1"
+            android:layout_marginTop="@dimen/dp39"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="赶紧去看看有哪些想买的"
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/color_b2"
+            android:layout_marginTop="@dimen/dp10"/>
+
+        <RelativeLayout
+            android:id="@+id/layoutGoLook"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp44"
+            android:layout_marginTop="@dimen/dp73"
+            android:background="@color/color_a4">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccentHalf"
+                android:layout_centerInParent="true"
+                android:text="去看看"
+                android:textSize="@dimen/sp13"/>
+
+            <ImageView
+                android:layout_width="@dimen/dp36"
+                android:layout_height="@dimen/dp11"
+                android:src="@drawable/decorate_right"
+                android:layout_alignTop="@+id/text1"
+                android:layout_toStartOf="@+id/text1"
+                android:layout_marginEnd="@dimen/dp15"
+                android:id="@+id/decor_content_parent" />
+
+            <ImageView
+                android:layout_width="@dimen/dp36"
+                android:layout_height="@dimen/dp11"
+                android:src="@drawable/decorate_left"
+                android:layout_alignTop="@+id/text1"
+                android:layout_toEndOf="@+id/text1"
+                android:layout_marginStart="@dimen/dp15"
+                android:id="@+id/imageView1" />
+
+        </RelativeLayout>
+
+        <!--  <com.yunma.view.MyGirdView
+              android:id="@+id/gvIntro"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:scrollbars="none"
+              android:numColumns="2"
+              android:divider="@null"
+              android:background="@color/white"/>-->
+
+
+    </LinearLayout>
+
+</LinearLayout>

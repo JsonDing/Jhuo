@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.yunma.jhuo.activity.homepage.AddRecipient">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:background="@color/tittle_bar">
+
+        <RelativeLayout
+            android:id="@+id/layoutBack"
+            android:layout_width="@dimen/dp44"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:clickable="false"
+                android:layout_centerInParent="true"
+                android:src="@drawable/re_back" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvTittle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@color/white"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp17"/>
+
+        <LinearLayout
+            android:id="@+id/layoutDel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/dp10"
+            android:paddingEnd="@dimen/dp10"
+            android:background="@color/white"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="删除"
+                android:clickable="false"
+                android:textSize="@dimen/sp15"
+                android:textColor="@color/color_b3"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="@color/color_a4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收货人："
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/color_b1"/>
+
+        <EditText
+            android:id="@+id/etReceiverName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dp30"
+            android:layout_weight="1"
+            android:background="@null"
+            android:paddingStart="@dimen/dp15"
+            android:paddingEnd="0dp"
+            android:inputType=""
+            android:gravity="center_vertical"
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/color_b1"/>
+
+        <LinearLayout
+            android:id="@+id/tvClear"
+            android:layout_width="@dimen/dp36"
+            android:layout_height="@dimen/dp36"
+            android:layout_marginEnd="@dimen/dp08"
+            android:visibility="invisible"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/dp13"
+                android:layout_height="@dimen/dp13"
+                android:src="@drawable/close_grey"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/dp01"
+            android:layout_height="@dimen/dp30"
+            android:background="@color/color_a4"/>
+
+        <LinearLayout
+            android:id="@+id/layoutselectReceive"
+            android:layout_width="@dimen/dp46"
+            android:layout_height="@dimen/dp46"
+            android:layout_marginEnd="@dimen/dp08"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:src="@drawable/address_book"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp01"
+        android:background="@color/color_a4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系方式："
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/color_b1"/>
+
+        <com.yunma.widget.ContainsEmojiEditText
+            android:id="@+id/etPhoneNum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dp30"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/color_b1"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp01"
+        android:background="@color/color_a4"/>
+
+    <LinearLayout
+        android:id="@+id/layoutSelectAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dp44"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="所在地区："
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/color_b1"/>
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dp30"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/color_b1"/>
+
+        <LinearLayout
+            android:layout_width="@dimen/dp36"
+            android:layout_height="@dimen/dp36"
+            android:layout_marginEnd="@dimen/dp08"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:src="@drawable/next"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp01"
+        android:background="@color/color_a4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详细地址："
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/color_b1"/>
+
+        <com.yunma.widget.ContainsEmojiEditText
+            android:id="@+id/etDetialAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dp30"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="不支持表情图片的输入"
+            android:textColorHint="@color/color_b2"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/color_b1"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp01"
+        android:background="@color/color_a4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layoutSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp44"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:id="@+id/cbSelect"
+                android:layout_width="@dimen/dp14"
+                android:layout_height="@dimen/dp14"
+                android:layout_marginEnd="@dimen/dp19"
+                android:background="@drawable/check_box_style"
+                android:button="@null"
+                android:clickable="false"
+                android:checked="false"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置为默认地址"
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/color_b1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/color_a4"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/btnSaveAndUse"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp49"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_selector_orange"
+            android:textSize="@dimen/sp15"
+            android:text="@string/sava_use"/>
+
+        <View
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:background="@color/black"/>
+
+    </LinearLayout>
+
+</LinearLayout>

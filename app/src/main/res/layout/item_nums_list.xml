@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgGoods"
+        android:layout_width="@dimen/dp54"
+        android:layout_height="@dimen/dp54"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:src="@drawable/default_pic"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp05"
+            android:paddingStart="@dimen/dp15"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_b2"
+                android:text="单价："/>
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_b4"
+                android:textSize="@dimen/sp13"
+                android:text="￥188"/>
+
+        </LinearLayout>
+
+        <com.yunma.widget.MyListView
+            android:id="@+id/lvSize"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>

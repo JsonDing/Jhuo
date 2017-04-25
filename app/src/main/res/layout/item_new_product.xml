@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@color/color_a4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="@dimen/dp03"
+        android:layout_height="wrap_content"
+        android:background="@color/color_a4"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/dp06"
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layoutClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgGoods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_pic"/>
+
+            <TextView
+                android:id="@+id/tvTags"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="@dimen/dp17"
+                android:text="新品"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp12"
+                android:textStyle="italic"
+                android:background="@drawable/special_shade"/>
+
+            </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvGoodsName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_value"
+                    android:maxLines="2"
+                    android:textIsSelectable="true"
+                    android:layout_marginStart="@dimen/dp05"
+                    android:layout_marginEnd="@dimen/dp05"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_b1"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:textSize="@dimen/sp12"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp11"
+                    android:gravity="center"
+                    android:text="吊牌价："
+                    android:layout_marginStart="@dimen/dp05"
+                    android:layout_marginEnd="@dimen/dp05"
+                    android:layout_below="@+id/tvGoodsName"
+                    android:layout_marginTop="@dimen/dp07"
+                    android:textColor="@color/color_b2"
+                    android:id="@+id/tvOriginalPrice"/>
+
+                <TextView
+                    android:id="@+id/tvGoodsPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp10"
+                    android:layout_marginStart="@dimen/dp05"
+                    android:layout_marginEnd="@dimen/dp05"
+                    android:layout_marginTop="@dimen/dp07"
+                    android:layout_below="@+id/tvOriginalPrice"
+                    android:text="@string/default_value"
+                    android:textColor="@color/color_b4"/>
+
+                <ImageView
+                    android:id="@+id/imgsAddtoBasket"
+                    android:layout_width="@dimen/dp34"
+                    android:layout_height="@dimen/dp34"
+                    android:src="@drawable/special_cart"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"/>
+
+            </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="@dimen/dp03"
+        android:layout_height="wrap_content"
+        android:background="@color/color_a4"/>
+
+</LinearLayout>

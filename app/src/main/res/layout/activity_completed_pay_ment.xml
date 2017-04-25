@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_completed_pay_ment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.yunma.jhuo.activity.homepage.CompletedPayMent">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44"
+            android:text="支付订单成功"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp17"/>
+
+        <LinearLayout
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp10"
+                android:background="@color/color_a4"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgExpreessLogo"
+                        android:layout_width="@dimen/dp65"
+                        android:layout_height="@dimen/dp39"
+                        android:layout_marginStart="@dimen/dp30"
+                        android:layout_marginTop="@dimen/dp39"
+                        android:layout_marginBottom="@dimen/dp39"
+                        android:src="@drawable/express"/>
+
+                    <TextView
+                        android:id="@+id/tvComPletedPay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="支付成功！"
+                        android:layout_marginTop="@dimen/dp19"
+                        android:layout_marginStart="@dimen/dp39"
+                        android:layout_toEndOf="@+id/imgExpreessLogo"
+                        android:textColor="@color/color_b1"
+                        android:textSize="@dimen/sp16"/>
+
+                    <TextView
+                        android:id="@+id/textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="支付方式："
+                        android:layout_marginTop="@dimen/dp14"
+                        android:layout_marginStart="@dimen/dp39"
+                        android:layout_toEndOf="@+id/imgExpreessLogo"
+                        android:layout_below="@+id/tvComPletedPay"
+                        android:textColor="@color/color_b1"
+                        android:textSize="@dimen/sp13"/>
+
+                    <TextView
+                        android:id="@+id/tvPayway"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_value"
+                        android:layout_marginTop="@dimen/dp14"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:layout_toEndOf="@+id/textview"
+                        android:layout_below="@+id/tvComPletedPay"
+                        android:textColor="@color/color_b4"
+                        android:textSize="@dimen/sp13"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="支付金额："
+                        android:layout_marginTop="@dimen/dp10"
+                        android:layout_marginStart="@dimen/dp39"
+                        android:layout_toEndOf="@+id/imgExpreessLogo"
+                        android:layout_below="@+id/textview"
+                        android:textColor="@color/color_b1"
+                        android:textSize="@dimen/sp13"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_value"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:layout_toEndOf="@+id/textview"
+                        android:layout_below="@+id/tvPayway"
+                        android:textColor="@color/color_b4"
+                        android:textSize="@dimen/sp13"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnOrderDetial"
+                        android:layout_width="130dp"
+                        android:layout_height="35dp"
+                        android:text="订单详情"
+                        android:textSize="@dimen/sp13"
+                        android:textColor="@color/color_b1"
+                        android:background="@drawable/bg_button_normal"/>
+
+                    <Button
+                        android:id="@+id/btnBackHome"
+                        android:layout_width="130dp"
+                        android:layout_height="35dp"
+                        android:text="返回主页"
+                        android:layout_marginStart="@dimen/dp26"
+                        android:textSize="@dimen/sp13"
+                        android:textColor="@color/color_b1"
+                        android:background="@drawable/bg_button_normal"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp38"
+                android:background="@color/color_a4">
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_centerInParent="true"
+                    android:text="猜你喜欢"
+                    android:layout_marginTop="@dimen/dp08"
+                    android:textSize="@dimen/sp13"/>
+
+                <ImageView
+                    android:layout_width="@dimen/dp36"
+                    android:layout_height="@dimen/dp11"
+                    android:src="@drawable/decorate_right"
+                    android:layout_alignTop="@+id/text1"
+                    android:layout_marginTop="@dimen/dp08"
+                    android:layout_toStartOf="@+id/text1"
+                    android:layout_marginEnd="@dimen/dp15"
+                    android:id="@+id/decor_content_parent" />
+
+                <ImageView
+                    android:layout_width="@dimen/dp36"
+                    android:layout_height="@dimen/dp11"
+                    android:layout_marginTop="@dimen/dp08"
+                    android:src="@drawable/decorate_left"
+                    android:layout_alignTop="@+id/text1"
+                    android:layout_toEndOf="@+id/text1"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:id="@+id/imageView1" />
+
+            </RelativeLayout>
+
+            <com.yunma.widget.MyGirdView
+                android:id="@+id/gvIntro"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:scrollbars="none"
+                android:numColumns="2"
+                android:divider="@null"
+                android:background="@color/white"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp10"
+                android:background="@color/color_a4"/>
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingStart="@dimen/dp05"
+    android:paddingEnd="@dimen/dp05"
+    android:paddingTop="@dimen/dp10"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layoutSeeMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:background="@drawable/bg_edittext_normal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvSeeMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/sp12"
+            android:text="查看完整同类热销"
+            android:textColor="@color/color_b3"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_a4"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/sp13"
+            android:text="See more"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/color_b1"/>
+
+    </LinearLayout>
+
+</LinearLayout>

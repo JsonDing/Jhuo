@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.yunma.jhuo.activity.homepage.GoodsMnifest">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="@dimen/dp44"
+            android:text="商品清单"
+            android:background="@color/white"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp17"/>
+
+        <LinearLayout
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp44"
+            android:paddingEnd="@dimen/dp15">
+
+            <TextView
+                android:id="@+id/tvTotalNums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="共4件"
+                android:textSize="@dimen/sp16"
+                android:textColor="@color/color_b1"
+                android:clickable="false" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp01"
+        android:background="@color/color_a4"/>
+
+    <ListView
+        android:id="@+id/lvGoodsList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/color_a4"
+        android:scrollbars="none"
+        android:divider="@null"/>
+
+    <View
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:background="@color/black"/>
+
+</LinearLayout>

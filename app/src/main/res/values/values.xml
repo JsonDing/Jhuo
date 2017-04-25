@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@color/transparent</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item><!--模糊-->
+        <item name="android:backgroundDimAmount">0.6</item>
+
+    </style>
+
+    <array name="switches">
+        <item>@style/LightSwitch</item>
+        <item>@style/DarkSwitch</item>
+    </array>
+
+    <style name="LightSwitch" parent="Material.Widget.Switch">
+        <item name="sw_trackColor">@drawable/color_track_light</item>
+        <item name="sw_thumbColor">@drawable/color_thumb_light</item>
+    </style>
+
+    <style name="DarkSwitch" parent="Material.Widget.Switch">
+        <item name="sw_trackColor">@drawable/color_track_dark</item>
+        <item name="sw_thumbColor">@drawable/color_thumb_dark</item>
+    </style>
+
+    <!--全屏加透明-->
+    <style name="TranslucentFullScreenTheme" parent="FullScreenTheme">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <!--全屏-->
+    <style name="FullScreenTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!--透明，有任务栏电量时间等-->
+    <style name="NoTitleTranslucentTheme" parent="AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+
+        <item name="android:button">@drawable/checkbox_style</item>
+
+    </style>
+
+    <style name="OrangeCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+
+        <item name="android:button">@drawable/orange_checkbox_style</item>
+
+    </style>
+</resources>

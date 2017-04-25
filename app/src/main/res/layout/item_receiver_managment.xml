@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvReceiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="雷蒙吹"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp12"/>
+
+        <TextView
+            android:id="@+id/tvReceiverPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="188******88"
+            android:textStyle="bold"
+            android:includeFontPadding="false"
+            android:layout_toEndOf="@+id/tvReceiver"
+            android:layout_marginStart="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp10"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp12"/>
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1234664"
+            android:maxLines="3"
+            android:textSize="@dimen/sp12"
+            android:layout_alignStart="@+id/tvReceiver"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp07"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_below="@+id/tvReceiver"
+            android:textColor="@color/color_b1"/>
+
+        <LinearLayout
+            android:id="@+id/layoutEdit"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44"
+            android:gravity="center"
+            android:layout_alignParentEnd="true">
+
+            <ImageView
+                android:layout_width="@dimen/dp13"
+                android:layout_height="@dimen/dp13"
+                android:src="@drawable/more_right_big"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0.5"
+        android:background="@color/color_a4"/>
+
+</LinearLayout>

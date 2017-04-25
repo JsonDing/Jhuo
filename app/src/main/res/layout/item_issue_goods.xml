@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:clickable="false"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgsGoods"
+            android:clickable="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/btnRemindMe"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp28"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:clickable="true"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:background="@drawable/btn_selector_orange_no_conner"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvGoodsName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:textSize="12sp"
+        android:textColor="@color/color_b1"
+        android:paddingEnd="@dimen/dp05"
+        android:paddingStart="@dimen/dp05"
+        android:clickable="false"
+        android:ellipsize="end"
+        android:layout_marginTop="@dimen/dp06"/>
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_b3"
+        android:textStyle="bold"
+        android:lines="1"
+        android:textSize="13sp"
+        android:paddingEnd="@dimen/dp05"
+        android:clickable="false"
+        android:paddingStart="@dimen/dp05"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10"/>
+
+</LinearLayout>

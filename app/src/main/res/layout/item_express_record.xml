@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp38"
+        android:gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/lineTop"
+            android:layout_width="@dimen/dp01"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/color_a3"/>
+
+        <ImageView
+            android:id="@+id/circlePoint"
+            android:layout_width="@dimen/dp13"
+            android:layout_height="@dimen/dp13"
+            android:src="@drawable/circle_gray"/>
+
+        <View
+            android:id="@+id/lineBottom"
+            android:layout_width="@dimen/dp01"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/color_a3"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tvExpressStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:autoLink="phone|email|web"
+            android:textColorLink="#12b7f5"
+            android:linksClickable="true"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp14"/>
+
+        <TextView
+            android:id="@+id/tvFeedBackTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp09"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp13"
+            android:layout_below="@+id/tvExpressStatus"
+            android:textColor="@color/color_b2"
+            android:textSize="@dimen/sp12"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp0.5"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_below="@+id/tvFeedBackTime"
+            android:background="@color/color_a4"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

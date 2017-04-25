@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_a4"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:layout_width="@dimen/dp44"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:id="@+id/tvTittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退货管理"
+                android:textSize="@dimen/sp17"
+                android:textColor="@color/color_b1"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutNews"
+            android:paddingEnd="10dp"
+            android:layout_width="@dimen/dp54"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:orientation="horizontal"
+        android:background="@color/white" >
+
+        <RelativeLayout
+            android:id="@+id/layoutNotHandle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp44"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tvNotHandle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未处理"
+                android:clickable="false"
+                android:layout_centerInParent="true"
+                android:textColor="@color/color_b1"
+                android:textSize="@dimen/sp14"/>
+
+            <View
+                android:id="@+id/notHandleLine"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="@dimen/dp38"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:background="@color/color_b3"
+                android:layout_height="@dimen/dp02"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutHandling"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp44"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tvHandling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="处理中"
+                android:clickable="false"
+                android:layout_centerInParent="true"
+                android:textColor="@color/color_b1"
+                android:textSize="@dimen/sp14"/>
+
+            <View
+                android:id="@+id/handlingLine"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="@dimen/dp38"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:background="@color/color_b3"
+                android:layout_height="@dimen/dp02"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutComplete"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp44"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tvComplete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已完成"
+                android:clickable="false"
+                android:layout_centerInParent="true"
+                android:textColor="@color/color_b1"
+                android:textSize="@dimen/sp14"/>
+
+            <View
+                android:id="@+id/completeLine"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="@dimen/dp38"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:background="@color/color_b3"
+                android:layout_height="@dimen/dp02"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutRejust"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp44"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tvRejust"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已拒绝"
+                android:clickable="false"
+                android:layout_centerInParent="true"
+                android:textColor="@color/color_b1"
+                android:textSize="@dimen/sp14"/>
+
+            <View
+                android:id="@+id/rejustLine"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="@dimen/dp38"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:background="@color/color_b3"
+                android:layout_height="@dimen/dp02"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp01"
+        android:background="@color/color_a4"/>
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+</LinearLayout>

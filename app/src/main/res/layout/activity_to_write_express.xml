@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layouStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:background="@color/tittle_bar">
+
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:layout_width="@dimen/dp44"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:src="@drawable/re_back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_height="@dimen/dp44">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="填写物流"
+                android:textSize="@dimen/sp17"
+                android:textColor="@color/color_b1"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutNews"
+            android:paddingEnd="10dp"
+            android:background="@color/white"
+            android:layout_width="@dimen/dp54"
+            android:layout_height="@dimen/dp44">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:layout_centerInParent="true"
+                android:src="@drawable/re_message" />
+
+            <ImageView
+                android:id="@+id/imgRemind"
+                android:layout_width="7dp"
+                android:layout_height="7dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginStart="3dp"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:layout_toEndOf="@+id/imageView"
+                android:src="@drawable/red_dot" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0.5"
+        android:background="@color/color_a4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="@dimen/dp15"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="物流公司"
+            android:textColor="@color/color_b2"
+            android:textSize="@dimen/sp14"/>
+
+        <com.yunma.widget.NiceSpinner
+            android:id="@+id/spinner"
+            android:textColor="@color/color_b1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:textTint="@color/color_b1"
+            app:arrowTint="@color/color_b1"
+            app:paddingStart="@dimen/dp10"
+            android:textSize="@dimen/sp14"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginStart="@dimen/dp15"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0.5"
+        android:background="@color/color_a4"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp62">
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp15"
+            android:text="运单编号"
+            android:textColor="@color/color_b2"
+            android:textSize="@dimen/sp14"/>
+
+        <RelativeLayout
+            android:layout_toEndOf="@+id/textview"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_scanner_express_gray"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/etExpressCode"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:inputType="number"
+                android:paddingStart="@dimen/dp10"
+                android:textColor="@color/color_b1"
+                android:ellipsize="middle"
+                android:layout_toStartOf="@+id/imgScanner"
+                android:layout_marginEnd="@dimen/dp10"
+                android:background="@color/color_a4"/>
+
+            <ImageView
+                android:id="@+id/imgScanner"
+                android:layout_width="@dimen/dp24"
+                android:layout_height="@dimen/dp24"
+                android:layout_marginEnd="@dimen/dp10"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/qr_code"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0.5"
+        android:background="@color/color_a4"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="温习提示：为了不耽误您的宝贵时间，请勿选择快递到付，本公司拒收一切到付快递，感谢您的支持，谢谢！"
+        android:textColor="@color/color_b4"
+        android:textSize="@dimen/sp11"
+        android:paddingTop="@dimen/dp10"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="@dimen/dp15"
+        android:paddingBottom="@dimen/dp10"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="@color/color_a4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp137"
+        android:padding="@dimen/dp15"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dp107"
+            android:layout_height="@dimen/dp107"
+            android:src="@drawable/default_photo"
+            android:visibility="gone"
+            android:id="@+id/imgsOne"/>
+
+        <ImageView
+            android:id="@+id/imgsTwo"
+            android:layout_width="@dimen/dp107"
+            android:layout_height="@dimen/dp107"
+            android:layout_marginStart="@dimen/dp05"
+            android:visibility="gone"
+            android:src="@drawable/default_photo"/>
+
+        <ImageView
+            android:id="@+id/imgsThree"
+            android:layout_width="@dimen/dp107"
+            android:layout_height="@dimen/dp107"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/dp05"
+            android:src="@drawable/default_photo"/>
+
+        <ImageView
+            android:layout_width="@dimen/dp107"
+            android:layout_height="@dimen/dp107"
+            android:visibility="visible"
+            android:layout_marginStart="@dimen/dp05"
+            android:src="@drawable/add_image"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="上传凭证（最多三张）"
+        android:visibility="gone"
+        android:textColor="@color/color_b2"
+        android:textSize="@dimen/sp12"
+        android:paddingTop="@dimen/dp05"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="@dimen/dp15"
+        android:paddingBottom="@dimen/dp15"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/color_a4"
+        android:id="@+id/view5"/>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:text="提 交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp15"
+        android:background="@color/color_a1"/>
+
+</LinearLayout>

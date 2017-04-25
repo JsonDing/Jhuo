@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="196dp">
+
+        <com.stx.xhb.xbanner.XBanner
+            android:id="@+id/xbanner"
+            android:layout_width="match_parent"
+            android:layout_height="184dp"
+            app:isShowNumberIndicator="false"
+            app:pointsPosition="CENTER"
+            app:pointsContainerBackground="#44aaaaaa"
+            app:pointNormal="@drawable/circle_gray"
+            app:pointSelect="@drawable/circle_orange"
+            app:isShowIndicatorOnlyOne="false"
+            app:pointsVisibility="true"
+            app:AutoPlayTime="4000"
+            app:pageChangeDuration="1000"
+            app:isAutoPlay="true"/>
+
+        <TextView
+            android:id="@+id/tvPosOfPager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/dp14"
+            android:layout_marginBottom="@dimen/dp14"
+            android:background="@drawable/bg_shape_black"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:layout_marginStart="@dimen/dp15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="57dp"
+            android:layout_height="@dimen/dp15"
+            android:src="@drawable/message_home"/>
+
+        <com.sunfusheng.marqueeview.MarqueeView
+            android:id="@+id/marqueeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mvAnimDuration="1000"
+            app:mvInterval="3000"
+            android:paddingStart="15dp"
+            app:mvTextColor="@color/color_b2"
+            app:mvTextSize="@dimen/sp12"
+            app:mvSingleLine="true"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:background="@color/color_a4">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_centerInParent="true"
+            android:text="特价限量抢"
+            android:textSize="@dimen/sp13"/>
+
+        <LinearLayout
+            android:id="@+id/layoutLookAll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/dp15"
+            android:paddingEnd="@dimen/dp08"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看全部"
+                android:clickable="false"
+                android:textSize="@dimen/sp12"
+                android:textColor="@color/color_b2"/>
+
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:clickable="false"
+                android:src="@drawable/next"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/dp36"
+            android:layout_height="@dimen/dp11"
+            android:src="@drawable/decorate_right"
+            android:layout_toStartOf="@+id/text1"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/dp15"
+            android:id="@+id/decor_content_parent" />
+
+        <ImageView
+            android:layout_width="@dimen/dp36"
+            android:layout_height="@dimen/dp11"
+            android:src="@drawable/decorate_left"
+            android:layout_toEndOf="@+id/text1"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/dp15"
+            android:id="@+id/imageView1" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+

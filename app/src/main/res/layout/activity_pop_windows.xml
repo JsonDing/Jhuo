@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/color_a4"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_tittle_image"/>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp15"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp14"
+            android:text="特价开卖提醒"/>
+
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:checked="false"
+            android:theme="@style/OrangeSwitch"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp15"
+            android:text="添加购物车提醒"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp14" />
+
+
+        <Switch
+            android:id="@+id/sAddCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp15"
+            android:checked="false"
+            android:gravity="center"
+            android:theme="@style/OrangeSwitch" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp15"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp14"
+            android:text="上架提醒"/>
+
+
+        <Switch
+            android:id="@+id/sSaleRemind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:checked="false"
+            android:theme="@style/OrangeSwitch"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+</LinearLayout>

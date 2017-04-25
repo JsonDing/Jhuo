@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <CheckBox
+            android:id="@+id/rbButton"
+            android:layout_width="@dimen/dp18"
+            android:layout_height="@dimen/dp18"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_centerVertical="true"
+            android:button="@drawable/check_box_style"/>
+
+        <ImageView
+            android:id="@+id/imgGoods"
+            android:layout_width="@dimen/dp86"
+            android:layout_height="@dimen/dp86"
+            android:layout_toEndOf="@+id/rbButton"
+            android:src="@drawable/default_pic"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"/>
+
+        <TextView
+            android:id="@+id/tvGoodsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:textIsSelectable="true"
+            android:text="阿迪达色阿迪达色阿迪达色阿迪达色阿迪达色"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_toEndOf="@+id/imgGoods"
+            android:layout_marginStart="@dimen/dp10"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp13"/>
+
+        <TextView
+            android:id="@+id/tvOrderTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="下单时间:2016-12-12"
+            android:layout_below="@+id/tvGoodsName"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_toEndOf="@+id/imgGoods"
+            android:layout_marginStart="@dimen/dp10"
+            android:textColor="@color/color_b2"
+            android:textSize="@dimen/sp12"/>
+
+        <TextView
+            android:id="@+id/tvGoodsPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="￥189.00"
+            android:layout_alignBottom="@+id/imgGoods"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_toEndOf="@+id/imgGoods"
+            android:layout_marginStart="@dimen/dp10"
+            android:textColor="@color/color_b4"
+            android:textSize="@dimen/sp12"/>
+
+        <TextView
+            android:id="@+id/tvGoodsNums"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="x1"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/imgGoods"
+            android:layout_marginEnd="@dimen/dp15"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp12"/>
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="@color/color_a4"/>
+</LinearLayout>

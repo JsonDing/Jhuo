@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/sky"
+    android:layout_height="72dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/buildings">
+
+        <ImageView
+            android:id="@+id/imgSun"
+            android:layout_width="@dimen/dp28"
+            android:layout_height="@dimen/dp28"
+            android:src="@drawable/sun"
+            android:layout_marginStart="@dimen/dp85"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layouStatusBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:background="@color/tittle_bar">
+
+    <LinearLayout
+        android:id="@+id/layoutBack"
+        android:layout_width="@dimen/dp44"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_height="@dimen/dp44">
+
+        <ImageView
+            android:layout_width="@dimen/dp18"
+            android:layout_height="@dimen/dp18"
+            android:clickable="false"
+            android:src="@drawable/re_back" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tvTittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/view4"
+            android:gravity="center"
+            android:text="123456789"
+            android:textColor="@color/color_b1"
+            android:textSize="@dimen/sp17"/>
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"/>
+
+        <LinearLayout
+            android:id="@+id/layoutRight"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp44"
+            android:layout_alignParentEnd="true"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/dp15"
+            android:paddingStart="@dimen/dp15">
+
+            <TextView
+                android:id="@+id/tvRight"
+                android:layout_width="@dimen/wrap_content"
+                android:layout_height="@dimen/wrap_content"
+                android:clickable="false"
+                android:textColor="@color/color_b1"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

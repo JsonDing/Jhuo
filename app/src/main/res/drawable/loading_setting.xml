@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="30"
+          android:drawable="@drawable/setting001" />
+    <item android:duration="30"
+          android:drawable="@drawable/setting002" />
+    <item android:duration="30"
+          android:drawable="@drawable/setting003" />
+    <item android:duration="30"
+          android:drawable="@drawable/setting004" />
+    <item android:duration="30"
+          android:drawable="@drawable/setting005" />
+    <item android:duration="30"
+          android:drawable="@drawable/setting006" />
+</animation-list>

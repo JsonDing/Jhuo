@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">J货</string>
+    <string name="login">登录</string>
+    <string name="account">帐号</string>
+    <string name="passwd">密码</string>
+    <string name="modifypasswd">修改密码</string>
+    <string name="forget_passwd">忘记密码</string>
+    <string name="input_account">请输入帐号</string>
+    <string name="input_passwd">请输入密码</string>
+    <string name="old_passwd">原密码</string>
+    <string name="new_passwd">新密码</string>
+    <string name="confirm">确认</string>
+</resources>

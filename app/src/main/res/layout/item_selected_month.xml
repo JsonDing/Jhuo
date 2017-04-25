@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layoutMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp58">
+
+            <TextView
+                android:id="@+id/tvMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7月"
+                android:layout_marginStart="@dimen/dp06"
+                android:layout_marginEnd="@dimen/dp06"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp15"
+                android:textSize="@dimen/sp12"
+                android:textColor="@color/color_b1"/>
+
+            <ImageView
+                android:id="@+id/imgDot"
+                android:layout_below="@+id/tvMonth"
+                android:layout_width="@dimen/dp08"
+                android:layout_height="@dimen/dp08"
+                android:src="@drawable/circle_orange"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp07"
+                android:layout_marginBottom="@dimen/dp04"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

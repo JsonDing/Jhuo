@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp06"
+        android:background="@color/color_a4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp65"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="@dimen/dp03"
+            android:layout_height="match_parent"
+            android:background="@color/color_a4"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgGoods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_one"/>
+
+            <TextView
+                android:id="@+id/tvIntro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="@dimen/sp13"
+                android:textColor="@color/white"/>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="@dimen/dp03"
+            android:layout_height="match_parent"
+            android:background="@color/color_a4"/>
+
+    </LinearLayout>
+
+</LinearLayout>

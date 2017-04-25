@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp38"
+        android:gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="@dimen/dp01"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:background="@color/color_a3"/>
+
+        <ImageView
+            android:id="@+id/circlePoint"
+            android:layout_width="@dimen/dp13"
+            android:layout_height="@dimen/dp13"
+            android:src="@drawable/circle_gray"/>
+
+        <View
+            android:id="@+id/lineBottom1"
+            android:layout_width="@dimen/dp01"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/color_a3"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_item_return_progress_gray"
+        android:layout_marginEnd="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/dp05">
+
+        <TextView
+            android:id="@+id/tvWho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[买家]  申请退货"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp13"/>
+
+        <TextView
+            android:id="@+id/tvReturnType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp05"
+            android:text="退货原因："
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_below="@+id/tvWho"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"/>
+
+        <TextView
+            android:id="@+id/tvReturnDescribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp05"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_below="@+id/tvReturnType"
+            android:text="退货描述："
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"/>
+
+        <TextView
+            android:id="@+id/tvReturnTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp05"
+            android:layout_below="@+id/tvReturnDescribe"
+            android:text="如有疑问请即时与客服联系"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"/>
+
+        <Button
+            android:id="@+id/btnReturnDatial"
+            android:layout_width="@dimen/dp81"
+            android:layout_height="@dimen/dp28"
+            android:text="退货详情"
+            android:textSize="@dimen/sp12"
+            android:textColor="@color/color_b3"
+            android:layout_alignParentEnd="true"
+           android:layout_marginTop="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp15"
+            android:background="@drawable/btn_item_return_progress_white"/>
+    </RelativeLayout>
+
+</LinearLayout>

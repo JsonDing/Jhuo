@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_splash"
+    tools:context="com.yunma.jhuo.general.SplashPageActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutSkip"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp36"
+        android:layout_marginEnd="@dimen/dp24"
+        android:paddingStart="@dimen/dp08"
+        android:paddingEnd="@dimen/dp08"
+        android:paddingTop="@dimen/dp04"
+        android:paddingBottom="@dimen/dp04"
+        android:visibility="invisible"
+        android:background="@drawable/bg_shape_black">
+
+        <TextView
+            android:id="@+id/tvSkipOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp03"
+            android:layout_marginBottom="@dimen/dp03"
+            android:layout_marginStart="@dimen/dp05"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳过"
+            android:layout_marginTop="@dimen/dp03"
+            android:layout_marginBottom="@dimen/dp03"
+            android:layout_marginEnd="@dimen/dp05"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSpWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="154dp"
+        android:layout_marginEnd="@dimen/dp36"
+        android:lines="2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/color_b1"
+        android:layout_marginStart="@dimen/dp127"/>
+
+</RelativeLayout>
