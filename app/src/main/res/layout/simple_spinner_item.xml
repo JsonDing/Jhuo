@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/dp14"
     android:paddingBottom="@dimen/dp14"
     android:textSize="@dimen/sp14"
-    android:textColor="@color/color_b1"
+    android:textColor="@color/b1"
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

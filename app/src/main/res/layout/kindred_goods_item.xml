@@ -32,7 +32,7 @@
                 android:gravity="center"
                 android:textSize="12sp"
                 android:text="查看完整同类热销"
-                android:textColor="@color/color_b3"/>
+                android:textColor="@color/b3"/>
 
             <View
                 android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,18 +49,18 @@
                 android:textSize="13sp"
                 android:text="See more"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvSubscript"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp26"
             android:gravity="center"
             android:paddingStart="2dp"
             android:paddingEnd="2dp"
-            android:paddingBottom="2dp"
+            android:paddingBottom="4dp"
             android:textSize="@dimen/sp12"
             android:textColor="@color/white"
             android:background="@drawable/subscript_1"
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="@dimen/sp12"
-            android:textColor="@color/color_b4"
+            android:textColor="@color/b4"
             android:text="￥000"/>
 
         <TextView
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="@dimen/sp10"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:layout_marginStart="5dp"
             android:text="￥000"/>
 

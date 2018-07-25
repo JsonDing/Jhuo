@@ -9,6 +9,8 @@ import java.util.*;
 public class DateTimeUtils {
     public static final SimpleDateFormat DEFAULT_DATE_FORMAT //年-月-日 时:分:秒
             = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+    public static final SimpleDateFormat DATE_FORMAT_Y_M_D_H_M //年-月-日 时:分
+            = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
     public static final SimpleDateFormat DATE_FORMAT_DATE    //年-月-日
             = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
     public static final SimpleDateFormat YEAR_MONTH_DAY    //年-月-日
@@ -29,6 +31,7 @@ public class DateTimeUtils {
             = new SimpleDateFormat("HH:mm", Locale.CHINA);
     public static final SimpleDateFormat HH                  //时
             = new SimpleDateFormat("HH", Locale.CHINA);
+
     private DateTimeUtils() {
         throw new AssertionError();
     }
@@ -83,8 +86,7 @@ public class DateTimeUtils {
     }
 
     public static String getWeekOfDate(Date date) {
-          String[] weekOfDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
-      //  Integer[] weekOfDays = {7, 1, 2, 3, 4, 5,6};
+        String[] weekOfDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
         Calendar calendar = Calendar.getInstance();
         if(date != null){
             calendar.setTime(date);
@@ -174,7 +176,6 @@ public class DateTimeUtils {
             // "秒");
 
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return timeString;
@@ -204,7 +205,6 @@ public class DateTimeUtils {
 
             timeString = Float.toString(hour1);
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return timeString;
@@ -239,7 +239,6 @@ public class DateTimeUtils {
                     - min * 60 * 1000 - s * 1000);
             mSecond = (int) ms;
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return mSecond;

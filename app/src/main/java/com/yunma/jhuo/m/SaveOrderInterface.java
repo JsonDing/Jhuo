@@ -15,12 +15,11 @@ public class SaveOrderInterface {
         void saveOrder(Context mContext,SaveOrderBean saveOrderBean,
                        OnSaveOrderListener onSaveOrderListener);
     }
+
     public interface SaveOrderView{
-        Context getContext();
-        String getAddressId();
-        SaveOrderBean getSaveOrderBean();
         void showSaveOrderInfos(SaveOrderResultBean resultBean,String msg);
     }
+
     public interface OnSaveOrderListener{
         void onListener(SaveOrderResultBean resultBean,String msg);
     }

@@ -23,7 +23,6 @@ public class GoodsReturnCompleteAdapter extends BaseAdapter{
     private Context mContext;
     private LayoutInflater inflater;
     private OnCompleteClick onAdapterClick;
-    private GoodsRuturnAdapter mAdapter;
     private List<ServiceResultBean.SuccessBean.ListBean> listBean;
     public GoodsReturnCompleteAdapter(Context mContext, OnCompleteClick onAdapterClick,
                                       List<ServiceResultBean.SuccessBean.ListBean> listBean) {
@@ -63,7 +62,7 @@ public class GoodsReturnCompleteAdapter extends BaseAdapter{
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA)));
         holder.tvRealPay.setText("￥" + listBean.get(position).getOrder().getTotalcost());
         holder.tvReturnPrice.setText("￥" + listBean.get(position).getMoneyout());
-        mAdapter = new GoodsRuturnAdapter(mContext,listBean.get(position).getServiceDetails());
+        GoodsRuturnAdapter mAdapter = new GoodsRuturnAdapter(mContext, listBean.get(position).getServiceDetails());
         holder.lvGoodsList.setAdapter(mAdapter);
 
         holder.btnRebackDetial.setOnClickListener(new View.OnClickListener() {
@@ -120,17 +119,17 @@ public class GoodsReturnCompleteAdapter extends BaseAdapter{
         ListView lvGoodsList;
 
         public ViewHolder(View itemView) {
-            tvTime = (TextView) itemView.findViewById(R.id.tvTime);
-            tvTotalNums = (TextView) itemView.findViewById(R.id.tvTotalNums);
-            tvReturnPrice = (TextView) itemView.findViewById(R.id.tvReturnPrice);
-            btnRebackDetial = (Button) itemView.findViewById(R.id.btnRebackDetial);
-            btnRebackStatus = (Button) itemView.findViewById(R.id.btnRebackStatus);
-            btnMoneyGo = (Button) itemView.findViewById(R.id.btnMoneyGo);
-            tvOrderCode = (TextView) itemView.findViewById(R.id.tvOrderCode);
-            tvRealPay = (TextView) itemView.findViewById(R.id.tvRealPay);
+            tvTime = itemView.findViewById(R.id.tvTime);
+            tvTotalNums = itemView.findViewById(R.id.tvTotalNums);
+            tvReturnPrice = itemView.findViewById(R.id.tvReturnPrice);
+            btnRebackDetial = itemView.findViewById(R.id.btnRebackDetial);
+            btnRebackStatus = itemView.findViewById(R.id.btnRebackStatus);
+            btnMoneyGo = itemView.findViewById(R.id.btnMoneyGo);
+            tvOrderCode = itemView.findViewById(R.id.tvOrderCode);
+            tvRealPay = itemView.findViewById(R.id.tvRealPay);
             layoutShow = itemView.findViewById(R.id.layoutShow);
-            tvShow = (TextView)itemView.findViewById(R.id.tvShow);
-            lvGoodsList = (ListView)itemView.findViewById(R.id.lvGoodsList);
+            tvShow = itemView.findViewById(R.id.tvShow);
+            lvGoodsList = itemView.findViewById(R.id.lvGoodsList);
         }
     }
 }

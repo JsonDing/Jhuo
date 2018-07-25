@@ -30,7 +30,7 @@ public class AddServiceImpl implements ServiceInterface.AddServiceModel {
         Gson gson = new Gson();
         String strParams = gson.toJson(requstBean);
         params.setBodyContent(strParams);
-        LogUtils.log("requst: " + strParams);
+        LogUtils.json("requst: " + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -43,7 +43,7 @@ public class AddServiceImpl implements ServiceInterface.AddServiceModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onAddServiceListener.toShowAddInfos(null,"数据解析出错");
@@ -56,7 +56,7 @@ public class AddServiceImpl implements ServiceInterface.AddServiceModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onAddServiceListener.toShowAddInfos(null,"数据解析出错");
@@ -75,7 +75,7 @@ public class AddServiceImpl implements ServiceInterface.AddServiceModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onAddServiceListener.toShowAddInfos(null,"网络错误");
                 }else{
@@ -93,7 +93,7 @@ public class AddServiceImpl implements ServiceInterface.AddServiceModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("添加售后 result: " + result);
+                   // LogUtils.json("添加售后 result: " + result);
                 }
             }
         });

@@ -43,7 +43,7 @@ public class DeleteShoppingCartImpl implements DelShoppingCartModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onDelShoppingCart.onDelShoppingCartListener(null,"数据解析出错");
@@ -52,7 +52,7 @@ public class DeleteShoppingCartImpl implements DelShoppingCartModel {
                         onDelShoppingCart.onDelShoppingCartListener(resultBean,resultBean.getSuccess());
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onDelShoppingCart.onDelShoppingCartListener(null,"数据解析出错");
@@ -72,10 +72,10 @@ public class DeleteShoppingCartImpl implements DelShoppingCartModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onDelShoppingCart.onDelShoppingCartListener(null,"网络异常");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
-                    LogUtils.log("------------> " + ex.getMessage());
+                    LogUtils.json("------------> " + ex.getMessage());
                     onDelShoppingCart.onDelShoppingCartListener(null,"服务器未响应，请稍后再试");
                 }
             }
@@ -89,7 +89,7 @@ public class DeleteShoppingCartImpl implements DelShoppingCartModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("删除订单 : " + result);
+                  //  LogUtils.json("删除订单 : " + result);
                 }
             }
         });

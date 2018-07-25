@@ -17,7 +17,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:visibility="invisible"
-            android:background="@color/color_a3"/>
+            android:background="@color/a3"/>
 
         <ImageView
             android:id="@+id/circlePoint"
@@ -30,7 +30,7 @@
             android:layout_width="@dimen/dp01"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/color_a3"/>
+            android:background="@color/a3"/>
 
     </LinearLayout>
 
@@ -94,7 +94,7 @@
             android:layout_height="@dimen/dp28"
             android:text="退货详情"
             android:textSize="@dimen/sp12"
-            android:textColor="@color/color_b3"
+            android:textColor="@color/b3"
             android:layout_alignParentEnd="true"
            android:layout_marginTop="@dimen/dp10"
             android:layout_marginEnd="@dimen/dp15"

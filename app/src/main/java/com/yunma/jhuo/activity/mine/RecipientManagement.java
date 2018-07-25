@@ -8,20 +8,28 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.yunma.R;
-import com.yunma.jhuo.activity.homepage.AddRecipient;
 import com.yunma.adapter.RecipientManagementAdapter;
 import com.yunma.bean.ModifyAddressBean;
 import com.yunma.bean.RecipientManageBean;
+import com.yunma.dao.ConsigneeAddress;
+import com.yunma.dao.GreenDaoManager;
+import com.yunma.greendao.ConsigneeAddressDao;
+import com.yunma.jhuo.activity.homepage.AddRecipientActivity;
 import com.yunma.jhuo.general.MyCompatActivity;
 import com.yunma.jhuo.m.RecipientManageInterface.OnModifyRecipient;
 import com.yunma.jhuo.m.RecipientManageInterface.RecipientManageView;
 import com.yunma.jhuo.p.RecipientManagePre;
-import com.yunma.utils.*;
+import com.yunma.utils.AppManager;
+import com.yunma.utils.LogUtils;
+import com.yunma.utils.ScreenUtils;
+import com.yunma.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RecipientManagement extends MyCompatActivity implements
         RecipientManageView, OnModifyRecipient {
@@ -30,7 +38,6 @@ public class RecipientManagement extends MyCompatActivity implements
     @BindView(R.id.layoutAddReceiver) LinearLayout layoutAddReceiver;
     @BindView(R.id.layouStatusBar) LinearLayout layouStatusBar;
     @BindView(R.id.lvReceiverManage) ListView lvReceiverManage;
-    @BindView(R.id.layout) View layout;
     @BindView(R.id.layoutNull) LinearLayout layoutNull;
     private Context mContext;
     private RecipientManageBean mBean = null;
@@ -44,26 +51,22 @@ public class RecipientManagement extends MyCompatActivity implements
         setContentView(R.layout.activity_recipient_management);
         ButterKnife.bind(this);
         AppManager.getAppManager().addActivity(this);
-        initStatusBarAndNavigationBar();
+        initStatusBar();
         initDatas();
 
     }
 
     private void initDatas() {
         mPresenter = new RecipientManagePre(RecipientManagement.this);
-        mPresenter.queryRecipient();
+        mPresenter.queryRecipient(this);
+        List<ConsigneeAddress> addrList = getAddressDao().loadAll();
+        LogUtils.json("addrList: " + addrList.size());
     }
 
-    private void initStatusBarAndNavigationBar() {
+    private void initStatusBar() {
         mContext = this;
         int statusHeight = ScreenUtils.getStatusHeight(RecipientManagement.this);
         layouStatusBar.setPadding(0, statusHeight, 0, 0);
-       /* int navigationBarHeight = ScreenUtils.getNavigationBarHeight(RecipientManagement.this);
-        //取控件textView当前的布局参数
-        LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) layout.getLayoutParams();
-        linearParams.height = navigationBarHeight;// 控件的高强制设成
-        linearParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
-        layout.setLayoutParams(linearParams); //使设置好的布局参数应用到控件*/
     }
 
     @OnClick({R.id.layoutBack, R.id.layoutAddReceiver})
@@ -82,21 +85,21 @@ public class RecipientManagement extends MyCompatActivity implements
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 1) {
-            mPresenter.queryRecipient();
+            mPresenter.queryRecipient(this);
         }else if(resultCode == 2){
             if(data.getStringExtra("type").equals("modify")){
                 ModifyAddressBean resultBean = (ModifyAddressBean) data.getSerializableExtra("result");
                 int pos = data.getIntExtra("modifyId",-1);
-                LogUtils.log("postion : 3 ---> " + pos);
+                LogUtils.json("postion : 3 ---> " + pos);
                 addressList.get(pos).setName(resultBean.getName());
                 addressList.get(pos).setTel(resultBean.getTel());
                 addressList.get(pos).setRegoin(resultBean.getRegoin());
                 addressList.get(pos).setAddr(resultBean.getAddr());
-                if(resultBean.getUsed()==1){
+                if(resultBean.getUsed().equals("1")){
                     clearDefault();
                     addressList.get(pos).setUsed(1);
                 }else{
-                    addressList.get(pos).setUsed(resultBean.getUsed());
+                    addressList.get(pos).setUsed(Integer.valueOf(resultBean.getUsed()));
                 }
             }else if(data.getStringExtra("type").equals("delete")){
                 int pos = data.getIntExtra("modifyId",-1);
@@ -110,11 +113,6 @@ public class RecipientManagement extends MyCompatActivity implements
         for(int i=0;i<addressList.size();i++){
             addressList.get(i).setUsed(0);
         }
-    }
-
-    @Override
-    public Context getContext() {
-        return mContext;
     }
 
     @Override
@@ -157,7 +155,7 @@ public class RecipientManagement extends MyCompatActivity implements
     }
 
     private void addLocation() {
-        Intent intent = new Intent(RecipientManagement.this, AddRecipient.class);
+        Intent intent = new Intent(RecipientManagement.this, AddRecipientActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("mtittle", "添加地址");
         intent.putExtras(bundle);
@@ -166,8 +164,8 @@ public class RecipientManagement extends MyCompatActivity implements
 
     @Override
     public void onModifyListener(int position, RecipientManageBean.SuccessBean.ListBean  mBean) {
-        LogUtils.log("postion : 1 ---> " + position);
-        Intent intent = new Intent(mContext, AddRecipient.class);
+        LogUtils.json("postion : 1 ---> " + position);
+        Intent intent = new Intent(mContext, AddRecipientActivity.class);
         Bundle bundle = new Bundle();
         bundle.putInt("position",position);
         bundle.putString("mtittle", "编辑地址");
@@ -176,4 +174,7 @@ public class RecipientManagement extends MyCompatActivity implements
         startActivityForResult(intent, 2);
     }
 
+    private ConsigneeAddressDao getAddressDao() {
+        return GreenDaoManager.getInstance().getSession().getConsigneeAddressDao();
+    }
 }

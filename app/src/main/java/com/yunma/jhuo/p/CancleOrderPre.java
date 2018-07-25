@@ -1,5 +1,7 @@
 package com.yunma.jhuo.p;
 
+import android.content.Context;
+
 import com.yunma.bean.SuccessResultBean;
 import com.yunma.jhuo.i.CancleOrderImpl;
 import com.yunma.jhuo.m.CancleOrderInterface;
@@ -19,8 +21,8 @@ public class CancleOrderPre {
         this.mModel = new CancleOrderImpl();
     }
 
-    public void cancleOrder(String id){
-        mModel.cancleOrder(mView.getContext(), id, new CancleOrderInterface.CancleOrderListener() {
+    public void cancleOrder(Context context,String id){
+        mModel.cancleOrder(context, id, new CancleOrderInterface.CancleOrderListener() {
             @Override
             public void cancleOrderListener(SuccessResultBean resultBean, String msg) {
                 mView.showCancleInfos(resultBean,msg);

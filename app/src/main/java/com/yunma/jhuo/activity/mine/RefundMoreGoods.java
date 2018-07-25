@@ -3,26 +3,44 @@ package com.yunma.jhuo.activity.mine;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.*;
-import android.support.v7.widget.*;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
-import com.tencent.connect.auth.QQAuth;
-import com.tencent.open.wpa.WPA;
 import com.yunma.R;
 import com.yunma.adapter.RefundMoreGoodsAdapter;
-import com.yunma.adapter.RefundMoreGoodsAdapter.*;
+import com.yunma.adapter.RefundMoreGoodsAdapter.SaveEditListener;
+import com.yunma.adapter.RefundMoreGoodsAdapter.SaveImgsListener;
+import com.yunma.adapter.RefundMoreGoodsAdapter.SaveSpinnerListener;
 import com.yunma.bean.OrderUnPayResultBean.SuccessBean.ListBean.OrderdetailsBean;
-import com.yunma.bean.*;
-import com.yunma.jhuo.general.MyActivity;
+import com.yunma.bean.PathBean;
+import com.yunma.bean.QiniuResultBean;
+import com.yunma.bean.SuccessResultBean;
+import com.yunma.bean.UpLoadServiceBean;
+import com.yunma.jhuo.activity.ContactUsActivity;
+import com.yunma.jhuo.general.CheckPermissionsActivity;
 import com.yunma.jhuo.general.MyApplication;
 import com.yunma.jhuo.m.GetQiniuTokenInterface.GetQiniuTokenView;
 import com.yunma.jhuo.m.ServiceInterface.AddServiceView;
-import com.yunma.jhuo.p.*;
-import com.yunma.utils.*;
+import com.yunma.jhuo.p.GetQiniuTokenPre;
+import com.yunma.jhuo.p.GoodsServicePre;
+import com.yunma.utils.AppManager;
+import com.yunma.utils.DateTimeUtils;
+import com.yunma.utils.EmptyUtil;
+import com.yunma.utils.LogUtils;
+import com.yunma.utils.SPUtils;
+import com.yunma.utils.ScreenUtils;
+import com.yunma.utils.ToastUtils;
 import com.yunma.widget.CustomProgressDialog;
 
 import org.json.JSONObject;
@@ -30,17 +48,22 @@ import org.json.JSONObject;
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.nereo.multi_image_selector.MultiImageSelector;
 import top.zibin.luban.Luban;
 import top.zibin.luban.OnCompressListener;
 
-import static com.tencent.open.utils.Global.getContext;
 
 @SuppressWarnings("unchecked")
-public class RefundMoreGoods extends MyActivity implements SaveEditListener,SaveSpinnerListener,
+public class RefundMoreGoods extends CheckPermissionsActivity implements SaveEditListener,SaveSpinnerListener,
         SaveImgsListener, GetQiniuTokenView ,AddServiceView {
     private static final int REQUEST_IMAGE = 2;
     @BindView(R.id.layoutBack)
@@ -141,15 +164,8 @@ public class RefundMoreGoods extends MyActivity implements SaveEditListener,Save
                 }
                 break;
             case R.id.layoutNews:
-                QQAuth mqqAuth = QQAuth.createInstance("1106058796",getContext());
-                WPA mWPA = new WPA(this, mqqAuth.getQQToken());
-                String ESQ = "2252162352";  //客服QQ号
-                int ret = mWPA.startWPAConversation(RefundMoreGoods.this,ESQ,null);
-                if (ret != 0) {
-                    Toast.makeText(getApplicationContext(),
-                            "抱歉，联系客服出现了错误~. error:" + ret,
-                            Toast.LENGTH_LONG).show();
-                }
+                Intent intent = new Intent(this,ContactUsActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -172,10 +188,8 @@ public class RefundMoreGoods extends MyActivity implements SaveEditListener,Save
      * 压缩图片 Listener 方式
      */
     private void compressWithLs(File file, final int picSize) {
-
-        Luban.get(RefundMoreGoods.this)
+        Luban.with(RefundMoreGoods.this)
                 .load(file)
-                .putGear(Luban.THIRD_GEAR)
                 .setCompressListener(new OnCompressListener() {
                     @Override
                     public void onStart() {
@@ -183,7 +197,7 @@ public class RefundMoreGoods extends MyActivity implements SaveEditListener,Save
                     @Override
                     public void onSuccess(File file) {
                         mStringList.add(file.getAbsolutePath());
-                        LogUtils.log("压缩后路径：" + file.getAbsolutePath());
+                        LogUtils.json("压缩后路径：" + file.getAbsolutePath());
                         if(mStringList.size()==picSize){
                             for(int i=0;i<mStringList.size();i++){
                                 getUpimg(mStringList.get(i),i);
@@ -211,7 +225,7 @@ public class RefundMoreGoods extends MyActivity implements SaveEditListener,Save
                                 public void complete(String key, ResponseInfo info, JSONObject res) {
                                     //res包含hash、key等信息，具体字段取决于上传策略的设置
                                     if(info.isOK()) {
-                                        LogUtils.log("Upload Success : " + key);
+                                        LogUtils.json("Upload Success : " + key);
                                         PathBean pathBean = new PathBean();
                                         pathBean.setImgsPath(key);
                                         imgUrlList.add(pathBean);
@@ -221,7 +235,7 @@ public class RefundMoreGoods extends MyActivity implements SaveEditListener,Save
                                     }else{
                                         progressDimiss();
                                         //如果失败，这里可以把info信息上报自己的服务器，便于后面分析上传错误原因
-                                        LogUtils.log("Upload Fail : " + position + "Type" + info.error);
+                                        LogUtils.json("Upload Fail : " + position + "Type" + info.error);
                                     }
                                 }
                             }, null);
@@ -229,7 +243,7 @@ public class RefundMoreGoods extends MyActivity implements SaveEditListener,Save
             }).start();
         }else{
             progressDimiss();
-            ToastUtils.showError(getContext(),"上传失败");
+            ToastUtils.showError(this,"上传失败");
         }
     }
 
@@ -246,7 +260,7 @@ public class RefundMoreGoods extends MyActivity implements SaveEditListener,Save
                     servicesBeanList.get(currentPosition).setPic(sb.toString());
                     if(currentPosition == endPosition){
                         goodsServicePre.addToService(mContext,upLoadServiceBean);
-                     //   LogUtils.log("测试数据：上传服务器前 ---> " + new Gson().toJson(upLoadServiceBean));
+                     //   LogUtils.json("测试数据：上传服务器前 ---> " + new Gson().toJson(upLoadServiceBean));
                     }else{
                         mStringList.clear();
                         imgUrlList.clear();

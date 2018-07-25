@@ -22,15 +22,14 @@ public class OrderWaitToSendImpl implements OrderWaitToSendModel {
     private OrderUnPayResultBean resultBean = null;
     private FailedResultBean failedResultBean = null;
     @Override
-    public void orderUnSend(final Context mContext,
+    public void orderUnSend(final Context mContext,String nums,String page,
                            final OrderWaitToSendListener orderWaitToSendListener) {
         RequestParams params = new RequestParams(ConUtils.ORDER_PAY_UNSEND);
         final UnSendOrderBean unSendOrderBean = new UnSendOrderBean();
         unSendOrderBean.setToken(SPUtils.getToken(mContext));
-        unSendOrderBean.setSize("10");
-        unSendOrderBean.setPage("1");
+        unSendOrderBean.setSize(nums);
+        unSendOrderBean.setPage(page);
         String strBodyContent = new Gson().toJson(unSendOrderBean);
-        LogUtils.log("未发货订单: ------------>" + strBodyContent);
         params.setAsJsonContent(true);
         params.setBodyContent(strBodyContent);
         x.http().post(params, new Callback.CacheCallback<String>() {
@@ -48,7 +47,7 @@ public class OrderWaitToSendImpl implements OrderWaitToSendModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     OrderUnPayResultBean.class);
                         } catch (Exception e) {
                             orderWaitToSendListener.orderWaitToSendListener(null,"数据解析出错!");
@@ -58,7 +57,7 @@ public class OrderWaitToSendImpl implements OrderWaitToSendModel {
                         orderWaitToSendListener.orderWaitToSendListener(resultBean,"获取成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             orderWaitToSendListener.orderWaitToSendListener(null,"数据解析出错!");
@@ -80,11 +79,11 @@ public class OrderWaitToSendImpl implements OrderWaitToSendModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     orderWaitToSendListener.orderWaitToSendListener(null,"网络异常!");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     orderWaitToSendListener.orderWaitToSendListener(null,"服务器未响应，请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -97,7 +96,7 @@ public class OrderWaitToSendImpl implements OrderWaitToSendModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("未发货订单: " + result);
+                    LogUtils.json("未发货订单: " + result);
                 }
             }
         });

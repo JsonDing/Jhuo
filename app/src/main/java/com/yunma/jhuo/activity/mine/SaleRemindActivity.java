@@ -99,11 +99,11 @@ public class SaleRemindActivity extends MyCompatActivity implements GoodsRemindV
                 AppManager.getAppManager().finishActivity(this);
                 break;
             case R.id.layoutRight:
-                LogUtils.log("list: " + mAdapter.getList().toString());
+                LogUtils.json("list: " + mAdapter.getList().toString());
                 if(delGoodsRemindPre == null){
                     delGoodsRemindPre = new DelGoodsRemindPre(this);
                 }
-                delGoodsRemindPre.addGoodsRemind(mContext,mAdapter.getList());
+                delGoodsRemindPre.delGoodsRemind(mContext,mAdapter.getList());
                 break;
         }
     }
@@ -145,7 +145,7 @@ public class SaleRemindActivity extends MyCompatActivity implements GoodsRemindV
     private void initSwipeRefreshLayout() {
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.head_view, null);
-        final TitanicTextView tv = (TitanicTextView) view.findViewById(R.id.textview);
+        final TitanicTextView tv = view.findViewById(R.id.textview);
         tv.setTypeface(Typefaces.get(this, "Delicious.ttf"));
         swipeRefreshLayout.setHeaderView(view);
         swipeRefreshLayout.setLoadmoreEnable(false);

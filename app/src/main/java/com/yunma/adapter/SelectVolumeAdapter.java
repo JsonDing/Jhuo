@@ -9,14 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yunma.R;
-import com.yunma.bean.VolumeResultBean;
+import com.yunma.bean.VolumeListBean;
 import com.yunma.utils.DateTimeUtils;
 import com.yunma.utils.ValueUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,14 +26,15 @@ import butterknife.ButterKnife;
  */
 
 public class SelectVolumeAdapter extends RecyclerView.Adapter<SelectVolumeAdapter.ViewHolder> {
-    private Context mContext;
+
     private LayoutInflater inflater;
     private OnItemClick onItemClick;
-    List<VolumeResultBean.SuccessBean> listBean = null;
+    private List<VolumeListBean> listBean = null;
+    private final static long VALUE = 24 * 60 * 60 * 1000;
+
     public SelectVolumeAdapter(Context context, OnItemClick onItemClick) {
         this.onItemClick = onItemClick;
-        this.mContext = context;
-        this.inflater = LayoutInflater.from(mContext);
+        this.inflater = LayoutInflater.from(context);
         this.listBean = new ArrayList<>();
     }
 
@@ -46,35 +45,55 @@ public class SelectVolumeAdapter extends RecyclerView.Adapter<SelectVolumeAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.tvMoney.setText(
                 ValueUtils.toTwoDecimal(listBean.get(position).getMoney()));
         holder.tvVolumeUseRange.setText(
                 String.valueOf(listBean.get(position).getAstrict()));
         holder.tvVolumeName.setText(listBean.get(position).getName());
+
         if(listBean.get(position).getType()==1){
             holder.tvCondition.setText("包邮");
+            holder.tvPriceTag.setVisibility(View.GONE);
+            holder.tvMoney.setText("包邮");
+            holder.tvCondition.setText("邮费抵扣券");
+            holder.tvVolumeUseRange.setVisibility(View.INVISIBLE);
         }else if(listBean.get(position).getType()==2){
-            holder.tvCondition.setText("限件包邮");
+            holder.tvCondition.setText(listBean.get(position).getAstrict() + "件内可用");
+            holder.tvVolumeUseRange.setText("邮费抵扣券");
         }else if(listBean.get(position).getType()==3){
             holder.tvCondition.setText("不限件包邮");
+            holder.tvVolumeUseRange.setText("邮费抵扣券");
         }else if(listBean.get(position).getType()==4){
-            holder.tvCondition.setText("限消费商品");
+            holder.tvCondition.setText(
+                    "满" + listBean.get(position).getAstrict() + "可用");
+            holder.tvVolumeUseRange.setText("满减券");
         }else if(listBean.get(position).getType()==5){
-            holder.tvCondition.setText("不限消费商品");
+            holder.tvCondition.setText("不限消费金额");
+            holder.tvVolumeUseRange.setText("满减券");
         }
+        long l1 = listBean.get(position).getDate();
+        long l2 = listBean.get(position).getDay() * VALUE;
+        long endTime = l1 + l2;
+        String endDate = DateTimeUtils.getTime(endTime, DateTimeUtils.DATE_FORMAT_DATE);
+        String startDate = DateTimeUtils.getTime(listBean.get(position).getDate(),
+                DateTimeUtils.DATE_FORMAT_DATE);
         holder.tvVolumeUseTime.setText(
-                DateTimeUtils.getTime(listBean.get(position).getDate(),
-                        new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.CHINA)) + "-" +
-                        DateTimeUtils.getTime(listBean.get(position).getDate() +
-                                        listBean.get(position).getDay()*24*60*60*1000,
-                                new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.CHINA)));
+                String.valueOf(startDate + " - " + endDate));
+        long curTime = System.currentTimeMillis();
+        if (endTime-curTime<2*VALUE) {
+            holder.imgsVolumeTags.setVisibility(View.VISIBLE);
+        } else {
+            holder.imgsVolumeTags.setVisibility(View.INVISIBLE);
+        }
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(null!=onItemClick){
                     onItemClick.onItemClick(ValueUtils.toTwoDecimal(
-                            listBean.get(position).getMoney()),listBean.get(position).getName());
+                            listBean.get(holder.getAdapterPosition()).getMoney()),
+                            String.valueOf(listBean.get(holder.getAdapterPosition()).getId()),
+                            listBean.get(holder.getAdapterPosition()).getType());
                 }
             }
         });
@@ -87,7 +106,7 @@ public class SelectVolumeAdapter extends RecyclerView.Adapter<SelectVolumeAdapte
 
 
     public interface OnItemClick {
-        void onItemClick(String money, String name);
+        void onItemClick(String money, String couponUserid,int type);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -97,6 +116,7 @@ public class SelectVolumeAdapter extends RecyclerView.Adapter<SelectVolumeAdapte
         @BindView(R.id.tvVolumeUseRange) TextView tvVolumeUseRange;
         @BindView(R.id.tvVolumeUseTime) TextView tvVolumeUseTime;
         @BindView(R.id.imgsVolumeTags) ImageView imgsVolumeTags;
+        @BindView(R.id.tvPriceTag) TextView tvPriceTag;
         View root;
         ViewHolder(View view) {
             super(view);
@@ -105,7 +125,7 @@ public class SelectVolumeAdapter extends RecyclerView.Adapter<SelectVolumeAdapte
         }
     }
 
-    public void setUnUseListBean(List<VolumeResultBean.SuccessBean> listBean) {
+    public void setUnUseListBean(List<VolumeListBean> listBean) {
         this.listBean = listBean;
         notifyDataSetChanged();
     }

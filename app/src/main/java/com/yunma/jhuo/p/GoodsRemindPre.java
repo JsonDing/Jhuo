@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.yunma.bean.GoodsRemindResultBean;
 import com.yunma.bean.GoodsRemindResultBean.SuccessBean.NewRemindsBean;
-import com.yunma.jhuo.m.GoodsRemindImpl;
+import com.yunma.jhuo.i.GoodsRemindImpl;
 import com.yunma.jhuo.m.SelfGoodsInterFace;
 
 import java.util.List;

@@ -386,7 +386,7 @@ public class ServiceResultBean {
                 private int orderdetailId;
                 private String pic;
                 private String reason;
-                private int refundMoney;
+                private double refundMoney;
                 private String remark;
                 private String serviceId;
                 private String size;
@@ -439,11 +439,11 @@ public class ServiceResultBean {
                     this.reason = reason;
                 }
 
-                public int getRefundMoney() {
+                public double getRefundMoney() {
                     return refundMoney;
                 }
 
-                public void setRefundMoney(int refundMoney) {
+                public void setRefundMoney(double refundMoney) {
                     this.refundMoney = refundMoney;
                 }
 

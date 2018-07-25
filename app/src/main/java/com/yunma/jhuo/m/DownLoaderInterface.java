@@ -16,10 +16,10 @@ public class DownLoaderInterface {
     }
 
     public  interface DownLoadView{
-        void showDownLoadInfo(String msg);
+        void showDownLoadInfo(String msg,String path);
     }
 
     public interface OnDownLoadListener{
-        void onDownLoadListener(String msg);
+        void onDownLoadListener(String msg,String path);
     }
 }

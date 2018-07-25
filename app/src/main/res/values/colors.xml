@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorAccent">#FF00E5FF</color>
-    <color name="colorSwitchThumbNormal">#FF78909C</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorAccentHalf">#9000E5FF</color>
-    <color name="colorControlNormalHalf">#9078909C</color>
-    <color name="colorControlActivatedHalf">#9003A9F4</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="grid_state_focused">#80000000</color>
 
     <!--选中时的遮盖色-->
     <color name="gallery_photo_mask">#88000000</color>
@@ -15,7 +13,7 @@
     <!--背景-->
     <color name="gallery_background">#f7eee3</color>
     <!--分隔线-->
-    <color name="gallery_separation">#FFDCDCDC</color>
+    <color name="separation">#FFDCDCDC</color>
     <!--灰色字体-->
     <color name="gallery_text_gray">#FF999999</color>
     <!--字体颜色-->
@@ -23,72 +21,42 @@
     <color name="gallery_folder_bg">#88FFFFFF</color>
     <color name="gallery_blue">#F4BE3C</color>
     <color name="tittle_bar">#3c484343</color>
-    <color name="dark_tittle_bar">#cc484343</color>
     <color name="transparent">#00000000</color>
     <color name="shade">#70000000</color>
     <color name="gray">#8D8D8D</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="black_60_percent">#99000000</color>
+    <color name="bg_no_data">#F7F7F7</color>
 
     <!--       页面常用颜色      -->
-    <color name="color_a1">#f4bd39</color>
-    <color name="color_a2">#e8c572</color>
-    <color name="color_a3">#829da3</color>
-    <color name="color_a4">#f2f2f2</color>
-    <color name="color_a5">#cccccc</color>
-    <color name="color_a6">#efaf14</color>
-    <color name="color_a7">#ff7123</color>
+    <color name="a1">#f4bd39</color>
+    <color name="a2">#e8c572</color>
+    <color name="a3">#829da3</color>
+    <color name="a4">#f2f2f2</color>
+    <color name="a5">#cccccc</color>
+    <color name="a6">#efaf14</color>
+    <color name="a7">#ff7123</color>
 
     <!--       文字常用颜色      -->
-    <color name="color_b1">#323232</color>
-    <color name="color_b2">#a0a0a0</color>
-    <color name="color_b3">#f4bd39</color>
-    <color name="color_b4">#f44141</color>
-    <color name="color_b5">#019e1b</color>
-    <color name="btn_gray">#8e8e8e</color>
+    <color name="b1">#323232</color>
+    <color name="b2">#a0a0a0</color>
+    <color name="b3">#f4bd39</color>
+    <color name="b4">#f44141</color>
+    <color name="b5">#019e1b</color>
+    <color name="b6">#8FCC52</color>
+    <color name="b7">#b5b5b5</color>
+    <color name="c1">#8e8e8e</color>
 
-    <!--       即时通讯配色      -->
-    <color name="common_top_bar_blue">#4ebcd3</color>
-    <color name="btn_login_normal">#00acff</color>
-    <color name="btn_login_pressed">#46678d</color>
-    <color name="btn_logout_normal">#d33f3f</color>
-    <color name="btn_logout_pressed">#DA5A4D</color>
-    <color name="btn_register_normal">#ffffff</color>
-    <color name="btn_register_pressed">#00acff</color>
-    <color name="common_bottom_bar_normal_bg">#2d2f31</color>
-    <color name="common_bottom_bar_selected_bg">#161718</color>
-    <color name="common_botton_bar_blue">#2ea7e0</color>
-    <color name="common_bg">#fcfcfc</color>
-    <color name="btn_pressed_green_solid">#B6DA53</color>
-    <color name="divider_list">#d4d4d4</color>
-    <color name="top_bar_normal_bg">#00acff</color>
-    <color name="error_item_color">#F6EBE6</color>
-    <color name="bottom_bar_normal_bg">#2D2F31</color>
-    <color name="bottom_text_color_normal">#ffffff</color>
-    <color name="btn_white_normal">#f7f8f8</color>
-    <color name="btn_white_pressed">#b5b5b6</color>
-    <color name="btn_green_noraml">#68C270</color>
-    <color name="btn_green_pressed">#6FCD78</color>
-    <color name="btn_gray_normal">#c0c0c0</color>
-    <color name="btn_gray_pressed_status">#b5b5b6</color>
-    <color name="btn_gray_pressed">#666667</color>
-    <color name="btn_blue_normal">#1e90ff</color>
-    <color name="btn_blue_pressed">#0066FF</color>
-    <color name="orange">#FFA500</color>
-    <color name="gray_pressed">#b5b5b6</color>
-    <color name="gray_normal">#666667</color>
-    <color name="grid_state_pressed">#1Affffff</color>
-    <color name="grid_state_focused">#80000000</color>
-    <color name="voip_interface_text_color">#bababa</color>
-    <color name="black_deep">#FF000000</color>
-    <color name="btn_answer_pressed">#4ebcd3</color>
-    <color name="btn_answer_normal">#2dafa3</color>
-    <color name="list_item_secondary_color">#888888</color>
-    <color name="list_item_primary_color">#000</color>
-    <color name="holo_blue_bright">#ff00ddff</color>
-    <color name="holo_green_light">#ff99cc00</color>
-    <color name="holo_orange_light">#ffffbb33</color>
-    <color name="holo_red_light">#ffff4444</color>
-    <color name="holo_black">#ff111111</color>
+    <color name="md_blue_500">#2196F3</color>
+    <color name="md_green_500">#4CAF50</color>
+    <color name="md_amber_300">#FFD54F</color>
+    <color name="md_amber_500">#FFC107</color>
+    <color name="md_orange_300">#FFB74D</color>
+    <color name="md_orange_500">#FF9800</color>
+    <color name="md_grey_500">#9E9E9E</color>
+
+    <color name="circleFillColor">#83FFC107</color>
+    <color name="circleStrokeColor">#FF9800</color>
 
 </resources>

@@ -39,18 +39,18 @@ public class AddShoppingCartsImpl implements AddShoppingCartsModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onListener.onListener(null,"数据解析出错!");
-                            LogUtils.log("--------------> " + e.getMessage());
+                            LogUtils.json("--------------> " + e.getMessage());
                             e.printStackTrace();
                             return;
                         }
                         onListener.onListener(resultBean,"添加成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onListener.onListener(null,"数据解析出错!");
@@ -71,11 +71,11 @@ public class AddShoppingCartsImpl implements AddShoppingCartsModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onListener.onListener(null,"网络出错");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     onListener.onListener(null,"服务器错误");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -88,7 +88,7 @@ public class AddShoppingCartsImpl implements AddShoppingCartsModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("AddShoppingCarts result: " + result);
+                   // LogUtils.json("AddShoppingCarts result: " + result);
                 }
             }
         });

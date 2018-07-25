@@ -1,9 +1,18 @@
 package com.yunma.utils;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.os.Environment;
 import android.util.Log;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 
 /**
@@ -15,10 +24,10 @@ import java.text.DecimalFormat;
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class FileUtils {
 
-    public static final int SIZETYPE_B = 1;// 获取文件大小单位为B的double值
-    public static final int SIZETYPE_KB = 2;// 获取文件大小单位为KB的double值
-    public static final int SIZETYPE_MB = 3;// 获取文件大小单位为MB的double值
-    public static final int SIZETYPE_GB = 4;// 获取文件大小单位为GB的double值
+    private static final int SIZETYPE_B = 1;// 获取文件大小单位为B的double值
+    private static final int SIZETYPE_KB = 2;// 获取文件大小单位为KB的double值
+    private static final int SIZETYPE_MB = 3;// 获取文件大小单位为MB的double值
+    private static final int SIZETYPE_GB = 4;// 获取文件大小单位为GB的double值
 
     public static Intent createGetContentIntent() {
         // Implicitly allow the user to select a particular kind of data
@@ -162,5 +171,78 @@ public class FileUtils {
         return fileSizeLong;
     }
 
+
+    /**
+     * 从asset路径下读取对应文件转String输出
+     * @param mContext
+     * @return
+     */
+    public static String getJson(Context mContext, String fileName) {
+        // TODO Auto-generated method stub
+        StringBuilder sb = new StringBuilder();
+        AssetManager am = mContext.getAssets();
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    am.open(fileName)));
+            String next;
+            while (null != (next = br.readLine())) {
+                sb.append(next);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            sb.delete(0, sb.length());
+        }
+        return sb.toString().trim();
+    }
+
+    public static void copyDBToSDcrad() {
+        String DATABASE_NAME = "Jhuo_db";
+        String oldPath = "data/data/com.yunma/databases/" + DATABASE_NAME;
+        String newPath = Environment.getExternalStorageDirectory() + File.separator + DATABASE_NAME;
+        copyFile(oldPath, newPath);
+    }
+
+    /**
+     * 复制单个文件
+     *
+     * @param oldPath
+     *            String 原文件路径
+     * @param newPath
+     *            String 复制后路径
+     * @return boolean
+     */
+    private static void copyFile(String oldPath, String newPath) {
+        try
+        {
+            int bytesum = 0;
+            int byteread = 0;
+            File oldfile = new File(oldPath);
+            File newfile = new File(newPath);
+            if (!newfile.exists())
+            {
+                newfile.createNewFile();
+            }
+            if (oldfile.exists())
+            { // 文件存在时
+                InputStream inStream = new FileInputStream(oldPath); // 读入原文件
+                FileOutputStream fs = new FileOutputStream(newPath);
+                byte[] buffer = new byte[1444];
+                while ((byteread = inStream.read(buffer)) != -1)
+                {
+                    bytesum += byteread; // 字节数 文件大小
+                    fs.write(buffer, 0, byteread);
+                }
+                inStream.close();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("复制单个文件操作出错");
+            e.printStackTrace();
+
+        }
+
+    }
 
 }

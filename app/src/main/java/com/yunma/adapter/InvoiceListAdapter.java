@@ -18,7 +18,7 @@ import butterknife.*;
  * @author Json.
  */
 
-public class InvoiceListAdapter extends BaseAdapter {
+public class InvoiceListAdapter extends BaseAdapter{
     private Context mContext;
     private LayoutInflater mInflater;
     private List<InvoiceBean.SuccessBean.ListBean> listBean;

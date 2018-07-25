@@ -22,7 +22,7 @@ import java.util.List;
 public class KindredGoodsAdapter extends RecyclerView.Adapter<KindredGoodsAdapter.ViewHolder>{
 
     private Context mContext;
-    private List<GetSelfGoodsResultBean.SuccessBean.ListBean> listBeen;
+    private List<SelfGoodsListBean> listBeen;
     private LayoutInflater mInflater;
     private boolean isLastPage;
     private FrameLayout.LayoutParams params;
@@ -30,7 +30,7 @@ public class KindredGoodsAdapter extends RecyclerView.Adapter<KindredGoodsAdapte
     private int[] tagColor = new int[]{R.drawable.subscript_1,R.drawable.subscript_2,
             R.drawable.subscript_3,R.drawable.subscript_4,R.drawable.subscript_5};
 
-    public KindredGoodsAdapter(Context mContext, List<GetSelfGoodsResultBean.SuccessBean.ListBean> listBeen,
+    public KindredGoodsAdapter(Context mContext, List<SelfGoodsListBean> listBeen,
                                OnKindredGoodsClick onKindredGoodsClick, boolean isLastPage) {
         this.mContext = mContext;
         this.listBeen = listBeen;
@@ -49,39 +49,53 @@ public class KindredGoodsAdapter extends RecyclerView.Adapter<KindredGoodsAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.tvSubscript.setBackgroundResource(tagColor[position%tagColor.length]);
-        if(position!=listBeen.size()){
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        if(position != getItemCount()-1){
+            holder.tvSubscript.setBackgroundResource(tagColor[position%tagColor.length]);
             holder.image.setLayoutParams(params);
             holder.layoutSeeMore.setVisibility(View.GONE);
             holder.tvSubscript.setText(String.valueOf(position+1));
-            holder.tvCurrentPrice.setText(
-                    String.valueOf("￥"+ ValueUtils.toTwoDecimal(listBeen.get(position).getYmprice())));
+            if(listBeen.get(position).getSpecialprice() != 0.0){
+                holder.tvCurrentPrice.setText(
+                        String.valueOf("￥"+ ValueUtils.toTwoDecimal(
+                                listBeen.get(position).getSpecialprice())));
+            }else{
+                holder.tvCurrentPrice.setText(
+                        String.valueOf("￥"+ ValueUtils.toTwoDecimal(
+                                listBeen.get(position).getYmprice())));
+            }
             holder.tvOriginalPrice.setText(
-                    String.valueOf("￥"+ ValueUtils.toTwoDecimal(listBeen.get(position).getSaleprice())));
+                    String.valueOf("￥"+ ValueUtils.toTwoDecimal(
+                            listBeen.get(position).getSaleprice())));
+            String url;
+            if(listBeen.get(position).getRepoid()==1){
+                url = ConUtils.SElF_GOODS_IMAGE_URL;
+            }else{
+                url = ConUtils.GOODS_IMAGE_URL;
+            }
             if(listBeen.get(position).getPic()!=null&&
                     listBeen.get(position).getPic().split(",").length!=0){
-                GlideUtils.glidNormleFast(mContext,holder.image,ConUtils.SElF_GOODS_IMAGE_URL +
-                        listBeen.get(position).getPic().split(",")[0]);
+                GlideUtils.glidNormleFast(mContext,holder.image,url +
+                        listBeen.get(position).getPic().split(",")[0] + "/min");
             }else{
                 GlideUtils.glidLocalDrawable(mContext,holder.image,R.drawable.default_pic);
             }
         }else{
+            holder.tvSubscript.setVisibility(View.INVISIBLE);
             holder.layoutSeeMore.setLayoutParams(params);
-            holder.tvSubscript.setText(String.valueOf(position+1));
             holder.tvCurrentPrice.setVisibility(View.GONE);
             holder.tvOriginalPrice.setVisibility(View.GONE);
             holder.image.setVisibility(View.GONE);
             holder.layoutSeeMore.setVisibility(View.VISIBLE);
         }
-
         holder.tvOriginalPrice.getPaint().setFlags(
                 Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(onKindredGoodsClick!=null){
-                    onKindredGoodsClick.onSeeSelfGoodsDatialListener(position,listBeen.get(position));
+                    onKindredGoodsClick.onSeeSelfGoodsDatialListener(holder.getAdapterPosition(),
+                            listBeen.get(holder.getAdapterPosition()));
                 }
             }
         });
@@ -90,8 +104,9 @@ public class KindredGoodsAdapter extends RecyclerView.Adapter<KindredGoodsAdapte
             @Override
             public void onClick(View v) {
                 if(onKindredGoodsClick!=null){
-                    onKindredGoodsClick.onSeeSelfMoreListener(position+1,
-                            String.valueOf(listBeen.get(position-1).getType()));
+                    onKindredGoodsClick.onSeeSelfMoreListener(
+                            String.valueOf(listBeen.get(holder.getAdapterPosition()-1).getSex()),
+                            String.valueOf(listBeen.get(holder.getAdapterPosition()-1).getType()));
                 }
             }
         });
@@ -116,10 +131,10 @@ public class KindredGoodsAdapter extends RecyclerView.Adapter<KindredGoodsAdapte
 
         ViewHolder(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
-            tvSubscript = (TextView)itemView.findViewById(R.id.tvSubscript);
-            tvCurrentPrice = (TextView)itemView.findViewById(R.id.tvCurrentPrice);
-            tvOriginalPrice = (TextView)itemView.findViewById(R.id.tvOriginalPrice);
+            image = itemView.findViewById(R.id.image);
+            tvSubscript = itemView.findViewById(R.id.tvSubscript);
+            tvCurrentPrice = itemView.findViewById(R.id.tvCurrentPrice);
+            tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
             layoutSeeMore = itemView.findViewById(R.id.layoutSeeMore);
         }
     }

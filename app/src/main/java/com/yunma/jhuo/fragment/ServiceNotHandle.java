@@ -5,22 +5,24 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.yunma.R;
-import com.yunma.jhuo.activity.homepage.SpecialPriceActivity;
-import com.yunma.jhuo.activity.mine.GoodsReturnDetial;
-import com.yunma.jhuo.activity.mine.ReturnGoodsManage;
 import com.yunma.adapter.GoodsReturnNotHandleAdapter;
 import com.yunma.bean.ServiceResultBean;
 import com.yunma.bean.SuccessResultBean;
+import com.yunma.jhuo.activity.homepage.SpecialPriceActivity;
+import com.yunma.jhuo.activity.mine.ReturnDetialActivity;
 import com.yunma.jhuo.m.GoodsRefundInterface.DelRefundView;
 import com.yunma.jhuo.m.GoodsRefundInterface.OnUnHandleClick;
 import com.yunma.jhuo.m.ServiceInterface.GetServiceView;
 import com.yunma.jhuo.p.GoodsServicePre;
 import com.yunma.jhuo.p.RefundPre;
-import com.yunma.utils.*;
+import com.yunma.utils.EmptyUtil;
+import com.yunma.utils.ToastUtils;
 
 import java.util.List;
 
@@ -36,6 +38,7 @@ import butterknife.ButterKnife;
 public class ServiceNotHandle extends Fragment implements GetServiceView,OnUnHandleClick, DelRefundView {
     @BindView(R.id.lvRebackGoodsList) ListView lvRebackGoodsList;
     @BindView(R.id.layoutNull) View layoutNull;
+    @BindView(R.id.layoutGoLook) View layoutGoLook;
     private Context mContext;
     private GoodsReturnNotHandleAdapter mAdapter;
     private GoodsServicePre goodsServicePre = null;
@@ -56,12 +59,11 @@ public class ServiceNotHandle extends Fragment implements GetServiceView,OnUnHan
         goodsServicePre = new GoodsServicePre(ServiceNotHandle.this);
         goodsServicePre.getService(mContext,"0");
         refundPre = new RefundPre(ServiceNotHandle.this);
-        layoutNull.setOnClickListener(new View.OnClickListener() {
+        layoutGoLook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, SpecialPriceActivity.class);
                 mContext.startActivity(intent);
-                AppManager.getAppManager().finishActivity(ReturnGoodsManage.returnGoodsContext);
             }
         });
     }
@@ -97,7 +99,7 @@ public class ServiceNotHandle extends Fragment implements GetServiceView,OnUnHan
      */
     @Override
     public void onLookDetial(ServiceResultBean.SuccessBean.ListBean listBean) {
-        Intent intent = new Intent(mContext,GoodsReturnDetial.class);
+        Intent intent = new Intent(mContext,ReturnDetialActivity.class);
         intent.putExtra("goodsDetial", listBean);
         mContext.startActivity(intent);
     }

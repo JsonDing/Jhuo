@@ -20,15 +20,15 @@ import org.xutils.x;
  * @author Json.
  */
 
-public class GetBannerModelImpl implements SelfGoodsInterFace.GetBannerModel {
+public class GetBannerModelImpl implements SelfGoodsInterFace.GetSplashPageWordsModel {
     private FailedResultBean failedResultBean = null;
     private BannerResultBean bannerResultBean = null;
 
     @Override
-    public void getNewsBanner(Context mContext,
-                              final SelfGoodsInterFace.OnBananerListener onBananerListener) {
-        RequestParams params = new RequestParams(ConUtils.BANNER);
-        x.http().get(params, new Callback.CommonCallback<String>() {
+    public void getSplashPageWords(Context mContext,
+                              final SelfGoodsInterFace.OnSplashPageWordsListener onSplashPageWordsListener) {
+        RequestParams params = new RequestParams(ConUtils.AD_WORDS);
+        x.http().post(params, new Callback.CommonCallback<String>() {
 
             private boolean hasError = false;
             private String result = null;
@@ -39,31 +39,30 @@ public class GetBannerModelImpl implements SelfGoodsInterFace.GetBannerModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            bannerResultBean = GsonUtils.getObject(result,
+                            bannerResultBean = GsonUtils.GsonToBean(result,
                                     BannerResultBean.class);
+                            if(bannerResultBean.getSuccess()!=null){
+                                onSplashPageWordsListener.onNewsBannerListener(bannerResultBean,"获取成功");
+                            }else{
+                                onSplashPageWordsListener.onNewsBannerListener(null,"无数据");
+                            }
                         } catch (Exception e) {
-                            onBananerListener.onNewsBannerListener(null,"数据解析出错!");
+                            LogUtils.json("数据解析出错:1 " + e.getMessage());
+                            onSplashPageWordsListener.onNewsBannerListener(null,"数据解析出错!");
                             e.printStackTrace();
-                            return;
-                        }
-                        if(bannerResultBean.getSuccess()!=null){
-                            onBananerListener.onNewsBannerListener(bannerResultBean,"获取成功");
-                        }else{
-                            onBananerListener.onNewsBannerListener(null,"无数据");
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
+                            onSplashPageWordsListener.onNewsBannerListener(null,
+                                    failedResultBean.getFailed().getErrorMsg());
                         } catch (Exception e) {
-                            onBananerListener.onNewsBannerListener(null,"数据解析出错!");
+                            LogUtils.json("数据解析出错:2 " + e.getMessage());
+                            onSplashPageWordsListener.onNewsBannerListener(null,"数据解析出错!");
                             e.printStackTrace();
-                            return;
                         }
-                        onBananerListener.onNewsBannerListener(null,
-                                failedResultBean.getFailed().getErrorMsg());
                     }
-
                 }
             }
 
@@ -75,12 +74,12 @@ public class GetBannerModelImpl implements SelfGoodsInterFace.GetBannerModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " + responseMsg
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " + responseMsg
                             + "\n" + "errorResult: " + errorResult);
-                    onBananerListener.onNewsBannerListener(null,"网络异常");
+                    onSplashPageWordsListener.onNewsBannerListener(null,"网络异常");
                 } else { // 其他错误
-                    LogUtils.log("errorResult: " + "服务器未响应，请稍后再试");
-                    onBananerListener.onNewsBannerListener(null,"服务器未响应，请稍后再试");
+                    LogUtils.json("errorResult: " + "服务器未响应，请稍后再试");
+                    onSplashPageWordsListener.onNewsBannerListener(null,"服务器未响应，请稍后再试");
                 }
             }
 
@@ -92,7 +91,7 @@ public class GetBannerModelImpl implements SelfGoodsInterFace.GetBannerModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("获取Banner数据：------> " + result);
+               //     LogUtils.json("闪屏页广告词：------> " + result);
                 }
             }
         });

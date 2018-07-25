@@ -1,5 +1,7 @@
 package com.yunma.jhuo.p;
 
+import android.content.Context;
+
 import com.yunma.bean.AddGoodsCollectBean;
 import com.yunma.jhuo.i.AddGoodsCollectImpl;
 import com.yunma.jhuo.m.GoodsCollectInterFace.*;
@@ -19,8 +21,8 @@ public class AddGoodsCollectPre  {
         this.mModel = new AddGoodsCollectImpl();
     }
 
-    public void onAddCollect(){
-        mModel.addToCollect(mView.getContext(), mView.getGoodId(), new OnAddCollect() {
+    public void onAddCollect(Context mContext,String goodsId){
+        mModel.addToCollect(mContext, goodsId, new OnAddCollect() {
             @Override
             public void onAddCollectListener(AddGoodsCollectBean resultBean, String msg) {
                 mView.onAddCollectShow(resultBean,msg);

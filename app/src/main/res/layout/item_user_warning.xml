@@ -15,7 +15,7 @@
         android:paddingStart="@dimen/dp15"
         android:paddingEnd="@dimen/dp15"
         android:paddingBottom="@dimen/dp15"
-        android:textColor="@color/color_b1"
+        android:textColor="@color/b1"
         android:textSize="15sp"
         android:lineSpacingExtra="10dp"
         android:minLines="2"/>

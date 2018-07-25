@@ -79,7 +79,7 @@ class GoodsRuturnAdapter extends BaseAdapter{
         }else{
             if(EmptyUtil.isNotEmpty(serviceDetails.get(position).getOrderdetail().getPic())){
                 GlideUtils.glidNormleFast(mContext,holder.imgGoods,ConUtils.GOODS_IMAGE_URL +
-                        serviceDetails.get(position).getOrderdetail().getPic());
+                        serviceDetails.get(position).getOrderdetail().getPic().split(",")[0]);
             }else{
                 GlideUtils.glidLocalDrawable(mContext,holder.imgGoods,R.drawable.default_pic);
             }
@@ -94,11 +94,11 @@ class GoodsRuturnAdapter extends BaseAdapter{
         TextView tvPrice;
         TextView tvGoodsNum;
         public ViewHolder(View itemView) {
-            imgGoods = (ImageView)itemView.findViewById(R.id.imgGoods);
-            tvGoodsName = (TextView) itemView.findViewById(R.id.tvGoodsName);
-            tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
-            tvGoodsInfo = (TextView)itemView.findViewById(R.id.tvGoodsInfo);
-            tvGoodsNum = (TextView)itemView.findViewById(R.id.tvGoodsNum);
+            imgGoods = itemView.findViewById(R.id.imgGoods);
+            tvGoodsName = itemView.findViewById(R.id.tvGoodsName);
+            tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvGoodsInfo = itemView.findViewById(R.id.tvGoodsInfo);
+            tvGoodsNum = itemView.findViewById(R.id.tvGoodsNum);
         }
     }
 }

@@ -14,14 +14,10 @@ public class PersonInfosMoifyInterface {
 
     public interface PersonInfosMoifyModel{
         void PersonInfosMoify(Context mContext, String nickName, String gender, String realName,
-                              OnPersonInfosMoify onPersonInfosMoify);
+                              String qq,OnPersonInfosMoify onPersonInfosMoify);
     }
 
     public interface PersonInfosMoifyView{
-        Context getContext();
-        String getNickname();
-        String getGender();
-        String getRealName();
         void showPersonInfosMoifyResult(SuccessResultBean successResultBean,String msg);
     }
 

@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:scrollbars="none"
         android:overScrollMode="never"
-        android:background="@color/color_a4"
+        android:background="@color/a4"
         android:divider="@null"/>
 
     <LinearLayout
@@ -21,7 +21,7 @@
         android:orientation="vertical"
         android:visibility="gone"
         android:gravity="center_horizontal"
-        android:background="@color/color_a4">
+        android:background="@color/a4">
 
         <ImageView
             android:layout_width="@dimen/dp56"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="此处什么都没有"
             android:textSize="@dimen/sp15"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:layout_marginTop="@dimen/dp39"/>
 
         <TextView
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="赶紧去看看有哪些想买的"
             android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:layout_marginTop="@dimen/dp10"/>
 
         <RelativeLayout
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp44"
             android:layout_marginTop="@dimen/dp73"
-            android:background="@color/color_a4">
+            android:background="@color/a4">
 
             <TextView
                 android:id="@+id/text1"

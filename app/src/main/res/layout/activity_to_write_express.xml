@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="填写物流"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -80,7 +80,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,16 +93,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="物流公司"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp14"/>
 
         <com.yunma.widget.NiceSpinner
             android:id="@+id/spinner"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:textTint="@color/color_b1"
-            app:arrowTint="@color/color_b1"
+            app:textTint="@color/b1"
+            app:arrowTint="@color/b1"
             app:paddingStart="@dimen/dp10"
             android:textSize="@dimen/sp14"
             android:layout_marginEnd="@dimen/dp15"
@@ -113,7 +113,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -126,7 +126,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dp15"
             android:text="运单编号"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp14"/>
 
         <RelativeLayout
@@ -144,14 +144,14 @@
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:maxLines="1"
+                android:singleLine="true"
                 android:inputType="number"
                 android:paddingStart="@dimen/dp10"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:ellipsize="middle"
                 android:layout_toStartOf="@+id/imgScanner"
                 android:layout_marginEnd="@dimen/dp10"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <ImageView
                 android:id="@+id/imgScanner"
@@ -168,13 +168,13 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="温习提示：为了不耽误您的宝贵时间，请勿选择快递到付，本公司拒收一切到付快递，感谢您的支持，谢谢！"
-        android:textColor="@color/color_b4"
+        android:textColor="@color/b4"
         android:textSize="@dimen/sp11"
         android:paddingTop="@dimen/dp10"
         android:paddingStart="@dimen/dp15"
@@ -184,7 +184,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -230,7 +230,7 @@
         android:layout_height="wrap_content"
         android:text="上传凭证（最多三张）"
         android:visibility="gone"
-        android:textColor="@color/color_b2"
+        android:textColor="@color/b2"
         android:textSize="@dimen/sp12"
         android:paddingTop="@dimen/dp05"
         android:paddingStart="@dimen/dp15"
@@ -241,7 +241,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/color_a4"
+        android:background="@color/a4"
         android:id="@+id/view5"/>
 
     <Button
@@ -251,6 +251,6 @@
         android:text="提 交"
         android:textColor="@color/white"
         android:textSize="@dimen/sp15"
-        android:background="@color/color_a1"/>
+        android:background="@color/a1"/>
 
 </LinearLayout>

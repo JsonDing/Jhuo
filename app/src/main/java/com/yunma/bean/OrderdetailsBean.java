@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Json.
  */
 
-public class OrderdetailsBean implements Serializable {
+public class OrderDetailsBean implements Serializable {
 
     private String gid;
     private String size;
@@ -41,7 +41,7 @@ public class OrderdetailsBean implements Serializable {
 
     @Override
     public String toString() {
-        return "OrderdetailsBean{" +
+        return "OrderDetailsBean{" +
                 "gid='" + gid + '\'' +
                 ", size='" + size + '\'' +
                 ", num=" + num +

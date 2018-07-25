@@ -14,7 +14,7 @@ public class ForgetPasswdInterface {
     }
 
     public interface ForgetPasswdModel {
-        void modifyPassWd(Context mContext,String phoneNumber,String passwd,
+        void modifyPassWd(Context mContext,String phoneNumber,String passwd,String code,
                           OnForgetPassWdListener onModifyPassWdListener);
     }
 

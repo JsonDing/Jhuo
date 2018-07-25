@@ -17,7 +17,7 @@
             android:layout_width="@dimen/dp01"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/color_a3"/>
+            android:background="@color/a3"/>
 
         <ImageView
             android:id="@+id/circlePoint"
@@ -30,7 +30,7 @@
             android:layout_width="@dimen/dp01"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/color_a3"/>
+            android:background="@color/a3"/>
 
     </LinearLayout>
 
@@ -72,7 +72,7 @@
             android:layout_below="@+id/tvReturnExpress"
             android:layout_marginStart="@dimen/dp10"
             android:layout_marginBottom="@dimen/dp10"
-            android:textColor="@color/color_b4"
+            android:textColor="@color/b4"
             android:textSize="@dimen/sp11"/>
 
     </RelativeLayout>

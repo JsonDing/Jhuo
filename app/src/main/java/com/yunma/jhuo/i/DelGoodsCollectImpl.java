@@ -32,6 +32,7 @@ public class DelGoodsCollectImpl implements GoodsCollectInterFace.DelGoodsCollec
         params.setAsJsonContent(true);
         Gson gson = new Gson();
         String strParams = gson.toJson(paramsBean);
+        LogUtils.json("删除收藏请求：" + strParams);
         params.setBodyContent(strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -45,7 +46,7 @@ public class DelGoodsCollectImpl implements GoodsCollectInterFace.DelGoodsCollec
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onDelCollect.onDelCollectListener(null,"数据解析出错");
@@ -56,7 +57,7 @@ public class DelGoodsCollectImpl implements GoodsCollectInterFace.DelGoodsCollec
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onDelCollect.onDelCollectListener(null,"数据解析出错");
@@ -76,7 +77,7 @@ public class DelGoodsCollectImpl implements GoodsCollectInterFace.DelGoodsCollec
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onDelCollect.onDelCollectListener(null,"网络错误");
                 }else{
@@ -94,7 +95,7 @@ public class DelGoodsCollectImpl implements GoodsCollectInterFace.DelGoodsCollec
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("删除收藏夹 result: " + result);
+                  //  LogUtils.json("删除收藏夹 result: " + result);
                 }
             }
         });

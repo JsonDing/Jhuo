@@ -6,23 +6,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import com.tencent.connect.auth.QQAuth;
-import com.tencent.open.wpa.WPA;
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.yunma.R;
 import com.yunma.bean.WriteExpressResultBean;
+import com.yunma.jhuo.activity.ContactUsActivity;
 import com.yunma.jhuo.general.MyCompatActivity;
 import com.yunma.jhuo.m.GoodsRefundInterface;
 import com.yunma.jhuo.p.WriteExpressPre;
-import com.yunma.utils.*;
+import com.yunma.utils.AppManager;
+import com.yunma.utils.EmptyUtil;
+import com.yunma.utils.LogUtils;
+import com.yunma.utils.ScreenUtils;
+import com.yunma.utils.ToastUtils;
 import com.yunma.widget.NiceSpinner;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pub.devrel.easypermissions.EasyPermissions;
 import pub.devrel.easypermissions.EasyPermissions.PermissionCallbacks;
 
@@ -55,7 +66,7 @@ public class ToWriteExpress extends MyCompatActivity implements PermissionCallba
     private void getDatas() {
         Bundle bundle = this.getIntent().getExtras();
         serviceId = bundle.getString("serviceId");
-        LogUtils.log("serviceId ---> " + serviceId);
+        LogUtils.json("serviceId ---> " + serviceId);
     }
 
     private void setDatas() {
@@ -89,16 +100,8 @@ public class ToWriteExpress extends MyCompatActivity implements PermissionCallba
                 AppManager.getAppManager().finishActivity(this);
                 break;
             case R.id.layoutNews:
-                QQAuth mqqAuth = QQAuth.createInstance("1106058796",mContext);
-                WPA mWPA = new WPA(ToWriteExpress.this, mqqAuth.getQQToken());
-                String ESQ = "2252162352";  //客服QQ号
-                int ret = mWPA.startWPAConversation(ToWriteExpress.this,ESQ,
-                        "你好");
-                if (ret != 0) {
-                    Toast.makeText(getApplicationContext(),
-                            "抱歉，联系客服出现了错误~. error:" + ret,
-                            Toast.LENGTH_LONG).show();
-                }
+                Intent intent = new Intent(this,ContactUsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.imgScanner:
                 etExpressCode.setText("");
@@ -130,14 +133,14 @@ public class ToWriteExpress extends MyCompatActivity implements PermissionCallba
                 if (bundle == null) {
                     return;
                 }
-                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+               /* if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
                     etExpressCode.setText(result);
                     assert result != null;
                     etExpressCode.setSelection(result.length());
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                     Toast.makeText(ToWriteExpress.this, "解析失败,请手动输入", Toast.LENGTH_LONG).show();
-                }
+                }*/
             }
         }
     }
@@ -147,8 +150,8 @@ public class ToWriteExpress extends MyCompatActivity implements PermissionCallba
                 Manifest.permission.CAMERA};
         if (EasyPermissions.hasPermissions(this, perms)) {
 
-            Intent intent = new Intent(ToWriteExpress.this, CaptureActivity.class);
-            startActivityForResult(intent, 1);
+           /* Intent intent = new Intent(ToWriteExpress.this, CaptureActivity.class);
+            startActivityForResult(intent, 1);*/
 
         } else {
             EasyPermissions.requestPermissions(this, "扫面需要以下权限:" +

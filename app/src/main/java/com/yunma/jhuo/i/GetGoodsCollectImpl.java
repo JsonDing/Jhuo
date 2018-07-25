@@ -32,6 +32,7 @@ public class GetGoodsCollectImpl implements GetGoodsCollectModel {
         Gson gson = new Gson();
         String strParams = gson.toJson(paramsBean);
         params.setBodyContent(strParams);
+        LogUtils.json("收藏夹请求：" + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -44,7 +45,7 @@ public class GetGoodsCollectImpl implements GetGoodsCollectModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     GetCollectResultBean.class);
                         } catch (Exception e) {
                             onGetCollect.onGetCollectListener(null,"数据解析出错");
@@ -57,7 +58,7 @@ public class GetGoodsCollectImpl implements GetGoodsCollectModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onGetCollect.onGetCollectListener(null,"数据解析出错");
@@ -77,7 +78,7 @@ public class GetGoodsCollectImpl implements GetGoodsCollectModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onGetCollect.onGetCollectListener(null,"网络错误");
                 }else{
@@ -95,7 +96,7 @@ public class GetGoodsCollectImpl implements GetGoodsCollectModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("收藏夹 result: " + result);
+                  //  LogUtils.json("收藏夹 result: " + result);
                 }
             }
         });

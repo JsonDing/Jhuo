@@ -40,7 +40,7 @@ public class DelGoodsRemindImpl implements SelfGoodsInterFace.DelGoodsRemindMode
         Gson gson = new Gson();
         String strParams = gson.toJson(requstBean);
         params.setBodyContent(strParams);
-        LogUtils.log("requst: " + strParams);
+        LogUtils.json("requst: " + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -53,7 +53,7 @@ public class DelGoodsRemindImpl implements SelfGoodsInterFace.DelGoodsRemindMode
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             mListener.delGoodsRemindListener(null,"数据解析出错");
@@ -62,7 +62,7 @@ public class DelGoodsRemindImpl implements SelfGoodsInterFace.DelGoodsRemindMode
                         mListener.delGoodsRemindListener(resultBean,"删除成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             mListener.delGoodsRemindListener(null,"数据解析出错");
@@ -82,7 +82,7 @@ public class DelGoodsRemindImpl implements SelfGoodsInterFace.DelGoodsRemindMode
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     mListener.delGoodsRemindListener(null,"网络异常或延时，请稍后重试");
                 }else{
@@ -100,7 +100,7 @@ public class DelGoodsRemindImpl implements SelfGoodsInterFace.DelGoodsRemindMode
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("删除提醒 result: " + result);
+                  //  LogUtils.json("删除提醒 result: " + result);
                 }
             }
         });

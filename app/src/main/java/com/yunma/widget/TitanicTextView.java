@@ -15,7 +15,7 @@ import com.yunma.R;
 public class TitanicTextView extends android.support.v7.widget.AppCompatTextView {
 
     public interface AnimationSetupCallback {
-        public void onSetupAnimation(TitanicTextView titanicTextView);
+        void onSetupAnimation(TitanicTextView titanicTextView);
     }
 
     private AnimationSetupCallback animationSetupCallback;

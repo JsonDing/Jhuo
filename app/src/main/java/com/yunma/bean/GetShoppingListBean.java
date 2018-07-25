@@ -34,10 +34,20 @@ public class GetShoppingListBean implements Serializable {
         private int repoid;
         private double saleprice;
         private int userId;
+        private int issue;
         private double yunmaprice;
+        private double specialprice;
         private int isSelected;
         private int stock;
         private List<StocksBean> stocks;
+
+        public int getIssue() {
+            return issue;
+        }
+
+        public void setIssue(int issue) {
+            this.issue = issue;
+        }
 
         public SuccessBean() {
         }
@@ -60,6 +70,14 @@ public class GetShoppingListBean implements Serializable {
             this.isSelected = isSelected;
             this.stock = stock;
             this.stocks = stocks;
+        }
+
+        public double getSpecialprice() {
+            return specialprice;
+        }
+
+        public void setSpecialprice(double specialprice) {
+            this.specialprice = specialprice;
         }
 
         public String getLabel() {

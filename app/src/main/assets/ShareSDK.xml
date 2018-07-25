@@ -7,16 +7,16 @@
     <Wechat
         Id="1"
         SortId="4"
-        AppId="wx2a8a9ad0bbdb86fd"
-        AppSecret="9d35daea28b8c74d87c00abe20b38756"
+        AppId="wx129574b4dc257e3d"
+        AppSecret="21a80ff308c20b40568c53ca31175a7c"
         BypassApproval="true"
-        Enable="false" />
+        Enable="true" />
     
     <WechatMoments
         Id="2"
         SortId="5"
-        AppId="wx2a8a9ad0bbdb86fd"
-        AppSecret="9d35daea28b8c74d87c00abe20b38756"
+        AppId="wx129574b4dc257e3d"
+        AppSecret="21a80ff308c20b40568c53ca31175a7c"
         BypassApproval="true"
         Enable="true" />
 
@@ -33,7 +33,7 @@
         SortId="3"
         AppId="1106058796"
         AppKey="AG2wF2KMrvcynZRr"
-        Enable="true" />
+        Enable="false" />
 
     <SinaWeibo
         Id="5"

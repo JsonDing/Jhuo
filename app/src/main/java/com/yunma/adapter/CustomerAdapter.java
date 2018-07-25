@@ -18,13 +18,11 @@ import butterknife.*;
  */
 
 public class CustomerAdapter extends BaseAdapter{
-    private Context mContext;
     private List<String> usernames;
     private LayoutInflater inflater;
     public CustomerAdapter(Context context, List<String> usernames) {
-        this.mContext = context;
         this.usernames = usernames;
-        inflater = LayoutInflater.from(mContext);
+        inflater = LayoutInflater.from(context);
     }
 
     @Override

@@ -1,13 +1,25 @@
 package com.yunma.adapter;
 
 import android.content.Context;
-import android.graphics.*;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.text.SpannableStringBuilder;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.yunma.R;
-import com.yunma.utils.*;
+import com.yunma.bean.SelfGoodsListBean;
+import com.yunma.utils.ConUtils;
+import com.yunma.utils.DensityUtils;
+import com.yunma.utils.GlideUtils;
+import com.yunma.utils.ValueUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created on 2017-01-17
@@ -18,20 +30,23 @@ public class SimilarGoodsAdapter extends BaseAdapter{
 
     private Context mContext;
     private LayoutInflater inflater;
-
-    public SimilarGoodsAdapter(Context mContext) {
+    private OnItemClick onItemClick;
+    private List<SelfGoodsListBean> mListBean;
+    public SimilarGoodsAdapter(Context mContext,OnItemClick onItemClick) {
         this.mContext = mContext;
-        inflater = LayoutInflater.from(mContext);
+        this.onItemClick = onItemClick;
+        this.mListBean = new ArrayList<>();
+        this.inflater = LayoutInflater.from(mContext);
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return mListBean.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return mListBean.get(position);
     }
 
     @Override
@@ -40,7 +55,7 @@ public class SimilarGoodsAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder ;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_similar_goods, parent,false);
@@ -49,17 +64,35 @@ public class SimilarGoodsAdapter extends BaseAdapter{
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
-        if(position == 9){
-            holder.layout.setVisibility(View.VISIBLE);
+        if(position == mListBean.size()-1){
             holder.view.setVisibility(View.GONE);
+        }else{
+            holder.view.setVisibility(View.VISIBLE);
         }
-
-        String s ="￥" +  ValueUtils.toTwoDecimal(699);
-        SpannableStringBuilder ss = ValueUtils.changeText(mContext,R.color.color_b4,s, Typeface.NORMAL,
-                DensityUtils.sp2px(mContext,16),1,s.indexOf("."));
+        String s =ValueUtils.toTwoDecimal(mListBean.get(position).getYmprice());
+        SpannableStringBuilder ss = ValueUtils.changeText(mContext,R.color.b4,s, Typeface.NORMAL,
+                14,0,s.indexOf("."));
         holder.tvCurrPrice.setText(ss);
         holder.tvOriPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        holder.tvOriPrice.setText(ValueUtils.toTwoDecimal(mListBean.get(position).getSaleprice()));
+        holder.tvGoodsName.setText(mListBean.get(position).getName());
+        holder.tvMonthNums.setText(String.valueOf(mListBean.get(position).getStock()));
+        final String url;
+        if(mListBean.get(position).getRepoid()==1){
+            url = ConUtils.SElF_GOODS_IMAGE_URL;
+        }else{
+            url = ConUtils.GOODS_IMAGE_URL;
+        }
+        GlideUtils.glidNormle(mContext,holder.imgGoods, url +
+                mListBean.get(position).getPic().split(",")[0]);
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onItemClick != null){
+                    onItemClick.onItemClick(mListBean.get(position));
+                }
+            }
+        });
         return convertView;
     }
 
@@ -69,15 +102,24 @@ public class SimilarGoodsAdapter extends BaseAdapter{
         TextView tvCurrPrice;
         TextView tvOriPrice;
         TextView tvMonthNums;
-        View layout,view;
+        View view,rootView;
         ViewHolder(View v) {
-            imgGoods = (ImageView) v.findViewById(R.id.imgGoods);
-            tvGoodsName = (TextView) v.findViewById(R.id.tvGoodsName);
-            tvCurrPrice = (TextView) v.findViewById(R.id.tvCurrPrice);
-            tvOriPrice = (TextView) v.findViewById(R.id.tvOriPrice);
-            tvMonthNums = (TextView) v.findViewById(R.id.tvMonthNums);
-            layout = v.findViewById(R.id.layout);
+            imgGoods = v.findViewById(R.id.imgGoods);
+            tvGoodsName = v.findViewById(R.id.tvGoodsName);
+            tvCurrPrice = v.findViewById(R.id.tvCurrPrice);
+            tvOriPrice = v.findViewById(R.id.tvOriPrice);
+            tvMonthNums = v.findViewById(R.id.tvMonthNums);
             view = v.findViewById(R.id.view);
+            rootView = v;
         }
+    }
+
+    public interface OnItemClick{
+        void onItemClick(SelfGoodsListBean mListBean);
+    }
+
+    public void setmListBean(List<SelfGoodsListBean> mListBean) {
+        this.mListBean = mListBean;
+        notifyDataSetChanged();
     }
 }

@@ -31,7 +31,6 @@ public class ModifyPassWdImpl implements ModifypassWdInterface.ModifyPassWdModel
         modifyPassWdBean.setToken(SPUtils.getToken(context));
         Gson gson = new Gson();
         String strLogin = gson.toJson(modifyPassWdBean);
-        LogUtils.log("strLogin: ------------>" + strLogin);
         params.setAsJsonContent(true);
         params.setBodyContent(strLogin);
         x.http().post(params, new Callback.CacheCallback<String>() {
@@ -49,7 +48,7 @@ public class ModifyPassWdImpl implements ModifypassWdInterface.ModifyPassWdModel
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            successResultBean = GsonUtils.getObject(result,
+                            successResultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onModifyPassWdListener.onListener(null,"数据解析出错!");
@@ -59,7 +58,7 @@ public class ModifyPassWdImpl implements ModifypassWdInterface.ModifyPassWdModel
                         onModifyPassWdListener.onListener(successResultBean,successResultBean.getSuccess());
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onModifyPassWdListener.onListener(null,"数据解析出错!");
@@ -80,11 +79,11 @@ public class ModifyPassWdImpl implements ModifypassWdInterface.ModifyPassWdModel
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onModifyPassWdListener.onListener(null,"网络异常!");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     onModifyPassWdListener.onListener(null,"服务器未响应，请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -97,7 +96,7 @@ public class ModifyPassWdImpl implements ModifypassWdInterface.ModifyPassWdModel
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("Modify result: " + result);
+                //    LogUtils.json("Modify result: " + result);
                 }
             }
         });

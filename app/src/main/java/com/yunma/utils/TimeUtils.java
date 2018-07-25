@@ -3,6 +3,7 @@ package com.yunma.utils;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -64,7 +65,7 @@ public class TimeUtils {
                         view.setEnabled(false);
                         view.setText(time + "s");
                         if(drawable!=-1){
-                            view.setBackground(mContext.getResources().getDrawable(drawable));
+                            view.setBackground(ContextCompat.getDrawable(mContext,drawable));
                         }
                     }else{
                         timer.cancel();

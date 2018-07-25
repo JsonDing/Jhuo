@@ -1,5 +1,7 @@
 package com.yunma.jhuo.p;
 
+import android.content.Context;
+
 import com.yunma.bean.*;
 import com.yunma.jhuo.i.SaveOrderImpl;
 import com.yunma.jhuo.m.SaveOrderInterface.*;
@@ -19,8 +21,8 @@ public class SaveOrderPre {
         this.mModel = new SaveOrderImpl();
     }
 
-    public void toSaveOrder(){
-        mModel.saveOrder(mView.getContext(), mView.getSaveOrderBean(), new OnSaveOrderListener() {
+    public void toSaveOrder(Context context,SaveOrderBean saveOrderBean){
+        mModel.saveOrder(context, saveOrderBean,new OnSaveOrderListener() {
             @Override
             public void onListener(SaveOrderResultBean resultBean, String msg) {
                 mView.showSaveOrderInfos(resultBean,msg);

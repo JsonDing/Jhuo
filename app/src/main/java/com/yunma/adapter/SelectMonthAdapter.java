@@ -61,8 +61,8 @@ public class SelectMonthAdapter extends RecyclerView.Adapter<SelectMonthAdapter.
         View layout,layoutMonth;
         public ViewHolder(View itemView) {
             super(itemView);
-            tvMonth = (TextView)itemView.findViewById(R.id.tvMonth);
-            imgDot = (ImageView)itemView.findViewById(R.id.imgDot);
+            tvMonth = itemView.findViewById(R.id.tvMonth);
+            imgDot = itemView.findViewById(R.id.imgDot);
             layout = itemView.findViewById(R.id.layout);
             layoutMonth = itemView.findViewById(R.id.layoutMonth);
         }

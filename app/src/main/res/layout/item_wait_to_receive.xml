@@ -16,8 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp15"
             android:layout_centerVertical="true"
-            android:text="2016-12-12"
-            android:textColor="@color/color_b2"
+            android:text="0000-00-00"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp14"/>
 
         <TextView
@@ -28,14 +28,13 @@
             android:layout_centerVertical="true"
             android:text="已发货"
             android:visibility="visible"
-            android:textColor="@color/color_b4"
+            android:textColor="@color/b4"
             android:textSize="@dimen/sp14"/>
 
     </RelativeLayout>
 
 
     <FrameLayout
-        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -47,6 +46,7 @@
         <View
             android:id="@+id/layout"
             android:visibility="visible"
+            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
@@ -57,25 +57,56 @@
         android:layout_height="@dimen/dp44">
 
         <TextView
-            android:id="@+id/tvOrderId"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="订单号："
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dp10"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp13"/>
+
+        <TextView
+            android:id="@+id/tvOrderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_toEndOf="@+id/textView"
+            android:layout_centerVertical="true"
+            android:textColor="@color/b1"
+            android:textSize="@dimen/sp13"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="共"
+            android:layout_alignBaseline="@+id/tvTotalNums"
+            android:layout_toStartOf="@+id/tvTotalNums"
+            android:textColor="@color/b2"
+            android:textSize="@dimen/sp11"/>
 
         <TextView
             android:id="@+id/tvTotalNums"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="共2件商品"
-            android:layout_marginEnd="@dimen/dp32"
-            android:layout_toStartOf="@+id/textview"
-            android:textColor="@color/color_b2"
+            android:text=" 2 "
+            android:layout_toStartOf="@+id/textView2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="件"
+            android:layout_marginEnd="@dimen/dp32"
+            android:layout_alignBaseline="@+id/tvTotalNums"
+            android:layout_toStartOf="@+id/textview"
+            android:textColor="@color/b2"
+            android:textSize="@dimen/sp11"/>
 
         <TextView
             android:id="@+id/textview"
@@ -83,9 +114,21 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:text="合计"
+            android:layout_alignBaseline="@+id/tvTotalPrice"
+            android:layout_toStartOf="@+id/textView1"
+            android:textColor="@color/b2"
+            android:textSize="@dimen/sp11"/>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="￥"
+            android:layout_alignBaseline="@+id/tvTotalPrice"
             android:layout_toStartOf="@+id/tvTotalPrice"
-            android:textColor="@color/color_b2"
-            android:textSize="@dimen/sp13"/>
+            android:textColor="@color/b4"
+            android:textSize="@dimen/sp10"/>
 
         <TextView
             android:id="@+id/tvTotalPrice"
@@ -94,8 +137,8 @@
             android:layout_marginEnd="@dimen/dp15"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:text="￥189"
-            android:textColor="@color/color_b4"
+            android:text="0.00"
+            android:textColor="@color/b4"
             android:textSize="@dimen/sp13"/>
 
     </RelativeLayout>
@@ -103,7 +146,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -121,7 +164,7 @@
             android:background="@drawable/bg_button_gray"
             android:layout_marginEnd="@dimen/dp10"
             android:layout_toStartOf="@+id/btnTicket"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp12"/>
 
         <TextView
@@ -136,7 +179,7 @@
             android:background="@drawable/bg_button_gray"
             android:layout_marginEnd="@dimen/dp10"
             android:layout_toStartOf="@+id/btnApplyHelp"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp12"/>
 
         <TextView
@@ -151,7 +194,7 @@
             android:background="@drawable/bg_button_gray"
             android:layout_marginEnd="@dimen/dp10"
             android:layout_toStartOf="@+id/btnOrderTrace"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp12"/>
 
         <TextView
@@ -166,7 +209,7 @@
             android:paddingStart="@dimen/dp06"
             android:paddingEnd="@dimen/dp06"
             android:background="@drawable/bg_button_orange"
-            android:textColor="@color/color_b3"
+            android:textColor="@color/b3"
             android:textSize="@dimen/sp12"/>
 
     </RelativeLayout>
@@ -174,6 +217,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
 </LinearLayout>

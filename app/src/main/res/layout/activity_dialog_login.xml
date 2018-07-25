@@ -35,7 +35,7 @@
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_centerInParent="true"
-                    android:textColor="@color/color_b1"/>
+                    android:textColor="@color/b1"/>
 
                 <LinearLayout
                     android:id="@+id/layoutClose"
@@ -77,7 +77,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:text="@string/account"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="12sp"/>
 
                 <EditText
@@ -92,8 +92,8 @@
                     android:inputType="number"
                     android:padding="@dimen/dp10"
                     android:singleLine="true"
-                    android:textColor="@color/color_b1"
-                    android:textColorHint="@color/color_b2"
+                    android:textColor="@color/b1"
+                    android:textColorHint="@color/b2"
                     android:textCursorDrawable="@null"
                     android:textSize="13sp"/>
             </LinearLayout>
@@ -125,7 +125,7 @@
                     android:text="@string/passwd"
                     android:layout_gravity="center_vertical"
                     android:textSize="12sp"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:layout_marginStart="16dp"/>
 
                 <FrameLayout
@@ -141,7 +141,7 @@
                         android:layout_marginStart="15dp"
                         android:padding="@dimen/dp10"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/color_b1"
+                        android:textColor="@color/b1"
                         android:background="@null"
                         android:singleLine="true"
                         android:hint="请输入密码..."
@@ -184,7 +184,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_marginBottom="@dimen/dp18"
                 android:layout_marginTop="18dp"
                 android:orientation="horizontal">
 
@@ -198,7 +197,7 @@
                     android:paddingStart="@dimen/dp10"
                     android:paddingEnd="@dimen/dp10"
                     style="@style/OrangeCheckBoxTheme"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:layout_gravity="end"
                     android:layout_marginStart="30dp"/>
 
@@ -209,11 +208,34 @@
                     android:text="@string/forget_passwd"
                     android:gravity="center"
                     android:textSize="12sp"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="30dp"/>
 
             </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp36"
+                android:layout_marginBottom="@dimen/dp10"
+                android:gravity="center_vertical"
+                android:onClick="layoutToRegiste"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="立刻注册"
+                    android:autoLink="all"
+                    android:textSize="15sp"
+                    android:textColor="@color/b2"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/more_right_big"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

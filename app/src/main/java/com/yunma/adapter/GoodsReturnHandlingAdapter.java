@@ -105,16 +105,16 @@ public class GoodsReturnHandlingAdapter extends BaseAdapter{
         ListView lvGoodsList;
 
         public ViewHolder(View itemView) {
-            tvTime = (TextView) itemView.findViewById(R.id.tvTime);
-            tvTotalNums = (TextView) itemView.findViewById(R.id.tvTotalNums);
-            tvReturnPrice = (TextView) itemView.findViewById(R.id.tvReturnPrice);
-            btnRebackDetial = (Button) itemView.findViewById(R.id.btnRebackDetial);
-            btnRebackStatus = (Button) itemView.findViewById(R.id.btnRebackStatus);
-            tvOrderCode = (TextView) itemView.findViewById(R.id.tvOrderCode);
-            tvRealPay = (TextView) itemView.findViewById(R.id.tvRealPay);
+            tvTime = itemView.findViewById(R.id.tvTime);
+            tvTotalNums = itemView.findViewById(R.id.tvTotalNums);
+            tvReturnPrice = itemView.findViewById(R.id.tvReturnPrice);
+            btnRebackDetial = itemView.findViewById(R.id.btnRebackDetial);
+            btnRebackStatus = itemView.findViewById(R.id.btnRebackStatus);
+            tvOrderCode = itemView.findViewById(R.id.tvOrderCode);
+            tvRealPay = itemView.findViewById(R.id.tvRealPay);
             layoutShow = itemView.findViewById(R.id.layoutShow);
-            tvShow = (TextView)itemView.findViewById(R.id.tvShow);
-            lvGoodsList = (ListView)itemView.findViewById(R.id.lvGoodsList);
+            tvShow = itemView.findViewById(R.id.tvShow);
+            lvGoodsList = itemView.findViewById(R.id.lvGoodsList);
         }
     }
 }

@@ -1,15 +1,19 @@
 package com.yunma.utils;
 
-import android.content.*;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Environment;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class SPUtils {
     /**
@@ -17,10 +21,11 @@ public class SPUtils {
      */
     private static final String FILE_NAME = "ShareData";
     private static final String STRING ="J·货";
-    private static final long LONG = -1L;
+    private static final Long LONG = -1L;
     private static final float FLOAT = -1f;
     private static final int INT = -1;
     private static final boolean BOOLEAN = true;
+    private static final String DOUBLE = "0.00";
 
     /**
      * 清除缓存
@@ -309,20 +314,25 @@ public class SPUtils {
                 }
             } catch (IllegalArgumentException | IllegalAccessException
                     | InvocationTargetException e) {
-                LogUtils.log("--- --- > " + e.getMessage());
+                LogUtils.json("--- --- > " + e.getMessage());
             }
             editor.commit();
         }
     }
 
-    public static void setUserId(Context context,Long value){
+    /**
+     * 用户ID/推荐码
+     */
+    public static void setUserId(Context context,String value){
         put(context,"userId",value);
     }
 
     public static String getUserId(Context context){
-        return String.valueOf(get(context,"userId",LONG));
+        return String.valueOf(get(context,"userId",STRING));
     }
-
+    /**
+     * 用户手机号码/登录帐号
+     */
     public static void setPhoneNumber(Context context,String value){
         put(context,"phoneNumber",value);
     }
@@ -331,6 +341,9 @@ public class SPUtils {
         return String.valueOf(get(context,"phoneNumber",STRING));
     }
 
+    /**
+     * 登录密码
+     */
     public static void setPassWd(Context context,String value){
         put(context,"passWd",value);
     }
@@ -338,7 +351,9 @@ public class SPUtils {
     public static String getPassWd(Context context){
         return String.valueOf(get(context,"passWd",STRING));
     }
-
+    /**
+     * 用户Token值
+     */
     public static void setToken(Context context,String value){
         put(context,"token",value);
     }
@@ -347,6 +362,9 @@ public class SPUtils {
         return String.valueOf(get(context,"token",STRING));
     }
 
+    /**
+     * 用户角色
+     */
     public static void setRole(Context context,String value){
         put(context,"role",value);
     }
@@ -355,6 +373,89 @@ public class SPUtils {
         return String.valueOf(get(context,"role",STRING));
     }
 
+    /**
+     * 用户角色Id
+     */
+    public static void setRoleId(Context context,int value){
+        put(context,"roleId",value);
+    }
+
+    public static int getRoleId(Context context){
+        return (int) get(context,"roleId",INT);
+    }
+
+    /*****************************************************/
+
+                    /* agent info */
+
+    public static void setIsAnget(Context context,boolean value){
+        put(context,"isAgent",value);
+    }
+
+    public static boolean isAgent(Context context){
+        return (boolean) get(context,"isAgent",false);
+    }
+
+    public static void setAgentId(Context context,int value){
+        put(context,"agentId",value);
+    }
+
+    public static int getAgentId(Context context){
+        return (int) get(context,"agentId",INT);
+    }
+
+    public static void setAgentDiscount(Context context,String value){
+        put(context,"agentDiscount",value);
+    }
+
+    public static String getAgentDiscount(Context context){
+        return (String) get(context,"agentDiscount",DOUBLE);
+    }
+
+    public static void setAgentName(Context context,String value){
+        put(context,"agentName",value);
+    }
+
+    public static String getAgentName(Context context){
+        return (String) get(context,"agentName",STRING);
+    }
+
+    public static void setAgentNick(Context context,String value){
+        put(context,"agentNick",value);
+    }
+
+    public static String getAgentNick(Context context){
+        return (String) get(context,"agentNick",STRING);
+    }
+
+    public static void setParentDiscount(Context context,String value){
+        put(context,"parentDiscount",value);
+    }
+
+    public static String getParentDiscount(Context context){
+        return (String) get(context,"parentDiscount",DOUBLE);
+    }
+
+    public static void setRootDiscount(Context context,String value){
+        put(context,"rootDiscount",value);
+    }
+
+    public static String getRootDiscount(Context context){
+        return (String) get(context,"rootDiscount",DOUBLE);
+    }
+
+    public static void setAgentPoints(Context context,int value){
+        put(context,"agentPoints",value);
+    }
+
+    public static int getAgentPoints(Context context){
+        return (int) get(context,"agentPoints",INT);
+    }
+    /*****************************************************/
+
+    /**
+     * 手机状态栏高度
+     */
     public static void setStatusHeight(Context context,int value){
         put(context,"statusBar",value);
     }
@@ -363,6 +464,9 @@ public class SPUtils {
         return (int)get(context,"statusBar",INT);
     }
 
+    /**
+     * 货品上架提醒
+     */
     public static void setSaleRemind(Context context,boolean value){
         put(context,"SaleRemind",value);
     }
@@ -371,6 +475,9 @@ public class SPUtils {
         return (boolean) get(context,"SaleRemind",BOOLEAN);
     }
 
+    /**
+     * 添加购物车是否提醒
+     */
     public static void setAddCartRemind(Context context,boolean value){
         put(context,"AddCart",value);
     }
@@ -378,4 +485,99 @@ public class SPUtils {
     public static boolean isAddCartRemind(Context context){
         return (boolean) get(context,"AddCart",BOOLEAN);
     }
+
+
+    /**
+     * 分享货品是否提醒
+     */
+    public static void setShareRemind(Context context,boolean value){
+        put(context,"share",value);
+    }
+
+    public static boolean isShareRemind(Context context){
+        return (boolean) get(context,"share",true);
+    }
+
+    /**
+     * 是否显示“我的”数字角标
+     */
+    public static void setIsShowNumberRemind(Context context,boolean value){
+        put(context,"NumberRemind",value);
+    }
+
+    public static boolean IsShowNumberRemind(Context context){
+        return (boolean) get(context,"NumberRemind",true);
+    }
+
+    /**
+     * 微信订单ID
+     */
+    public static void setWeChatOrderId(Context context,String value){
+        put(context,"WeChatOrderId",value);
+    }
+
+    public static String  getWeChatOrderId(Context context){
+        return  String.valueOf(get(context,"WeChatOrderId",STRING));
+    }
+
+    public static void setWeChatOrderPay(Context context,String value){
+        put(context,"WeChatOrderPay",value);
+    }
+
+    public static String  getWeChatOrderPay(Context context){
+        return  String.valueOf(get(context,"WeChatOrderPay",STRING));
+    }
+
+    /**
+     * 删除购物车货品ID
+     */
+    public static void setDelCartGoodsIds(Context context,String value){
+        put(context,"delCartGoodsIds",value);
+    }
+
+    public static String getDelCartGoodsIds(Context context){
+        return  String.valueOf(get(context,"delCartGoodsIds",STRING));
+    }
+
+
+    public static void setIntegral(Context context,int value){
+        put(context,"integral",value);
+    }
+
+    public static int getIntegral(Context context){
+        return (int)get(context,"integral",0);
+    }
+
+    /**
+     * 设置纬度
+     */
+    public static void setLatitude(Context context,String value){
+        put(context,"latitude",value);
+    }
+
+    public static String getLatitude(Context context){
+        return String.valueOf(get(context,"latitude",STRING));
+    }
+
+    /**
+     * 设置经度
+     */
+    public static void setLongitude(Context context,String value){
+        put(context,"longitude",value);
+    }
+
+    public static String getLongitude(Context context){
+        return String.valueOf(get(context,"longitude",STRING));
+    }
+
+    // 上一次兑换返利时间戳
+    public static void setPreReturnTime(Context context,long value){
+        put(context,"returnTime",value);
+    }
+
+    public static Long getPreReturnTime(Context context){
+        return (Long) get(context,"returnTime",LONG);
+    }
+
+
 }

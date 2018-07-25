@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:id="@+id/mView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,7 +12,7 @@
         android:scrollbars="none"
         android:divider="@null"
         android:visibility="visible"
-        android:background="@color/color_a4"
+        android:background="@color/a4"
         android:layout_height="match_parent"/>
 
     <LinearLayout
@@ -19,39 +20,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone"
         android:gravity="center_horizontal"
-        android:background="@color/color_a4">
+        android:background="#f7f7f7">
 
         <ImageView
-            android:layout_width="@dimen/dp56"
-            android:layout_height="@dimen/dp56"
-            android:src="@drawable/no_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/no_datas"
             android:layout_marginTop="@dimen/dp96"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="您还没有未发货订单"
+            android:text="您还没有待发货订单"
             android:textSize="@dimen/sp15"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b2"
             android:layout_marginTop="@dimen/dp39"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="赶紧去看看有哪些想买的"
-            android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b2"
-            android:layout_marginTop="@dimen/dp10"/>
 
         <RelativeLayout
             android:id="@+id/layoutGoLook"
-            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp44"
-            android:layout_marginTop="@dimen/dp73"
-            android:background="@color/color_a4">
+            android:background="#f7f7f7">
 
             <TextView
                 android:id="@+id/text1"
@@ -67,7 +57,7 @@
                 android:layout_height="@dimen/dp11"
                 android:src="@drawable/decorate_right"
                 android:layout_toStartOf="@+id/text1"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_marginEnd="@dimen/dp15"
                 android:id="@+id/decor_content_parent" />
 
@@ -76,7 +66,7 @@
                 android:layout_height="@dimen/dp11"
                 android:src="@drawable/decorate_left"
                 android:layout_toEndOf="@+id/text1"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_marginStart="@dimen/dp15"
                 android:id="@+id/imageView1" />
 

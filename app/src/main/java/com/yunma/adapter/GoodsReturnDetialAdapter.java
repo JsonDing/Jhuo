@@ -1,21 +1,31 @@
 package com.yunma.adapter;
 
-import android.animation.*;
-import android.content.*;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.*;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.yunma.R;
 import com.yunma.bean.LocalImagePathBean;
 import com.yunma.bean.PathBean;
 import com.yunma.bean.ServiceResultBean.SuccessBean.ListBean.ServiceDetailsBean;
-import com.yunma.utils.*;
-import com.yunma.publish.*;
+import com.yunma.jhuo.activity.PicViewerActivity;
+import com.yunma.utils.ConUtils;
+import com.yunma.utils.DateTimeUtils;
+import com.yunma.utils.EmptyUtil;
+import com.yunma.utils.GlideUtils;
+import com.yunma.utils.ValueUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created on 2017-03-15
@@ -69,7 +79,7 @@ public class GoodsReturnDetialAdapter extends RecyclerView.Adapter<GoodsReturnDe
                     serviceDetails.get(position).getOrderdetail().getPic().split(",")[0]);
         }else{
             GlideUtils.glidNormleFast(mContext,holder.imgsGoods,ConUtils.GOODS_IMAGE_URL +
-                    serviceDetails.get(position).getOrderdetail().getPic());
+                    serviceDetails.get(position).getOrderdetail().getPic().split(",")[0]);
         }
 
         if(EmptyUtil.isNotEmpty(serviceDetails.get(position).getPic())){
@@ -131,15 +141,15 @@ public class GoodsReturnDetialAdapter extends RecyclerView.Adapter<GoodsReturnDe
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvType = (TextView)itemView.findViewById(R.id.tvType);
-            tvReturnMoney = (TextView)itemView.findViewById(R.id.tvReturnMoney);
-            tvReason = (TextView)itemView.findViewById(R.id.tvReason);
-            tvRefundCode = (TextView)itemView.findViewById(R.id.tvRefundCode);
-            tvApplyTime = (TextView)itemView.findViewById(R.id.tvApplyTime);
-            imageV1 = (ImageView)itemView.findViewById(R.id.imageV1);
-            imageV2 = (ImageView)itemView.findViewById(R.id.imageV2);
-            imageV3 = (ImageView)itemView.findViewById(R.id.imageV3);
-            imgsGoods = (ImageView)itemView.findViewById(R.id.imgsGoods);
+            tvType = itemView.findViewById(R.id.tvType);
+            tvReturnMoney = itemView.findViewById(R.id.tvReturnMoney);
+            tvReason = itemView.findViewById(R.id.tvReason);
+            tvRefundCode = itemView.findViewById(R.id.tvRefundCode);
+            tvApplyTime = itemView.findViewById(R.id.tvApplyTime);
+            imageV1 = itemView.findViewById(R.id.imageV1);
+            imageV2 = itemView.findViewById(R.id.imageV2);
+            imageV3 = itemView.findViewById(R.id.imageV3);
+            imgsGoods = itemView.findViewById(R.id.imgsGoods);
         }
     }
 

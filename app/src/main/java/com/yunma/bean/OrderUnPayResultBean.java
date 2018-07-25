@@ -213,6 +213,24 @@ public class OrderUnPayResultBean implements Serializable{
             private double totalmoney;
             private int userId;
             private List<OrderdetailsBean> orderdetails;
+            private double couponMoney;
+            private String couponType;
+
+            public double getCouponMoney() {
+                return couponMoney;
+            }
+
+            public void setCouponMoney(double couponMoney) {
+                this.couponMoney = couponMoney;
+            }
+
+            public String getCouponType() {
+                return couponType;
+            }
+
+            public void setCouponType(String couponType) {
+                this.couponType = couponType;
+            }
 
             public String getAddr() {
                 return addr;
@@ -363,8 +381,18 @@ public class OrderUnPayResultBean implements Serializable{
                 private double userprice;
                 private String newPic;
                 private String remark = "";
+                private String couponMoney;
                 private int selectedPos = 0;
                 private List<PathBean> imgsPath;
+
+
+                public String getCouponMoney() {
+                    return couponMoney;
+                }
+
+                public void setCouponMoney(String couponMoney) {
+                    this.couponMoney = couponMoney;
+                }
 
                 public String getRemark() {
                     return remark;
@@ -544,7 +572,7 @@ public class OrderUnPayResultBean implements Serializable{
 
                 @Override
                 public String toString() {
-                    return "OrderdetailsBean{" +
+                    return "OrderDetailsBean{" +
                             ", money=" + money +
                             ", num=" + num +
                             ", size='" + size + '\'' +

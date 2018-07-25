@@ -16,14 +16,12 @@ import butterknife.ButterKnife;
  *
  * @author Json.
  */
-public class ReturnProgressAdapter extends BaseAdapter {
-    private Context mContext;
+public class ReturnProgressAdapter extends BaseAdapter{
     private LayoutInflater inflater;
     private ServiceResultBean.SuccessBean.ListBean listBean;
     private OnGoodsRefundProgressAdapterClick onClick;
     public ReturnProgressAdapter(Context mContext, ServiceResultBean.SuccessBean.ListBean listBean,
                                  OnGoodsRefundProgressAdapterClick onClick) {
-        this.mContext = mContext;
         this.onClick = onClick;
         this.listBean = listBean;
         this.inflater = LayoutInflater.from(mContext);

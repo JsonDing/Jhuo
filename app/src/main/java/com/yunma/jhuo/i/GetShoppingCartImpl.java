@@ -42,7 +42,7 @@ public class GetShoppingCartImpl implements GetShoppingCartModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     GetShoppingListBean.class);
                         } catch (Exception e) {
                             onGetShoppingCart.onGetShoppingCartListener(null,"数据解析出错");
@@ -55,7 +55,7 @@ public class GetShoppingCartImpl implements GetShoppingCartModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onGetShoppingCart.onGetShoppingCartListener(null,"数据解析出错");
@@ -75,10 +75,10 @@ public class GetShoppingCartImpl implements GetShoppingCartModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onGetShoppingCart.onGetShoppingCartListener(null,"网络异常");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
-                    LogUtils.log("------------> " + ex.getMessage());
+                    LogUtils.json("------------> " + ex.getMessage());
                     onGetShoppingCart.onGetShoppingCartListener(null,"服务器未响应，请稍后再试");
                 }
             }
@@ -92,7 +92,7 @@ public class GetShoppingCartImpl implements GetShoppingCartModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("getShoppingCarts : " + result);
+                 //   LogUtils.json("getShoppingCarts : " + result);
                 }
             }
         });

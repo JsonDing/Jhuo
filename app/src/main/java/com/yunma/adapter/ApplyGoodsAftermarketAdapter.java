@@ -17,7 +17,7 @@ import butterknife.*;
  *
  * @author Json.
  */
-public class ApplyGoodsAftermarketAdapter extends BaseAdapter {
+public class ApplyGoodsAftermarketAdapter extends BaseAdapter{
 
     private Context mContext;
     private LayoutInflater inflater;
@@ -66,17 +66,17 @@ public class ApplyGoodsAftermarketAdapter extends BaseAdapter {
         holder.tvGoodsInfo.setText("颜色：如图 " + " 尺码：" + orderdetailsBeanList.get(position).getSize());
         holder.tvPrice.setText("￥" + orderdetailsBeanList.get(position).getUserprice());
         holder.tvGoodsNum.setText("x" + orderdetailsBeanList.get(position).getNum());
-        if(orderdetailsBeanList.get(position).getRepoid()==1){
+        if(orderdetailsBeanList.get(position).getRepoid() == 1){
             if(EmptyUtil.isNotEmpty(orderdetailsBeanList.get(position).getPic())){
                 GlideUtils.glidNormleFast(mContext,holder.imgGoods, ConUtils.SElF_GOODS_IMAGE_URL +
                         orderdetailsBeanList.get(position).getPic().split(",")[0]);
             }else{
                 GlideUtils.glidLocalDrawable(mContext,holder.imgGoods,R.drawable.default_pic);
             }
-        }else{
+        }else if(orderdetailsBeanList.get(position).getRepoid() == 2){
             if(EmptyUtil.isNotEmpty(orderdetailsBeanList.get(position).getPic())){
                 GlideUtils.glidNormleFast(mContext,holder.imgGoods, ConUtils.GOODS_IMAGE_URL +
-                        orderdetailsBeanList.get(position).getPic());
+                        orderdetailsBeanList.get(position).getPic().split(",")[0]);
             }else{
                 GlideUtils.glidLocalDrawable(mContext,holder.imgGoods,R.drawable.default_pic);
             }

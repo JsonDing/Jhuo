@@ -1,8 +1,13 @@
 package com.yunma.jhuo.p;
 
-import com.yunma.bean.*;
+import android.content.Context;
+
+import com.yunma.bean.ShoppingCartsBean;
+import com.yunma.bean.SuccessResultBean;
 import com.yunma.jhuo.i.AddShoppingCartsImpl;
-import com.yunma.jhuo.m.AddShoppingCartsInterface.*;
+import com.yunma.jhuo.m.AddShoppingCartsInterface.AddShoppingCartsModel;
+import com.yunma.jhuo.m.AddShoppingCartsInterface.AddShoppingCartsView;
+import com.yunma.jhuo.m.AddShoppingCartsInterface.OnAddShoppingCartsListener;
 
 /**
  * Created on 2017-02-20
@@ -18,18 +23,8 @@ public class AddShoppingCartsPre {
         this.mView = mView;
         this.mModel = new AddShoppingCartsImpl();
     }
-
-    public void addToBasket(){
-        mModel.addToBasket(mView.getContext(), mView.getShoppingCartsBean(), new OnAddShoppingCartsListener() {
-            @Override
-            public void onListener(SuccessResultBean resultBean, String msg) {
-                mView.showAddShoppingCartsInfos(resultBean,msg);
-            }
-        });
-    }
-
-    public void addToBasket(ShoppingCartsBean shoppingCartsBean){
-        mModel.addToBasket(mView.getContext(), shoppingCartsBean, new OnAddShoppingCartsListener() {
+    public void addToBasket(Context context,ShoppingCartsBean shoppingCartsBean){
+        mModel.addToBasket(context, shoppingCartsBean, new OnAddShoppingCartsListener() {
             @Override
             public void onListener(SuccessResultBean resultBean, String msg) {
                 mView.showAddShoppingCartsInfos(resultBean,msg);

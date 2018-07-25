@@ -17,7 +17,7 @@
             android:layout_width="@dimen/dp01"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/color_a3"/>
+            android:background="@color/a3"/>
 
         <ImageView
             android:id="@+id/circlePoint"
@@ -30,7 +30,7 @@
             android:layout_width="@dimen/dp01"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/color_a3"/>
+            android:background="@color/a3"/>
 
     </LinearLayout>
 
@@ -49,7 +49,7 @@
             android:linksClickable="true"
             android:layout_marginStart="@dimen/dp15"
             android:layout_marginTop="@dimen/dp15"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp14"/>
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_marginStart="@dimen/dp15"
             android:layout_marginBottom="@dimen/dp13"
             android:layout_below="@+id/tvExpressStatus"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp12"/>
 
         <View
@@ -68,7 +68,7 @@
             android:layout_height="@dimen/dp0.5"
             android:layout_marginStart="@dimen/dp15"
             android:layout_below="@+id/tvFeedBackTime"
-            android:background="@color/color_a4"/>
+            android:background="@color/a4"/>
 
     </RelativeLayout>
 

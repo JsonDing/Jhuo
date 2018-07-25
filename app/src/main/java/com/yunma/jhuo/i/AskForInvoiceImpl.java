@@ -30,7 +30,7 @@ public class AskForInvoiceImpl implements AskForInvoiceInterFace.AskForInvoiceMo
         Gson gson = new Gson();
         String strParams = gson.toJson(askForInvoiceBean);
         params.setBodyContent(strParams);
-        LogUtils.log("requst: " + strParams);
+        LogUtils.json("requst: " + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -43,7 +43,7 @@ public class AskForInvoiceImpl implements AskForInvoiceInterFace.AskForInvoiceMo
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onAskForInvoice.onAskListener(null,"数据解析出错");
@@ -52,7 +52,7 @@ public class AskForInvoiceImpl implements AskForInvoiceInterFace.AskForInvoiceMo
                         onAskForInvoice.onAskListener(resultBean,"申请成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onAskForInvoice.onAskListener(null,"数据解析出错");
@@ -71,7 +71,7 @@ public class AskForInvoiceImpl implements AskForInvoiceInterFace.AskForInvoiceMo
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onAskForInvoice.onAskListener(null,"网络错误");
                 }else{
@@ -89,7 +89,7 @@ public class AskForInvoiceImpl implements AskForInvoiceInterFace.AskForInvoiceMo
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("索取发票 result: " + result);
+                 //   LogUtils.json("索取发票 result: " + result);
                 }
             }
         });

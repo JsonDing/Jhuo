@@ -1,14 +1,26 @@
 package com.yunma.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableStringBuilder;
-import android.view.*;
-import android.widget.*;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.yunma.R;
 import com.yunma.bean.GetShoppingListBean;
-import com.yunma.utils.*;
+import com.yunma.utils.ConUtils;
+import com.yunma.utils.GlideUtils;
+import com.yunma.utils.ValueUtils;
+
+import java.util.List;
+
 
 /**
  * Created by Json on 2017/1/1.
@@ -16,8 +28,9 @@ import com.yunma.utils.*;
 public class GoodsManifestAdapter extends BaseAdapter{
     private Context mContext;
     private LayoutInflater inflater;
-    private GetShoppingListBean resultBean;
-    public GoodsManifestAdapter(Context mContext, GetShoppingListBean resultBean) {
+    private List<GetShoppingListBean.SuccessBean> resultBean;
+    public GoodsManifestAdapter(Context mContext,
+                                List<GetShoppingListBean.SuccessBean> resultBean) {
         this.mContext = mContext;
         this.resultBean = resultBean;
         inflater = LayoutInflater.from(mContext);
@@ -25,12 +38,12 @@ public class GoodsManifestAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return resultBean.getSuccess().size();
+        return resultBean.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return resultBean.getSuccess().get(position);
+        return resultBean.get(position);
     }
 
     @Override
@@ -48,27 +61,39 @@ public class GoodsManifestAdapter extends BaseAdapter{
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        String s ="￥" +  ValueUtils.toTwoDecimal(
-                resultBean.getSuccess().get(position).getYunmaprice());
-        SpannableStringBuilder ss = ValueUtils.changeText(mContext,R.color.color_b4,s, Typeface.NORMAL,
-                DensityUtils.sp2px(mContext,14),1,s.indexOf("."));
+        String s;
+        if (resultBean.get(position).getSpecialprice() != 0.00) {
+            holder.imgSpecialOffer.setVisibility(View.VISIBLE);
+            SpannableStringBuilder span = new SpannableStringBuilder(
+                    "缩进 "+resultBean.get(position).getName());
+            span.setSpan(new ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
+                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            holder.tvGoodsName.setText(span);
+            s = ValueUtils.toTwoDecimal(resultBean.get(position).getSpecialprice());
+        } else {
+            holder.imgSpecialOffer.setVisibility(View.GONE);
+            holder.tvGoodsName.setText(resultBean.get(position).getName());
+            s = ValueUtils.toTwoDecimal(resultBean.get(position).getYunmaprice());
+        }
+        SpannableStringBuilder ss = ValueUtils.changeTextSize(mContext,s,14,0,s.indexOf("."));
         holder.tvPrice.setText(ss);
-        holder.tvGoodsName.setText(resultBean.getSuccess().get(position).getName());
-        holder.tvGoodsInfo.setText("尺码：" + resultBean.getSuccess().get(position).getCartSize());
-        holder.tvGoodsNum.setText("x " + resultBean.getSuccess().get(position).getCartNum());
-        if(resultBean.getSuccess().get(position).getRepoid()==1){
-            if(resultBean.getSuccess().get(position).getPic()!=null){
+        holder.tvGoodsInfo.setText(resultBean.get(position).getCartSize());
+        holder.tvGoodsNum.setText(String.valueOf(resultBean.get(position).getCartNum()));
+        if(resultBean.get(position).getRepoid()==1){
+            if(resultBean.get(position).getPic()!=null){
                 GlideUtils.glidNormleFast(mContext,holder.imgGoods,ConUtils.SElF_GOODS_IMAGE_URL+
-                resultBean.getSuccess().get(position).getPic().split(",")[0]);
+                        resultBean.get(position).getPic().split(",")[0] + "/min");
             }else{
-                holder.imgGoods.setImageDrawable(mContext.getResources().getDrawable(R.drawable.default_pic));
+                holder.imgGoods.setImageDrawable(
+                        ContextCompat.getDrawable(mContext,R.drawable.default_pic));
             }
         }else {
-            if(resultBean.getSuccess().get(position).getPic()!=null){
+            if(resultBean.get(position).getPic()!=null){
                 GlideUtils.glidNormleFast(mContext,holder.imgGoods,ConUtils.GOODS_IMAGE_URL +
-                        resultBean.getSuccess().get(position).getPic());
+                        resultBean.get(position).getPic().split(",")[0] + "/min");
             }else{
-                holder.imgGoods.setImageDrawable(mContext.getResources().getDrawable(R.drawable.default_pic));
+                holder.imgGoods.setImageDrawable(
+                        ContextCompat.getDrawable(mContext,R.drawable.default_pic));
             }
         }
         return convertView;
@@ -85,13 +110,14 @@ public class GoodsManifestAdapter extends BaseAdapter{
         TextView tvGoodsNum;
         TextView tvPrice;
         TextView tvGoodsInfo;
-
+        ImageView imgSpecialOffer;
         ViewHolder(View view) {
-            imgGoods = (ImageView) view.findViewById(R.id.imgGoods);
-            tvGoodsName = (TextView) view.findViewById(R.id.tvGoodsName);
-            tvGoodsNum = (TextView) view.findViewById(R.id.tvGoodsNum);
-            tvPrice = (TextView) view.findViewById(R.id.tvPrice);
-            tvGoodsInfo = (TextView) view.findViewById(R.id.tvGoodsInfo);
+            imgGoods = view.findViewById(R.id.imgGoods);
+            tvGoodsName = view.findViewById(R.id.tvGoodsName);
+            tvGoodsNum = view.findViewById(R.id.tvGoodsNum);
+            tvPrice = view.findViewById(R.id.tvPrice);
+            tvGoodsInfo = view.findViewById(R.id.tvGoodsInfo);
+            imgSpecialOffer = view.findViewById(R.id.imgSpecialOffer);
         }
     }
 }

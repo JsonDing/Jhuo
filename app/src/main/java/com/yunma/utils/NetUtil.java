@@ -50,10 +50,10 @@ public class NetUtil {
     public static Configuration initConf() {
         Configuration cfg = new Configuration.Builder()
                 .setAnimDuration(800)
-                .setDispalyDuration(2500)
-                .setBackgroundColor("#f2f2f2")
+                .setDispalyDuration(4000)
+                .setBackgroundColor("#ffffff")
                 .setTextColor("#efaf14")
-                .setIconBackgroundColor("#f2f2f2")
+                .setIconBackgroundColor("#ffffff")
                 .setTextPadding(5)
                 .setViewHeight(44)
                 .setTextLines(2)

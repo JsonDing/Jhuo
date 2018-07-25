@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.yunma.jhuo.SelectVolumeActivity">
-
+    android:background="@color/a4"
+    tools:context="com.yunma.jhuo.activity.SelectVolumeActivity">
 
     <include layout="@layout/layout_tittle_image"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="@dimen/dp10">
 
     </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:text="不使用优惠卷"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:onClick="notUseVolume"
+        android:background="@drawable/btn_selector_orange"/>
 
 </LinearLayout>

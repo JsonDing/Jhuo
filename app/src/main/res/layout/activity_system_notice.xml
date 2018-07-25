@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/color_a4"
+    android:background="@color/a4"
+    android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -14,8 +15,8 @@
         android:background="@color/tittle_bar">
 
         <LinearLayout
-            android:id="@+id/layoutBack"
             android:layout_width="@dimen/dp44"
+            android:onClick="layoutBack"
             android:gravity="center"
             android:background="@color/white"
             android:layout_height="@dimen/dp44">
@@ -33,6 +34,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:background="@color/white"
+            android:paddingStart="0dp"
             android:paddingEnd="@dimen/dp44"
             android:layout_height="@dimen/dp44">
 
@@ -40,8 +42,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="系统公告"
+                android:visibility="visible"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -54,7 +57,7 @@
         android:layout_weight="1"
         android:divider="@null"
         android:overScrollMode="never"
-        android:background="@color/color_a4"
+        android:background="@color/a4"
         android:scrollbars="none"/>
 
 </LinearLayout>

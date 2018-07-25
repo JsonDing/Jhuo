@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="意见反馈"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -57,8 +57,8 @@
         android:minLines="8"
         android:gravity="top"
         android:textSize="@dimen/sp14"
-        android:textColor="@color/color_b1"
-        android:textColorHint="@color/color_b2"
+        android:textColor="@color/b1"
+        android:textColorHint="@color/b2"
         android:padding="@dimen/dp10"
         android:hint="非常感谢您的宝贵意见，如您的建议被采纳，我们将赠送精美礼品一份！"
         android:background="@drawable/bg_edittext_gray"/>
@@ -79,11 +79,5 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-
-    <View
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/black"/>
 
 </LinearLayout>

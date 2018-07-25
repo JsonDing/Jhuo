@@ -1,5 +1,7 @@
 package com.yunma.jhuo.p;
 
+import android.content.Context;
+
 import com.yunma.bean.OrderUnPayResultBean;
 import com.yunma.jhuo.i.OrderWaitToReceiveImpl;
 import com.yunma.jhuo.m.OrderWaitToReceiveInterface.*;
@@ -19,8 +21,8 @@ public class OrderWaitToReceivePre {
         this.mModel = new OrderWaitToReceiveImpl();
     }
 
-    public void getUnReceiveOrders(){
-        mModel.orderUnReceive(mView.getContext(), new OrderWaitToReceiveListener() {
+    public void getUnReceiveOrders(Context context,String nums,String page){
+        mModel.orderUnReceive(context, nums,page,new OrderWaitToReceiveListener() {
             @Override
             public void orderWaitToReceiveListener(OrderUnPayResultBean resultBean, String msg) {
                 mView.showOrderInfos(resultBean,msg);

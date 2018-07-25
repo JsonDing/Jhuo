@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.yunma.jhuo.activity.homepage.AddRecipient">
+    tools:context="com.yunma.jhuo.activity.homepage.AddRecipientActivity">
 
     <LinearLayout
         android:id="@+id/layouStatusBar"
@@ -39,7 +39,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:background="@color/white"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp17"/>
 
         <LinearLayout
@@ -58,7 +58,7 @@
                 android:text="删除"
                 android:clickable="false"
                 android:textSize="@dimen/sp15"
-                android:textColor="@color/color_b3"/>
+                android:textColor="@color/b3"/>
 
         </LinearLayout>
 
@@ -67,7 +67,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:text="收货人："
             android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
         <EditText
             android:id="@+id/etReceiverName"
@@ -96,7 +96,7 @@
             android:inputType=""
             android:gravity="center_vertical"
             android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
         <LinearLayout
             android:id="@+id/tvClear"
@@ -116,7 +116,7 @@
         <View
             android:layout_width="@dimen/dp01"
             android:layout_height="@dimen/dp30"
-            android:background="@color/color_a4"/>
+            android:background="@color/a4"/>
 
         <LinearLayout
             android:id="@+id/layoutselectReceive"
@@ -137,7 +137,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp01"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -152,7 +152,7 @@
             android:layout_height="wrap_content"
             android:text="联系方式："
             android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
         <com.yunma.widget.ContainsEmojiEditText
             android:id="@+id/etPhoneNum"
@@ -161,16 +161,17 @@
             android:minHeight="@dimen/dp30"
             android:layout_weight="1"
             android:background="@null"
+            android:inputType="phone"
             android:gravity="center_vertical"
             android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp01"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <LinearLayout
         android:id="@+id/layoutSelectAddress"
@@ -187,7 +188,7 @@
             android:layout_height="wrap_content"
             android:text="所在地区："
             android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
         <TextView
             android:id="@+id/tvAddress"
@@ -196,9 +197,10 @@
             android:minHeight="@dimen/dp30"
             android:layout_weight="1"
             android:background="@null"
+            android:hint="请选择所在省、市、区"
             android:gravity="center_vertical"
             android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
         <LinearLayout
             android:layout_width="@dimen/dp36"
@@ -218,7 +220,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp01"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -233,29 +235,30 @@
             android:layout_height="wrap_content"
             android:text="详细地址："
             android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
         <com.yunma.widget.ContainsEmojiEditText
             android:id="@+id/etDetialAddress"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/dp30"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="不支持表情图片的输入"
-            android:textColorHint="@color/color_b2"
+            android:hint="不支持Emoji表情的输入"
+            android:textColorHint="@color/b2"
             android:gravity="center_vertical"
             android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp01"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <LinearLayout
+        android:id="@+id/layoutSelected"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp44"
         android:paddingStart="@dimen/dp15"
@@ -264,7 +267,6 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/layoutSelected"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp44"
             android:gravity="center_vertical">
@@ -286,33 +288,26 @@
             android:layout_height="wrap_content"
             android:text="设置为默认地址"
             android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/color_a4"
-        android:gravity="bottom">
+        android:background="@color/a4"
+        android:gravity="bottom"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnSaveAndUse"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp49"
-            android:gravity="center"
-            android:textColor="@color/white"
             android:background="@drawable/btn_selector_orange"
-            android:textSize="@dimen/sp15"
-            android:text="@string/sava_use"/>
-
-        <View
-            android:id="@+id/layout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="bottom"
-            android:background="@color/black"/>
+            android:gravity="center"
+            android:text="@string/sava_use"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15" />
 
     </LinearLayout>
 

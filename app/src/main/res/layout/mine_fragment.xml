@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -7,50 +7,121 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <LinearLayout
-        android:id="@+id/layouStatusBar"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <View
-            android:layout_width="@dimen/dp44"
-            android:layout_height="@dimen/dp44">
-
-        </View>
+        android:layout_height="wrap_content"
+        android:background="@drawable/me_bg_yellow">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_height="@dimen/dp44"/>
+            android:id="@+id/layouStatusBar"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:id="@+id/layoutNews"
-            android:layout_marginEnd="10dp"
-            android:layout_width="@dimen/dp44"
-            android:layout_height="@dimen/dp44">
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
 
-            <ImageView
-                android:id="@+id/imgMessage"
-                android:layout_width="@dimen/dp18"
-                android:layout_height="@dimen/dp18"
-                android:clickable="false"
-                android:visibility="invisible"
-                android:layout_centerInParent="true"
-                android:src="@drawable/re_message" />
+            <RelativeLayout
+                android:id="@+id/layoutMessage"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="@dimen/dp44">
 
-            <ImageView
-                android:id="@+id/imgRemind"
-                android:layout_width="7dp"
-                android:layout_height="7dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginStart="3dp"
-                android:clickable="false"
-                android:visibility="invisible"
-                android:layout_toEndOf="@+id/imgMessage"
-                android:src="@drawable/red_dot" />
+                <ImageView
+                    android:id="@+id/imgMessage"
+                    android:layout_width="@dimen/dp18"
+                    android:layout_height="@dimen/dp18"
+                    android:clickable="false"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/re_message" />
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/imgRemind"
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginStart="3dp"
+                    android:clickable="false"
+                    android:visibility="invisible"
+                    android:layout_toEndOf="@+id/imgMessage"
+                    android:src="@drawable/red_dot" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="@dimen/dp15"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.yunma.widget.CircleImageView
+                android:id="@+id/imgPhotos"
+                android:layout_width="@dimen/dp72"
+                android:layout_height="@dimen/dp72"
+                android:src="@drawable/default_photo"
+                app:border_color="@color/white"
+                app:border_width="@dimen/dp02" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingStart="@dimen/dp15"
+                android:paddingEnd="@dimen/dp10"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/tvNickName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="登录"
+                    android:textStyle="bold"
+                    android:textColor="@color/b1"
+                    android:textSize="@dimen/sp13" />
+
+                <TextView
+                    android:id="@+id/tvMemberLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp11"
+                    android:background="@drawable/me_bg_member"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/dp08"
+                    android:paddingStart="@dimen/dp08"
+                    android:paddingTop="@dimen/dp02"
+                    android:paddingBottom="@dimen/dp02"
+                    android:visibility="invisible"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp11" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutIntroCode"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="@dimen/dp44"
+                android:background="@drawable/me_circle_white"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/code_me" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -63,48 +134,109 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_a4"
+            android:background="@color/a4"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp192"
-                android:background="@drawable/bg_me">
+                android:layout_height="@dimen/dp58"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <LinearLayout
-                    android:id="@+id/layoutPhoto"
-                    android:layout_width="@dimen/dp63"
-                    android:layout_height="@dimen/dp63"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/dp72"
-                    android:background="@drawable/shape_noraml"
-                    android:gravity="center">
+                    android:id="@+id/layoutFavorites"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <com.yunma.widget.CircleImageView
-                        android:id="@+id/imgPhotos"
-                        android:layout_width="@dimen/dp58"
-                        android:layout_height="@dimen/dp58"
-                        android:src="@drawable/default_photo"
-                        app:border_color="@color/color_b3"
-                        app:border_width="@dimen/dp03"/>
+                    <TextView
+                        android:id="@+id/tvCollectNums"
+                        android:text="0"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/b1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp08"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:text="收藏夹"
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvNickName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/layoutPhoto"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/dp15"
-                    android:text="登录"
-                    android:textColor="@color/color_b1"
-                    android:textSize="@dimen/sp12"/>
-            </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/layoutVolumeList"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvVolumeList"
+                        android:text="0"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/b1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp08"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:text="优惠券"
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layouttvFootprint"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvFootprint"
+                        android:text="0"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/b1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp08"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:text="足迹"
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp44"
+                android:layout_marginTop="@dimen/dp10"
                 android:background="@color/white">
 
                 <TextView
@@ -113,8 +245,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp15"
                     android:text="我的订单"
-                    android:textColor="@color/color_b1"
-                    android:textSize="@dimen/sp14"/>
+                    android:textColor="@color/b1"
+                    android:textSize="@dimen/sp14" />
 
                 <LinearLayout
                     android:id="@+id/layoutLookAll"
@@ -129,25 +261,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="查看全部"
-                        android:textColor="@color/color_b2"
-                        android:textSize="@dimen/sp11"/>
+                        android:textColor="@color/b2"
+                        android:textSize="@dimen/sp11" />
 
                     <ImageView
                         android:layout_width="@dimen/dp08"
                         android:layout_height="@dimen/dp12"
-                        android:src="@drawable/more_sm"/>
+                        android:src="@drawable/more_sm" />
                 </LinearLayout>
 
             </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp0.5"
-                android:background="@color/color_a4"/>
-
             <LinearLayout
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp15"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp85"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp0.5"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
@@ -160,8 +290,8 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
+                        android:layout_width="@dimen/dp36"
+                        android:layout_height="@dimen/dp32"
                         android:clickable="false">
 
                         <ImageView
@@ -169,11 +299,12 @@
                             android:layout_height="@dimen/dp23"
                             android:layout_centerInParent="true"
                             android:clickable="false"
-                            android:src="@drawable/obligation"/>
+                            android:src="@drawable/obligation_me" />
 
                         <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
+                            android:id="@+id/tvUnPayNums"
+                            android:layout_width="@dimen/dp16"
+                            android:layout_height="@dimen/dp16"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/circle_red"
                             android:clickable="false"
@@ -181,7 +312,7 @@
                             android:text="1"
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp10"
-                            android:visibility="invisible"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <TextView
@@ -190,8 +321,8 @@
                         android:layout_marginTop="@dimen/dp08"
                         android:clickable="false"
                         android:text="待付款"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp11"/>
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp11" />
 
                 </LinearLayout>
 
@@ -204,8 +335,8 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
+                        android:layout_width="@dimen/dp36"
+                        android:layout_height="@dimen/dp32"
                         android:clickable="false">
 
                         <ImageView
@@ -213,11 +344,12 @@
                             android:layout_height="@dimen/dp23"
                             android:layout_centerInParent="true"
                             android:clickable="false"
-                            android:src="@drawable/shipments"/>
+                            android:src="@drawable/shipments_me" />
 
                         <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
+                            android:id="@+id/tvWaitSendNums"
+                            android:layout_width="@dimen/dp16"
+                            android:layout_height="@dimen/dp16"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/circle_red"
                             android:clickable="false"
@@ -225,7 +357,7 @@
                             android:text="2"
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp10"
-                            android:visibility="invisible"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <TextView
@@ -234,8 +366,8 @@
                         android:layout_marginTop="@dimen/dp08"
                         android:clickable="false"
                         android:text="待发货"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp11"/>
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp11" />
 
                 </LinearLayout>
 
@@ -248,8 +380,8 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
+                        android:layout_width="@dimen/dp36"
+                        android:layout_height="@dimen/dp32"
                         android:clickable="false">
 
                         <ImageView
@@ -257,11 +389,12 @@
                             android:layout_height="@dimen/dp23"
                             android:layout_centerInParent="true"
                             android:clickable="false"
-                            android:src="@drawable/receiving"/>
+                            android:src="@drawable/receiving_me" />
 
                         <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
+                            android:id="@+id/tvWaitReciveNums"
+                            android:layout_width="@dimen/dp16"
+                            android:layout_height="@dimen/dp16"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/circle_red"
                             android:clickable="false"
@@ -269,7 +402,7 @@
                             android:text="2"
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp10"
-                            android:visibility="invisible"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <TextView
@@ -278,44 +411,10 @@
                         android:layout_marginTop="@dimen/dp08"
                         android:clickable="false"
                         android:text="待收货"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp11"/>
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp11" />
 
                 </LinearLayout>
-
-                <!--<LinearLayout
-                    android:id="@+id/layoutConfirm"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
-                        android:clickable="false">
-
-                        <ImageView
-                            android:layout_width="@dimen/dp23"
-                            android:layout_height="@dimen/dp23"
-                            android:clickable="false"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/delivery"/>
-
-                    </RelativeLayout>
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="已确认"
-                        android:clickable="false"
-                        android:layout_marginTop="@dimen/dp08"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp11"/>
-
-            </LinearLayout>-->
 
                 <LinearLayout
                     android:id="@+id/layoutService"
@@ -326,8 +425,8 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
+                        android:layout_width="@dimen/dp36"
+                        android:layout_height="@dimen/dp32"
                         android:clickable="false">
 
                         <ImageView
@@ -335,7 +434,7 @@
                             android:layout_height="@dimen/dp23"
                             android:layout_centerInParent="true"
                             android:clickable="false"
-                            android:src="@drawable/after_sale"/>
+                            android:src="@drawable/after_sale_me" />
 
                     </RelativeLayout>
 
@@ -346,56 +445,35 @@
                         android:layout_marginTop="@dimen/dp08"
                         android:clickable="false"
                         android:text="售后服务"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp11"/>
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp11" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp10"
-                android:background="@color/color_a4"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp102"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:paddingTop="@dimen/dp20"
+                android:paddingBottom="@dimen/dp10"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
+                <!-- 等级提升 -->
                 <LinearLayout
-                    android:id="@+id/layoutVolumeList"
+                    android:id="@+id/loPromoteGrade"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:visibility="visible"
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
-                        android:clickable="false"
-                        android:focusable="false">
-
-                        <ImageView
-                            android:layout_width="@dimen/dp23"
-                            android:layout_height="@dimen/dp23"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/wallet"/>
-
-                        <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
-                            android:layout_alignParentEnd="true"
-                            android:background="@drawable/circle_red"
-                            android:gravity="center"
-                            android:text="1"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp10"
-                            android:visibility="gone"/>
-                    </RelativeLayout>
+                    <ImageView
+                        android:layout_width="@dimen/dp23"
+                        android:layout_height="@dimen/dp23"
+                        android:src="@drawable/me_class" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -403,23 +481,116 @@
                         android:layout_marginTop="@dimen/dp15"
                         android:clickable="false"
                         android:focusable="false"
-                        android:text="优惠卷"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp12"/>
+                        android:text="等级提升"
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
 
                 </LinearLayout>
 
+                <!-- 我的等级 -->
                 <LinearLayout
-                    android:id="@+id/layoutQuickReplenish"
+                    android:id="@+id/loMyGrade"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
 
+
+                    <ImageView
+                        android:layout_width="@dimen/dp23"
+                        android:layout_height="@dimen/dp23"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:src="@drawable/me_my_class" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:text="我的等级"
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
+
+                </LinearLayout>
+
+                <!-- 我的积分 -->
+                <LinearLayout
+                    android:id="@+id/myIntegral"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp23"
+                        android:layout_height="@dimen/dp23"
+                        android:src="@drawable/me_integral" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:text="我的积分"
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
+
+                </LinearLayout>
+
+                <!-- 我的返现 -->
+                <LinearLayout
+                    android:id="@+id/loMyMoneyReturn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp23"
+                        android:layout_height="@dimen/dp23"
+                        android:src="@drawable/me_return_money" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:text="我的返现"
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <!-- 快速补货 -->
+                <LinearLayout
+                    android:id="@+id/layoutQuickReplenish"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
                     <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
+                        android:layout_width="@dimen/dp36"
+                        android:layout_height="@dimen/dp32"
                         android:clickable="false"
                         android:focusable="false">
 
@@ -429,11 +600,11 @@
                             android:layout_centerInParent="true"
                             android:clickable="false"
                             android:focusable="false"
-                            android:src="@drawable/replenishment_me"/>
+                            android:src="@drawable/replenishment_me" />
 
                         <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
+                            android:layout_width="@dimen/dp16"
+                            android:layout_height="@dimen/dp16"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/circle_red"
                             android:clickable="false"
@@ -442,7 +613,7 @@
                             android:text="1"
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp10"
-                            android:visibility="gone"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <TextView
@@ -452,13 +623,14 @@
                         android:clickable="false"
                         android:focusable="false"
                         android:text="快速补货"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp12"/>
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
 
                 </LinearLayout>
 
+                <!-- 邀请好友 -->
                 <LinearLayout
-                    android:id="@+id/layoutFavorites"
+                    android:id="@+id/loAskFriends"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -466,152 +638,8 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
-                        android:clickable="false"
-                        android:focusable="false">
-
-                        <ImageView
-                            android:layout_width="@dimen/dp23"
-                            android:layout_height="@dimen/dp23"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/collect_me"/>
-
-                        <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
-                            android:layout_alignParentEnd="true"
-                            android:background="@drawable/circle_red"
-                            android:gravity="center"
-                            android:text="2"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp10"
-                            android:visibility="gone"/>
-                    </RelativeLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp15"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:text="收藏夹"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp12"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layoutReceiverManage"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
-                        android:clickable="false"
-                        android:focusable="false">
-
-                        <ImageView
-                            android:layout_width="@dimen/dp23"
-                            android:layout_height="@dimen/dp23"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/recipients_me"/>
-
-                        <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
-                            android:layout_alignParentEnd="true"
-                            android:background="@drawable/circle_red"
-                            android:gravity="center"
-                            android:text="2"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp10"
-                            android:visibility="gone"/>
-                    </RelativeLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp15"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:text="收件人管理"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp12"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp102"
-                android:background="@color/white"
-                android:weightSum="4"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/layoutMyWallet"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:visibility="gone"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
-                        android:clickable="false"
-                        android:focusable="false">
-
-                        <ImageView
-                            android:layout_width="@dimen/dp23"
-                            android:layout_height="@dimen/dp23"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/wallet"/>
-
-                        <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
-                            android:layout_alignParentEnd="true"
-                            android:background="@drawable/circle_red"
-                            android:gravity="center"
-                            android:text="1"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp10"
-                            android:visibility="gone"/>
-                    </RelativeLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp15"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:text="我的钱包"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp12"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layoutGoPublish"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/dp102"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
+                        android:layout_width="@dimen/dp36"
+                        android:layout_height="@dimen/dp32"
                         android:clickable="false"
                         android:focusable="false">
 
@@ -621,8 +649,20 @@
                             android:layout_centerInParent="true"
                             android:clickable="false"
                             android:focusable="false"
-                            android:src="@drawable/issue_me"/>
+                            android:src="@drawable/me_invite" />
 
+                        <TextView
+                            android:layout_width="@dimen/dp16"
+                            android:layout_height="@dimen/dp16"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/circle_red"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp10"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <TextView
@@ -631,14 +671,15 @@
                         android:layout_marginTop="@dimen/dp15"
                         android:clickable="false"
                         android:focusable="false"
-                        android:text="发  布"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp12"/>
+                        android:text="邀请好友"
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
 
                 </LinearLayout>
 
+                <!-- 地址管理 -->
                 <LinearLayout
-                    android:id="@+id/layoutSaleRemind"
+                    android:id="@+id/layoutReceiverManage"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -646,8 +687,8 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
+                        android:layout_width="@dimen/dp36"
+                        android:layout_height="@dimen/dp32"
                         android:clickable="false"
                         android:focusable="false">
 
@@ -655,18 +696,19 @@
                             android:layout_width="@dimen/dp23"
                             android:layout_height="@dimen/dp23"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/remind_me"/>
+                            android:src="@drawable/me_site" />
 
                         <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
+                            android:id="@+id/tvAddrNums"
+                            android:layout_width="@dimen/dp16"
+                            android:layout_height="@dimen/dp16"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/circle_red"
                             android:gravity="center"
-                            android:text="2"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp10"
-                            android:visibility="gone"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <TextView
@@ -675,12 +717,13 @@
                         android:layout_marginTop="@dimen/dp15"
                         android:clickable="false"
                         android:focusable="false"
-                        android:text="开卖提醒"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp12"/>
+                        android:text="地址管理"
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
 
                 </LinearLayout>
 
+                <!-- 系统公告 -->
                 <LinearLayout
                     android:id="@+id/layoutSystemNotice"
                     android:layout_width="0dp"
@@ -699,18 +742,18 @@
                             android:layout_width="@dimen/dp23"
                             android:layout_height="@dimen/dp23"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/notice_me"/>
+                            android:src="@drawable/me_notice" />
 
                         <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
+                            android:id="@+id/tvNoticeNums"
+                            android:layout_width="@dimen/dp16"
+                            android:layout_height="@dimen/dp16"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/circle_red"
                             android:gravity="center"
-                            android:text="2"
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp10"
-                            android:visibility="invisible"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <TextView
@@ -720,56 +763,12 @@
                         android:clickable="false"
                         android:focusable="false"
                         android:text="系统公告"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp12"/>
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/layoutFeedback"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
-                        android:clickable="false"
-                        android:focusable="false">
-
-                        <ImageView
-                            android:layout_width="@dimen/dp23"
-                            android:layout_height="@dimen/dp23"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/opinion_me"/>
-
-                        <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
-                            android:layout_alignParentEnd="true"
-                            android:background="@drawable/circle_red"
-                            android:gravity="center"
-                            android:text="2"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp10"
-                            android:visibility="gone"/>
-                    </RelativeLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp15"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:text="意见反馈"
-                        android:textColor="@color/color_b1"
-                        android:textSize="@dimen/sp12"
-                        />
-
-                </LinearLayout>
-
+                <!-- 设   置 -->
                 <LinearLayout
                     android:id="@+id/layoutSystemSetting"
                     android:layout_width="0dp"
@@ -779,8 +778,8 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="@dimen/dp26"
-                        android:layout_height="@dimen/dp26"
+                        android:layout_width="@dimen/dp36"
+                        android:layout_height="@dimen/dp32"
                         android:clickable="false"
                         android:focusable="false">
 
@@ -788,18 +787,8 @@
                             android:layout_width="@dimen/dp23"
                             android:layout_height="@dimen/dp23"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/set_me"/>
+                            android:src="@drawable/me_settings"/>
 
-                        <TextView
-                            android:layout_width="@dimen/dp14"
-                            android:layout_height="@dimen/dp14"
-                            android:layout_alignParentEnd="true"
-                            android:background="@drawable/circle_red"
-                            android:gravity="center"
-                            android:text="2"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp10"
-                            android:visibility="gone"/>
                     </RelativeLayout>
 
                     <TextView
@@ -808,11 +797,57 @@
                         android:layout_marginTop="@dimen/dp15"
                         android:clickable="false"
                         android:focusable="false"
-                        android:text="系统设置"
-                        android:textColor="@color/color_b1"
+                        android:text="设置"
+                        android:textColor="@color/b1"
                         android:textSize="@dimen/sp12"/>
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp102"
+                android:layout_marginTop="@dimen/dp0.5"
+                android:weightSum="4"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/layoutNearBy"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/dp36"
+                        android:layout_height="@dimen/dp32"
+                        android:clickable="false"
+                        android:focusable="false">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp23"
+                            android:layout_height="@dimen/dp23"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/nearby" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:text="附近的人"
+                        android:textColor="@color/b1"
+                        android:textSize="@dimen/sp12" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -820,4 +855,4 @@
 
     </ScrollView>
 
-</FrameLayout >
+</LinearLayout >

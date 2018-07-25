@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="申请退货详情"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -64,7 +64,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp0.5"
-            android:background="@color/color_a4"/>
+            android:background="@color/a4"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"

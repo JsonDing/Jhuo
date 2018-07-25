@@ -1,17 +1,24 @@
 package com.yunma.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
-import android.view.*;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yunma.R;
-import com.yunma.bean.GetSelfGoodsResultBean.SuccessBean.ListBean;
+import com.yunma.bean.SelfGoodsListBean;
 import com.yunma.jhuo.m.OnBuyClick;
-import com.yunma.utils.*;
+import com.yunma.utils.PriceUtils;
+import com.yunma.utils.ValueUtils;
 import com.yunma.widget.NestListView;
 
 import java.util.ArrayList;
@@ -25,13 +32,15 @@ public class SpecialPriceAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private LayoutInflater mInflater;
     private Context mContext;
     private OnBuyClick onBuyClick;
-    private List<ListBean> goodsListBeen;
+    private List<SelfGoodsListBean> goodsListBeen;
+    private List<SelfGoodsListBean> listBeen ;
 
-    public SpecialPriceAdapter(Context context, List<ListBean> goodsListBeen,OnBuyClick onBuyClick) {
-        this.goodsListBeen = goodsListBeen;
+    public SpecialPriceAdapter(Context context,OnBuyClick onBuyClick) {
         this.mContext = context;
         this.onBuyClick = onBuyClick;
+        this.goodsListBeen = new ArrayList<>();
         this.mInflater = LayoutInflater.from(context);
+        this.listBeen = new ArrayList<>();
     }
 
     @Override
@@ -41,10 +50,11 @@ public class SpecialPriceAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         SubAdapterController mSubAdapterCrl = new SubAdapterController(
                 goodsListBeen.get(position).getPic().split(","), mContext, goodsListBeen.get(position));
         ((MainViewHolder)holder).nestListView.setAdapter(mSubAdapterCrl.getAdapter());
+
         if(position == goodsListBeen.size()-1){
             ((MainViewHolder)holder).layout.setVisibility(View.VISIBLE);
             ((MainViewHolder)holder).layoutSpace.setVisibility(View.GONE);
@@ -52,23 +62,32 @@ public class SpecialPriceAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((MainViewHolder)holder).layout.setVisibility(View.GONE);
             ((MainViewHolder)holder).layoutSpace.setVisibility(View.VISIBLE);
         }
-        String s = "￥" + ValueUtils.toTwoDecimal(goodsListBeen.get(position).getYmprice());
-        SpannableStringBuilder ss = ValueUtils.changeText(mContext,R.color.color_b4,s, Typeface.NORMAL,
-                DensityUtils.sp2px(mContext,16),1,s.indexOf("."));
-        ((MainViewHolder)holder).tvPrice.setText(ss);
-        ((MainViewHolder)holder).tvShopName.setText(goodsListBeen.get(position).getName());
-        int remainNums = 0;
-        for(int i=0;i<goodsListBeen.get(position).getStocks().size();i++){
-            remainNums = remainNums + goodsListBeen.get(position).getStocks().get(i).getNum();
+        String s;
+        double yunPrice = goodsListBeen.get(position).getYmprice();
+        double specialPrice = goodsListBeen.get(position).getSpecialprice();
+        if (PriceUtils.isShowSpecialPrice(yunPrice, specialPrice)) {
+            ((MainViewHolder)holder).imgSpecialOffer.setVisibility(View.VISIBLE);
+            SpannableStringBuilder span = new SpannableStringBuilder(
+                    "缩进 "+goodsListBeen.get(position).getName());
+            span.setSpan(new ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
+                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            ((MainViewHolder)holder).tvShopName.setText(span);
+            s = PriceUtils.getPrice(yunPrice,specialPrice);
+        }else{
+            ((MainViewHolder)holder).imgSpecialOffer.setVisibility(View.GONE);
+            ((MainViewHolder)holder).tvShopName.setText(goodsListBeen.get(position).getName());
+            s = PriceUtils.getPrice(yunPrice,specialPrice);
         }
-        goodsListBeen.get(position).setRemain(remainNums);
+        SpannableStringBuilder ss = ValueUtils.changeText(mContext,R.color.b4,s, Typeface.NORMAL,
+                16,0,s.indexOf("."));
+        ((MainViewHolder)holder).tvPrice.setText(ss);
         ((MainViewHolder)holder).tvRemainNums.setText(
-                String.valueOf(remainNums));
-        if(remainNums==0){
+                String.valueOf(goodsListBeen.get(position).getStock()));
+        if(goodsListBeen.get(position).getStock() == 0){
             ((MainViewHolder)holder).tvSaleOut.setVisibility(View.VISIBLE);
             ((MainViewHolder)holder).tvSaleOut.setEnabled(true);
             ((MainViewHolder)holder)
-                    .btnBuy.setBackgroundResource(R.drawable.gray_button_background);
+                    .btnBuy.setBackgroundResource(R.drawable.layout_shape_dark_gray);
             ((MainViewHolder)holder).btnBuy.setEnabled(false);
             ((MainViewHolder)holder).nestListView.setEnabled(false);
 
@@ -83,7 +102,8 @@ public class SpecialPriceAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 @Override
                 public void onClick(View v) {
                     if(onBuyClick!=null){
-                        onBuyClick.onBuyClickListener(position, goodsListBeen.get(position));
+                        onBuyClick.onBuyClickListener(holder.getAdapterPosition(),
+                                goodsListBeen.get(holder.getAdapterPosition()));
                     }
                 }
             });
@@ -104,37 +124,42 @@ public class SpecialPriceAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Button btnBuy;
         TextView tvRemainNums;
         TextView tvSaleOut;
+        ImageView imgSpecialOffer;
         MainViewHolder(View itemView) {
             super(itemView);
-            nestListView = (NestListView) itemView.findViewById(R.id.nestlistview);
+            nestListView = itemView.findViewById(R.id.nestlistview);
             layoutSpace =  itemView.findViewById(R.id.layoutSpace);
             layout = itemView.findViewById(R.id.layout);
-            tvShopName = (TextView)itemView.findViewById(R.id.tvShopName);
-            tvPrice = (TextView)itemView.findViewById(R.id.tvPrice);
-            tvRemainNums = (TextView)itemView.findViewById(R.id.tvRemainNums);
-            tvSaleOut = (TextView)itemView.findViewById(R.id.tvSaleOut);
-            btnBuy = (Button)itemView.findViewById(R.id.btnBuy);
+            tvShopName = itemView.findViewById(R.id.tvShopName);
+            tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvRemainNums = itemView.findViewById(R.id.tvRemainNums);
+            tvSaleOut = itemView.findViewById(R.id.tvSaleOut);
+            btnBuy = itemView.findViewById(R.id.btnBuy);
+            imgSpecialOffer = itemView.findViewById(R.id.imgSpecialOffer);
         }
     }
 
-    public void setGoodsListBeen(List<ListBean> goodsListBeen) {
+    public void addListBeen(List<SelfGoodsListBean> goodsListBeen) {
         this.goodsListBeen = goodsListBeen;
-        notifyItemInserted(goodsListBeen.size());
         notifyDataSetChanged();
     }
 
-    public List<ListBean> getGoodsInfo(){
-        List<ListBean> listBeen = new ArrayList<>();
-        if(goodsListBeen!=null){
-            for(int i=0;i<goodsListBeen.size();i++){
+    //购物车列表
+    public List<SelfGoodsListBean> getGoodsInfo(){
+        int size = goodsListBeen.size();
+            for(int i=0;i<size;i++){
                 if(goodsListBeen.get(i).getTotalBuyNums()!=0){
                     goodsListBeen.get(i).setPosition(i);
                     listBeen.add(goodsListBeen.get(i));
                 }
             }
             return listBeen;
-        }else{
-            return  null;
-        }
+    }
+
+    public void refreshDatas(List<SelfGoodsListBean> goodsListBeen){
+        this.goodsListBeen.clear();
+        notifyDataSetChanged();
+        this.goodsListBeen = goodsListBeen;
+        notifyItemInserted(this.goodsListBeen.size());
     }
 }

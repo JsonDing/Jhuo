@@ -1,8 +1,12 @@
 package com.yunma.jhuo.p;
 
+import android.content.Context;
+
 import com.yunma.bean.SuccessResultBean;
 import com.yunma.jhuo.i.ALiPayImpl;
-import com.yunma.jhuo.m.ALiPayInterface.*;
+import com.yunma.jhuo.m.PayInterface.ALiPayModel;
+import com.yunma.jhuo.m.PayInterface.ALiPayView;
+import com.yunma.jhuo.m.PayInterface.OnALiPayListener;
 
 /**
  * Created on 2017-02-27
@@ -19,11 +23,11 @@ public class ALiPayPre {
         this.mModel = new ALiPayImpl();
     }
 
-    public void getALiPayInfos(){
-        mModel.getPayInfos(mView.getContext(), mView.getOrderId(), new OnALiPayListener() {
+    public void getALiPayInfos(Context mContext,String orderId){
+        mModel.getPayInfos(mContext, orderId, new OnALiPayListener() {
             @Override
             public void onListener(SuccessResultBean successResultBean, String msg) {
-                mView.showPayInfos(successResultBean,msg);
+                mView.showALiPayInfos(successResultBean,msg);
             }
         });
     }

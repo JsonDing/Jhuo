@@ -1,34 +1,46 @@
 package com.yunma.jhuo.general;
 
-import android.content.*;
-import android.os.*;
-import android.text.*;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.tencent.connect.auth.QQAuth;
-import com.tencent.open.wpa.WPA;
 import com.yunma.R;
-import com.yunma.bean.*;
-import com.yunma.dao.GreenDaoManager;
+import com.yunma.bean.RegisterSuccessResultBean;
+import com.yunma.bean.SuccessResultBean;
 import com.yunma.dao.UserInfos;
 import com.yunma.greendao.UserInfosDao;
-import com.yunma.jhuo.m.LoginInterface.LoginView;
-import com.yunma.jhuo.m.PhoneNumberVerificationInterFace.PhoneMumberView;
+import com.yunma.jhuo.m.GetIdentifyingCodeInterface;
 import com.yunma.jhuo.m.RegisterInterFace.RegisterView;
-import com.yunma.jhuo.p.*;
-import com.yunma.utils.*;
+import com.yunma.jhuo.p.GetIdentifyingCodePre;
+import com.yunma.jhuo.p.RegisterPresenter;
+import com.yunma.utils.AppManager;
+import com.yunma.utils.MD5Utils;
+import com.yunma.utils.RegexValidateUtil;
+import com.yunma.utils.SPUtils;
+import com.yunma.utils.TimeUtils;
+import com.yunma.utils.ToastUtils;
 import com.yunma.widget.CustomProgressDialog;
 
 import org.greenrobot.greendao.query.Query;
 
 import java.util.List;
 
-import butterknife.*;
-import cn.carbs.android.library.MDDialog;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RegisterAccount extends CheckPermissionsActivity
-        implements RegisterView, PhoneMumberView, LoginView {
+        implements RegisterView,GetIdentifyingCodeInterface.GetIdentifyingCodeView {
 
     @BindView(R.id.layoutClose) LinearLayout layoutClose;
     @BindView(R.id.etPhoneNum) EditText etPhoneNum;
@@ -39,17 +51,12 @@ public class RegisterAccount extends CheckPermissionsActivity
     @BindView(R.id.etPasswd) EditText etPasswd;
     @BindView(R.id.tvGetVerification) TextView tvGetVerification;
     @BindView(R.id.btnRegister) Button btnRegister;
-    @BindView(R.id.codeMask) View codeMask;
-    @BindView(R.id.passwdMask) View passwdMask;
-    private CharSequence tempPhone = null,tempPasswd = null,tempCode = null;
-    private int phoneStart,phoneEnd,passwdStart,passwdEnd,codeStart,codeEnd;
+    @BindView(R.id.etIntro) EditText etIntro;
     private Context mContext;
     private TimeUtils timeUtils = null;
     private RegisterPresenter mPrenter;
-    private PhoneNumberVerificationPre nPresenter;
-    private LoginPre loginPre;
+    private GetIdentifyingCodePre getCodePre;
     private CustomProgressDialog dialog = null;
-    private long startDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +70,11 @@ public class RegisterAccount extends CheckPermissionsActivity
     private void initView() {
         mContext = this;
         mPrenter = new RegisterPresenter(RegisterAccount.this);
-        loginPre = new LoginPre(RegisterAccount.this);
-        nPresenter = new PhoneNumberVerificationPre(RegisterAccount.this);
+        getCodePre = new GetIdentifyingCodePre(RegisterAccount.this);
         tvPasswd.setText("密" + "\u3000" + "码");
         etCode.addTextChangedListener(new TextWatcher() {
+            private CharSequence tempCode = null;
+            private int codeStart,codeEnd;
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -81,20 +89,18 @@ public class RegisterAccount extends CheckPermissionsActivity
             public void afterTextChanged(Editable s) {
                 codeStart = etCode.getSelectionStart();
                 codeEnd = etCode.getSelectionEnd();
-                if (tempCode.length() > 4) {
+                if (tempCode.length() > 6) {
                     ToastUtils.showError(getApplicationContext(), "你输入的字数已经超过了限制");
                     s.delete(codeStart - 1, codeEnd);
                     int tempSelection = codeStart;
                     etCode.setText(s);
                     etCode.setSelection(tempSelection);
-                }else if(tempCode.length()==4){
-                    passwdMask.setVisibility(View.GONE);
-                }else{
-                    passwdMask.setVisibility(View.VISIBLE);
                 }
             }
         });
         etPasswd.addTextChangedListener(new TextWatcher() {
+            private CharSequence tempPasswd = null;
+            private int passwdStart,passwdEnd;
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -125,6 +131,8 @@ public class RegisterAccount extends CheckPermissionsActivity
             }
         });
         etPhoneNum.addTextChangedListener(new TextWatcher() {
+            private CharSequence tempPhone = null;
+            private int phoneStart,phoneEnd;
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -148,6 +156,7 @@ public class RegisterAccount extends CheckPermissionsActivity
                 }
             }
         });
+
     }
 
     @OnClick({R.id.layoutClose, R.id.layoutToLogin, R.id.tvGetVerification, R.id.btnRegister})
@@ -163,7 +172,7 @@ public class RegisterAccount extends CheckPermissionsActivity
                 intent = new Intent(RegisterAccount.this, DialogStyleLoginActivity.class);
                 startActivity(intent);
                 AppManager.getAppManager().finishActivity(this);
-                overridePendingTransition(0,R.anim.fade_out);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
             case R.id.tvGetVerification:
                 String phoneNum = etPhoneNum.getText().toString().trim();
@@ -172,71 +181,23 @@ public class RegisterAccount extends CheckPermissionsActivity
                 }else if(!RegexValidateUtil.checkCellphone(phoneNum)){
                     ToastUtils.showWarning(mContext,"请输入正确的手机号码！");
                 }else{
-                    timeUtils = new TimeUtils(mContext, tvGetVerification,
-                            "获取验证码", 120,R.drawable.bg_button_orange);
-                    timeUtils.RunTimer();
-                    codeMask.setVisibility(View.GONE);
-                    nPresenter.getVerificationCode(phoneNum);
+                    getCodePre.GetIdentifyingCode(this,phoneNum);
                 }
-             //   showDialog();
                 break;
             case R.id.btnRegister:
                 register();
-              //  showDialog();
                 break;
-
         }
-    }
-
-    private void showDialog() {
-        int dialogWith = ScreenUtils.getScreenWidth(mContext) - DensityUtils.dp2px(mContext, 52);
-        new MDDialog.Builder(mContext)
-                .setContentView(R.layout.item_regidst_notice)
-                .setContentViewOperator(new MDDialog.ContentViewOperator() {
-                    @Override
-                    public void operate(View contentView) {
-                        ViewHolder holder = new ViewHolder(contentView);
-                        holder.tvQQ.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                QQAuth mqqAuth = QQAuth.createInstance("1105961309",RegisterAccount.this);
-                                WPA mWPA = new WPA(RegisterAccount.this, mqqAuth.getQQToken());
-                                String ESQ = "2252162352";  //客服QQ号
-                                int ret = mWPA.startWPAConversation(RegisterAccount.this,ESQ,
-                                        "你好，我正在J货看,想知道注册帐号等事宜");
-                                if (ret != 0) {
-                                    Toast.makeText(getApplicationContext(),
-                                            "抱歉，联系客服出现了错误~. error:" + ret,
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
-
-                        holder.btnKnow.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                AppManager.getAppManager().finishActivity(RegisterAccount.this);
-                                overridePendingTransition(0,
-                                        android.R.animator.fade_out);
-                            }
-                        });
-                    }
-                })
-                .setBackgroundCornerRadius(15)
-                .setWidthMaxDp((int) DensityUtils.px2dp(mContext, dialogWith))
-                .setShowTitle(false)
-                .setShowButtons(false)
-                .create()
-                .show();
     }
 
     private void register() {
         String phoneNum = etPhoneNum.getText().toString().trim();
         String code = etCode.getText().toString().trim();
         String passWd = etPasswd.getText().toString().trim();
+        String intro = etIntro.getText().toString().trim();
         if (phoneNum.isEmpty()) {
             ToastUtils.showWarning(mContext, "请输入您的手机号码！");
-        } else if (RegexValidateUtil.checkCellphone(phoneNum)) {
+        } else if (!RegexValidateUtil.checkCellphone(phoneNum)) {
             ToastUtils.showWarning(mContext, "请输入正确的手机号码！");
         } else if (code.isEmpty()) {
             ToastUtils.showWarning(mContext, "请输入您收到的验证码！");
@@ -244,9 +205,10 @@ public class RegisterAccount extends CheckPermissionsActivity
             ToastUtils.showWarning(mContext, "请输入您的登录密码！");
         } else if (passWd.length() < 6) {
             ToastUtils.showInfo(mContext, "密码不能少于6位！");
-        } else {
+        }else{
             progressShow();
-            nPresenter.verifyingPhoneNumber(phoneNum,code);
+            mPrenter.register(this,phoneNum,passWd,code,intro);
+            // 提交注册信息
         }
     }
 
@@ -256,13 +218,21 @@ public class RegisterAccount extends CheckPermissionsActivity
             ToastUtils.showError(mContext, msg);
             progressDimiss();
         } else {
-            ToastUtils.showSuccess(mContext, "注册成功");
-            SPUtils.setUserId(mContext, resultBean.getSuccess().getId());
+            progressDimiss();
+            ToastUtils.show(mContext, "注册成功",Toast.LENGTH_SHORT);
+            SPUtils.setUserId(mContext, String.valueOf(resultBean.getSuccess().getId()));
             SPUtils.setPhoneNumber(mContext, etPhoneNum.getText().toString().trim());
             SPUtils.setPassWd(mContext, etPasswd.getText().toString().trim());
             saveDataToDB(resultBean.getSuccess());
-            loginPre.login(mContext,etPhoneNum.getText().toString().trim(),
-                    etPasswd.getText().toString().trim());
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(RegisterAccount.this,DialogStyleLoginActivity.class);
+                    startActivity(intent);
+                    AppManager.getAppManager().finishActivity(RegisterAccount.this);
+                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                }
+            }, 1500);
         }
     }
 
@@ -273,59 +243,16 @@ public class RegisterAccount extends CheckPermissionsActivity
         List<UserInfos> userInfoses = nQuery.list();
         if (userInfoses.size() == 0) {
             //插入数据
-            UserInfos userInfos = new UserInfos(null, successBean.getId(), successBean.getTel(),
-                    successBean.getPass(), null, false, null, null, null);
-            LogUtils.log("插入数据 ------> " + userInfos.toString());
+            UserInfos userInfos = new UserInfos();
+            userInfos .setId(null);
+            userInfos.setUserId(successBean.getId());
+            userInfos.setPhoneNumber(successBean.getTel());
+            userInfos.setPassWd(MD5Utils.getMD5(successBean.getPass()));
             getUserDao().insert(userInfos);
         }
     }
 
-    @Override
-    public void showLoginInfos(LoginSuccessResultBean resultBean, String msg) {
-        if (resultBean != null) {
-            long endDate = DateTimeUtils.getCurrentTimeInLong();
-            long cost = endDate - startDate;
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    progressDimiss();
-                    AppManager.getAppManager().finishActivity(RegisterAccount.this);
-                    overridePendingTransition(0,
-                            android.R.animator.fade_out);
-                }
-            }, 2000 - cost);
-        } else {
-            ToastUtils.showError(mContext, "自动登录失败，请手动登录");
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    progressDimiss();
-                    Intent intent = new Intent(RegisterAccount.this, DialogStyleLoginActivity.class);
-                    startActivity(intent);
-                    AppManager.getAppManager().finishActivity(RegisterAccount.this);
-                    overridePendingTransition(0,
-                            android.R.animator.fade_out);
-                }
-            }, 1000);
-        }
-
-
-    }
-
-    @Override
-    public void showIsCorrent(String msg) {
-        if (msg.equals("验证成功")) {
-            LogUtils.log("验证成功");
-            mPrenter.register(getApplicationContext(),
-                    etPhoneNum.getText().toString().trim(),
-                    etPasswd.getText().toString().trim());
-        }else if(msg.equals("验证失败")){
-            LogUtils.log("验证失败");
-        }
-    }
-
     public void progressShow() {
-        startDate = DateTimeUtils.getCurrentTimeInLong();
         if (dialog == null) {
             dialog = new CustomProgressDialog(this, "加载中...", R.drawable.pb_loading_logo_1);
         }
@@ -349,23 +276,33 @@ public class RegisterAccount extends CheckPermissionsActivity
             dialog = null;
         }
         //要在activity销毁时反注册，否侧会造成内存泄漏问题
-        nPresenter.unregisterAllEventHandler();
-        nPresenter = null;
         mPrenter = null;
     }
 
-    private UserInfosDao getUserDao() {
-        return GreenDaoManager.getInstance().getSession().getUserInfosDao();
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK ) {
+            AppManager.getAppManager().finishActivity(this);
+            overridePendingTransition(R.anim.fade_in,
+                    R.anim.fade_out);
+        }
+        return false;
     }
 
-    static class ViewHolder {
-        @BindView(R.id.tvQQ)
-        TextView tvQQ;
-        @BindView(R.id.btnKnow)
-        Button btnKnow;
-
-        ViewHolder(View view) {
-            ButterKnife.bind(this, view);
+    /**
+     * 短信验证码
+     * @param resultBean
+     * @param msg
+     */
+    @Override
+    public void showIdentifyingCodeResult(SuccessResultBean resultBean, String msg) {
+        if(resultBean != null){
+            timeUtils = new TimeUtils(mContext, tvGetVerification,
+                    "获取验证码", 180,R.drawable.bg_button_orange);
+            timeUtils.RunTimer();
+            ToastUtils.show(this,msg);
+        }else{
+            ToastUtils.show(this,msg);
         }
     }
 }

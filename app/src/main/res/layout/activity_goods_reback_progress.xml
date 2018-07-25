@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="退货进度"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -78,7 +78,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -100,7 +100,7 @@
             android:layout_marginTop="@dimen/dp17"
             android:layout_toEndOf="@+id/imgReturnStatusLogo"
             android:text="退款成功"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp14"/>
 
         <TextView
@@ -111,7 +111,7 @@
             android:layout_marginStart="@dimen/dp15"
             android:layout_marginTop="@dimen/dp06"
             android:text="订单编号："
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"/>
 
         <TextView
@@ -122,7 +122,7 @@
             android:layout_marginTop="@dimen/dp06"
             android:layout_toEndOf="@+id/textview"
             android:text="44424558688"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"/>
 
         <TextView
@@ -133,7 +133,7 @@
             android:layout_marginStart="@dimen/dp15"
             android:layout_marginTop="@dimen/dp06"
             android:text="申请时间："
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"/>
 
         <TextView
@@ -144,7 +144,7 @@
             android:layout_marginTop="@dimen/dp06"
             android:layout_toEndOf="@+id/textview1"
             android:text="2016-12-12 12:12"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"/>
 
     </RelativeLayout>
@@ -152,7 +152,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <ListView
         android:id="@+id/lvReturnProgress"

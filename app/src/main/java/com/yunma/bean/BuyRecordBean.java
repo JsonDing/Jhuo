@@ -11,10 +11,6 @@ import java.util.List;
 
 public class BuyRecordBean {
 
-    /**
-     * success : {"endRow":2,"firstPage":1,"hasNextPage":true,"hasPreviousPage":false,"isFirstPage":true,"isLastPage":false,"lastPage":8,"list":[{"info":"阿迪达斯 阿迪达斯 C77124","num":1,"number":"C77124","pic":"C77124.jpg,iosYM2978944712996.jpg,iosYM2978944717284.jpg,iosYM2978944719402.jpg,iosYM2978944722378.jpg,iosYM2978944726548.jpg,iosYM2978944732622.jpg","repo":"自仓","repoid":1,"size":"3.5","userprice":520},{"info":"阿迪达斯 Adidas NEO阿迪休闲 男鞋 篮球鞋 CTX9TIS MID F99657","num":1,"number":"F99657","pic":"F99657.jpg,iosYM2978945248158.jpg,iosYM2978945250092.jpg,iosYM2978945291614.jpg,iosYM2978945296182.jpg,iosYM2978945299702.jpg,iosYM2978945302982.jpg","repo":"自仓","repoid":1,"size":"7.5","userprice":290}],"navigatePages":8,"navigatepageNums":[1,2,3,4,5,6,7,8],"nextPage":2,"pageNum":1,"pageSize":2,"pages":20,"prePage":0,"size":2,"startRow":1,"total":40}
-     */
-
     private SuccessBean success;
 
     public SuccessBean getSuccess() {
@@ -200,6 +196,15 @@ public class BuyRecordBean {
             private int repoid;
             private String size;
             private double userprice;
+            private String gid;
+
+            public String getGid() {
+                return gid;
+            }
+
+            public void setGid(String gid) {
+                this.gid = gid;
+            }
 
             public String getInfo() {
                 return info;

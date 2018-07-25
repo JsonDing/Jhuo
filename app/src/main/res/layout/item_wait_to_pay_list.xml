@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp15"
             android:layout_centerVertical="true"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp14"/>
 
         <TextView
@@ -26,20 +26,27 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:text="等待付款"
-            android:textColor="@color/color_b4"
+            android:textColor="@color/b4"
             android:textSize="@dimen/sp14"/>
 
     </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:layout_height="wrap_content">
 
         <com.yunma.widget.MyListView
             android:id="@+id/rvGoodsList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/imgsOutTime"
+            android:layout_width="@dimen/dp72"
+            android:layout_height="@dimen/dp72"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:src="@drawable/re_time_out"/>
 
         <View
             android:id="@+id/layout"
@@ -58,9 +65,20 @@
             android:layout_height="wrap_content"
             android:text="订单号："
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/dp15"
-            android:textColor="@color/color_b1"
+            android:layout_toEndOf="@+id/textView"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp13"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单号："
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_centerVertical="true"
+            android:textColor="@color/b1"
+            android:textSize="13sp"/>
+
 
         <TextView
             android:id="@+id/tvTotalNums"
@@ -69,7 +87,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/dp32"
             android:layout_toStartOf="@+id/textview"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"/>
 
         <TextView
@@ -78,9 +96,20 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:text="合计"
-            android:layout_toStartOf="@+id/tvTotalPrice"
-            android:textColor="@color/color_b2"
-            android:textSize="@dimen/sp13"/>
+            android:layout_toStartOf="@+id/textView1"
+            android:textColor="@color/b2"
+            android:textSize="@dimen/sp11"/>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥"
+            android:textColor="@color/b4"
+            android:textSize="@dimen/sp10"
+            android:layout_alignBaseline="@+id/tvTotalNums"
+            android:layout_alignBottom="@+id/tvTotalNums"
+            android:layout_toStartOf="@+id/tvTotalPrice" />
 
         <TextView
             android:id="@+id/tvTotalPrice"
@@ -89,8 +118,8 @@
             android:layout_marginEnd="@dimen/dp15"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:text="￥189"
-            android:textColor="@color/color_b4"
+            android:text="0.00"
+            android:textColor="@color/b4"
             android:textSize="@dimen/sp13"/>
 
     </RelativeLayout>
@@ -98,7 +127,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -113,7 +142,7 @@
             android:background="@drawable/bg_button_gray"
             android:layout_marginEnd="@dimen/dp15"
             android:layout_toStartOf="@+id/btnPay"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp13"/>
 
         <Button
@@ -125,7 +154,7 @@
             android:layout_centerVertical="true"
             android:text="去付款"
             android:background="@drawable/bg_button_orange"
-            android:textColor="@color/color_b3"
+            android:textColor="@color/b3"
             android:textSize="@dimen/sp13"/>
 
     </RelativeLayout>
@@ -133,6 +162,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
 </LinearLayout>

@@ -29,7 +29,7 @@ public class CancleOrderImpl implements CancleOrderInterface.CancleOrderModel {
         delBean.setToken(SPUtils.getToken(mContext));
         delBean.setIds(id);
         String strBodyContent = new Gson().toJson(delBean);
-        LogUtils.log("删除订单请求: ------------>" + strBodyContent);
+        LogUtils.json("删除订单请求: ------------>" + strBodyContent);
         params.setAsJsonContent(true);
         params.setBodyContent(strBodyContent);
         x.http().post(params, new Callback.CacheCallback<String>() {
@@ -47,7 +47,7 @@ public class CancleOrderImpl implements CancleOrderInterface.CancleOrderModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             cancleOrderListener.cancleOrderListener(null,"数据解析出错");
@@ -56,7 +56,7 @@ public class CancleOrderImpl implements CancleOrderInterface.CancleOrderModel {
                         cancleOrderListener.cancleOrderListener(resultBean,resultBean.getSuccess());
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             cancleOrderListener.cancleOrderListener(null,"数据解析出错");
@@ -76,11 +76,11 @@ public class CancleOrderImpl implements CancleOrderInterface.CancleOrderModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     cancleOrderListener.cancleOrderListener(null,"网络出异常");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     cancleOrderListener.cancleOrderListener(null,"服务器未响应，请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -93,7 +93,7 @@ public class CancleOrderImpl implements CancleOrderInterface.CancleOrderModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                      LogUtils.log("删除订单: " + result);
+                    //  LogUtils.json("删除订单: " + result);
                 }
             }
         });

@@ -30,14 +30,21 @@ public class ConfirmOrderImpl implements ConfirmOrderModel {
         RequestParams params = new RequestParams(ConUtils.RRECIPIENT_REQURY);
         QuaryAddressBean paramsBean = new QuaryAddressBean();
         paramsBean.setToken(SPUtils.getToken(mContext));
-        paramsBean.setSize("1000");
+        paramsBean.setSize("30");
         paramsBean.setToken(SPUtils.getToken(mContext));
         params.setAsJsonContent(true);
         Gson gson = new Gson();
         String strParams = gson.toJson(paramsBean);
         params.setBodyContent(strParams);
+        params.setUseCookie(false);
         params.setConnectTimeout(1000*5);
-        x.http().post(params, new Callback.CommonCallback<String>() {
+        LogUtils.json("获取默认地址：" + strParams);
+        x.http().post(params, new Callback.CacheCallback<String>() {
+
+            @Override
+            public boolean onCache(String result) {
+                return false;
+            }
 
             private boolean hasError = false;
             private String result = null;
@@ -48,7 +55,7 @@ public class ConfirmOrderImpl implements ConfirmOrderModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            recipientManageBean = GsonUtils.getObject(result,
+                            recipientManageBean = GsonUtils.GsonToBean(result,
                                     RecipientManageBean.class);
                         } catch (Exception e) {
                             onGetDefaultAddress.onShowDefaultAddress(null,"数据解析出错");
@@ -62,7 +69,7 @@ public class ConfirmOrderImpl implements ConfirmOrderModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onGetDefaultAddress.onShowDefaultAddress(null,"数据解析出错");
@@ -82,7 +89,7 @@ public class ConfirmOrderImpl implements ConfirmOrderModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onGetDefaultAddress.onShowDefaultAddress(null,"网络错误");
                 }else{
@@ -100,7 +107,7 @@ public class ConfirmOrderImpl implements ConfirmOrderModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("确认订单-->收件人result: " + result);
+                 //   LogUtils.json("确认订单-->收件人result: " + result);
                 }
             }
         });

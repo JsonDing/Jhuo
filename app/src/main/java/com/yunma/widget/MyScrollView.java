@@ -39,7 +39,7 @@ public class MyScrollView extends ScrollView {
 	protected void onOverScrolled(int scrollX, int scrollY, boolean clampedX, boolean clampedY) {
 		super.onOverScrolled(scrollX, scrollY, clampedX, clampedY);
 
-	//	LogUtils.log("Y:--->" + scrollY);
+	//	LogUtils.json("Y:--->" + scrollY);
 	}
 
 	public interface OnScrollListener{

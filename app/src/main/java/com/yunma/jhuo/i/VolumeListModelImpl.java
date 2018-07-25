@@ -30,7 +30,6 @@ public class VolumeListModelImpl implements VolumeListModel {
         volumeBean.setToken(SPUtils.getToken(mContext));
         volumeBean.setIsPastDue("0");
         String strBodyContent = new Gson().toJson(volumeBean);
-        LogUtils.log("获取未使用优惠卷请求: ------------>" + strBodyContent);
         params.setAsJsonContent(true);
         params.setBodyContent(strBodyContent);
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -43,7 +42,7 @@ public class VolumeListModelImpl implements VolumeListModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     VolumeResultBean.class);
                         } catch (Exception e) {
                             onVolumeListListener.onUnUseVolumeList(null,"数据解析出错");
@@ -56,7 +55,7 @@ public class VolumeListModelImpl implements VolumeListModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onVolumeListListener.onUnUseVolumeList(null,"数据解析出错");
@@ -77,11 +76,11 @@ public class VolumeListModelImpl implements VolumeListModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onVolumeListListener.onUnUseVolumeList(null,"网络出异常，请稍后再试");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     onVolumeListListener.onUnUseVolumeList(null,"服务器未响应，请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -94,7 +93,7 @@ public class VolumeListModelImpl implements VolumeListModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("未使用优惠卷: " + result);
+                    LogUtils.json("未使用优惠卷: " + result);
                 }
             }
         });
@@ -109,7 +108,7 @@ public class VolumeListModelImpl implements VolumeListModel {
         volumeBean.setToken(SPUtils.getToken(mContext));
         volumeBean.setIsPastDue("1");
         String strBodyContent = new Gson().toJson(volumeBean);
-        LogUtils.log("获取已过期优惠卷请求: ------------>" + strBodyContent);
+        LogUtils.json("获取已过期优惠卷请求: ------------>" + strBodyContent);
         params.setAsJsonContent(true);
         params.setBodyContent(strBodyContent);
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -122,7 +121,7 @@ public class VolumeListModelImpl implements VolumeListModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     VolumeResultBean.class);
                         } catch (Exception e) {
                             onVolumeListListener.onTimeOutVolumeList(null,"数据解析出错");
@@ -135,7 +134,7 @@ public class VolumeListModelImpl implements VolumeListModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onVolumeListListener.onTimeOutVolumeList(null,"数据解析出错");
@@ -156,11 +155,11 @@ public class VolumeListModelImpl implements VolumeListModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onVolumeListListener.onTimeOutVolumeList(null,"网络出异常，请稍后再试");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     onVolumeListListener.onTimeOutVolumeList(null,"服务器未响应，请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -173,7 +172,7 @@ public class VolumeListModelImpl implements VolumeListModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("已过期优惠卷: " + result);
+                  //  LogUtils.json("已过期优惠卷: " + result);
                 }
             }
         });

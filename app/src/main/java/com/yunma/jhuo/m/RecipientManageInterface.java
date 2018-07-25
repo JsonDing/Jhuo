@@ -10,7 +10,6 @@ import com.yunma.bean.*;
 
 public class RecipientManageInterface {
     public interface RecipientManageView{
-        Context getContext();
         void toShowRecipientManage(RecipientManageBean bean, String msg);
     }
 

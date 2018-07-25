@@ -8,8 +8,8 @@
         android:width="210dp" />
 
     <gradient
-        android:startColor="@color/color_a3"
-        android:endColor="@color/color_a3"
+        android:startColor="@color/a3"
+        android:endColor="@color/a3"
         android:angle="90"/>
 
     <padding android:left="5dp"

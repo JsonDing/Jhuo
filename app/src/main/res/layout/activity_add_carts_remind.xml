@@ -20,7 +20,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp81"
             android:text="成功添加至购物车"
-            android:textColor="@color/color_b3"
+            android:textColor="@color/b3"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -37,22 +37,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="当前已添加商品件数："
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tvNums"
+                android:id="@+id/tvMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="件"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -70,15 +70,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="当前结算总价："
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tvMoney"
+                android:id="@+id/tvNums"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="￥0.00"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="14sp" />
 
 
@@ -101,7 +101,7 @@
                 android:background="@color/transparent"
                 android:text="不再提醒"
                 android:layout_marginEnd="@dimen/dp10"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="15sp" />
 
             <Button

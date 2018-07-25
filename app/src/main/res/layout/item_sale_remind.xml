@@ -37,7 +37,7 @@
         android:lines="2"
         android:paddingEnd="@dimen/dp05"
         android:paddingStart="@dimen/dp05"
-        android:textColor="@color/color_b1"
+        android:textColor="@color/b1"
         android:textSize="12sp" />
 
     <RelativeLayout
@@ -56,7 +56,7 @@
             android:paddingEnd="@dimen/dp08"
             android:paddingStart="@dimen/dp08"
             android:text="热卖中"
-            android:textColor="@color/color_b3"
+            android:textColor="@color/b3"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -70,7 +70,7 @@
             android:clickable="false"
             android:lines="1"
             android:text=" 件"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="11sp" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:clickable="false"
             android:lines="1"
             android:text="0"
-            android:textColor="@color/color_b4"
+            android:textColor="@color/b4"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -94,7 +94,7 @@
             android:lines="1"
             android:text="仅剩："
             android:layout_toStartOf="@+id/tvRemain"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="11sp" />
 
     </RelativeLayout>

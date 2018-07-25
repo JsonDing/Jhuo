@@ -9,7 +9,7 @@
         android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp06"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:id="@+id/view1"
             android:layout_width="@dimen/dp03"
             android:layout_height="match_parent"
-            android:background="@color/color_a4"/>
+            android:background="@color/a4"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -36,18 +36,31 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/default_pic"/>
 
-            <TextView
-                android:id="@+id/tvGoodsName"
+            <FrameLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="2"
-                android:textIsSelectable="true"
-                android:paddingStart="@dimen/dp05"
-                android:paddingEnd="@dimen/dp05"
-                android:ellipsize="end"
-                android:textColor="@color/color_b1"
-                android:layout_marginTop="@dimen/dp10"
-                android:textSize="@dimen/sp12"/>
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgSpecialOffer"
+                    android:layout_width="@dimen/dp23"
+                    android:layout_height="@dimen/dp13"
+                    android:layout_marginStart="@dimen/dp05"
+                    android:layout_marginTop="@dimen/dp13"
+                    android:src="@drawable/label_special_offer"/>
+
+                <TextView
+                    android:id="@+id/tvGoodsName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="2"
+                    android:paddingStart="@dimen/dp05"
+                    android:paddingEnd="@dimen/dp05"
+                    android:ellipsize="end"
+                    android:textColor="@color/b1"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:textSize="@dimen/sp12"/>
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="￥ "
-                    android:textColor="@color/color_b4"
+                    android:textColor="@color/b4"
                     android:textSize="@dimen/sp10"/>
 
                 <TextView
@@ -69,14 +82,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b4"/>
+                    android:text="0.00"
+                    android:textColor="@color/b4"/>
 
                 <TextView
                     android:id="@+id/tvSaleNums"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:textSize="@dimen/sp11"
-                    android:textColor="@color/color_b2"
+                    android:text="0"
+                    android:textColor="@color/b2"
                     android:layout_height="wrap_content"
                     android:gravity="right"/>
 
@@ -84,12 +99,12 @@
 
         </LinearLayout>
 
-
         <View
             android:id="@+id/view2"
             android:layout_width="@dimen/dp03"
             android:layout_height="match_parent"
-            android:background="@color/color_a4"/>
+            android:background="@color/a4"/>
 
     </LinearLayout>
+
 </LinearLayout>

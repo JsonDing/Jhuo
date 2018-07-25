@@ -23,30 +23,58 @@ public class GetCollectResultBean {
 
     public class SuccessBean implements Serializable{
 
-        private String id;
-        private String goodsId;
+        private int id;
+        private int goodsId;
         private int userId;
         private double saleprice;
         private double yunmaprice;
+        private double specialprice;
+        private double agentprice;
+        private double discount;
+        private int issue;
         private String name;
         private String number;
         private int repoid;
         private String pic;
         private List<StocksBean> stocks;
 
-        public String getId() {
+        public double getAgentprice() {
+            return agentprice;
+        }
+
+        public void setAgentprice(double agentprice) {
+            this.agentprice = agentprice;
+        }
+
+        public double getDiscount() {
+            return discount;
+        }
+
+        public void setDiscount(double discount) {
+            this.discount = discount;
+        }
+
+        public int getIssue() {
+            return issue;
+        }
+
+        public void setIssue(int issue) {
+            this.issue = issue;
+        }
+
+        public int getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(int id) {
             this.id = id;
         }
 
-        public String getGoodsId() {
+        public int getGoodsId() {
             return goodsId;
         }
 
-        public void setGoodsId(String goodsId) {
+        public void setGoodsId(int goodsId) {
             this.goodsId = goodsId;
         }
 
@@ -72,6 +100,14 @@ public class GetCollectResultBean {
 
         public void setYunmaprice(double yunmaprice) {
             this.yunmaprice = yunmaprice;
+        }
+
+        public double getSpecialprice() {
+            return specialprice;
+        }
+
+        public void setSpecialprice(double specialprice) {
+            this.specialprice = specialprice;
         }
 
         public String getName() {

@@ -36,17 +36,15 @@
             android:layout_height="@dimen/dp44">
 
             <TextView
+                android:id="@+id/tvNoticeTittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="系统公告"
-                android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
-
+                android:textStyle="bold"
+                android:textSize="@dimen/sp16"
+                android:textColor="@color/b1"/>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutDelete"
-            android:paddingEnd="10dp"
             android:layout_width="@dimen/dp54"
             android:gravity="center"
             android:background="@color/white"
@@ -65,82 +63,14 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
-    <ScrollView
+    <WebView
+        android:orientation="vertical"
+        android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:fillViewport="true"
-        android:overScrollMode="never">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tvNoticeTittle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="系统升级"
-                    android:textStyle="bold"
-                    android:layout_marginTop="@dimen/dp15"
-                    android:layout_marginStart="@dimen/dp15"
-                    android:layout_marginEnd="@dimen/dp15"
-                    android:textSize="@dimen/sp16"
-                    android:textColor="@color/color_b1"/>
-
-                <TextView
-                    android:id="@+id/tvNoticeContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/dp15"
-                    android:paddingEnd="@dimen/dp15"
-                    android:minLines="12"
-                    android:gravity="center"
-                    android:textColor="@color/color_b1"
-                    android:textSize="@dimen/sp15"
-                    android:layout_marginTop="@dimen/dp46"
-                    android:layout_below="@+id/tvNoticeTittle"/>
-
-                <TextView
-                    android:id="@+id/tvPublisher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:lines="1"
-                    android:text="J货官方"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/dp15"
-                    android:textColor="@color/color_b1"
-                    android:textSize="@dimen/sp14"
-                    android:layout_marginTop="@dimen/dp72"
-                    android:layout_below="@+id/tvNoticeContent"/>
-
-                <TextView
-                    android:id="@+id/tvPublishTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:lines="1"
-                    android:text="2016-12-12 10:20"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/dp15"
-                    android:textColor="@color/color_b1"
-                    android:textSize="@dimen/sp15"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:layout_below="@+id/tvPublisher"
-                    android:layout_marginBottom="@dimen/dp32"/>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
+    </WebView>
 
 </LinearLayout>

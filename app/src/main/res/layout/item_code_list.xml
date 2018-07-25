@@ -9,10 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dp10"
-        android:gravity="center_vertical"
-        android:paddingBottom="@dimen/dp10"
-        android:paddingEnd="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"
         android:orientation="horizontal">
 
         <ImageView
@@ -20,6 +17,9 @@
             android:layout_width="@dimen/dp72"
             android:layout_height="@dimen/dp72"
             android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"
+            android:scaleType="fitXY"
             android:src="@drawable/default_pic"
             android:layout_marginStart="@dimen/dp15"/>
 
@@ -29,79 +29,133 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/sp12"
             android:lines="2"
+            android:layout_marginTop="@dimen/dp10"
             android:ellipsize="end"
-            android:textColor="@color/color_b1"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/b1"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/imgsPre"/>
 
-        <TextView
-            android:id="@+id/textview1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp11"
-            android:layout_marginTop="@dimen/dp08"
-            android:lines="1"
-            android:ellipsize="end"
-            android:text="售价："
-            android:textColor="@color/color_b2"
+        <LinearLayout
+            android:id="@+id/loSpecialOffers"
+            android:orientation="horizontal"
+            android:gravity="bottom"
             android:layout_below="@+id/tvGoodsName"
-            android:layout_toEndOf="@+id/imgsPre"/>
+            android:layout_toEndOf="@+id/imgsPre"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp03"
+            android:layout_height="@dimen/dp14">
 
-        <TextView
-            android:id="@+id/tvGoodsPrice"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/textview"
+                android:layout_width="@dimen/dp26"
+                android:layout_height="@dimen/dp13"
+                android:src="@drawable/label_special_offer"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp10"
+                android:layout_marginStart="@dimen/dp08"
+                android:lines="1"
+                android:text="￥"
+                android:ellipsize="end"
+                android:textColor="@color/b4"/>
+
+            <TextView
+                android:id="@+id/tvGoodsCode"
+                android:includeFontPadding="false"
+                android:layout_width="wrap_content"
+                android:layout_height="14sp"
+                android:textSize="@dimen/sp10"
+                android:lines="1"
+                android:text="111"
+                android:ellipsize="end"
+                android:textColor="@color/b4"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/sp11"
-            android:layout_marginTop="@dimen/dp08"
-            android:lines="1"
-            android:ellipsize="end"
-            android:textColor="@color/color_b4"
-            android:layout_below="@+id/tvGoodsName"
-            android:layout_toEndOf="@+id/textview1"/>
+            android:layout_below="@+id/loSpecialOffers"
+            android:layout_toEndOf="@+id/imgsPre"
+            android:layout_marginTop="@dimen/dp05"
+            android:layout_marginBottom="@dimen/dp05"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvGoodsSalePrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp11"
-            android:layout_marginTop="@dimen/dp08"
-            android:lines="1"
-            android:ellipsize="end"
-            android:layout_marginStart="@dimen/dp10"
-            android:textColor="@color/color_b2"
-            android:layout_below="@+id/tvGoodsName"
-            android:layout_toEndOf="@+id/tvGoodsPrice"/>
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp10"
+                android:lines="1"
+                android:ellipsize="end"
+                android:text="售价："
+                android:textColor="@color/b2"/>
 
-        <TextView
-            android:id="@+id/textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp11"
-            android:lines="1"
-            android:ellipsize="end"
-            android:text="货号："
-            android:textColor="@color/color_b2"
-            android:layout_alignBottom="@+id/imgsPre"
-            android:layout_toEndOf="@+id/imgsPre"/>
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp10"
+                android:lines="1"
+                android:text="￥ "
+                android:textColor="@color/b4"/>
 
-        <TextView
-            android:id="@+id/tvGoodsCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp11"
-            android:lines="1"
-            android:ellipsize="end"
-            android:textColor="@color/color_b2"
-            android:layout_alignBottom="@+id/imgsPre"
-            android:layout_toEndOf="@+id/textview"/>
+            <TextView
+                android:id="@+id/tvGoodsPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp10"
+                android:lines="1"
+                android:text="0.00"
+                android:ellipsize="end"
+                android:textColor="@color/b4"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp10"
+                android:layout_marginStart="@dimen/dp10"
+                android:lines="1"
+                android:text="吊牌价："
+                android:textColor="@color/b2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp10"
+                android:lines="1"
+                android:text="￥ "
+                android:textColor="@color/b2"/>
+
+            <TextView
+                android:id="@+id/tvGoodsSalePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp11"
+                android:lines="1"
+                android:text="0.00"
+                android:textColor="@color/b2"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgSaleOut"
+            android:layout_width="@dimen/dp58"
+            android:layout_height="@dimen/dp58"
+            android:src="@drawable/sold_out"
+            android:scaleType="fitXY"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:layout_marginStart="102dp"
-        android:background="@color/gallery_separation"/>
+        android:layout_marginStart="@dimen/dp102"
+        android:background="@color/a4"/>
 
 </LinearLayout>

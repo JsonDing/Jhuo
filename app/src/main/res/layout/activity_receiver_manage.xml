@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:background="@color/white">
 
@@ -35,7 +36,7 @@
             android:layout_height="@dimen/dp44"
             android:text="收件人管理"
             android:background="@color/white"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp17"/>
 
         <LinearLayout
@@ -55,21 +56,84 @@
 
     </LinearLayout>
 
-
-    <ListView
-        android:id="@+id/lvVontacts"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scrollbars="none"
-        android:divider="@null"
-        android:background="@color/color_a4"/>
-
     <View
-        android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="bottom"
-        android:background="@color/black"/>
+        android:layout_height="@dimen/dp0.5"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/dp06"
+        android:paddingBottom="@dimen/dp06"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_marginStart="@dimen/dp18"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dp15"
+            android:paddingEnd="@dimen/dp10"
+            android:paddingTop="@dimen/dp05"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dp05"
+            android:background="@drawable/bg_search">
+
+            <ImageView
+                android:layout_width="@dimen/dp12"
+                android:layout_height="@dimen/dp12"
+                android:src="@drawable/re_search_big"/>
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:imeOptions="actionSearch"
+                android:hint="输入收件人姓名"
+                android:textSize="@dimen/sp13"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:textColorHint="@color/b2"
+                android:textColor="@color/b1"
+                android:layout_marginStart="@dimen/dp10"
+                android:background="@null"/>
+
+            <LinearLayout
+                android:id="@+id/layoutClear"
+                android:layout_width="@dimen/dp28"
+                android:layout_height="@dimen/dp28"
+                android:visibility="invisible"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/dp12"
+                    android:layout_height="@dimen/dp12"
+                    android:src="@drawable/close_grey"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.yalantis.taurus.PullToRefreshView
+        android:id="@+id/pull_to_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lvVontacts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:divider="@null"
+            android:background="@color/a4"/>
+
+    </com.yalantis.taurus.PullToRefreshView>
 </LinearLayout>

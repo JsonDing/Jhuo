@@ -1,8 +1,10 @@
 package com.yunma.jhuo.p;
 
+import android.content.Context;
+
 import com.yunma.bean.AddGoodsCollectBean;
 import com.yunma.jhuo.i.IfcollectImpl;
-import com.yunma.jhuo.m.*;
+import com.yunma.jhuo.m.GoodsCollectInterFace;
 
 /**
  * Created on 2017-03-11
@@ -19,8 +21,8 @@ public class IfcollectPre {
         this.mModel = new IfcollectImpl();
     }
 
-    public void ifCollect(String goodsId){
-        mModel.ifCollect(mView.getContext(),goodsId,
+    public void ifCollect(Context mContext, String goodsId){
+        mModel.ifCollect(mContext,goodsId,
                 new GoodsCollectInterFace.IfcollectListener() {
             @Override
             public void onListener(AddGoodsCollectBean resultBean, String msg) {

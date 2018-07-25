@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:minHeight="?android:attr/listPreferredItemHeight">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <LinearLayout
+        android:id="@+id/itemView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -36,87 +36,104 @@
 
         </LinearLayout>
 
-
-
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/layoutAddress"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/dp10"
             android:paddingBottom="@dimen/dp10"
             android:paddingStart="@dimen/dp10"
-            android:paddingEnd="@dimen/dp15">
+            android:paddingEnd="@dimen/dp10">
 
-            <TextView
-                android:id="@+id/tvReceiver"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Json"
-                android:textColor="@color/color_b1"
-                android:textStyle="bold"
-                android:textSize="@dimen/sp16"/>
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="18036086739"
-                android:textStyle="bold"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@+id/tvReceiver"
-                android:textColor="@color/color_b1"
-                android:textSize="@dimen/sp16"/>
+                <TextView
+                    android:id="@+id/tvReceiver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:ems="4"
+                    android:textColor="@color/b1"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp16"/>
+
+                <TextView
+                    android:id="@+id/tvNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:ems="6"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textColor="@color/b1"
+                    android:textSize="@dimen/sp16"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgIsShow"
+                        android:layout_width="@dimen/dp18"
+                        android:layout_height="@dimen/dp18"
+                        android:layout_marginStart="@dimen/dp15"
+                        android:src="@drawable/addr_hide"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="江苏省无锡市滨湖区高浪东路999号C1栋西侧206室"
                 android:layout_marginTop="4dp"
                 android:maxLines="2"
                 android:ellipsize="end"
+                android:visibility="gone"
                 android:lineSpacingExtra="@dimen/dp04"
                 android:layout_marginEnd="@dimen/dp10"
-                android:layout_toStartOf="@+id/view"
-                android:layout_alignStart="@+id/tvReceiver"
-                android:layout_below="@+id/tvReceiver"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp14" />
 
-            <LinearLayout
-                android:id="@+id/layoutModifyAddress"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="@dimen/dp44"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true">
+        </LinearLayout>
 
-                <ImageView
-                    android:layout_width="@dimen/dp20"
-                    android:layout_height="@dimen/dp20"
-                    android:clickable="false"
-                    android:src="@drawable/compile"/>
-
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layoutModifyAddress"
+            android:layout_width="@dimen/dp54"
+            android:layout_height="@dimen/dp44"
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <View
                 android:id="@+id/view"
                 android:layout_width="2dp"
                 android:layout_height="@dimen/dp28"
-                android:layout_centerVertical="true"
-                android:background="@color/color_a4"
-                android:layout_toStartOf="@+id/layoutModifyAddress"/>
+                android:background="@color/a4"/>
 
 
-        </RelativeLayout>
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:clickable="false"
+                android:layout_marginStart="@dimen/dp10"
+                android:src="@drawable/compile"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
 </LinearLayout>

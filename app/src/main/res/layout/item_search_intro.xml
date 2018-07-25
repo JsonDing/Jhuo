@@ -34,7 +34,7 @@
                 android:paddingStart="@dimen/dp05"
                 android:paddingEnd="@dimen/dp05"
                 android:ellipsize="end"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:layout_marginTop="@dimen/dp10"
                 android:textSize="@dimen/sp12"/>
 
@@ -53,14 +53,14 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp14"
                     android:layout_weight="1"
-                    android:textColor="@color/color_b4"/>
+                    android:textColor="@color/b4"/>
 
                 <TextView
-                    android:id="@+id/tvSaleNums"
+                    android:id="@+id/tvStocks"
                     android:layout_width="wrap_content"
                     android:layout_weight="1"
                     android:textSize="@dimen/sp11"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:layout_height="wrap_content"
                     android:gravity="end"/>
 

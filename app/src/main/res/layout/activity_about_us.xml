@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="关于我们"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -51,7 +51,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Copyright ©2016 All right reserved"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp12"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/textView5"/>
@@ -118,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="无锡云码创新体育发展有限公司"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp11"
             android:layout_marginBottom="@dimen/dp15"
             android:layout_centerHorizontal="true"
@@ -129,22 +129,23 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="邮箱：codeinclould@gmail.com  QQ:646266750"
-            android:textColor="@color/color_b1"
+            android:text="邮箱：codeinclould@gmail.com  QQ:3529448375"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp12"
             android:layout_marginBottom="6dp"
             android:layout_above="@+id/textview"
             android:layout_centerHorizontal="true" />
 
         <TextView
+            android:id="@+id/tvCurrentVersion"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/dp28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="V1.0.0.0"
+            android:text="V1.0.0"
             android:textStyle="bold"
             android:layout_above="@+id/textView1"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp14"/>
 
     </RelativeLayout>

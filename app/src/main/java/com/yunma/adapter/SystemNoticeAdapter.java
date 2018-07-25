@@ -2,14 +2,19 @@ package com.yunma.adapter;
 
 import android.content.Context;
 import android.text.Html;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.yunma.R;
-import com.yunma.bean.NoticeBean;
+import com.yunma.dao.SystemNotices;
 import com.yunma.utils.DateTimeUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -22,13 +27,11 @@ import butterknife.ButterKnife;
  * @author Json.
  */
 public class SystemNoticeAdapter extends BaseAdapter {
-    private Context mContext;
     private LayoutInflater inflater;
-    private List<NoticeBean.SuccessBean.ListBean> list;
-    public SystemNoticeAdapter(Context context, List<NoticeBean.SuccessBean.ListBean> list) {
-        this.mContext = context;
-        this.list = list;
-        inflater = LayoutInflater.from(mContext);
+    private  List<SystemNotices> list;
+    public SystemNoticeAdapter(Context context) {
+        this.list = new ArrayList<>();
+        inflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -61,10 +64,15 @@ public class SystemNoticeAdapter extends BaseAdapter {
         }else{
             holder.layoutFoot.setVisibility(View.GONE);
         }
-        holder.tvTittle.setText(Html.fromHtml(list.get(position).getTitle()));
+        holder.tvTittle.setText(Html.fromHtml(list.get(position).getTittle()));
         holder.tvNoticeContent.setText(Html.fromHtml(list.get(position).getContent()));
-        holder.tvPublishTime.setText(DateTimeUtils.getTime(list.get(position).getDate(),
+        holder.tvPublishTime.setText(DateTimeUtils.getTime(list.get(position).getTime(),
                 new SimpleDateFormat("yyyy/MM/dd", Locale.CHINA)));
+        if(list.get(position).getIsRead().equals("yes")){
+            holder.imgRemind.setVisibility(View.INVISIBLE);
+        }else{
+            holder.imgRemind.setVisibility(View.VISIBLE);
+        }
         return view;
     }
 
@@ -84,4 +92,8 @@ public class SystemNoticeAdapter extends BaseAdapter {
         }
     }
 
+    public void setList( List<SystemNotices> list) {
+        this.list = list;
+        notifyDataSetChanged();
+    }
 }

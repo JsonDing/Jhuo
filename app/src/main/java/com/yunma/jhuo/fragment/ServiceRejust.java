@@ -5,19 +5,21 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.yunma.R;
-import com.yunma.jhuo.activity.homepage.SpecialPriceActivity;
-import com.yunma.jhuo.activity.mine.GoodsReturnDetial;
-import com.yunma.jhuo.activity.mine.ReturnGoodsManage;
 import com.yunma.adapter.GoodsReturnRejustAdapter;
 import com.yunma.bean.ServiceResultBean;
+import com.yunma.jhuo.activity.homepage.SpecialPriceActivity;
+import com.yunma.jhuo.activity.mine.ReturnDetialActivity;
 import com.yunma.jhuo.m.GoodsRefundInterface;
 import com.yunma.jhuo.m.ServiceInterface;
 import com.yunma.jhuo.p.GoodsServicePre;
-import com.yunma.utils.*;
+import com.yunma.utils.EmptyUtil;
+import com.yunma.utils.ToastUtils;
 
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class ServiceRejust extends Fragment implements ServiceInterface.GetServi
         GoodsRefundInterface.OnRejeckClick {
     @BindView(R.id.lvRebackGoodsList) ListView lvRebackGoodsList;
     @BindView(R.id.layoutNull) View layoutNull;
+    @BindView(R.id.layoutGoLook) View layoutGoLook;
     private Context mContext;
     private GoodsReturnRejustAdapter mAdapter;
     private GoodsServicePre goodsServicePre = null;
@@ -50,12 +53,11 @@ public class ServiceRejust extends Fragment implements ServiceInterface.GetServi
     private void getDatas() {
         goodsServicePre = new GoodsServicePre(this);
         goodsServicePre.getService(mContext,"-1");
-        layoutNull.setOnClickListener(new View.OnClickListener() {
+        layoutGoLook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, SpecialPriceActivity.class);
                 mContext.startActivity(intent);
-                AppManager.getAppManager().finishActivity(ReturnGoodsManage.returnGoodsContext);
             }
         });
     }
@@ -100,7 +102,7 @@ public class ServiceRejust extends Fragment implements ServiceInterface.GetServi
 
     @Override
     public void onLookDetial(ServiceResultBean.SuccessBean.ListBean listBean) {
-        Intent intent = new Intent(mContext,GoodsReturnDetial.class);
+        Intent intent = new Intent(mContext,ReturnDetialActivity.class);
         intent.putExtra("goodsDetial", listBean);
         mContext.startActivity(intent);
     }

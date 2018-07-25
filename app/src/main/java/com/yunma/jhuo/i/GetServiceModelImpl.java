@@ -36,7 +36,7 @@ public class GetServiceModelImpl implements ServiceInterface.GetServiceModel {
         Gson gson = new Gson();
         String strParams = gson.toJson(requstBean);
         params.setBodyContent(strParams);
-        LogUtils.log("requst: " + strParams);
+        LogUtils.json("requst: " + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -47,10 +47,9 @@ public class GetServiceModelImpl implements ServiceInterface.GetServiceModel {
             public void onSuccess(String result) {
                 if (result != null) {
                     this.result = result;
-                 //   LogUtils.log("获取售后 result: " + result);
                     if(result.contains("success")){
                         try {
-                            resultBean1 = GsonUtils.getObject(result,
+                            resultBean1 = GsonUtils.GsonToBean(result,
                                     ServiceResultBean.class);
                         } catch (Exception e) {
                             onGetServiceListener.toShowGetInfos(null,"数据解析出错");
@@ -67,7 +66,7 @@ public class GetServiceModelImpl implements ServiceInterface.GetServiceModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onGetServiceListener.toShowGetInfos(null,"数据解析出错");
@@ -86,7 +85,7 @@ public class GetServiceModelImpl implements ServiceInterface.GetServiceModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onGetServiceListener.toShowGetInfos(null,"网络错误");
                 }else{
@@ -104,7 +103,7 @@ public class GetServiceModelImpl implements ServiceInterface.GetServiceModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("获取售后 result: " + result);
+                    LogUtils.json("获取售后 result: " + result);
                 }
             }
         });
@@ -120,7 +119,7 @@ public class GetServiceModelImpl implements ServiceInterface.GetServiceModel {
         Gson gson = new Gson();
         String strParams = gson.toJson(requstBean);
         params.setBodyContent(strParams);
-        LogUtils.log("requst: " + strParams);
+        LogUtils.json("requst: " + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -131,10 +130,10 @@ public class GetServiceModelImpl implements ServiceInterface.GetServiceModel {
             public void onSuccess(String result) {
                 if (result != null) {
                     this.result = result;
-                    //   LogUtils.log("获取售后 result: " + result);
+                    //   LogUtils.json("获取售后 result: " + result);
                     if(result.contains("success")){
                         try {
-                            resultBean2 = GsonUtils.getObject(result,
+                            resultBean2 = GsonUtils.GsonToBean(result,
                                     ServiceResultBean.class);
                         } catch (Exception e) {
                             onGetServiceListener.toShowGetInfos(null,"数据解析出错");
@@ -148,7 +147,7 @@ public class GetServiceModelImpl implements ServiceInterface.GetServiceModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onGetServiceListener.toShowGetInfos(null,"数据解析出错");
@@ -167,7 +166,7 @@ public class GetServiceModelImpl implements ServiceInterface.GetServiceModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onGetServiceListener.toShowGetInfos(null,"网络错误");
                 }else{
@@ -185,7 +184,7 @@ public class GetServiceModelImpl implements ServiceInterface.GetServiceModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("获取售后 result: " + result);
+                  //  LogUtils.json("获取售后 result: " + result);
                 }
             }
         });

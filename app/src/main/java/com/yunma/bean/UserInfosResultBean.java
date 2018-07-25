@@ -45,6 +45,15 @@ public class UserInfosResultBean {
         private Object deposit;
         private AgentBean agent;
         private LvlBean lvl;
+        private int points;
+
+        public int getPoints() {
+            return points;
+        }
+
+        public void setPoints(int points) {
+            this.points = points;
+        }
 
         public Long getId() {
             return id;

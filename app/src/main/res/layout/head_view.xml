@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@color/grid_state_focused"
-    android:layout_height="64dp">
+    android:layout_height="58dp">
 
     <com.yunma.widget.TitanicTextView
         android:id="@+id/textview"
@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textColor="@color/color_b3"
-        android:textSize="48sp"
+        android:textColor="@color/b3"
+        android:textSize="44sp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"/>
 

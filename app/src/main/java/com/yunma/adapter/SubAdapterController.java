@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yunma.R;
-import com.yunma.jhuo.activity.homepage.SelfGoodsDetials;
-import com.yunma.bean.GetSelfGoodsResultBean;
+import com.yunma.bean.SelfGoodsListBean;
+import com.yunma.jhuo.activity.homepage.GoodsDetialsActivity;
 import com.yunma.utils.ConUtils;
 import com.yunma.utils.DensityUtils;
 import com.yunma.utils.GlideUtils;
@@ -25,9 +25,9 @@ public class SubAdapterController {
     private Context mContext;
     private SubAdapter mAdapter;
     private String[] items;
-    private GetSelfGoodsResultBean.SuccessBean.ListBean listBean;
+    private SelfGoodsListBean listBean;
     SubAdapterController(String[] items, Context mContext,
-                         GetSelfGoodsResultBean.SuccessBean.ListBean listBean) {
+                         SelfGoodsListBean listBean) {
         this.mContext = mContext;
         this.items = items;
         this.listBean = listBean;
@@ -63,11 +63,17 @@ public class SubAdapterController {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,width);
             holder.image.setLayoutParams(params);
             String url = items[position];
-            GlideUtils.glidNormle(mContext,holder.image, ConUtils.SElF_GOODS_IMAGE_URL + url);
+            final String picUrl;
+            if(listBean.getRepoid()==1){
+                picUrl = ConUtils.SElF_GOODS_IMAGE_URL;
+            }else{
+                picUrl = ConUtils.GOODS_IMAGE_URL;
+            }
+            GlideUtils.glidNormle(mContext,holder.image, picUrl + url + "/min");
             holder.image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, SelfGoodsDetials.class);
+                    Intent intent = new Intent(mContext, GoodsDetialsActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("isToEnd","no");
                     bundle.putInt("goodId", listBean.getId());
@@ -89,7 +95,7 @@ public class SubAdapterController {
 
             SubViewHolder(View view) {
                 super(view);
-                image = (ImageView) view.findViewById(R.id.image);
+                image = view.findViewById(R.id.image);
                /* view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

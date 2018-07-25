@@ -13,13 +13,14 @@ import android.widget.TextView;
 import com.yalantis.taurus.PullToRefreshView;
 import com.yunma.R;
 import com.yunma.adapter.SelfIssueGoodsAdapter;
-import com.yunma.bean.GetSelfGoodsResultBean;
+import com.yunma.adapter.SelfIssueGoodsAdapter.OnClickListener;
 import com.yunma.bean.SuccessResultBean;
+import com.yunma.bean.TomorrowUpDataResultBean;
 import com.yunma.jhuo.general.MyCompatActivity;
-import com.yunma.jhuo.m.SelfGoodsInterFace;
-import com.yunma.jhuo.m.SelfGoodsInterFace.GetIssueView;
-import com.yunma.jhuo.p.AddGoodsRemindPre;
-import com.yunma.jhuo.p.SelfIssueGoodsPre;
+import com.yunma.jhuo.m.GetTomorrowUpDataInterface.TomorrowUpDataView;
+import com.yunma.jhuo.m.SelfGoodsInterFace.AddSelfGoodsRemindView;
+import com.yunma.jhuo.p.AddTomorrowUpDataRemindPre;
+import com.yunma.jhuo.p.TomorrowUpDataPre;
 import com.yunma.utils.AppManager;
 import com.yunma.utils.SPUtils;
 import com.yunma.utils.ToastUtils;
@@ -35,7 +36,7 @@ import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import static org.xutils.common.util.DensityUtil.dip2px;
 
 public class TomorrowPreSaleActivity extends MyCompatActivity implements
-        GetIssueView, SelfIssueGoodsAdapter.OnClickListener, SelfGoodsInterFace.AddSelfGoodsRemindView {
+        OnClickListener, AddSelfGoodsRemindView, TomorrowUpDataView {
 
     @BindView(R.id.layoutBack) LinearLayout layoutBack;
     @BindView(R.id.tvTittle) TextView tvTittle;
@@ -45,11 +46,11 @@ public class TomorrowPreSaleActivity extends MyCompatActivity implements
     @BindView(R.id.recyclerview) RecyclerView recyclerview;
     @BindView(R.id.pull_to_refresh)
     PullToRefreshView pullToRefresh;
-    private SelfIssueGoodsPre issueGoodsPre = null;
     private SelfIssueGoodsAdapter mAdapter = null;
     private Activity mActivity = null;
-    private AddGoodsRemindPre addGoodsRemindPre = null;
-    private List<GetSelfGoodsResultBean.SuccessBean.ListBean> listBean = null;
+    private TomorrowUpDataPre tomorrowUpDataPre;
+    private AddTomorrowUpDataRemindPre addTomorrowUpDataRemindPre = null;
+    private List<TomorrowUpDataResultBean.SuccessBean.YunmaBean> listBean = null;
 
     // TODO: 2017-04-19
     @Override
@@ -70,20 +71,20 @@ public class TomorrowPreSaleActivity extends MyCompatActivity implements
         pullToRefresh.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                issueGoodsPre.getSpecialOfferGoods(TomorrowPreSaleActivity.this, "issue", "12", 1);
+                tomorrowUpDataPre.getTomorrowUpData(TomorrowPreSaleActivity.this);
                 pullToRefresh.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         pullToRefresh.setRefreshing(false);
                     }
-                }, 2000);
+                }, 1500);
             }
         });
     }
 
     private void tomorrowPreSaleDatas() {
-        issueGoodsPre = new SelfIssueGoodsPre(TomorrowPreSaleActivity.this);
-        issueGoodsPre.getSpecialOfferGoods(this, "issue", "12", 1);
+        tomorrowUpDataPre = new TomorrowUpDataPre(TomorrowPreSaleActivity.this);
+        tomorrowUpDataPre.getTomorrowUpData(this);
         recyclerview.setHasFixedSize(true);
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -112,23 +113,8 @@ public class TomorrowPreSaleActivity extends MyCompatActivity implements
     }
 
     @Override
-    public void showIssueGoods(GetSelfGoodsResultBean resultBean, String msg) {
-        if (resultBean == null) {
-            ToastUtils.showError(this, msg);
-        } else {
-            if (resultBean.getSuccess().getList().size() != 0) {
-                listBean = resultBean.getSuccess().getList();
-                mAdapter.setListBean(listBean);
-            }else{
-                // TODO: 2017-04-17   无数据提示
-            }
-        }
-    }
-
-
-    @Override
     public void lookDetials(int position,
-                            GetSelfGoodsResultBean.SuccessBean.ListBean detialsBean) {
+                            TomorrowUpDataResultBean.SuccessBean.YunmaBean detialsBean) {
         Intent intent = new Intent(TomorrowPreSaleActivity.this,TomorrowPreSaleDetials.class);
         Bundle bundle =  new Bundle();
         bundle.putSerializable("TomorrowPreSaleDetials",detialsBean);
@@ -138,10 +124,10 @@ public class TomorrowPreSaleActivity extends MyCompatActivity implements
 
     @Override
     public void remindMeClick(String goodsNums) {
-        if(addGoodsRemindPre==null){
-            addGoodsRemindPre = new AddGoodsRemindPre(TomorrowPreSaleActivity.this);
+        if(addTomorrowUpDataRemindPre ==null){
+            addTomorrowUpDataRemindPre = new AddTomorrowUpDataRemindPre(TomorrowPreSaleActivity.this);
         }
-        addGoodsRemindPre.addGoodsRemind(this,goodsNums);
+        addTomorrowUpDataRemindPre.addGoodsRemind(this,goodsNums);
     }
 
     @Override
@@ -150,6 +136,22 @@ public class TomorrowPreSaleActivity extends MyCompatActivity implements
             ToastUtils.showError(getApplicationContext(),msg);
         }else{
             ToastUtils.showSuccess(getApplicationContext(),msg);
+        }
+    }
+
+    @Override
+    public void showTomorrowUpData(TomorrowUpDataResultBean resultBean, String msg) {
+        if (resultBean == null) {
+            pullToRefresh.setRefreshing(false);
+            ToastUtils.showError(this, msg);
+        } else {
+            if (resultBean.getSuccess().getYunma().size() != 0) {
+                listBean = resultBean.getSuccess().getYunma();
+                mAdapter.setListBean(listBean);
+            }else{
+                // TODO: 2017-04-17   无数据提示
+            }
+            pullToRefresh.setRefreshing(false);
         }
     }
 }

@@ -4,17 +4,13 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.google.gson.Gson;
-import com.yunma.utils.LogUtils;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.xutils.common.Callback;
-import org.xutils.ex.HttpException;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,95 +30,25 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void apiTest() {
-        RequestParams params = new RequestParams("http://v0715.beilyton.com/fenxiao/user/queryUserCollect");
-        TestBean testBean = new TestBean();
-        testBean.setUserCode("2017012114215763195");
-        testBean.setCurrentPage(1);
-        params.setAsJsonContent(true);
-        Gson gson = new Gson();
-        String strLogin = gson.toJson(testBean);
-        params.setBodyContent(strLogin);
-        x.http().post(params, new Callback.CacheCallback<String>() {
-            private boolean hasError = false;
-            private String result = null;
-            @Override
-            public boolean onCache(String result) {
-                this.result = result;
-                return false; // true: 信任缓存数据, 不在发起网络请求; false不信任缓存数据.
-            }
-
-            @Override
-            public void onSuccess(String result) {
-                // 注意: 如果服务返回304 或 onCache 选择了信任缓存, 这时result为null.
-                if (result != null) {
-                    this.result = result;
-                    LogUtils.log("test result: " + result);
-                    System.out.println("test result: " + result);
-                }
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                hasError = true;
-                LogUtils.log("Test Error: ---> " + ex.getMessage());
-                if (ex instanceof HttpException) { // 网络错误
-                    HttpException httpEx = (HttpException) ex;
-                    int responseCode = httpEx.getCode();
-                    String responseMsg = httpEx.getMessage();
-                    String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
-                            + responseMsg + "\n" +"--- errorResult: " + errorResult);
-                } else { // 其他错误
-                    // ...
-                }
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-                if (!hasError && result != null) {
-
-                }
-            }
-        });
-    }
-
-    private class TestBean{
-
-        private String userCode;
-        private int currentPage;
-
-        public String getUserCode() {
-            return userCode;
-        }
-
-        public void setUserCode(String userCode) {
-            this.userCode = userCode;
-        }
-
-        public int getCurrentPage() {
-            return currentPage;
-        }
-
-        public void setCurrentPage(int currentPage) {
-            this.currentPage = currentPage;
-        }
-    }
-
-    @Test
     public void splitTest(){
-        String s = "0,44,0,";
-        String m[] = s.split(",");
-        System.out.println("m.length ---> " + s.substring(0,s.length()-1));
-
-        /*for (String aM : m) {
-            System.out.println("m.length ---> " + m.length + "---> " + aM);
-        }*/
+        List<String> mList = new ArrayList<>();
+        mList.add("逼1");
+        mList.add("我");
+        mList.add("去");
+        mList.add("逼2");
+        mList.add("你");
+        mList.add("妈");
+        mList.add("逼3");
+        mList.add("的");
+        System.out.println("mList 1: " + mList.toString());
+        List<String> nList = new ArrayList<>();
+        nList.add("逼1");
+        nList.add("逼2");
+        nList.add("逼3");
+        mList.removeAll(nList);
+        System.out.println("mList 2: " + mList.toString());
+        mList.addAll(nList);
+        System.out.println("mList 3: " + mList.toString());
     }
 
     @Test
@@ -143,5 +69,47 @@ public class ExampleInstrumentedTest {
             }
         }
     }
+
+    @Test
+    public void text2(){
+        List<Integer> mList = new ArrayList<>();
+        mList.add(1);
+        mList.add(2);
+        mList.add(3);
+        mList.add(4);
+        mList.add(5);
+        mList.add(6);
+        mList.add(7);
+        mList.add(8);
+        mList.add(9);
+        mList.add(10);
+        if(mList.size()%4!=0){
+            int temp = mList.size()%4;
+            mList = mList.subList(0,mList.size()-temp);
+        }
+        System.out.println("---------------------> " + mList.toString());
+        List<List<Integer>> lists=averageAssign(mList,2);
+        System.out.println(lists);
+    }
+
+    public static <T> List<List<T>> averageAssign(List<T> source,int n){
+        List<List<T>> result=new ArrayList<>();
+        int remaider = source.size()%n;  //(先计算出余数)
+        int number = source.size()/n;  //然后是商
+        int offset=0;//偏移量
+        for(int i=0;i<n;i++){
+            List<T> value;
+            if(remaider>0){
+                value=source.subList(i*number+offset, (i+1)*number+offset+1);
+                remaider--;
+                offset++;
+            }else{
+                value=source.subList(i*number+offset, (i+1)*number+offset);
+            }
+            result.add(value);
+        }
+        return result;
+    }
+
 
 }

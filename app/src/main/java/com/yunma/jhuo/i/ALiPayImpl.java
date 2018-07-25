@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.yunma.bean.*;
-import com.yunma.jhuo.m.ALiPayInterface.*;
+import com.yunma.jhuo.m.PayInterface.*;
 import com.yunma.utils.*;
 
 import org.xutils.common.Callback;
@@ -24,13 +24,12 @@ public class ALiPayImpl implements ALiPayModel {
     @Override
     public void getPayInfos(final Context mContext, String orderId,
                             final OnALiPayListener onALiPayListener) {
-        RequestParams params = new RequestParams(ConUtils.GET_PAY_ORDER_INFO);
+        RequestParams params = new RequestParams(ConUtils.ALIPAY_PAY);
         final ALiPayBean  aLiPayBean = new ALiPayBean();
         aLiPayBean.setToken(SPUtils.getToken(mContext));
         aLiPayBean.setOid(orderId);
         Gson gson = new Gson();
         String strLogin = gson.toJson(aLiPayBean);
-        LogUtils.log("params: ------------> " + strLogin);
         params.setAsJsonContent(true);
         params.setBodyContent(strLogin);
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -42,7 +41,7 @@ public class ALiPayImpl implements ALiPayModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            successResultBean = GsonUtils.getObject(result,
+                            successResultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onALiPayListener.onListener(null,"数据解析出错!");
@@ -52,7 +51,7 @@ public class ALiPayImpl implements ALiPayModel {
                         onALiPayListener.onListener(successResultBean,"获取成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onALiPayListener.onListener(null,"数据解析出错!");
@@ -73,11 +72,11 @@ public class ALiPayImpl implements ALiPayModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onALiPayListener.onListener(null,"网络出错!");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     onALiPayListener.onListener(null,"服务器错误");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -90,14 +89,14 @@ public class ALiPayImpl implements ALiPayModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("ALiPayInfos result: " + result);
+                   // LogUtils.json("支付宝支付 result: " + result);
                 }
             }
         });
 
     }
 
-    public class ALiPayBean{
+    private class ALiPayBean{
 
         /**
          * token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjYxLCJpYXQiOjE0ODY5Njg4NTUyMjAsImV4dCI6MTQ4ODQ0MDA4NDE0OH0.sfXgIdbkuul11qexU1pHCM9D88wwZZYZxGMKOyGVqvY

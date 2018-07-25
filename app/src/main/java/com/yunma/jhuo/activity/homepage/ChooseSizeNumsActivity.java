@@ -16,18 +16,17 @@ import com.yunma.adapter.SelfGoodsNumsChooseAdapter;
 import com.yunma.adapter.SelfGoodsNumsChooseAdapter.OnNumsSelectedClick;
 import com.yunma.bean.AddToCartsRequestBean;
 import com.yunma.bean.CartsBean;
-import com.yunma.bean.GetSelfGoodsResultBean;
 import com.yunma.bean.OrderBean;
-import com.yunma.bean.OrderdetailsBean;
+import com.yunma.bean.OrderDetailsBean;
+import com.yunma.bean.SelfGoodsListBean;
 import com.yunma.bean.StocksBean;
 import com.yunma.bean.SuccessResultBean;
+import com.yunma.jhuo.general.DialogStyleLoginActivity;
 import com.yunma.jhuo.general.MyCompatActivity;
-import com.yunma.jhuo.general.RegisterAccount;
 import com.yunma.jhuo.m.AddToCartsInterface;
 import com.yunma.jhuo.p.AddToCartsPre;
 import com.yunma.utils.AppManager;
 import com.yunma.utils.ConUtils;
-import com.yunma.utils.DensityUtils;
 import com.yunma.utils.GlideUtils;
 import com.yunma.utils.SPUtils;
 import com.yunma.utils.ToastUtils;
@@ -56,7 +55,7 @@ public class ChooseSizeNumsActivity extends MyCompatActivity implements
     private AddToCartsRequestBean cartsRequestBean;
     private SelfGoodsNumsChooseAdapter mAdapter;
     private Context mContext;
-    private GetSelfGoodsResultBean.SuccessBean.ListBean listBean = null;
+    private SelfGoodsListBean listBean = null;
     private double totalPrice = 0.00;
     private int totalNums = 0;
     @Override
@@ -73,17 +72,29 @@ public class ChooseSizeNumsActivity extends MyCompatActivity implements
      * 初始化Intent数据
      */
     private void getDatas() {
-        listBean = (GetSelfGoodsResultBean.SuccessBean.ListBean) getIntent().getSerializableExtra("selfGoods");
+        listBean = (SelfGoodsListBean) getIntent().getSerializableExtra("selfGoods");
         assert listBean!=null;
-        GlideUtils.glidNormleFast(this,imgGoods, ConUtils.SElF_GOODS_IMAGE_URL + listBean.getPic().split(",")[0]);
+        String url ;
+        if(listBean.getRepoid()==1){
+            url = ConUtils.SElF_GOODS_IMAGE_URL;
+        }else{
+            url = ConUtils.GOODS_IMAGE_URL;
+        }
+        GlideUtils.glidNormleFast(this,imgGoods, url + listBean.getPic().split(",")[0]);
         tvGoodsName.setText(listBean.getName());
-        String s ="￥" +  ValueUtils.toTwoDecimal(listBean.getYmprice());
-        SpannableStringBuilder ss = ValueUtils.changeText(this,R.color.color_b4,s, Typeface.NORMAL,
-                DensityUtils.sp2px(this,17),1,s.indexOf("."));
+        String s;
+        if(listBean.getSpecialprice() != 0.0){
+            s ="￥" +  ValueUtils.toTwoDecimal(listBean.getSpecialprice());
+        }else{
+            s ="￥" +  ValueUtils.toTwoDecimal(listBean.getYmprice());
+        }
+        SpannableStringBuilder ss = ValueUtils.changeText(this,R.color.b4,s, Typeface.NORMAL,
+                17,1,s.indexOf("."));
         tvGoodsPrice.setText(ss);
         int remainNums = 0;
         List<StocksBean> stocksBeanList = new ArrayList<>();
-        for(int i=0;i<listBean.getStocks().size();i++){
+        int size = listBean.getStocks().size();
+        for(int i=0;i<size;i++){
             if (listBean.getStocks().get(i).getNum()!=0){
                 remainNums = remainNums + listBean.getStocks().get(i).getNum();
                 StocksBean stocksBean = new StocksBean();
@@ -118,7 +129,7 @@ public class ChooseSizeNumsActivity extends MyCompatActivity implements
                 if(isLogin()) {
                     getOrderDatas();
                 }else{
-                    Intent intent = new Intent(mContext, RegisterAccount.class);
+                    Intent intent = new Intent(mContext, DialogStyleLoginActivity.class);
                     startActivity(intent);
                     AppManager.getAppManager().finishActivity(ChooseSizeNumsActivity.this);
                     overridePendingTransition(0,
@@ -127,9 +138,10 @@ public class ChooseSizeNumsActivity extends MyCompatActivity implements
                 break;
             case R.id.btnAdd:
                 if(isLogin()) {
+
                     addTOCarts();
                 }else{
-                    Intent intent = new Intent(mContext, RegisterAccount.class);
+                    Intent intent = new Intent(mContext, DialogStyleLoginActivity.class);
                     startActivity(intent);
                     AppManager.getAppManager().finishActivity(ChooseSizeNumsActivity.this);
                     overridePendingTransition(0,
@@ -153,47 +165,41 @@ public class ChooseSizeNumsActivity extends MyCompatActivity implements
                 cartsBeanList.add(cartsBean);
             }
         }
+        if(cartsBeanList.size()==0){
+            ToastUtils.show(mContext,"请选择需要添加商品尺码以及件数");
+            return;
+        }
         cartsRequestBean.setCarts(cartsBeanList);
         AddToCartsPre addToCartsPre = new AddToCartsPre(this);
         addToCartsPre.addToBasket(mContext,cartsRequestBean);
     }
 
-    @Override
-    public boolean isLogin() {
-        return super.isLogin();
-    }
 
     private void getOrderDatas() {
         OrderBean orderBean = new OrderBean();
-        List<OrderdetailsBean> orderBeanList = new ArrayList<>();
-        String goodsPic = null;
-        double singlePrice = 0.00;
+        List<OrderDetailsBean> orderBeanList = new ArrayList<>();
         for(int i=0;i<listBean.getStocks().size();i++){
-            OrderdetailsBean orderdetailsBean = new OrderdetailsBean();
+            OrderDetailsBean orderDetailsBean = new OrderDetailsBean();
             if(listBean.getStocks().get(i).getBuyNum()>0){
-                orderdetailsBean.setGid(String.valueOf(listBean.getId()));
-                orderdetailsBean.setNum(String.valueOf(listBean.getStocks().get(i).getBuyNum()));
-                orderdetailsBean.setSize(listBean.getStocks().get(i).getSize());
-                orderBeanList.add(orderdetailsBean);
-                goodsPic = listBean.getPic();
-                singlePrice = listBean.getYmprice();
+                orderDetailsBean.setGid(String.valueOf(listBean.getId()));
+                orderDetailsBean.setNum(String.valueOf(listBean.getStocks().get(i).getBuyNum()));
+                orderDetailsBean.setSize(listBean.getStocks().get(i).getSize());
+                orderBeanList.add(orderDetailsBean);
             }
         }
         orderBean.setOrderdetails(orderBeanList);
         if(orderBeanList.size()!=0){
-            Intent intent = new Intent(ChooseSizeNumsActivity.this, ConfirmOrder.class);
+            Intent intent = new Intent(ChooseSizeNumsActivity.this, ConfirmOrderActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("type",0);//单一商品多个尺码
-            bundle.putString("storageType","自仓");
             bundle.putSerializable("order",orderBean);
-            bundle.putString("goodsName",tvGoodsName.getText().toString());
-            bundle.putString("goodsPic",goodsPic);
-            bundle.putDouble("singlePrice",singlePrice);
+            bundle.putSerializable("goodsBean",listBean);
             bundle.putString("totalNums",String.valueOf(totalNums));
             bundle.putDouble("totalPrice",totalPrice);
             intent.putExtras(bundle);
             startActivity(intent);
             AppManager.getAppManager().finishActivity(this);
+        }else{
+            ToastUtils.show(mContext,"请选择需要购买商品尺码以及件数");
         }
     }
 
@@ -205,13 +211,14 @@ public class ChooseSizeNumsActivity extends MyCompatActivity implements
         }else{
             listBean.getStocks().get(position).setNum(goodsRemain-1);
             listBean.getStocks().get(position).setBuyNum(buyNums+1);
-            totalPrice = totalPrice + listBean.getYmprice();
-            tvTotalPrice.setText("￥" + ValueUtils.toTwoDecimal(totalPrice));
+            if(listBean.getSpecialprice() != 0.0) { //特价
+                totalPrice = totalPrice + listBean.getSpecialprice();
+            }else{
+                totalPrice = totalPrice + listBean.getYmprice();
+            }
+            tvTotalPrice.setText(ValueUtils.toTwoDecimal(totalPrice));
             totalNums = totalNums + 1;
-            String s = "共" + totalNums + "件";
-            SpannableStringBuilder ss = ValueUtils.changeText(this, R.color.color_b4, s,
-                    Typeface.NORMAL, 0, 1, s.length()-1);
-            tvTotalNums.setText(ss);
+            tvTotalNums.setText(String.valueOf(totalNums));
         }
         mAdapter.notifyDataSetChanged();
     }
@@ -224,13 +231,15 @@ public class ChooseSizeNumsActivity extends MyCompatActivity implements
         }else{
             listBean.getStocks().get(position).setBuyNum(buyNums -1);
             listBean.getStocks().get(position).setNum(goodsRemain + 1);
-            totalPrice = totalPrice - listBean.getYmprice();
-            tvTotalPrice.setText("￥" + ValueUtils.toTwoDecimal(totalPrice));
+            if(listBean.getSpecialprice() != 0.0) { //特价
+                totalPrice = totalPrice - listBean.getSpecialprice();
+            }else{
+                totalPrice = totalPrice - listBean.getYmprice();
+            }
+
+            tvTotalPrice.setText(ValueUtils.toTwoDecimal(totalPrice));
             totalNums = totalNums - 1;
-            String s = "共" + totalNums + "件";
-            SpannableStringBuilder ss = ValueUtils.changeText(this, R.color.color_b4, s,
-                    Typeface.NORMAL, 0, 1, s.length()-1);
-            tvTotalNums.setText(ss);
+            tvTotalNums.setText(String.valueOf(totalNums));
         }
         mAdapter.notifyDataSetChanged();
     }
@@ -238,18 +247,38 @@ public class ChooseSizeNumsActivity extends MyCompatActivity implements
     @Override
     public void showAddCartsInfos(SuccessResultBean resultBean, String msg) {
         if(resultBean != null){
+            ToastUtils.showShort(this,"添加成功");
+            saveOrders();
+        }else{
+            ToastUtils.showError(mContext,msg);
+        }
+    }
+
+    private void saveOrders() {
+        OrderBean orderBean = new OrderBean();
+        List<OrderDetailsBean> orderBeanList = new ArrayList<>();
+        for(int i=0;i<listBean.getStocks().size();i++){
+            OrderDetailsBean orderDetailsBean = new OrderDetailsBean();
+            if(listBean.getStocks().get(i).getBuyNum()>0){
+                orderDetailsBean.setGid(String.valueOf(listBean.getId()));
+                orderDetailsBean.setNum(String.valueOf(listBean.getStocks().get(i).getBuyNum()));
+                orderDetailsBean.setSize(listBean.getStocks().get(i).getSize());
+                orderBeanList.add(orderDetailsBean);
+            }
+        }
+        orderBean.setOrderdetails(orderBeanList);
+        if(orderBeanList.size()!=0){
             Intent mIntent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putSerializable("cartsRequestBean",  cartsRequestBean);
+            bundle.putSerializable("order",orderBean);
+            bundle.putSerializable("goodsBean",listBean);
             bundle.putString("totalNums", String.valueOf(totalNums));
             bundle.putString("tvTotalPrice",ValueUtils.toTwoDecimal(totalPrice));
             mIntent.putExtras(bundle);
             setResult(1, mIntent);
             AppManager.getAppManager().finishActivity(ChooseSizeNumsActivity.this);
-            overridePendingTransition(0,
-                    R.anim.fade_out);
-        }else{
-            ToastUtils.showError(mContext,msg);
+            overridePendingTransition(0, R.anim.fade_out);
         }
     }
 }

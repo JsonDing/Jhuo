@@ -44,7 +44,7 @@ public class RefundMoreGoodsAdapter extends RecyclerView.Adapter<RefundMoreGoods
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         int width = (ScreenUtils.getScreenWidth(mContext)- DensityUtils.dp2px(mContext,30))/3;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,width);
@@ -76,7 +76,7 @@ public class RefundMoreGoodsAdapter extends RecyclerView.Adapter<RefundMoreGoods
         }else{
             if(EmptyUtil.isNotEmpty(listBean.get(position).getPic())){
                 GlideUtils.glidNormleFast(mContext,holder.imgGoods, ConUtils.GOODS_IMAGE_URL +
-                        listBean.get(position).getPic());
+                        listBean.get(position).getPic().split(",")[0]);
             }else{
                 GlideUtils.glidLocalDrawable(mContext,holder.imgGoods,R.drawable.default_pic);
             }
@@ -85,7 +85,7 @@ public class RefundMoreGoodsAdapter extends RecyclerView.Adapter<RefundMoreGoods
             @Override
             public void onClick(View v) {
                 if(null!=saveImgsListener){
-                    saveImgsListener.savaImgs(position);
+                    saveImgsListener.savaImgs(holder.getAdapterPosition());
                 }
             }
         });
@@ -146,19 +146,19 @@ public class RefundMoreGoodsAdapter extends RecyclerView.Adapter<RefundMoreGoods
         LinearLayout layoutImgs;
         ViewHolder(View view) {
             super(view);
-            imgGoods = (ImageView)view.findViewById(R.id.imgGoods);
-            tvGoodsName = (TextView) view.findViewById(R.id.tvGoodsName);
-            tvGoodsInfo = (TextView) view.findViewById(R.id.tvGoodsInfo);
-            tvPrice = (TextView) view.findViewById(R.id.tvPrice);
-            tvGoodsNum = (TextView) view.findViewById(R.id.tvGoodsNum);
-            spinner = (NiceSpinner) view.findViewById(R.id.spinner);
-            etDetials = (EditText)view.findViewById(R.id.etDetials);
-            tvCanInput = (TextView) view.findViewById(R.id.tvCanInput);
-            imgsAdd = (ImageView)view.findViewById(R.id.imgsAdd);
-            imgsOne = (ImageView)view.findViewById(R.id.imgsOne);
-            imgsTwo = (ImageView)view.findViewById(R.id.imgsTwo);
-            imgsThree = (ImageView)view.findViewById(R.id.imgsThree);
-            layoutImgs = (LinearLayout)view.findViewById(R.id.layoutImgs);
+            imgGoods = view.findViewById(R.id.imgGoods);
+            tvGoodsName = view.findViewById(R.id.tvGoodsName);
+            tvGoodsInfo = view.findViewById(R.id.tvGoodsInfo);
+            tvPrice = view.findViewById(R.id.tvPrice);
+            tvGoodsNum = view.findViewById(R.id.tvGoodsNum);
+            spinner = view.findViewById(R.id.spinner);
+            etDetials = view.findViewById(R.id.etDetials);
+            tvCanInput = view.findViewById(R.id.tvCanInput);
+            imgsAdd = view.findViewById(R.id.imgsAdd);
+            imgsOne = view.findViewById(R.id.imgsOne);
+            imgsTwo = view.findViewById(R.id.imgsTwo);
+            imgsThree = view.findViewById(R.id.imgsThree);
+            layoutImgs = view.findViewById(R.id.layoutImgs);
         }
     }
 

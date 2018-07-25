@@ -17,7 +17,7 @@
             android:layout_width="@dimen/dp01"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/color_a3"/>
+            android:background="@color/a3"/>
 
         <ImageView
             android:id="@+id/circlePoint"
@@ -31,7 +31,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:visibility="invisible"
-            android:background="@color/color_a3"/>
+            android:background="@color/a3"/>
 
     </LinearLayout>
 

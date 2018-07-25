@@ -18,7 +18,7 @@ import butterknife.*;
  *
  * @author Json.
  */
-public class QuickReplenishAdapter extends BaseAdapter {
+public class QuickReplenishAdapter extends BaseAdapter{
     private Context mContext;
     private LayoutInflater inflater;
     private List<ListBean> listBean;
@@ -50,7 +50,7 @@ public class QuickReplenishAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View view, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         if (view != null) {
             holder = (ViewHolder) view.getTag();
         } else {
@@ -68,29 +68,35 @@ public class QuickReplenishAdapter extends BaseAdapter {
         if(listBean.get(position).getRepoid()==1){
             if(listBean.get(position).getPic()!=null){
                 GlideUtils.glidNormle(mContext,holder.imgGoods, ConUtils.SElF_GOODS_IMAGE_URL +
-                listBean.get(position).getPic().split(",")[0]);
+                listBean.get(position).getPic().split(",")[0] + "/min");
             }else{
                 GlideUtils.glidLocalDrawable(mContext,holder.imgGoods,R.drawable.default_pic);
             }
         }else{
             if (listBean.get(position).getPic()!=null){
                 GlideUtils.glidNormle(mContext,holder.imgGoods, ConUtils.GOODS_IMAGE_URL +
-                        listBean.get(position).getPic());
+                        listBean.get(position).getPic().split(",")[0] + "/min");
             }else{
                 GlideUtils.glidLocalDrawable(mContext,holder.imgGoods,R.drawable.default_pic);
             }
         }
         holder.tvGoodsName.setText(listBean.get(position).getInfo());
-        holder.tvGoodsSize.setText("尺码：" + listBean.get(position).getSize());
-        holder.tvGoodsPrice.setText("￥" + listBean.get(position).getUserprice());
-        holder.btnQuickReplenish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(onbuyClick!=null){
-                    onbuyClick.onBuyClick(position,listBean.get(position));
+        holder.tvGoodsSize.setText(String.valueOf("尺码：" + listBean.get(position).getSize()));
+        holder.tvGoodsPrice.setText(String.valueOf("￥" + listBean.get(position).getUserprice()));
+        if (onbuyClick != null) {
+            holder.btnQuickReplenish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onbuyClick.onBuyClick(listBean.get(position).getGid());
                 }
-            }
-        });
+            });
+            holder.viewItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onbuyClick.onLookGoodsDetial(listBean.get(position).getGid());
+                }
+            });
+        }
         return view;
     }
 
@@ -112,20 +118,17 @@ public class QuickReplenishAdapter extends BaseAdapter {
         Button btnQuickReplenish;
         @BindView(R.id.tvGoodsSize)
         TextView tvGoodsSize;
-
+        private View viewItem;
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
+            this.viewItem = view;
         }
     }
 
     public interface OnbuyClick{
-        void onBuyClick(int position,ListBean buyListBean);
+        void onBuyClick(String gId);
+        void onLookGoodsDetial(String gId);
     }
-
-    public List<ListBean> getListBean() {
-        return listBean;
-    }
-
     public void setListBean(List<ListBean> listBean) {
         this.listBean = listBean;
         notifyDataSetChanged();

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_a4"
+    android:background="@color/a4"
     tools:context="com.yunma.jhuo.activity.mine.InvoiceListActivity">
 
     <LinearLayout
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="增票列表"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -63,7 +63,7 @@
                 android:text="确定"
                 android:textSize="14sp"
                 android:clickable="false"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:src="@drawable/add_more" />
 
         </LinearLayout>
@@ -74,7 +74,7 @@
         android:id="@+id/lvInvoice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_a4"
+        android:background="@color/a4"
         android:divider="@null"
         android:overScrollMode="never"
         android:paddingBottom="@dimen/dp10"
@@ -88,7 +88,7 @@
         android:orientation="vertical"
         android:visibility="gone"
         android:gravity="center_horizontal"
-        android:background="@color/color_a4">
+        android:background="@color/a4">
 
         <ImageView
             android:layout_width="@dimen/dp82"
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:text="此处什么都没有"
             android:textSize="@dimen/sp15"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:layout_marginTop="@dimen/dp39"/>
 
     </LinearLayout>

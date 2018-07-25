@@ -32,8 +32,6 @@ public class GoodsCollectInterFace {
     }
 
     public interface AddGoodsCollectView{
-        Context getContext();
-        String getGoodId();
         void onAddCollectShow(AddGoodsCollectBean resultBean,String msg);
     }
 
@@ -49,8 +47,6 @@ public class GoodsCollectInterFace {
     }
 
     public interface DelGoodsCollectView{
-        Context getContext();
-        String getGoodId();
         void onDelCollectShow(SuccessResultBean resultBean, String msg);
     }
 
@@ -63,7 +59,6 @@ public class GoodsCollectInterFace {
         void  ifCollect(Context mContext,String goodsId,IfcollectListener onListener);
     }
     public interface IfcollectView{
-        Context getContext();
         void showCollectInfos(AddGoodsCollectBean resultBean,String msg);
     }
     public interface IfcollectListener{

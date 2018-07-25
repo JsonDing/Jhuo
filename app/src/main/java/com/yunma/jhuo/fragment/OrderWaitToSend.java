@@ -13,7 +13,7 @@ import com.yunma.jhuo.activity.homepage.SpecialPriceActivity;
 import com.yunma.jhuo.activity.mine.MyOrderManage;
 import com.yunma.adapter.OrderWaitToSendAdapter;
 import com.yunma.bean.OrderUnPayResultBean;
-import com.yunma.jhuo.m.OrderWaitToSendInterface;
+import com.yunma.jhuo.m.OrderWaitToSendInterface.OrderWaitToSendView;
 import com.yunma.jhuo.p.OrderWaitToSendPre;
 import com.yunma.utils.*;
 
@@ -26,7 +26,7 @@ import butterknife.*;
  *
  * @author Json.
  */
-public class OrderWaitToSend extends Fragment implements OrderWaitToSendInterface.OrderWaitToSendView {
+public class OrderWaitToSend extends Fragment implements OrderWaitToSendView {
     @BindView(R.id.lvWaitToSend)
     ListView lvWaitToSend;
     @BindView(R.id.layoutNull)
@@ -41,6 +41,7 @@ public class OrderWaitToSend extends Fragment implements OrderWaitToSendInterfac
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.order_wait_to_send, container, false);
         ButterKnife.bind(this, view);
         getDatas();
@@ -49,7 +50,7 @@ public class OrderWaitToSend extends Fragment implements OrderWaitToSendInterfac
 
     private void getDatas() {
         sendPre = new OrderWaitToSendPre(OrderWaitToSend.this);
-        sendPre.getUnSendOrders();
+        sendPre.getUnSendOrders(mContext,"100","1");
     }
 
     @Override
@@ -59,15 +60,10 @@ public class OrderWaitToSend extends Fragment implements OrderWaitToSendInterfac
     }
 
     @Override
-    public Context getContext() {
-        return mContext;
-    }
-
-    @Override
     public void showOrderInfos(OrderUnPayResultBean resultBean, String msg) {
 
         if (resultBean == null) {
-            ToastUtils.showError(getContext(), msg);
+            ToastUtils.showError(getActivity(), msg);
         } else {
             if (EmptyUtil.isEmpty(resultBean.getSuccess().getList())) {
                 lvWaitToSend.setVisibility(View.GONE);
@@ -94,14 +90,14 @@ public class OrderWaitToSend extends Fragment implements OrderWaitToSendInterfac
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden && sendPre != null) {
-            sendPre.getUnSendOrders();
+            sendPre.getUnSendOrders(mContext,"100","1");
         }
     }
 
     @OnClick(R.id.layoutGoLook)
     public void onClick() {
-        Intent intent = new Intent(getContext(), SpecialPriceActivity.class);
-        getContext().startActivity(intent);
+        Intent intent = new Intent(getActivity(), SpecialPriceActivity.class);
+        getActivity().startActivity(intent);
         AppManager.getAppManager().finishActivity(MyOrderManage.orderManageContext);
     }
 }

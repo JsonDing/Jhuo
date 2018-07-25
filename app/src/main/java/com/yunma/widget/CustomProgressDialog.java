@@ -67,7 +67,7 @@ public class CustomProgressDialog extends ProgressDialog {
 
     private void initView() {
         setContentView(R.layout.progress_dialog);
-        mLoadingTv = (TextView) findViewById(R.id.loadingTv);
-        mImageView = (ImageView) findViewById(R.id.loadingIv);
+        mLoadingTv = findViewById(R.id.loadingTv);
+        mImageView = findViewById(R.id.loadingIv);
     }
 }

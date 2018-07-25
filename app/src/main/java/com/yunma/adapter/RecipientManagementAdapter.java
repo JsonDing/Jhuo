@@ -2,26 +2,33 @@ package com.yunma.adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.text.*;
+import android.support.v4.content.ContextCompat;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.style.TextAppearanceSpan;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.yunma.R;
 import com.yunma.bean.RecipientManageBean;
-import com.yunma.jhuo.m.RecipientManageInterface.*;
+import com.yunma.jhuo.m.RecipientManageInterface.OnModifyRecipient;
 import com.yunma.utils.ValueUtils;
 
 import java.util.List;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created on 2017-01-16
  *
  * @author Json.
  */
-public class RecipientManagementAdapter extends BaseAdapter {
+public class RecipientManagementAdapter extends BaseAdapter{
     private Context mContext;
     private LayoutInflater inflater;
     private OnModifyRecipient onClick;
@@ -71,17 +78,15 @@ public class RecipientManagementAdapter extends BaseAdapter {
             String strLocation = "[默认]" + addressList.get(position).getRegoin()
                     + addressList.get(position).getAddr();
             final ColorStateList mColor = ColorStateList.valueOf(
-                    mContext.getResources().getColor(R.color.color_b3));
+                    ContextCompat.getColor(mContext,R.color.b3));
             SpannableStringBuilder spanBuilder
                     = new SpannableStringBuilder(strLocation);
-            //style 为0 即是正常的，还有Typeface.BOLD(粗体) Typeface.ITALIC(斜体)等
-            //size  为0 即采用原始的正常的 size大小
             spanBuilder.setSpan(new TextAppearanceSpan(null, 0, 0, mColor, null)
                     , 0, 4, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
             holder.tvAddress.setText(spanBuilder);
         }else{
-            holder.tvAddress.setText(addressList.get(position).getRegoin()
-                    + addressList.get(position).getAddr());
+            holder.tvAddress.setText(String.valueOf(addressList.get(position).getRegoin()
+                    + addressList.get(position).getAddr()));
         }
 
         holder.layoutEdit.setOnClickListener(new View.OnClickListener() {
@@ -96,24 +101,15 @@ public class RecipientManagementAdapter extends BaseAdapter {
         return view;
     }
 
-
     class ViewHolder {
-        @BindView(R.id.tvReceiver)
-        TextView tvReceiver;
-        @BindView(R.id.tvReceiverPhone)
-        TextView tvReceiverPhone;
-        @BindView(R.id.tvAddress)
-        TextView tvAddress;
-        @BindView(R.id.layoutEdit)
-        LinearLayout layoutEdit;
+        @BindView(R.id.tvReceiver) TextView tvReceiver;
+        @BindView(R.id.tvReceiverPhone) TextView tvReceiverPhone;
+        @BindView(R.id.tvAddress) TextView tvAddress;
+        @BindView(R.id.layoutEdit) LinearLayout layoutEdit;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
-    }
-
-    public List<RecipientManageBean.SuccessBean.ListBean> getAddressList() {
-        return addressList;
     }
 
     public void setAddressList(List<RecipientManageBean.SuccessBean.ListBean> addressList) {

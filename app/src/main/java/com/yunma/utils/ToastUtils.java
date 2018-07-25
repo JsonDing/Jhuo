@@ -1,6 +1,9 @@
 package com.yunma.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.view.Gravity;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sdsmdg.tastytoast.TastyToast;
@@ -68,5 +71,21 @@ public class ToastUtils {
     public static void show(Context context, String text, int duration) {
         if (isShow)
             Toast.makeText(context,text,Toast.LENGTH_SHORT).show();
+    }
+
+    private static int textview_id;
+    private static Toast toast;
+
+    public static void show(Context context, String str) {
+        if (toast == null)
+            toast = Toast.makeText(context.getApplicationContext(), str, Toast.LENGTH_LONG);
+        else
+            toast.setText(str);
+        if (textview_id == 0)
+            textview_id = Resources.getSystem().getIdentifier("message", "id", "android");
+        ((TextView) toast.getView().findViewById(textview_id)).setGravity(Gravity.CENTER);
+        ((TextView) toast.getView().findViewById(textview_id)).setLineSpacing(8,1f);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 }

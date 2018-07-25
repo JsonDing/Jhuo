@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="收藏夹"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -57,20 +57,9 @@
                 android:layout_width="@dimen/dp18"
                 android:layout_height="@dimen/dp18"
                 android:clickable="false"
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:layout_centerInParent="true"
                 android:src="@drawable/re_message" />
-
-            <ImageView
-                android:id="@+id/imgRemind"
-                android:layout_width="7dp"
-                android:layout_height="7dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginStart="3dp"
-                android:clickable="false"
-                android:visibility="invisible"
-                android:layout_toEndOf="@+id/imgMessage"
-                android:src="@drawable/red_dot" />
 
         </RelativeLayout>
 
@@ -79,16 +68,46 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/lvBookmarks"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_a4"
-        android:divider="@null"
-        android:overScrollMode="never"
-        android:paddingBottom="8dp"
-        android:scrollbars="none"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layoutNoData"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/a4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="@dimen/dp96"
+                android:layout_height="@dimen/dp96"
+                android:src="@drawable/no_collect"/>
+            <TextView
+                android:id="@+id/tvReason"
+                android:text="尚未收录任何货品"
+                android:textSize="13sp"
+                android:layout_marginTop="@dimen/dp16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/b2"/>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lvBookmarks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/a4"
+            android:divider="@null"
+            android:overScrollMode="never"
+            android:paddingBottom="8dp"
+            android:scrollbars="none"/>
+
+    </FrameLayout>
+
 
 </LinearLayout>

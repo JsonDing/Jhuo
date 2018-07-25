@@ -9,9 +9,9 @@
         android:width="16dp"/>
 
     <gradient
-        android:centerColor="@color/btn_gray"
-        android:startColor="@color/btn_gray"
-        android:endColor="@color/btn_gray" />
+        android:centerColor="@color/a4"
+        android:startColor="@color/a4"
+        android:endColor="@color/a4" />
 
     <padding
         android:left="3dp"

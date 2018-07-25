@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="我的订单"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -95,7 +95,7 @@
                 android:text="待付款"
                 android:clickable="false"
                 android:layout_centerInParent="true"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp14"/>
 
             <View
@@ -105,7 +105,7 @@
                 android:layout_width="@dimen/dp38"
                 android:clickable="false"
                 android:visibility="invisible"
-                android:background="@color/color_b3"
+                android:background="@color/b3"
                 android:layout_height="@dimen/dp02"/>
 
         </RelativeLayout>
@@ -123,7 +123,7 @@
                 android:text="待发货"
                 android:clickable="false"
                 android:layout_centerInParent="true"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp14"/>
 
             <View
@@ -133,7 +133,7 @@
                 android:layout_width="@dimen/dp38"
                 android:clickable="false"
                 android:visibility="invisible"
-                android:background="@color/color_b3"
+                android:background="@color/b3"
                 android:layout_height="@dimen/dp02"/>
 
         </RelativeLayout>
@@ -151,7 +151,7 @@
                 android:text="已发货"
                 android:clickable="false"
                 android:layout_centerInParent="true"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp14"/>
 
             <View
@@ -161,7 +161,7 @@
                 android:layout_width="@dimen/dp38"
                 android:clickable="false"
                 android:visibility="invisible"
-                android:background="@color/color_b3"
+                android:background="@color/b3"
                 android:layout_height="@dimen/dp02"/>
 
         </RelativeLayout>
@@ -179,7 +179,7 @@
                 android:text="已确认"
                 android:clickable="false"
                 android:layout_centerInParent="true"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp14"/>
 
             <View
@@ -189,7 +189,7 @@
                 android:layout_width="@dimen/dp38"
                 android:clickable="false"
                 android:visibility="invisible"
-                android:background="@color/color_b3"
+                android:background="@color/b3"
                 android:layout_height="@dimen/dp02"/>
 
         </RelativeLayout>-->
@@ -199,13 +199,12 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp01"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
     </FrameLayout>
 
 </LinearLayout>

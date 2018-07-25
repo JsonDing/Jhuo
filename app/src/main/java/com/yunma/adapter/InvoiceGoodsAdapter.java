@@ -9,7 +9,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Json on 2017/1/18.
  */
-public class InvoiceGoodsAdapter extends BaseAdapter {
+public class InvoiceGoodsAdapter extends BaseAdapter{
     private Context mContext;
     private LayoutInflater inflater;
 

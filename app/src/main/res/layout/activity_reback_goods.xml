@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_a4"
+    android:background="@color/a4"
     android:orientation="vertical">
 
     <LinearLayout
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="退货管理"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -75,7 +75,7 @@
                 android:text="未处理"
                 android:clickable="false"
                 android:layout_centerInParent="true"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp14"/>
 
             <View
@@ -85,7 +85,7 @@
                 android:layout_width="@dimen/dp38"
                 android:clickable="false"
                 android:visibility="invisible"
-                android:background="@color/color_b3"
+                android:background="@color/b3"
                 android:layout_height="@dimen/dp02"/>
 
         </RelativeLayout>
@@ -103,7 +103,7 @@
                 android:text="处理中"
                 android:clickable="false"
                 android:layout_centerInParent="true"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp14"/>
 
             <View
@@ -113,7 +113,7 @@
                 android:layout_width="@dimen/dp38"
                 android:clickable="false"
                 android:visibility="invisible"
-                android:background="@color/color_b3"
+                android:background="@color/b3"
                 android:layout_height="@dimen/dp02"/>
 
         </RelativeLayout>
@@ -131,7 +131,7 @@
                 android:text="已完成"
                 android:clickable="false"
                 android:layout_centerInParent="true"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp14"/>
 
             <View
@@ -141,7 +141,7 @@
                 android:layout_width="@dimen/dp38"
                 android:clickable="false"
                 android:visibility="invisible"
-                android:background="@color/color_b3"
+                android:background="@color/b3"
                 android:layout_height="@dimen/dp02"/>
 
         </RelativeLayout>
@@ -159,7 +159,7 @@
                 android:text="已拒绝"
                 android:clickable="false"
                 android:layout_centerInParent="true"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp14"/>
 
             <View
@@ -169,7 +169,7 @@
                 android:layout_width="@dimen/dp38"
                 android:clickable="false"
                 android:visibility="invisible"
-                android:background="@color/color_b3"
+                android:background="@color/b3"
                 android:layout_height="@dimen/dp02"/>
 
         </RelativeLayout>
@@ -179,7 +179,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp01"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <FrameLayout
         android:id="@+id/content"

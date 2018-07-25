@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Json.
  */
-public class GoodsTagAdapter extends BaseAdapter {
+public class GoodsTagAdapter extends BaseAdapter{
     private List<String> tag;
     private LayoutInflater layoutInflater;
     public GoodsTagAdapter(Context mContext) {
@@ -46,7 +46,7 @@ public class GoodsTagAdapter extends BaseAdapter {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.tag_item, parent, false);
-            viewHolder.tvLabel = (TextView) convertView.findViewById(R.id.tvLabel);
+            viewHolder.tvLabel = convertView.findViewById(R.id.tvLabel);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

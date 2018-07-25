@@ -6,8 +6,11 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
-import android.view.*;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 /**
  * Created by Json on 2016/4/7.
@@ -131,10 +134,7 @@ public class ScreenUtils {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Window window = activity.getWindow();
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(activity.getResources().getColor(colorResId));
-
-                //底部导航栏
-                //window.setNavigationBarColor(activity.getResources().getColor(colorResId));
+                window.setStatusBarColor(ContextCompat.getColor(activity,colorResId));
             }
         } catch (Exception e) {
             e.printStackTrace();

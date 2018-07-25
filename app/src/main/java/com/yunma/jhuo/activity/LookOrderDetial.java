@@ -32,7 +32,6 @@ public class LookOrderDetial extends MyCompatActivity {
     @BindView(R.id.tvOrderHour) TextView tvOrderHour;
     @BindView(R.id.tvExpressStatus) TextView tvExpressStatus;
     @BindView(R.id.tvDay) TextView tvDay;
-    @BindView(R.id.tvHour) TextView tvHour;
     @BindView(R.id.tvReceiver) TextView tvReceiver;
     @BindView(R.id.tvPhone) TextView tvPhone;
     @BindView(R.id.tvAddress) TextView tvAddress;
@@ -61,17 +60,30 @@ public class LookOrderDetial extends MyCompatActivity {
     }
 
     private void setDatas(LookOrderBean lookOrderBean) {
-
-        tvOrderId.setText(lookOrderBean.getSuccess().getId()+"");
+        tvOrderId.setText(String.valueOf(lookOrderBean.getSuccess().getId()));
         tvOrderHour.setText(DateTimeUtils.getTime(lookOrderBean.getSuccess().getDate(),
+                new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA)));
+        tvDay.setText(DateTimeUtils.getTime(lookOrderBean.getSuccess().getDate(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA)));
         tvReceiver.setText(lookOrderBean.getSuccess().getName());
         tvPhone.setText(ValueUtils.hideNumber(lookOrderBean.getSuccess().getTel()));
         tvAddress.setText(lookOrderBean.getSuccess().getAddr());
         tvOrderTime.setText(DateTimeUtils.getTime(lookOrderBean.getSuccess().getPayDate(),
                 new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA)));
-        tvOrderPrice.setText("￥" + ValueUtils.toTwoDecimal(lookOrderBean.getSuccess().getTotalcost()-10));
-        tvRealPay.setText("￥" + lookOrderBean.getSuccess().getTotalcost());
+        tvOrderPrice.setText(ValueUtils.toTwoDecimal(lookOrderBean.getSuccess().getTotalcost()));
+        tvRealPay.setText(ValueUtils.toTwoDecimal(lookOrderBean.getSuccess().getTotalcost()));
+        tvOrderExpress.setText(ValueUtils.toTwoDecimal(lookOrderBean.getSuccess().getExpresscost()));
+        if(lookOrderBean.getSuccess().getPay()==1){
+            tvPayway.setText("支付宝支付");
+        }else {
+            tvPayway.setText("微信支付");
+        }
+        if(lookOrderBean.getSuccess().getCouponMoney() != 0.00){
+            tvLuckyBean.setText(ValueUtils.toTwoDecimal(
+                    Double.valueOf(lookOrderBean.getSuccess().getCouponMoney())));
+        }else{
+            tvLuckyBean.setText(String.valueOf("0.00"));
+        }
         mAdapter = new LookOrderDetialAdapter(this, lookOrderBean.getSuccess().getOrderdetails());
         lvOrder.setAdapter(mAdapter);
         scroll.smoothScrollTo(0, 0);
@@ -84,7 +96,7 @@ public class LookOrderDetial extends MyCompatActivity {
         orderIdBean.setToken(SPUtils.getToken(mContext));
         orderIdBean.setId(orderId);
         String strBodyContent = new Gson().toJson(orderIdBean);
-        LogUtils.log("查看订单请求: ------------>" + strBodyContent);
+        LogUtils.json("查看订单请求: ------------>" + strBodyContent);
         params.setAsJsonContent(true);
         params.setBodyContent(strBodyContent);
         x.http().post(params, new Callback.CacheCallback<String>() {
@@ -100,10 +112,10 @@ public class LookOrderDetial extends MyCompatActivity {
             public void onSuccess(String result) {
                 if (result != null) {
                     this.result = result;
-                    LogUtils.log("查看订单: " + result);
+                    LogUtils.json("查看订单: " + result);
                     if(result.contains("success")){
                         try {
-                            lookOrderBean = GsonUtils.getObject(result,
+                            lookOrderBean = GsonUtils.GsonToBean(result,
                                     LookOrderBean.class);
                         } catch (Exception e) {
                             ToastUtils.showError(mContext,"数据解析出错");
@@ -112,7 +124,7 @@ public class LookOrderDetial extends MyCompatActivity {
                         setDatas(lookOrderBean);
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             ToastUtils.showError(mContext,"数据解析出错");
@@ -132,11 +144,11 @@ public class LookOrderDetial extends MyCompatActivity {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     ToastUtils.showInfo(mContext,"网络出错");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     ToastUtils.showInfo(mContext,"服务器出错");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause() + "\n"
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause() + "\n"
                     + ex.getLocalizedMessage());
                 }
             }
@@ -150,7 +162,7 @@ public class LookOrderDetial extends MyCompatActivity {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("查看订单: " + result);
+                    LogUtils.json("查看订单: " + result);
                 }
             }
         });

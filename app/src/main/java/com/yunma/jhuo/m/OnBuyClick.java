@@ -1,6 +1,6 @@
 package com.yunma.jhuo.m;
 
-import com.yunma.bean.GetSelfGoodsResultBean.SuccessBean.ListBean;
+import com.yunma.bean.SelfGoodsListBean;
 
 /**
  * Created on 2016-12-30
@@ -9,6 +9,6 @@ import com.yunma.bean.GetSelfGoodsResultBean.SuccessBean.ListBean;
  */
 
 public interface OnBuyClick {
-    void onBuyClickListener(int position,ListBean mBean);
-    void onLookGoodDetial(int goodId, int itemId, ListBean mBean);
+    void onBuyClickListener(int position,SelfGoodsListBean mBean);
+    void onLookGoodDetial(int goodId, int itemId, SelfGoodsListBean mBean);
 }

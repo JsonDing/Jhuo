@@ -22,18 +22,18 @@ public class PersonInfosMoifyImpl implements PersonInfosMoifyModel {
     private SuccessResultBean successResultBean = null;
     private FailedResultBean failedResultBean = null;
     @Override
-    public void PersonInfosMoify(final Context mContext, String nickName, String gender, String realName,
+    public void PersonInfosMoify(final Context mContext, String nickName, String gender, String realName,String qq,
                                  final OnPersonInfosMoify onPersonInfosMoify) {
         RequestParams params = new RequestParams(ConUtils.USER_INFOS_MODIFY);
         final PersonInfosMoifyBean paramsBean = new PersonInfosMoifyBean();
         paramsBean.setToken(SPUtils.getToken(mContext));
         paramsBean.setName(nickName);
-        paramsBean.setQq("646266750");
+        paramsBean.setQq(qq);
         Gson gson = new Gson();
-        String strLogin = gson.toJson(paramsBean);
-        LogUtils.log("strLogin: ------------>" + strLogin);
+        String strModify = gson.toJson(paramsBean);
+        LogUtils.test("修改个人信息请求：" + strModify);
         params.setAsJsonContent(true);
-        params.setBodyContent(strLogin);
+        params.setBodyContent(strModify);
         x.http().post(params, new Callback.CacheCallback<String>() {
             private boolean hasError = false;
             private String result = null;
@@ -49,7 +49,7 @@ public class PersonInfosMoifyImpl implements PersonInfosMoifyModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            successResultBean = GsonUtils.getObject(result,
+                            successResultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onPersonInfosMoify.onMoifyListenter(null,"数据解析出错!");
@@ -59,7 +59,7 @@ public class PersonInfosMoifyImpl implements PersonInfosMoifyModel {
                         onPersonInfosMoify.onMoifyListenter(successResultBean,"修改成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onPersonInfosMoify.onMoifyListenter(null,"数据解析出错!");
@@ -80,11 +80,11 @@ public class PersonInfosMoifyImpl implements PersonInfosMoifyModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onPersonInfosMoify.onMoifyListenter(null,"网络异常!");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     onPersonInfosMoify.onMoifyListenter(null,"服务器未响应，请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -97,7 +97,7 @@ public class PersonInfosMoifyImpl implements PersonInfosMoifyModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("Login result: " + result);
+                 //   LogUtils.json("Login result: " + result);
                 }
             }
         });

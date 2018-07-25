@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="我要开票"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -50,7 +50,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <com.yunma.widget.NestListView
         android:id="@+id/lvSelectingMonth"
@@ -62,7 +62,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <ListView
         android:id="@+id/lvGoodsList"
@@ -86,7 +86,7 @@
             android:text="全选"
             android:textSize="@dimen/sp14"
             android:paddingStart="@dimen/dp10"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:button="@drawable/check_box_style"/>
 
         <TextView
@@ -97,7 +97,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp10"
             android:text="已选 1 件"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp11"/>
 
         <TextView
@@ -110,7 +110,7 @@
             android:layout_marginBottom="@dimen/dp04"
             android:layout_below="@+id/tvHadSelected"
             android:textSize="@dimen/sp11"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
         <Button
             android:id="@+id/btnGoInvoice"

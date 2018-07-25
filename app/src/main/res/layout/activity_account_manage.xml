@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_a4"
+    android:background="@color/a4"
     android:orientation="vertical">
 
     <LinearLayout
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/modifypasswd"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -64,7 +64,7 @@
             android:text="@string/old_passwd"
             android:textSize="@dimen/sp14"
             android:layout_marginStart="@dimen/dp15"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
         <EditText
             android:id="@+id/etOldPasswd"
@@ -76,8 +76,8 @@
             android:textSize="@dimen/sp14"
             android:layout_marginTop="@dimen/dp06"
             android:layout_marginBottom="@dimen/dp06"
-            android:textColor="@color/color_b1"
-            android:textColorHint="@color/color_b2"
+            android:textColor="@color/b1"
+            android:textColorHint="@color/b2"
             android:layout_marginStart="@dimen/dp20"
             android:layout_marginEnd="@dimen/dp10"/>
 
@@ -99,7 +99,7 @@
             android:text="@string/new_passwd"
             android:textSize="@dimen/sp14"
             android:layout_marginStart="@dimen/dp15"
-            android:textColor="@color/color_b1"/>
+            android:textColor="@color/b1"/>
 
         <EditText
             android:id="@+id/etNewPassWd"
@@ -111,10 +111,45 @@
             android:textSize="@dimen/sp14"
             android:layout_marginTop="@dimen/dp06"
             android:layout_marginBottom="@dimen/dp06"
-            android:textColor="@color/color_b1"
-            android:textColorHint="@color/color_b2"
+            android:textColor="@color/b1"
+            android:textColorHint="@color/b2"
             android:layout_marginStart="@dimen/dp20"
             android:layout_marginEnd="@dimen/dp10"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:layout_marginEnd="@dimen/dp15"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/bg_layout_item_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp15"
+            android:text="请确认"
+            android:textColor="@color/b1"
+            android:textSize="@dimen/sp14" />
+
+        <EditText
+            android:id="@+id/etNewPassWdAgain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dp06"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp06"
+            android:background="@null"
+            android:hint="请再次输入新密码"
+            android:inputType="textPassword"
+            android:textColor="@color/b1"
+            android:textColorHint="@color/b2"
+            android:textSize="@dimen/sp14" />
 
     </LinearLayout>
 
@@ -133,8 +168,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="密码由6-20位引文字母、数字或符号组成"
-        android:textColor="@color/color_b2"
+        android:text="密码由6-20位英文字母、数字或符号组成"
+        android:textColor="@color/b2"
         android:textSize="@dimen/sp14"
         android:layout_marginTop="@dimen/dp15"
         android:layout_marginStart="@dimen/dp15"

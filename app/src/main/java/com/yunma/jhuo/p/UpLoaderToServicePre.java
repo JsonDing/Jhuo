@@ -1,6 +1,8 @@
 package com.yunma.jhuo.p;
 
 
+import android.content.Context;
+
 import com.yunma.bean.SuccessResultBean;
 import com.yunma.jhuo.i.UploaderToServiceImpl;
 import com.yunma.jhuo.m.UploaderToServiceInterface.*;
@@ -20,8 +22,8 @@ public class UpLoaderToServicePre {
         this.mModel = new UploaderToServiceImpl();
     }
 
-    public void uPLoaderToService(){
-        mModel.uploader(mView.getConText(), mView.getImageUrl(), new OnUploaderToServiceListener() {
+    public void uPLoaderToService(Context context,String imgUrl){
+        mModel.uploader(context, imgUrl, new OnUploaderToServiceListener() {
             @Override
             public void OnUploaderListener(SuccessResultBean resultBean, String msg) {
                 mView.showUploaderInfos(resultBean,msg);

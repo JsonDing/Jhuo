@@ -7,9 +7,9 @@ package com.yunma.jhuo.m;
 public class PhoneNumberVerificationInterFace {
 
     public interface PhoneMumberView{
-
         void showIsCorrent(String msg);
     }
+
     public interface PhoneMumberModel{
         void getVerificationCode(String number);
 

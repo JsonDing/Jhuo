@@ -22,15 +22,15 @@ public class OrderWaitToReceiveImpl implements OrderWaitToReceiveModel {
     private OrderUnPayResultBean resultBean = null;
     private FailedResultBean failedResultBean = null;
     @Override
-    public void orderUnReceive(final Context mContext,
+    public void orderUnReceive(final Context mContext,String nums,String page,
                                final OrderWaitToReceiveListener orderListener) {
         RequestParams params = new RequestParams(ConUtils.ORDER_SEND);
         final UnReciveyOrderBean unReciveyOrderBean = new UnReciveyOrderBean();
         unReciveyOrderBean.setToken(SPUtils.getToken(mContext));
-        unReciveyOrderBean.setSize("10");
-        unReciveyOrderBean.setPage("1");
+        unReciveyOrderBean.setSize(nums);
+        unReciveyOrderBean.setPage(page);
         String strBodyContent = new Gson().toJson(unReciveyOrderBean);
-        LogUtils.log("未签收订单请求: ------------>" + strBodyContent);
+        LogUtils.json("未签收订单请求: ------------>" + strBodyContent);
         params.setAsJsonContent(true);
         params.setBodyContent(strBodyContent);
         x.http().post(params, new Callback.CacheCallback<String>() {
@@ -48,7 +48,7 @@ public class OrderWaitToReceiveImpl implements OrderWaitToReceiveModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     OrderUnPayResultBean.class);
                         } catch (Exception e) {
                             orderListener.orderWaitToReceiveListener(null,"数据解析出错!");
@@ -58,7 +58,7 @@ public class OrderWaitToReceiveImpl implements OrderWaitToReceiveModel {
                         orderListener.orderWaitToReceiveListener(resultBean,"获取成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             orderListener.orderWaitToReceiveListener(null,"数据解析出错!");
@@ -80,11 +80,11 @@ public class OrderWaitToReceiveImpl implements OrderWaitToReceiveModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     orderListener.orderWaitToReceiveListener(null,"网络出错!");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     orderListener.orderWaitToReceiveListener(null,"服务器错误");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -97,7 +97,7 @@ public class OrderWaitToReceiveImpl implements OrderWaitToReceiveModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("未签收订单: " + result);
+                    LogUtils.json("未签收订单: " + result);
                 }
             }
         });

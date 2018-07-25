@@ -28,8 +28,6 @@ public class GetShoppingCartListInterface {
     }
 
     public interface DelShoppingCartView{
-        Context getContext();
-        String getDelId();
         void showDelInfos(SuccessResultBean resultBean, String msg);
     }
 

@@ -12,9 +12,6 @@ import com.yunma.bean.SuccessResultBean;
 
 public class ModifypassWdInterface {
     public interface ModifypassWdView{
-        Context getContext();
-        String getOriginalPasswd();
-        String getNewPassWd();
         void showModifyInfos(SuccessResultBean successResultBean,String msg);
     }
 

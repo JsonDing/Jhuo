@@ -20,10 +20,13 @@ import org.xutils.x;
  */
 
 public class GetInvoiceModelImpl implements InvoiceInterface.GetInvoiceModel {
+
     private FailedResultBean failedResultBean = null;
     private InvoiceBean resultBean = null;
+
     @Override
-    public void getInvoice(final Context mContext,String nums,int page,final InvoiceInterface.GetInvoiceListener onListener) {
+    public void getInvoice(final Context mContext,String nums,int page,
+                           final InvoiceInterface.GetInvoiceListener onListener) {
         RequestParams params = new RequestParams(ConUtils.GET_INVOICE);
         PageBean pageBean = new PageBean();
         pageBean.setPage(String.valueOf(page));
@@ -33,7 +36,7 @@ public class GetInvoiceModelImpl implements InvoiceInterface.GetInvoiceModel {
         Gson gson = new Gson();
         String strParams = gson.toJson(pageBean);
         params.setBodyContent(strParams);
-        LogUtils.log("requst: " + strParams);
+        LogUtils.json("requst: " + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -46,7 +49,7 @@ public class GetInvoiceModelImpl implements InvoiceInterface.GetInvoiceModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     InvoiceBean.class);
                         } catch (Exception e) {
                             onListener.onListener(null,"数据解析出错");
@@ -59,7 +62,7 @@ public class GetInvoiceModelImpl implements InvoiceInterface.GetInvoiceModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onListener.onListener(null,"数据解析出错");
@@ -78,7 +81,7 @@ public class GetInvoiceModelImpl implements InvoiceInterface.GetInvoiceModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onListener.onListener(null,"网络错误");
                 }else{
@@ -96,7 +99,7 @@ public class GetInvoiceModelImpl implements InvoiceInterface.GetInvoiceModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("获取增票 result: " + result);
+                 //   LogUtils.json("获取增票 result: " + result);
                 }
             }
         });

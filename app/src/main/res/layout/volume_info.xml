@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="使用说明"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp17"/>
     </LinearLayout>
 
@@ -36,14 +36,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
-                android:layout_marginTop="@dimen/dp03"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
+                android:layout_marginTop="@dimen/dp04"
                 android:layout_marginStart="@dimen/dp15"
                 android:src="@drawable/circle_orange_light"/>
 
             <TextView
-                android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingMultiplier="1.5"
@@ -51,7 +50,7 @@
                 android:paddingEnd="@dimen/dp15"
                 android:paddingStart="@dimen/dp10"
                 android:text="@string/volume_1"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>
@@ -65,9 +64,9 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
-                android:layout_marginTop="@dimen/dp03"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
+                android:layout_marginTop="@dimen/dp04"
                 android:layout_marginStart="@dimen/dp15"
                 android:src="@drawable/circle_orange_light"/>
 
@@ -79,7 +78,7 @@
                 android:text="@string/volume_2"
                 android:maxLines="4"
                 android:lineSpacingMultiplier="1.5"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>
@@ -93,10 +92,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
-                android:layout_marginTop="@dimen/dp03"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
                 android:layout_marginStart="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp04"
                 android:src="@drawable/circle_orange_light"/>
 
             <LinearLayout
@@ -112,7 +111,7 @@
                     android:text="@string/volume_3"
                     android:maxLines="4"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp13"/>
 
                 <TextView
@@ -122,7 +121,7 @@
                     android:maxLines="4"
                     android:layout_marginTop="@dimen/dp05"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp13"/>
 
                 <TextView
@@ -132,7 +131,7 @@
                     android:maxLines="4"
                     android:layout_marginTop="@dimen/dp05"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp13"/>
 
                 <TextView
@@ -142,7 +141,7 @@
                     android:layout_marginTop="@dimen/dp05"
                     android:lineSpacingMultiplier="1.5"
                     android:text="@string/volume_4"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="@dimen/sp12"/>
 
             </LinearLayout>
@@ -158,9 +157,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
-                android:layout_marginTop="@dimen/dp03"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
                 android:layout_marginStart="@dimen/dp15"
                 android:src="@drawable/circle_orange_light"/>
 
@@ -172,7 +170,7 @@
                 android:maxLines="4"
                 android:lineSpacingMultiplier="1.5"
                 android:text="@string/volume_5"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>

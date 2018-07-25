@@ -18,7 +18,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 public class URLImageParser implements Html.ImageGetter{
 
-    TextView mTextView;
+    private TextView mTextView;
 
     public URLImageParser(TextView textView) {
         this.mTextView = textView;

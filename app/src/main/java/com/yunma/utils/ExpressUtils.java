@@ -6,9 +6,11 @@ package com.yunma.utils;
 
 public class ExpressUtils {
 
-    public static int getExpressCost(String value, int nums){
+    public static double getExpressCost(String value, int nums){
 
-        if(value.contains("江苏省")||value.contains("上海市")||
+        if (value == null){
+            return 0;
+        }else if(value.contains("江苏省")||value.contains("上海市")||
                 value.contains("浙江省")){
             if(nums<=2){
                 return 8;
@@ -40,11 +42,11 @@ public class ExpressUtils {
         }else if(value.contains("四川省")||value.contains("重庆市")||value.contains("贵州省")||
                 value.contains("广西省")||value.contains("辽宁省")){
             if(nums<=2){
-                return 8;
+                return 14;
             }else{
                 return 8*nums - 2; // 14 + (nums - 2) x 8
             }
-        }else if(value.contains("西藏自治区")||value.contains("新疆维吾尔族自治区")){
+        }else if(value.contains("西藏自治区")||value.contains("新疆维吾尔自治区")){
             if(nums<=2){
                 return 20;
             }else{

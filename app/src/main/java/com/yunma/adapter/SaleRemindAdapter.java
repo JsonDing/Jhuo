@@ -65,9 +65,10 @@ public class SaleRemindAdapter extends RecyclerView.Adapter<SaleRemindAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         GlideUtils.glidNormle(mContext,holder.imgsGoods,
                 ConUtils.SElF_GOODS_IMAGE_URL + beanList.get(position).getGoodsPic().split(",")[0]);
+
         holder.tvGoodsName.setText(beanList.get(position).getGoodsName());
         holder.tvRemain.setText(String.valueOf(beanList.get(position).getNumber()));
         if(beanList.get(position).getNumber()==0){
@@ -84,7 +85,7 @@ public class SaleRemindAdapter extends RecyclerView.Adapter<SaleRemindAdapter.Vi
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                map.put(position, isChecked);
+                map.put(holder.getAdapterPosition(), isChecked);
                 mActivity.test();
             }
         });

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_a4"
+    android:background="@color/a4"
     tools:context="com.yunma.jhuo.activity.mine.InvoiceListActivity">
 
     <LinearLayout
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="增票列表"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -87,7 +87,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/imgsFirst"
                 android:layout_marginStart="@dimen/dp10"
-                android:background="@color/color_b2"/>
+                android:background="@color/b2"/>
 
         </RelativeLayout>
 
@@ -111,7 +111,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/dp10"
                 android:layout_toStartOf="@+id/imgsSecond"
-                android:background="@color/color_b2"/>
+                android:background="@color/b2"/>
 
             <View
                 android:id="@+id/lineSecondRight"
@@ -120,7 +120,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/imgsSecond"
                 android:layout_marginStart="@dimen/dp10"
-                android:background="@color/color_b2"/>
+                android:background="@color/b2"/>
 
         </RelativeLayout>
 
@@ -144,7 +144,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/dp10"
                 android:layout_toStartOf="@+id/imgsThird"
-                android:background="@color/color_b2"/>
+                android:background="@color/b2"/>
 
         </RelativeLayout>
 
@@ -178,7 +178,7 @@
                 <com.yunma.widget.AlignTextView
                     android:layout_width="@dimen/dp82"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp13"
                     app:suffixMode="full_width"
                     app:text="单位名称"/>
@@ -193,7 +193,7 @@
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:hint="请输入单位名称"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="@dimen/sp12"/>
 
             </LinearLayout>
@@ -202,7 +202,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -216,7 +216,7 @@
                 <com.yunma.widget.AlignTextView
                     android:layout_width="@dimen/dp82"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp13"
                     app:suffixMode="full_width"
                     app:text="纳税人识别号"/>
@@ -232,7 +232,7 @@
                     android:gravity="center_vertical"
                     android:digits="@string/only_char_or_number"
                     android:hint="请输入纳税人识别号(18位)"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="@dimen/sp12"/>
 
             </LinearLayout>
@@ -241,7 +241,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -255,7 +255,7 @@
                 <com.yunma.widget.AlignTextView
                     android:layout_width="@dimen/dp82"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp13"
                     app:suffixMode="full_width"
                     app:text="注册地址"/>
@@ -271,7 +271,7 @@
                     android:gravity="center_vertical"
                     android:inputType="text"
                     android:hint="请输入单位注册地址"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="@dimen/sp12"/>
 
             </LinearLayout>
@@ -280,7 +280,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -294,7 +294,7 @@
                 <com.yunma.widget.AlignTextView
                     android:layout_width="@dimen/dp82"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp13"
                     app:suffixMode="full_width"
                     app:text="注册电话"/>
@@ -310,7 +310,7 @@
                     android:gravity="center_vertical"
                     android:hint="请输入单位联系电话"
                     android:inputType="phone"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="@dimen/sp12"/>
 
             </LinearLayout>
@@ -319,7 +319,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -333,7 +333,7 @@
                 <com.yunma.widget.AlignTextView
                     android:layout_width="@dimen/dp82"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp13"
                     app:suffixMode="full_width"
                     app:text="开户银行"/>
@@ -348,7 +348,7 @@
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:hint="请输入开户银行"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="@dimen/sp12"/>
 
             </LinearLayout>
@@ -357,7 +357,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -371,7 +371,7 @@
                 <com.yunma.widget.AlignTextView
                     android:layout_width="@dimen/dp82"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp13"
                     app:suffixMode="full_width"
                     app:text="银行账户"/>
@@ -387,7 +387,7 @@
                     android:gravity="center_vertical"
                     android:hint="请输入银行账户"
                     android:inputType="number"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="@dimen/sp12"/>
 
             </LinearLayout>
@@ -396,7 +396,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -407,7 +407,7 @@
                     android:id="@+id/btnBextStap"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp44"
-                    android:background="@drawable/background_standard_orange"
+                    android:background="@drawable/orange_deep_80"
                     android:text="下一步"
                     android:textColor="@color/white"
                     android:textSize="15sp"/>
@@ -433,7 +433,7 @@
             android:text="填写赠票信息"
             android:gravity="center"
             android:textSize="12sp"
-            android:textColor="@color/color_b3"
+            android:textColor="@color/b3"
             android:layout_height="wrap_content"/>
 
         <TextView
@@ -443,7 +443,7 @@
             android:gravity="center"
             android:text="上传附件"
             android:textSize="12sp"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:layout_height="wrap_content"/>
 
         <TextView
@@ -453,7 +453,7 @@
             android:gravity="center"
             android:text="申请完毕"
             android:textSize="12sp"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
@@ -485,7 +485,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="税务登记副本"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="14sp"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -527,7 +527,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="一般纳税人证书"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="14sp"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -568,7 +568,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="开户银行许可证"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="14sp"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -604,7 +604,7 @@
                 android:text="注：可上传上面的三张证书，或者上传一张三合一营业执照"
                 android:layout_marginStart="@dimen/dp15"
                 android:layout_marginTop="@dimen/dp10"
-                android:textColor="@color/color_b3"/>
+                android:textColor="@color/b3"/>
 
             <LinearLayout
                 android:layout_marginTop="@dimen/dp10"
@@ -619,7 +619,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="三合一营业执照"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="14sp"
                     android:layout_marginStart="@dimen/dp15"/>
 

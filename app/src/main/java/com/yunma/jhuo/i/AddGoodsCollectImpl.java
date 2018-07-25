@@ -45,7 +45,7 @@ public class AddGoodsCollectImpl implements GoodsCollectInterFace.AddGoodsCollec
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     AddGoodsCollectBean.class);
                         } catch (Exception e) {
                             onAddCollect.onAddCollectListener(null,"数据解析出错");
@@ -58,7 +58,7 @@ public class AddGoodsCollectImpl implements GoodsCollectInterFace.AddGoodsCollec
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onAddCollect.onAddCollectListener(null,"数据解析出错");
@@ -78,7 +78,7 @@ public class AddGoodsCollectImpl implements GoodsCollectInterFace.AddGoodsCollec
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onAddCollect.onAddCollectListener(null,"网络错误");
                 }else{
@@ -96,7 +96,7 @@ public class AddGoodsCollectImpl implements GoodsCollectInterFace.AddGoodsCollec
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("添加收藏夹 result: " + result);
+                    //LogUtils.json("添加收藏夹 result: " + result);
                 }
             }
         });

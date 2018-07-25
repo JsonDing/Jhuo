@@ -73,7 +73,7 @@ private int getBodyItemCount(){
 
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof BodyViewHolder) {
             int width = (ScreenUtils.getScreenWidth(context)- DensityUtils.dp2px(context,30))/3;
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,width);
@@ -86,7 +86,7 @@ private int getBodyItemCount(){
                 @Override
                 public void onClick(View v) {
                     if(addPicClick!=null){
-                        addPicClick.prePicClick(position);
+                        addPicClick.prePicClick(holder.getAdapterPosition());
                     }
                 }
             });
@@ -116,7 +116,7 @@ private int getBodyItemCount(){
 
         BodyViewHolder(View view) {
             super(view);
-            imgsGooods = (ImageView) view.findViewById(R.id.imgsAdd);
+            imgsGooods = view.findViewById(R.id.imgsAdd);
         }
     }
 
@@ -125,7 +125,7 @@ private int getBodyItemCount(){
         private ImageView imgsAdd;
         BottomViewHolder(View itemView) {
             super(itemView);
-            imgsAdd = (ImageView) itemView.findViewById(R.id.imgsAdd);
+            imgsAdd = itemView.findViewById(R.id.imgsAdd);
         }
     }
 

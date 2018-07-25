@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="系统设置"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -50,14 +50,14 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:fillViewport="true"
-        android:background="@color/color_a4"
+        android:background="@color/a4"
         android:scrollbars="none">
 
         <LinearLayout
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:text="个人资料"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <RelativeLayout
                 android:id="@+id/layoutAccountManage"
@@ -123,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:text="帐号管理"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -151,7 +151,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
+
+            <RelativeLayout
+                android:onClick="OperationDeclaration"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp44"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="操作说明"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/b1"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp15"/>
+
+                <LinearLayout
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="@dimen/dp44"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical|end"
+                    android:layout_marginEnd="@dimen/dp15"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp13"
+                        android:layout_height="@dimen/dp13"
+                        android:src="@drawable/more_right_big"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp0.5"
+                android:layout_marginStart="@dimen/dp15"
+                android:background="@color/a4"/>
 
             <RelativeLayout
                 android:id="@+id/layoutPopWindowSetting"
@@ -162,9 +202,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="弹窗管理"
+                    android:text="弹窗角标管理"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -192,7 +232,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <RelativeLayout
                 android:id="@+id/layoutSetInvoice"
@@ -205,7 +245,7 @@
                     android:layout_height="wrap_content"
                     android:text="发票信息设置"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -220,7 +260,6 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageView3"
                         android:clickable="false"
                         android:layout_width="@dimen/dp13"
                         android:layout_height="@dimen/dp13"
@@ -234,51 +273,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp0.5"
-                android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
-
-            <RelativeLayout
-                android:id="@+id/layoutEmSetting"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp44"
-                android:clickable="false"
-                android:background="@color/white">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="即时通讯设置"
-                    android:textSize="@dimen/sp14"
-                    android:clickable="false"
-                    android:textColor="@color/color_b1"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/dp15"/>
-
-                <LinearLayout
-                    android:layout_width="@dimen/dp44"
-                    android:layout_height="@dimen/dp44"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center_vertical|end"
-                    android:layout_marginEnd="@dimen/dp15"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/dp13"
-                        android:layout_height="@dimen/dp13"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:src="@drawable/more_right_big"/>
-
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp10"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <RelativeLayout
                 android:id="@+id/layoutClearCache"
@@ -291,7 +287,7 @@
                     android:layout_height="wrap_content"
                     android:text="清理缓存"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -319,7 +315,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <RelativeLayout
                 android:id="@+id/layoutAboutUs"
@@ -332,7 +328,7 @@
                     android:layout_height="wrap_content"
                     android:text="关于我们"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -360,7 +356,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
+
+            <RelativeLayout
+                android:onClick="layoutFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp44"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="问题反馈"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/b1"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp15"/>
+
+                <LinearLayout
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="@dimen/dp44"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical|end"
+                    android:layout_marginEnd="@dimen/dp15"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp13"
+                        android:layout_height="@dimen/dp13"
+                        android:layout_marginStart="@dimen/dp15"
+                        android:src="@drawable/more_right_big"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp0.5"
+                android:layout_marginStart="@dimen/dp15"
+                android:background="@color/a4"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -372,7 +409,7 @@
                     android:layout_height="wrap_content"
                     android:text="联系我们"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -394,47 +431,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp0.5"
                 android:layout_marginStart="@dimen/dp15"
-                android:background="@color/color_a4"/>
-
-            <RelativeLayout
-                android:id="@+id/layoutMoreRegister"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp44"
-                android:background="@color/white">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="批量注册"
-                    android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/dp15"/>
-
-                <LinearLayout
-                    android:layout_width="@dimen/dp44"
-                    android:layout_height="@dimen/dp44"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center_vertical|end"
-                    android:layout_marginEnd="@dimen/dp15"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/dp13"
-                        android:layout_height="@dimen/dp13"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:src="@drawable/more_right_big"/>
-
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp10"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <TextView
                 android:id="@+id/btnExit"
@@ -442,8 +439,8 @@
                 android:layout_height="@dimen/dp44"
                 android:gravity="center"
                 android:background="@color/white"
-                android:text="退出登录"
-                android:textColor="@color/color_b3"/>
+                android:text="切换帐号"
+                android:textColor="@color/b3"/>
 
 
         </LinearLayout>

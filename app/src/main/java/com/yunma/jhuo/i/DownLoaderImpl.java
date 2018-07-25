@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 
 import com.yunma.jhuo.m.DownLoaderInterface;
+import com.yunma.utils.LogUtils;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -21,10 +22,11 @@ public class DownLoaderImpl implements DownLoaderInterface.DownLoadModel {
     private ProgressDialog progressDialog;
 
     @Override
-    public void downLoad(final Activity mActivity, final String url, String path,final
+    public void downLoad(final Activity mActivity, final String url, final String path, final
                          DownLoaderInterface.OnDownLoadListener onDownLoadListener) {
         progressDialog = new ProgressDialog(mActivity);
-        RequestParams requestParams = new RequestParams(url);
+        LogUtils.json("图片下载地址：" + url.replaceAll(" ","%20"));
+        RequestParams requestParams = new RequestParams(url.replaceAll(" ","%20"));
         requestParams.setSaveFilePath(path);
         x.http().get(requestParams, new Callback.ProgressCallback<File>() {
             @Override
@@ -46,14 +48,14 @@ public class DownLoaderImpl implements DownLoaderInterface.DownLoadModel {
 
             @Override
             public void onSuccess(File result) {
-                onDownLoadListener.onDownLoadListener("下载成功");
+                onDownLoadListener.onDownLoadListener("下载成功",path);
                 progressDialog.dismiss();
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 ex.printStackTrace();
-                onDownLoadListener.onDownLoadListener("下载失败，请检查网络和SD卡");
+                onDownLoadListener.onDownLoadListener("下载失败，请检查网络和SD卡",null);
                 progressDialog.dismiss();
             }
 

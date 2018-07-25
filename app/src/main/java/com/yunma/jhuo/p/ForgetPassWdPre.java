@@ -20,8 +20,8 @@ public class ForgetPassWdPre {
         this.model = new ForgetPassWdImpl();
     }
 
-    public void modifyPasswd(Context mContext,String PhoneNumber,String passwd){
-        model.modifyPassWd(mContext,PhoneNumber,passwd,
+    public void modifyPasswd(Context mContext,String PhoneNumber,String passwd,String code){
+        model.modifyPassWd(mContext,PhoneNumber,passwd,code,
                 new OnForgetPassWdListener() {
                     @Override
                     public void modify(SuccessResultBean successResultBean,String msg) {

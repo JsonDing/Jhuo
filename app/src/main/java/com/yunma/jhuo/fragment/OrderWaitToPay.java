@@ -2,27 +2,43 @@ package com.yunma.jhuo.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.*;
-import android.widget.*;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout;
 import com.yunma.R;
 import com.yunma.adapter.OrderWaitToPayAdapter;
 import com.yunma.adapter.OrderWaitToPayAdapter.DelOrder;
 import com.yunma.bean.OrderUnPayResultBean;
 import com.yunma.bean.SuccessResultBean;
+import com.yunma.jhuo.activity.homepage.SpecialPriceActivity;
 import com.yunma.jhuo.m.CancleOrderInterface.CancleOrderView;
 import com.yunma.jhuo.m.OrderWaitToPayInterface.OrderWaitToPayView;
 import com.yunma.jhuo.p.CancleOrderPre;
 import com.yunma.jhuo.p.OrderWaitToPayPre;
-import com.yunma.utils.*;
+import com.yunma.utils.DensityUtils;
+import com.yunma.utils.ScreenUtils;
+import com.yunma.utils.ToastUtils;
+import com.yunma.utils.Typefaces;
+import com.yunma.widget.Titanic;
+import com.yunma.widget.TitanicTextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.carbs.android.library.MDDialog;
+import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 /**
  * Created on 2017-01-10
@@ -30,86 +46,160 @@ import cn.carbs.android.library.MDDialog;
  * @author Json.
  */
 public class OrderWaitToPay extends Fragment implements OrderWaitToPayView,
-        DelOrder, CancleOrderView{
-    @BindView(R.id.lvWaitToPay) ListView lvWaitToPay;
+        DelOrder, CancleOrderView {
+    @BindView(R.id.lvWaitToPay) RecyclerView lvWaitToPay;
     @BindView(R.id.layoutGoLook) RelativeLayout layoutGoLook;
     @BindView(R.id.layoutNull) LinearLayout layoutNull;
+    @BindView(R.id.swipeRefreshLayout) SHSwipeRefreshLayout swipeRefreshLayout;
     private OrderWaitToPayAdapter mAdapter;
     private OrderWaitToPayPre waitToPayPre = null;
-    private CancleOrderPre cancleOrderPre = null;
+    private CustomLinearLayoutManager linearLayoutManager;
     private List<OrderUnPayResultBean.SuccessBean.ListBean> listBean;
-    private List<OrderUnPayResultBean.SuccessBean.ListBean> overdueOrderBean;//过期未支付订单
+    private int nextPage = 2;
+    private int operationType = -1;
+    private int delPos;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.order_wait_to_pay, container, false);
-        ButterKnife.bind(this, view);
+        View rootView = null;
+        rootView = inflater.inflate(R.layout.order_wait_to_pay, container, false);
+        ButterKnife.bind(this, rootView);
+        initSwipeRefreshLayout();
         getDatas();
-        return view;
+
+        return rootView;
+    }
+
+    private void initSwipeRefreshLayout() {
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        final View view1 = inflater.inflate(R.layout.order_head_view, null);
+        final View view2  = inflater.inflate(R.layout.order_foot_view, null);
+        final TitanicTextView tv = view1.findViewById(R.id.textview);
+        tv.setTypeface(Typefaces.get(getActivity(), "Delicious.ttf"));
+        swipeRefreshLayout.setHeaderView(view2);
+        swipeRefreshLayout.setFooterView(view1);
+        swipeRefreshLayout.setLoadmoreEnable(true);
+        swipeRefreshLayout.setRefreshEnable(true);
+        final Titanic titanic = new Titanic();
+        swipeRefreshLayout.setOnRefreshListener(new SHSwipeRefreshLayout.SHSOnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                operationType = 0;
+                linearLayoutManager.setScrollEnabled(false);
+                waitToPayPre.getUnPayOrders(getActivity(),"24","1");
+                swipeRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.finishRefresh();
+                    }
+                }, 1800);
+            }
+
+            @Override
+            public void onLoading() {
+                operationType = 1;
+                linearLayoutManager.setScrollEnabled(false);
+                waitToPayPre.getUnPayOrders(getActivity(),"24",String.valueOf(nextPage));
+                swipeRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        titanic.cancel();
+                        swipeRefreshLayout.finishLoadmore();
+                    }
+                }, 1800);
+            }
+
+            @Override
+            public void onRefreshPulStateChange(float percent, int state) {
+                switch (state) {
+                    case SHSwipeRefreshLayout.NOT_OVER_TRIGGER_POINT:
+                        break;
+                    case SHSwipeRefreshLayout.OVER_TRIGGER_POINT:
+                        break;
+                    case SHSwipeRefreshLayout.START:
+                        break;
+                }
+            }
+
+            @Override
+            public void onLoadmorePullStateChange(float percent, int state) {
+                switch (state) {
+                    case SHSwipeRefreshLayout.NOT_OVER_TRIGGER_POINT:
+                        break;
+                    case SHSwipeRefreshLayout.OVER_TRIGGER_POINT:
+                        break;
+                    case SHSwipeRefreshLayout.START:
+                        titanic.start(tv);
+                        break;
+                }
+            }
+        });
     }
 
     private void getDatas() {
+        lvWaitToPay.setHasFixedSize(true);
+        lvWaitToPay.setItemAnimator(new FadeInLeftAnimator());
+        lvWaitToPay.getItemAnimator().setAddDuration(700);
+        lvWaitToPay.getItemAnimator().setMoveDuration(500);
+        linearLayoutManager = new CustomLinearLayoutManager(getActivity());
+        linearLayoutManager.setScrollEnabled(true);
+        lvWaitToPay.setLayoutManager(linearLayoutManager);
+        mAdapter = new OrderWaitToPayAdapter(getActivity(), OrderWaitToPay.this);
+        lvWaitToPay.setAdapter(mAdapter);
         waitToPayPre = new OrderWaitToPayPre(OrderWaitToPay.this);
-        waitToPayPre.getUnPayOrders(getActivity(),"12","1");
-        cancleOrderPre = new CancleOrderPre(OrderWaitToPay.this);
-    }
-
-
-    @Override
-    public Context getContext() {
-        return getActivity();
+        waitToPayPre.getUnPayOrders(getActivity(),"24","1");
     }
 
     @Override
     public void showCancleInfos(SuccessResultBean resultBean, String msg) {
         if (resultBean == null) {
-            ToastUtils.showError(getContext(), msg);
+            ToastUtils.showError(getActivity(), msg);
         } else {
-            ToastUtils.showSuccess(getContext(), msg);
-            waitToPayPre.getUnPayOrders(getActivity(),"12","1");
+            ToastUtils.showSuccess(getActivity(), msg);
+          //  waitToPayPre.getUnPayOrders(getActivity(),"24","1");
+            mAdapter.refreshData(delPos);
         }
     }
 
     @Override
     public void showOrderInfos(OrderUnPayResultBean resultBean, String msg) {
         if (resultBean == null) {
-            ToastUtils.showError(getContext(), msg);
+            ToastUtils.showError(getActivity(), msg);
             layoutNull.setVisibility(View.VISIBLE);
-            lvWaitToPay.setVisibility(View.GONE);
+            swipeRefreshLayout.setVisibility(View.GONE);
         } else {
             layoutNull.setVisibility(View.GONE);
-            lvWaitToPay.setVisibility(View.VISIBLE);
-        //    listBean = resultBean.getSuccess().getList();
-            overdueOrderBean = new ArrayList<>();
-            for(int i=0;i<resultBean.getSuccess().getList().size();i++){
-                long orderTime = resultBean.getSuccess().getList().get(i).getDate();
-                long systemTime = DateTimeUtils.getCurrentTimeInLong();
-                long costTime = systemTime-orderTime;
-                if(costTime/(1000*60) >20){
-                    overdueOrderBean.add(resultBean.getSuccess().getList().get(i));
-                    resultBean.getSuccess().getList().remove(i);
-                }
-            }
+            swipeRefreshLayout.setVisibility(View.VISIBLE);
             listBean = resultBean.getSuccess().getList();
             if(listBean.size()!=0){
-                if (mAdapter == null) {
-                    mAdapter = new OrderWaitToPayAdapter(getActivity(), OrderWaitToPay.this, listBean);
-                    lvWaitToPay.setAdapter(mAdapter);
-                } else {
+                nextPage = resultBean.getSuccess().getNextPage();
+                if(resultBean.getSuccess().isHasNextPage()){
+                    swipeRefreshLayout.setLoadmoreEnable(true);
+                }else{
+                    swipeRefreshLayout.setLoadmoreEnable(false);
+                }
+                linearLayoutManager.setScrollEnabled(true);
+                if(operationType==0){
                     mAdapter.setListBean(listBean);
-                    mAdapter.notifyDataSetChanged();
+                    swipeRefreshLayout.finishRefresh();
+                }else if(operationType == 1){
+                    mAdapter.addListBean(listBean);
+                    swipeRefreshLayout.finishLoadmore();
+                }else{
+                    mAdapter.addListBean(listBean);
                 }
             }else{
                 layoutNull.setVisibility(View.VISIBLE);
-                lvWaitToPay.setVisibility(View.GONE);
+                swipeRefreshLayout.setVisibility(View.GONE);
             }
         }
     }
 
 
     @Override
-    public void delOrder(String ids) {
+    public void delOrder(String ids,int delPos) {
+        this.delPos = delPos;
         showWornning(ids);
     }
 
@@ -122,7 +212,7 @@ public class OrderWaitToPay extends Fragment implements OrderWaitToPayView,
                 .setContentViewOperator(new MDDialog.ContentViewOperator() {
                     @Override
                     public void operate(View contentView) {
-                        TextView tvShow = (TextView) contentView.findViewById(R.id.tvShow);
+                        TextView tvShow = contentView.findViewById(R.id.tvShow);
                         tvShow.setText("订单一经取消，不可恢复");
                     }
                 })
@@ -130,7 +220,8 @@ public class OrderWaitToPay extends Fragment implements OrderWaitToPayView,
                     @Override
                     public void onClick(View v) {
                         if(ids!= null){
-                            cancleOrderPre.cancleOrder(ids);
+                            CancleOrderPre cancleOrderPre = new CancleOrderPre(OrderWaitToPay.this);
+                            cancleOrderPre.cancleOrder(getActivity(),ids);
                         }else{
                             ToastUtils.showError(getActivity(),"服务器异常，请稍候重试");
                         }
@@ -145,58 +236,26 @@ public class OrderWaitToPay extends Fragment implements OrderWaitToPayView,
                 .show();
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden) {
-            if(waitToPayPre!=null){
-                waitToPayPre.getUnPayOrders(getActivity(),"12","1");
-            }
-        }
-    }
 
     @OnClick(R.id.layoutGoLook)
     public void onClick() {
-        if(overdueOrderBean!= null && overdueOrderBean.size()!=0){
-            layoutNull.setVisibility(View.GONE);
-            lvWaitToPay.setVisibility(View.VISIBLE);
-            if (mAdapter == null) {
-                mAdapter = new OrderWaitToPayAdapter(getActivity(), OrderWaitToPay.this, overdueOrderBean);
-                lvWaitToPay.setAdapter(mAdapter);
-            } else {
-                mAdapter.setListBean(overdueOrderBean);
-                mAdapter.notifyDataSetChanged();
-            }
-        }else{
-            layoutNull.setVisibility(View.VISIBLE);
-            lvWaitToPay.setVisibility(View.GONE);
-        }
-
+        Intent intent = new Intent(getActivity(), SpecialPriceActivity.class);
+        getActivity().startActivity(intent);
     }
 
-    /*@Override
-    public void checkOrderInfos(OrderUnPayResultBean resultBean, String msg) {
-        if(resultBean==null){
-            layoutNull.setVisibility(View.VISIBLE);
-            lvWaitToPay.setVisibility(View.GONE);
-            ToastUtils.showError(getActivity(),msg);
-        }else{
-            assert resultBean.getSuccess().getList() != null;
-            listBean = resultBean.getSuccess().getList();
-            if(listBean.size()!=0){
-                layoutNull.setVisibility(View.GONE);
-                lvWaitToPay.setVisibility(View.VISIBLE);
-                if (mAdapter == null) {
-                    mAdapter = new OrderWaitToPayAdapter(getActivity(), OrderWaitToPay.this, listBean);
-                    lvWaitToPay.setAdapter(mAdapter);
-                } else {
-                    mAdapter.setListBean(listBean);
-                    mAdapter.notifyDataSetChanged();
-                }
-            }else{
-                layoutNull.setVisibility(View.VISIBLE);
-                lvWaitToPay.setVisibility(View.GONE);
-            }
+    private class CustomLinearLayoutManager extends LinearLayoutManager {
+        private boolean isScrollEnabled = true;
+        public CustomLinearLayoutManager(Context context) {
+            super(context);
         }
-    }*/
+
+        public void setScrollEnabled(boolean flag) {
+            this.isScrollEnabled = flag;
+        }
+
+        @Override
+        public boolean canScrollVertically() {
+            return isScrollEnabled && super.canScrollVertically();
+        }
+    }
 }

@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="发票须知"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp17"/>
     </LinearLayout>
 
@@ -48,7 +48,7 @@
                 android:paddingEnd="@dimen/dp15"
                 android:text="@string/tick_0"
                 android:maxLines="2"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>
@@ -74,7 +74,7 @@
                 android:paddingEnd="@dimen/dp15"
                 android:text="@string/tick_1"
                 android:maxLines="2"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>
@@ -100,7 +100,7 @@
                 android:paddingEnd="@dimen/dp15"
                 android:maxLines="3"
                 android:text="@string/tick_2"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>

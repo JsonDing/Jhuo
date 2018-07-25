@@ -170,6 +170,19 @@
 -keep class com.alipay.sdk.app.PayTask{ public *;}
 -keep class com.alipay.sdk.app.AuthTask{ public *;}
 
+-keep class com.alipay.sdk.app.H5PayCallback {
+    <fields>;
+    <methods>;
+}
+-keep class com.alipay.android.phone.mrpc.core.** { *; }
+-keep class com.alipay.apmobilesecuritysdk.** { *; }
+-keep class com.alipay.mobile.framework.service.annotation.** { *; }
+-keep class com.alipay.mobilesecuritysdk.face.** { *; }
+-keep class com.alipay.tscenter.biz.rpc.** { *; }
+-keep class org.json.alipay.** { *; }
+-keep class com.alipay.tscenter.** { *; }
+-keep class com.ta.utdid2.** { *;}
+-keep class com.ut.device.** { *;}
 ## --------------------------------
 ## butterknife
 ## --------------------------------
@@ -201,3 +214,65 @@
 	-dontwarn com.mob.**
 	-dontwarn cn.sharesdk.**
 	-dontwarn **.R$*
+
+## --------------------------------
+## wechat pay
+## --------------------------------
+
+-keep class com.tencent.mm.sdk.** {
+   *;
+}
+
+
+## --------------------------------
+## UMeng 推送
+## --------------------------------
+
+-dontwarn com.taobao.**
+-dontwarn anet.channel.**
+-dontwarn anetwork.channel.**
+-dontwarn org.android.**
+-dontwarn org.apache.thrift.**
+-dontwarn com.xiaomi.**
+-dontwarn com.huawei.**
+
+-keepattributes *Annotation*
+
+-keep class com.taobao.** {*;}
+-keep class org.android.** {*;}
+-keep class anet.channel.** {*;}
+-keep class com.umeng.** {*;}
+-keep class com.xiaomi.** {*;}
+-keep class com.huawei.** {*;}
+-keep class org.apache.thrift.** {*;}
+
+-keep class com.alibaba.sdk.android.**{*;}
+-keep class com.ut.**{*;}
+-keep class com.ta.**{*;}
+
+-keep public class **.R$*{
+   public static final int *;
+}
+
+#（可选）避免Log打印输出
+-assumenosideeffects class android.util.Log {
+   public static *** v(...);
+   public static *** d(...);
+   public static *** i(...);
+   public static *** w(...);
+ }
+
+ #***********************************************
+ #******              百度地图              ******
+ #***********************************************
+ -keep class com.baidu.** {*;}
+ -keep class vi.com.** {*;}
+ -dontwarn com.baidu.**
+
+ #***********************************************
+ #******              GreenDao             ******
+ #***********************************************
+  -keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
+      public static void dropTable(org.greenrobot.greendao.database.Database, boolean);
+      public static void createTable(org.greenrobot.greendao.database.Database, boolean);
+  }

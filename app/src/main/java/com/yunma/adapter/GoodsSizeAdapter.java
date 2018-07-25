@@ -13,7 +13,7 @@ import java.util.*;
  *
  * @author Json.
  */
-public class GoodsSizeAdapter extends BaseAdapter {
+public class GoodsSizeAdapter extends BaseAdapter{
     private List<String> mSize = new ArrayList<>();
     private LayoutInflater layoutInflater;
     private OnAddBasketCarts onAddBasketCarts;
@@ -45,7 +45,7 @@ public class GoodsSizeAdapter extends BaseAdapter {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.size_tag_item, parent, false);
-            viewHolder.tvName = (TextView) convertView.findViewById(R.id.tv_tag);
+            viewHolder.tvName = convertView.findViewById(R.id.tv_tag);
 
             convertView.setTag(viewHolder);
         } else {

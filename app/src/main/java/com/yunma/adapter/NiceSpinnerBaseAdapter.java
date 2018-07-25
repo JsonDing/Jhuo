@@ -13,7 +13,7 @@ import com.yunma.R;
  */
 
 @SuppressWarnings("unused")
-public abstract class NiceSpinnerBaseAdapter<T> extends BaseAdapter {
+public abstract class NiceSpinnerBaseAdapter<T> extends BaseAdapter{
     protected Context mContext;
     protected int mSelectedIndex;
     protected int mTextColor;
@@ -32,7 +32,7 @@ public abstract class NiceSpinnerBaseAdapter<T> extends BaseAdapter {
 
         if (convertView == null) {
             convertView = View.inflate(mContext, R.layout.spinner_list_item, null);
-            textView = (TextView) convertView.findViewById(R.id.tv_tinted_spinner);
+            textView = convertView.findViewById(R.id.tv_tinted_spinner);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 textView.setBackground(ContextCompat.getDrawable(mContext, mBackgroundSelector));

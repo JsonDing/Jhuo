@@ -13,7 +13,6 @@ import com.yunma.bean.RecipientManageBean.SuccessBean.*;
 public class ConfirmOrderInterface {
 
     public interface ConfirmOrderView{
-        Context getContext();
         void toShowDefaultAddress(ListBean listBean,String msg);
     }
 

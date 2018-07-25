@@ -24,19 +24,32 @@
             android:layout_height="@dimen/dp44">
 
             <TextView
+                android:id="@+id/tvCancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消"
+                android:textSize="@dimen/sp14"
+                android:textColor="@color/b2"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/dp15"/>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="收货地址"
                 android:textSize="@dimen/sp15"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textStyle="bold"
                 android:layout_centerInParent="true"/>
 
-            <ImageView
-                android:id="@+id/imgClose"
-                android:layout_width="@dimen/dp18"
-                android:layout_height="@dimen/dp18"
-                android:src="@drawable/close"
+            <TextView
+                android:id="@+id/tvConfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="确定"
+                android:textSize="@dimen/sp14"
+                android:textColor="@color/b3"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/dp15"/>
@@ -45,7 +58,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp0.5"
-            android:background="@color/color_a5"/>
+            android:background="@color/a5"/>
         
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,7 +106,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp0.5"
-            android:background="@color/color_a5"/>
+            android:background="@color/a5"/>
 
     </LinearLayout>
 

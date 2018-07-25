@@ -37,7 +37,7 @@
             android:background="@color/white"
             android:layout_height="@dimen/dp44"
             android:text="支付订单成功"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp17"/>
 
         <LinearLayout
@@ -66,7 +66,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp10"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                         android:layout_marginTop="@dimen/dp19"
                         android:layout_marginStart="@dimen/dp39"
                         android:layout_toEndOf="@+id/imgExpreessLogo"
-                        android:textColor="@color/color_b1"
+                        android:textColor="@color/b1"
                         android:textSize="@dimen/sp16"/>
 
                     <TextView
@@ -107,7 +107,7 @@
                         android:layout_marginStart="@dimen/dp39"
                         android:layout_toEndOf="@+id/imgExpreessLogo"
                         android:layout_below="@+id/tvComPletedPay"
-                        android:textColor="@color/color_b1"
+                        android:textColor="@color/b1"
                         android:textSize="@dimen/sp13"/>
 
                     <TextView
@@ -119,7 +119,7 @@
                         android:layout_marginStart="@dimen/dp10"
                         android:layout_toEndOf="@+id/textview"
                         android:layout_below="@+id/tvComPletedPay"
-                        android:textColor="@color/color_b4"
+                        android:textColor="@color/b4"
                         android:textSize="@dimen/sp13"/>
 
 
@@ -131,7 +131,7 @@
                         android:layout_marginStart="@dimen/dp39"
                         android:layout_toEndOf="@+id/imgExpreessLogo"
                         android:layout_below="@+id/textview"
-                        android:textColor="@color/color_b1"
+                        android:textColor="@color/b1"
                         android:textSize="@dimen/sp13"/>
 
                     <TextView
@@ -143,7 +143,7 @@
                         android:layout_marginStart="@dimen/dp10"
                         android:layout_toEndOf="@+id/textview"
                         android:layout_below="@+id/tvPayway"
-                        android:textColor="@color/color_b4"
+                        android:textColor="@color/b4"
                         android:textSize="@dimen/sp13"/>
 
                 </RelativeLayout>
@@ -160,7 +160,7 @@
                         android:layout_height="35dp"
                         android:text="订单详情"
                         android:textSize="@dimen/sp13"
-                        android:textColor="@color/color_b1"
+                        android:textColor="@color/b1"
                         android:background="@drawable/bg_button_normal"/>
 
                     <Button
@@ -170,7 +170,7 @@
                         android:text="返回主页"
                         android:layout_marginStart="@dimen/dp26"
                         android:textSize="@dimen/sp13"
-                        android:textColor="@color/color_b1"
+                        android:textColor="@color/b1"
                         android:background="@drawable/bg_button_normal"/>
                 </LinearLayout>
 
@@ -179,7 +179,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp38"
-                android:background="@color/color_a4">
+                android:background="@color/a4">
 
                 <TextView
                     android:id="@+id/text1"
@@ -226,7 +226,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp10"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
         </LinearLayout>
 
     </ScrollView>

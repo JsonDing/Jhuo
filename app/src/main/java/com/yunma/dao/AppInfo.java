@@ -10,7 +10,7 @@ public class AppInfo {
     @Id
     private Long id;
     @Property(nameInDb = "isFirst")
-    private int isFirst;//0:未显示过展示页；1：显示过
+    private int isFirst;//0:首次打开app；1：打开过
     @Property(nameInDb = "isLogin")
     private int isLogin;//判断用户当前是否在在线，0：不在线；1：在线
     @Property(nameInDb = "token")

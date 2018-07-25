@@ -65,7 +65,7 @@ public class ToGetInvoice extends MyCompatActivity {
         if (currentPos < 10) {
             currentMonth = currentMonth.substring(1, 2) + "月";
         }
-        LogUtils.log("-----> " + currentMonth);
+        LogUtils.json("-----> " + currentMonth);
     }
 
     private void setDatas() {
@@ -90,7 +90,7 @@ public class ToGetInvoice extends MyCompatActivity {
                 AppManager.getAppManager().finishActivity(this);
                 break;
             case R.id.btnGoInvoice:
-                Intent intent = new Intent(ToGetInvoice.this,InvoiceInfos.class);
+                Intent intent = new Intent(ToGetInvoice.this,InvoiceInfosActivity.class);
                 startActivity(intent);
                 break;
         }

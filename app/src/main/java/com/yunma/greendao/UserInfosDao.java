@@ -33,6 +33,11 @@ public class UserInfosDao extends AbstractDao<UserInfos, Long> {
         public final static Property NickName = new Property(6, String.class, "nickName", false, "nickName");
         public final static Property Gender = new Property(7, String.class, "gender", false, "gender");
         public final static Property RealName = new Property(8, String.class, "realName", false, "realName");
+        public final static Property Qq = new Property(9, String.class, "qq", false, "qq");
+        public final static Property WeChat = new Property(10, String.class, "weChat", false, "weChat");
+        public final static Property RoleName = new Property(11, String.class, "roleName", false, "roleName");
+        public final static Property RoleId = new Property(12, int.class, "roleId", false, "roleId");
+        public final static Property Points = new Property(13, int.class, "points", false, "points");
     }
 
 
@@ -56,7 +61,12 @@ public class UserInfosDao extends AbstractDao<UserInfos, Long> {
                 "\"isAutoLogin\" INTEGER NOT NULL ," + // 5: isAutoLogin
                 "\"nickName\" TEXT," + // 6: nickName
                 "\"gender\" TEXT," + // 7: gender
-                "\"realName\" TEXT);"); // 8: realName
+                "\"realName\" TEXT," + // 8: realName
+                "\"qq\" TEXT," + // 9: qq
+                "\"weChat\" TEXT," + // 10: weChat
+                "\"roleName\" TEXT," + // 11: roleName
+                "\"roleId\" INTEGER NOT NULL ," + // 12: roleId
+                "\"points\" INTEGER NOT NULL );"); // 13: points
     }
 
     /** Drops the underlying database table. */
@@ -109,6 +119,23 @@ public class UserInfosDao extends AbstractDao<UserInfos, Long> {
         if (realName != null) {
             stmt.bindString(9, realName);
         }
+ 
+        String qq = entity.getQq();
+        if (qq != null) {
+            stmt.bindString(10, qq);
+        }
+ 
+        String weChat = entity.getWeChat();
+        if (weChat != null) {
+            stmt.bindString(11, weChat);
+        }
+ 
+        String roleName = entity.getRoleName();
+        if (roleName != null) {
+            stmt.bindString(12, roleName);
+        }
+        stmt.bindLong(13, entity.getRoleId());
+        stmt.bindLong(14, entity.getPoints());
     }
 
     @Override
@@ -155,6 +182,23 @@ public class UserInfosDao extends AbstractDao<UserInfos, Long> {
         if (realName != null) {
             stmt.bindString(9, realName);
         }
+ 
+        String qq = entity.getQq();
+        if (qq != null) {
+            stmt.bindString(10, qq);
+        }
+ 
+        String weChat = entity.getWeChat();
+        if (weChat != null) {
+            stmt.bindString(11, weChat);
+        }
+ 
+        String roleName = entity.getRoleName();
+        if (roleName != null) {
+            stmt.bindString(12, roleName);
+        }
+        stmt.bindLong(13, entity.getRoleId());
+        stmt.bindLong(14, entity.getPoints());
     }
 
     @Override
@@ -173,7 +217,12 @@ public class UserInfosDao extends AbstractDao<UserInfos, Long> {
             cursor.getShort(offset + 5) != 0, // isAutoLogin
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // nickName
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // gender
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // realName
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // realName
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // qq
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // weChat
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // roleName
+            cursor.getInt(offset + 12), // roleId
+            cursor.getInt(offset + 13) // points
         );
         return entity;
     }
@@ -189,6 +238,11 @@ public class UserInfosDao extends AbstractDao<UserInfos, Long> {
         entity.setNickName(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setGender(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setRealName(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setQq(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setWeChat(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setRoleName(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setRoleId(cursor.getInt(offset + 12));
+        entity.setPoints(cursor.getInt(offset + 13));
      }
     
     @Override

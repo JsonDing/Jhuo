@@ -23,8 +23,8 @@ public class DownLoaderPre {
     public void startDown(Activity mActivity,String url, String path){
         mModel.downLoad(mActivity, url, path, new DownLoaderInterface.OnDownLoadListener() {
             @Override
-            public void onDownLoadListener(String msg) {
-                mView.showDownLoadInfo(msg);
+            public void onDownLoadListener(String msg,String path) {
+                mView.showDownLoadInfo(msg,path);
             }
         });
     }

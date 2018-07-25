@@ -1,29 +1,46 @@
 package com.yunma.jhuo.fragment;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.*;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.yunma.R;
-import com.yunma.jhuo.activity.homepage.SpecialPriceActivity;
-import com.yunma.jhuo.activity.mine.*;
 import com.yunma.adapter.OrderWaitToReceiveAdapter;
 import com.yunma.bean.OrderUnPayResultBean;
 import com.yunma.bean.OrderUnPayResultBean.SuccessBean.ListBean;
 import com.yunma.bean.SuccessResultBean;
+import com.yunma.jhuo.activity.homepage.SpecialPriceActivity;
+import com.yunma.jhuo.activity.mine.ApplyAfterSalesActivity;
+import com.yunma.jhuo.activity.mine.ApplySingleAfterSalesActivity;
+import com.yunma.jhuo.activity.mine.InvoiceInfosActivity;
+import com.yunma.jhuo.activity.mine.MyOrderManage;
+import com.yunma.jhuo.activity.mine.OrderTraceActivity;
 import com.yunma.jhuo.m.CancleOrderInterface.CancleOrderView;
 import com.yunma.jhuo.m.OrderHadConfirmInterFace.OnAdapterClick;
 import com.yunma.jhuo.m.OrderWaitToReceiveInterface.OrderWaitToReceiveView;
 import com.yunma.jhuo.p.CancleOrderPre;
 import com.yunma.jhuo.p.OrderWaitToReceivePre;
-import com.yunma.utils.*;
+import com.yunma.utils.AppManager;
+import com.yunma.utils.DateTimeUtils;
+import com.yunma.utils.DensityUtils;
+import com.yunma.utils.EmptyUtil;
+import com.yunma.utils.LogUtils;
+import com.yunma.utils.ScreenUtils;
+import com.yunma.utils.ToastUtils;
 
 import java.util.List;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.carbs.android.library.MDDialog;
 
 /**
@@ -33,16 +50,12 @@ import cn.carbs.android.library.MDDialog;
  */
 public class OrderWaitToReceive  extends Fragment implements
         OrderWaitToReceiveView, OnAdapterClick,CancleOrderView {
-    @BindView(R.id.lvWaitToReceive)
-    ListView lvWaitToReceive;
-    @BindView(R.id.layoutGoLook)
-    RelativeLayout layoutGoLook;
-    @BindView(R.id.layoutNull)
-    LinearLayout layoutNull;
+    @BindView(R.id.lvWaitToReceive) ListView lvWaitToReceive;
+    @BindView(R.id.layoutGoLook) RelativeLayout layoutGoLook;
+    @BindView(R.id.layoutNull) LinearLayout layoutNull;
     private Context mContext;
     private OrderWaitToReceiveAdapter mAdapter;
     private OrderWaitToReceivePre receivePre = null;
-    private CancleOrderPre cancleOrderPre = null;
     private List<OrderUnPayResultBean.SuccessBean.ListBean> listBean = null;
 
     @Override
@@ -55,37 +68,25 @@ public class OrderWaitToReceive  extends Fragment implements
     }
 
     private void getDatas() {
-        receivePre = new OrderWaitToReceivePre(this);
-        receivePre.getUnReceiveOrders();
-        cancleOrderPre = new CancleOrderPre(this);
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
         mContext = getActivity();
-    }
-
-
-    @Override
-    public Context getContext() {
-        return mContext;
+        receivePre = new OrderWaitToReceivePre(this);
+        receivePre.getUnReceiveOrders(getActivity(),"100","1");
     }
 
     @Override
     public void showCancleInfos(SuccessResultBean resultBean, String msg) {
         if (resultBean == null) {
-            ToastUtils.showError(getContext(), msg);
+            ToastUtils.showError(getActivity(), msg);
         } else {
-            ToastUtils.showSuccess(getContext(), msg);
-            receivePre.getUnReceiveOrders();
+            ToastUtils.showSuccess(getActivity(), msg);
+            receivePre.getUnReceiveOrders(getActivity(),"100","1");
         }
     }
 
     @Override
     public void showOrderInfos(OrderUnPayResultBean resultBean, String msg) {
         if(resultBean == null){
-            ToastUtils.showError(getContext(),msg);
+            ToastUtils.showError(getActivity(),msg);
             layoutNull.setVisibility(View.VISIBLE);
             lvWaitToReceive.setVisibility(View.GONE);
         }else{
@@ -119,7 +120,6 @@ public class OrderWaitToReceive  extends Fragment implements
         new MDDialog.Builder(mContext)
                 .setIcon(R.drawable.logo_sm)
                 .setMessages(messages)
-             //   .setContentView(R.layout.wheelview_add_size)
                 .setContentViewOperator(new MDDialog.ContentViewOperator() {
                     @Override
                     public void operate(View contentView) {
@@ -128,7 +128,8 @@ public class OrderWaitToReceive  extends Fragment implements
                 .setPositiveButton(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        cancleOrderPre.cancleOrder(id);
+                        CancleOrderPre cancleOrderPre = new CancleOrderPre(OrderWaitToReceive.this);
+                        cancleOrderPre.cancleOrder(getActivity(),id);
                     }
                 })
                 .setCancelable(false)
@@ -146,11 +147,11 @@ public class OrderWaitToReceive  extends Fragment implements
         Intent intent;
         Bundle bundle;
         if(totalNums == 1){
-            intent = new Intent(mContext,ApplySingleGoodsAftermarket.class);
+            intent = new Intent(mContext,ApplySingleAfterSalesActivity.class);
             bundle = new Bundle();
             bundle.putSerializable("orderdetails",orderdetails.getOrderdetails().get(0));
         }else{
-            intent = new Intent(mContext,ApplyMoreGoodsAftermarket.class);
+            intent = new Intent(mContext,ApplyAfterSalesActivity.class);
             bundle = new Bundle();
             bundle.putSerializable("orderdetails",orderdetails);
         }
@@ -160,7 +161,7 @@ public class OrderWaitToReceive  extends Fragment implements
 
     @Override
     public void onTraceClickListener(int orderId,String code,String name,String number) {
-        Intent intent = new Intent(mContext,OrderTrace.class);
+        Intent intent = new Intent(mContext,OrderTraceActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("name",name);
         bundle.putString("code",code);
@@ -172,10 +173,10 @@ public class OrderWaitToReceive  extends Fragment implements
 
     @Override
     public void onGetTicketListener(int position, ListBean orderdetails) {
-        LogUtils.log("---> 当前日期 " + DateTimeUtils.getCurrentDay());
+        LogUtils.json("---> 当前日期 " + DateTimeUtils.getCurrentDay());
         if(10 <= DateTimeUtils.getCurrentDay()
                 &&DateTimeUtils.getCurrentDay()<=15){
-            Intent intent = new Intent(getContext(),InvoiceInfos.class);
+            Intent intent = new Intent(getActivity(),InvoiceInfosActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("orderid",String.valueOf(orderdetails.getId()));
             bundle.putString("totalPrice",String.valueOf(orderdetails.getTotalcost()));
@@ -213,8 +214,8 @@ public class OrderWaitToReceive  extends Fragment implements
 
     @OnClick(R.id.layoutGoLook)
     public void onClick() {
-        Intent intent = new Intent(getContext(), SpecialPriceActivity.class);
-        getContext().startActivity(intent);
+        Intent intent = new Intent(getActivity(), SpecialPriceActivity.class);
+        getActivity().startActivity(intent);
         AppManager.getAppManager().finishActivity(MyOrderManage.orderManageContext);
     }
 }

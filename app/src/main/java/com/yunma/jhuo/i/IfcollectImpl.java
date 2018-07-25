@@ -32,6 +32,7 @@ public class IfcollectImpl implements GoodsCollectInterFace.IfcollectModel {
         params.setAsJsonContent(true);
         Gson gson = new Gson();
         String strParams = gson.toJson(paramsBean);
+        LogUtils.test("查询是否收藏：" + strParams);
         params.setBodyContent(strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -45,7 +46,7 @@ public class IfcollectImpl implements GoodsCollectInterFace.IfcollectModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     AddGoodsCollectBean.class);
                         } catch (Exception e) {
                             onListener.onListener(null,"数据解析出错");
@@ -58,7 +59,7 @@ public class IfcollectImpl implements GoodsCollectInterFace.IfcollectModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onListener.onListener(null,"数据解析出错");
@@ -78,7 +79,7 @@ public class IfcollectImpl implements GoodsCollectInterFace.IfcollectModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onListener.onListener(null,"网络错误");
                 }else{
@@ -96,7 +97,7 @@ public class IfcollectImpl implements GoodsCollectInterFace.IfcollectModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("是否收藏 result: " + result);
+                    LogUtils.test("是否收藏 result: " + result);
                 }
             }
         });

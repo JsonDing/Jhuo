@@ -34,7 +34,7 @@ public class ExpressTracesModeImpl implements ExpressTracesInterface.ExpressTrac
         Gson gson = new Gson();
         String strParams = gson.toJson(resultBean);
         params.setBodyContent(strParams);
-        LogUtils.log("requst: " + strParams);
+        LogUtils.json("requst: " + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -47,7 +47,7 @@ public class ExpressTracesModeImpl implements ExpressTracesInterface.ExpressTrac
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            expressTracesBean = GsonUtils.getObject(result,
+                            expressTracesBean = GsonUtils.GsonToBean(result,
                                     ExpressTracesBean.class);
                         } catch (Exception e) {
                             onlistener.toShowExpressTraces(null,"数据解析出错");
@@ -60,7 +60,7 @@ public class ExpressTracesModeImpl implements ExpressTracesInterface.ExpressTrac
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onlistener.toShowExpressTraces(null,"数据解析出错");
@@ -79,7 +79,7 @@ public class ExpressTracesModeImpl implements ExpressTracesInterface.ExpressTrac
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onlistener.toShowExpressTraces(null,"网络错误");
                 }else{
@@ -97,7 +97,7 @@ public class ExpressTracesModeImpl implements ExpressTracesInterface.ExpressTrac
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("物流跟踪 result: " + result);
+                   // LogUtils.json("物流跟踪 result: " + result);
                 }
             }
         });

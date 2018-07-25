@@ -31,7 +31,6 @@ public class GetQiniuTokenImpl implements GetQiniuTokenModel {
         qiniuBean.setType(type);
         Gson gson = new Gson();
         String strLogin = gson.toJson(qiniuBean);
-        LogUtils.log("strLogin: ------------>" + strLogin);
         params.setAsJsonContent(true);
         params.setBodyContent(strLogin);
         x.http().post(params, new Callback.CacheCallback<String>() {
@@ -49,7 +48,7 @@ public class GetQiniuTokenImpl implements GetQiniuTokenModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     QiniuResultBean.class);
                         } catch (Exception e) {
                             onGetQiniuTokenListener.onListener(null,"数据解析错误");
@@ -57,11 +56,11 @@ public class GetQiniuTokenImpl implements GetQiniuTokenModel {
                             e.printStackTrace();
                             return;
                         }
-                        LogUtils.log("七牛获取成功success: " );
+                        LogUtils.json("七牛获取成功success: " );
                         onGetQiniuTokenListener.onListener(resultBean,"Token获取成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onGetQiniuTokenListener.onListener(null,"数据解析错误");
@@ -84,12 +83,12 @@ public class GetQiniuTokenImpl implements GetQiniuTokenModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                     onGetQiniuTokenListener.onListener(null,"网络异常");
                 } else { // 其他错误
                     onGetQiniuTokenListener.onListener(null,"服务器未响应，请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -102,7 +101,7 @@ public class GetQiniuTokenImpl implements GetQiniuTokenModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("七牛获取成功finish: " + result);
+                  //  LogUtils.json("七牛获取成功finish: " + result);
                 }
             }
         });

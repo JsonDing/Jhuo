@@ -2,19 +2,28 @@ package com.yunma.jhuo.activity.mine;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.widget.*;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import com.tencent.connect.auth.QQAuth;
-import com.tencent.open.wpa.WPA;
 import com.yunma.R;
-import com.yunma.jhuo.fragment.*;
+import com.yunma.jhuo.activity.ContactUsActivity;
+import com.yunma.jhuo.fragment.OrderWaitToPay;
+import com.yunma.jhuo.fragment.OrderWaitToReceive;
+import com.yunma.jhuo.fragment.OrderWaitToSend;
 import com.yunma.jhuo.general.MyCompatActivity;
 import com.yunma.utils.AppManager;
 import com.yunma.utils.ScreenUtils;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class MyOrderManage extends MyCompatActivity {
@@ -37,6 +46,7 @@ public class MyOrderManage extends MyCompatActivity {
     private OrderWaitToSend orderWaitToSend = null;
     private OrderWaitToReceive orderWaitToReceive = null;
     private FragmentManager fragmentManager = null;
+    private int selectPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +56,13 @@ public class MyOrderManage extends MyCompatActivity {
         AppManager.getAppManager().addActivity(this);
         initStatusBar();
         fragmentManager = getFragmentManager();
-        getIntentValue();
+        selectPos = this.getIntent().getExtras().getInt("position");
+        setTabSelection(selectPos);
     }
-
-    private void getIntentValue() {
-        int position = this.getIntent().getExtras().getInt("position");
-        setTabSelection(position);
-    }
-
 
     private void setTabSelection(int position) {
-        // 每次选中之前先清楚掉上次的选中状态
         clearSelection();
-        // 开启一个Fragment事务
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(android.R.animator.fade_in,
-                android.R.animator.fade_out);
-        // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
         hideFragments(transaction);
         switch (position) {
             case 0:
@@ -72,7 +72,7 @@ public class MyOrderManage extends MyCompatActivity {
                 } else {
                     transaction.show(orderWaitToPay);
                 }
-                tvWaitPay.setTextColor(getResources().getColor(R.color.color_b3));
+                tvWaitPay.setTextColor(ContextCompat.getColor(this,R.color.b3));
                 waitPayLine.setVisibility(View.VISIBLE);
                 break;
             case 1:
@@ -82,7 +82,7 @@ public class MyOrderManage extends MyCompatActivity {
                 } else {
                     transaction.show(orderWaitToSend);
                 }
-                tvSendOut.setTextColor(getResources().getColor(R.color.color_b3));
+                tvSendOut.setTextColor(ContextCompat.getColor(this,R.color.b3));
                 sendOutLine.setVisibility(View.VISIBLE);
                 break;
             case 2:
@@ -92,18 +92,19 @@ public class MyOrderManage extends MyCompatActivity {
                 } else {
                     transaction.show(orderWaitToReceive);
                 }
-                tvReceipt.setTextColor(getResources().getColor(R.color.color_b3));
+                tvReceipt.setTextColor(ContextCompat.getColor(this,R.color.b3));
                 receiptLine.setVisibility(View.VISIBLE);
                 break;
         }
-        transaction.commit();
+       // transaction.commit();
+        transaction.commitAllowingStateLoss();
 
     }
 
     private void clearSelection() {
-        tvWaitPay.setTextColor(getResources().getColor(R.color.color_b1));
-        tvSendOut.setTextColor(getResources().getColor(R.color.color_b1));
-        tvReceipt.setTextColor(getResources().getColor(R.color.color_b1));
+        tvWaitPay.setTextColor(ContextCompat.getColor(this,R.color.b1));
+        tvSendOut.setTextColor(ContextCompat.getColor(this,R.color.b1));
+        tvReceipt.setTextColor(ContextCompat.getColor(this,R.color.b1));
         waitPayLine.setVisibility(View.INVISIBLE);
         sendOutLine.setVisibility(View.INVISIBLE);
         receiptLine.setVisibility(View.INVISIBLE);
@@ -135,24 +136,26 @@ public class MyOrderManage extends MyCompatActivity {
                 AppManager.getAppManager().finishActivity(this);
                 break;
             case R.id.layoutWaitPay:
-                setTabSelection(0);
+                if (selectPos != 0) {
+                    selectPos = 0;
+                    setTabSelection(0);
+                }
                 break;
             case R.id.layoutSendOut:
-                setTabSelection(1);
+                if (selectPos != 1) {
+                    selectPos = 1;
+                    setTabSelection(1);
+                }
                 break;
             case R.id.layoutReceipt:
-                setTabSelection(2);
+                if (selectPos != 2) {
+                    selectPos = 2;
+                    setTabSelection(2);
+                }
                 break;
             case R.id.layoutNews:
-                QQAuth mqqAuth = QQAuth.createInstance("1106058796",getApplicationContext());
-                WPA mWPA = new WPA(this, mqqAuth.getQQToken());
-                String ESQ = "2252162352";  //客服QQ号
-                int ret = mWPA.startWPAConversation(MyOrderManage.this,ESQ,null);
-                if (ret != 0) {
-                    Toast.makeText(getApplicationContext(),
-                            "抱歉，联系客服出现了错误~. error:" + ret,
-                            Toast.LENGTH_LONG).show();
-                }
+                Intent intent = new Intent(this,ContactUsActivity.class);
+                startActivity(intent);
                 break;
         }
     }

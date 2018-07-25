@@ -32,7 +32,6 @@ public class UploaderToServiceImpl implements UploaderToServiceModel {
         paramsBean.setPic(path);
         Gson gson = new Gson();
         String strLogin = gson.toJson(paramsBean);
-        LogUtils.log("strLogin: ------------>" + strLogin);
         params.setAsJsonContent(true);
         params.setBodyContent(strLogin);
         x.http().post(params, new Callback.CacheCallback<String>() {
@@ -50,7 +49,7 @@ public class UploaderToServiceImpl implements UploaderToServiceModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onListener.OnUploaderListener(null,"数据解析出错!");
@@ -60,7 +59,7 @@ public class UploaderToServiceImpl implements UploaderToServiceModel {
                         onListener.OnUploaderListener(resultBean,"头像更新成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onListener.OnUploaderListener(null,"数据解析出错!");
@@ -81,11 +80,11 @@ public class UploaderToServiceImpl implements UploaderToServiceModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onListener.OnUploaderListener(null,"网络异常!");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     onListener.OnUploaderListener(null,"服务器未响应，请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -98,7 +97,7 @@ public class UploaderToServiceImpl implements UploaderToServiceModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("UpLoader result: " + result);
+                 //   LogUtils.json("UpLoader result: " + result);
                 }
             }
         });

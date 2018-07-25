@@ -31,7 +31,7 @@ public class WriteExpressModelImpl implements GoodsRefundInterface.WriteExpressM
         expressBean.setExpressnumber(expressCode);
         Gson gson = new Gson();
         String strExpressBean= gson.toJson(expressBean);
-        LogUtils.log("strexpressBean: ------------>" + strExpressBean);
+        LogUtils.json("strexpressBean: ------------>" + strExpressBean);
         params.setAsJsonContent(true);
         params.setBodyContent(strExpressBean);
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -45,7 +45,7 @@ public class WriteExpressModelImpl implements GoodsRefundInterface.WriteExpressM
 
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     WriteExpressResultBean.class);
                         } catch (Exception e) {
                             listener.onListener(null,"数据解析出错!");
@@ -55,7 +55,7 @@ public class WriteExpressModelImpl implements GoodsRefundInterface.WriteExpressM
                         listener.onListener(resultBean,"物流添加成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             listener.onListener(null,"数据解析出错!");
@@ -76,11 +76,11 @@ public class WriteExpressModelImpl implements GoodsRefundInterface.WriteExpressM
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                    listener.onListener(null,"网络异常...请稍后再试");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     listener.onListener(null,"服务器正忙...请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -93,7 +93,7 @@ public class WriteExpressModelImpl implements GoodsRefundInterface.WriteExpressM
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("填写物流 result: --- 》" + result);
+                 //   LogUtils.json("填写物流 result: --- 》" + result);
                 }
             }
         });

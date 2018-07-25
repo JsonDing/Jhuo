@@ -10,8 +10,8 @@
         android:height="@dimen/dp36"/>
 
     <gradient
-        android:startColor="@color/color_a4"
-        android:centerColor="@color/color_a4"
-        android:endColor="@color/color_a4"
+        android:startColor="@color/a4"
+        android:centerColor="@color/a4"
+        android:endColor="@color/a4"
         android:angle="90"/>
 </shape>

@@ -43,7 +43,7 @@ public class AddGoodsRemindImpl implements SelfGoodsInterFace.AddSelfGoodsRemind
         Gson gson = new Gson();
         String strParams = gson.toJson(requstBean);
         params.setBodyContent(strParams);
-        LogUtils.log("requst: " + strParams);
+        LogUtils.json("requst: " + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -56,7 +56,7 @@ public class AddGoodsRemindImpl implements SelfGoodsInterFace.AddSelfGoodsRemind
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             mListener.addSelfGoodsRemindListener(null,"数据解析出错");
@@ -65,7 +65,7 @@ public class AddGoodsRemindImpl implements SelfGoodsInterFace.AddSelfGoodsRemind
                         mListener.addSelfGoodsRemindListener(resultBean,"添加成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             mListener.addSelfGoodsRemindListener(null,"数据解析出错");
@@ -85,7 +85,7 @@ public class AddGoodsRemindImpl implements SelfGoodsInterFace.AddSelfGoodsRemind
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     mListener.addSelfGoodsRemindListener(null,"网络异常或延时，请稍后重试");
                 }else{
@@ -103,7 +103,7 @@ public class AddGoodsRemindImpl implements SelfGoodsInterFace.AddSelfGoodsRemind
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("添加提醒 result: " + result);
+                   // LogUtils.json("添加提醒 result: " + result);
                 }
             }
         });

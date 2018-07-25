@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.yunma.jhuo.activity.homepage.GoodsMnifest">
+    tools:context="com.yunma.jhuo.activity.homepage.GoodsManifestActivity">
 
     <LinearLayout
         android:id="@+id/layouStatusBar"
@@ -38,7 +38,7 @@
             android:layout_height="@dimen/dp44"
             android:text="商品清单"
             android:background="@color/white"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp17"/>
 
         <LinearLayout
@@ -52,9 +52,9 @@
                 android:id="@+id/tvTotalNums"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="共4件"
+                android:text="共0件"
                 android:textSize="@dimen/sp16"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:clickable="false" />
 
         </LinearLayout>
@@ -64,14 +64,14 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp01"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <ListView
         android:id="@+id/lvGoodsList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/color_a4"
+        android:background="@color/a4"
         android:scrollbars="none"
         android:divider="@null"/>
 

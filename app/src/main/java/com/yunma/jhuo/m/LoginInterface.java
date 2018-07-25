@@ -13,12 +13,10 @@ import com.yunma.bean.LoginSuccessResultBean;
 public class LoginInterface {
 
     public interface LoginModel {
-
         void login(Context context,String username, String password, OnLoginListener loginListener);
     }
 
     public interface LoginView {
-
         void showLoginInfos(LoginSuccessResultBean resultBean , String msg);
     }
 

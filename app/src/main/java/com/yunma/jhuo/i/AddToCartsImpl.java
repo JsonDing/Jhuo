@@ -44,18 +44,18 @@ public class AddToCartsImpl implements AddToCartsInterface.AddToCartsModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onAddToCartsListener.onAddListener(null,"数据解析出错!");
-                            LogUtils.log("--------------> " + e.getMessage());
+                            LogUtils.json("--------------> " + e.getMessage());
                             e.printStackTrace();
                             return;
                         }
                         onAddToCartsListener.onAddListener(resultBean,"添加成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onAddToCartsListener.onAddListener(null,"数据解析出错!");
@@ -76,11 +76,11 @@ public class AddToCartsImpl implements AddToCartsInterface.AddToCartsModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onAddToCartsListener.onAddListener(null,"网络出错");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     onAddToCartsListener.onAddListener(null,"服务器错误");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -93,7 +93,7 @@ public class AddToCartsImpl implements AddToCartsInterface.AddToCartsModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("批量添加购物车: " + result);
+                   // LogUtils.json("批量添加购物车: " + result);
                 }
             }
         });

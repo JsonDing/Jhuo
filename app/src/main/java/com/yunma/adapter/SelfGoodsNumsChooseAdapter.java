@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
  *
  * @author Json.
  */
-public class SelfGoodsNumsChooseAdapter extends BaseAdapter {
+public class SelfGoodsNumsChooseAdapter extends BaseAdapter{
 
     private LayoutInflater mInflater;
     private List<StocksBean> stocks;

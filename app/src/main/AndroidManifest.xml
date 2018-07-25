@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><!-- suppress DeprecatedClassUsageInspection -->
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yunma">
 
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -11,10 +12,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- suppress DeprecatedClassUsageInspection -->
-    <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -30,12 +30,12 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
+    <!-- <uses-permission android:name="android.permission.READ_LOGS" /> -->
     <uses-permission android:name="android.permission.Gra" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS" /> -->
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <permission
@@ -44,30 +44,67 @@
 
     <uses-permission android:name="com.yunma.permission.C2D_MESSAGE" />
 
-    <permission
-        android:name="com.yunma.permission.MIPUSH_RECEIVE"
-        android:protectionLevel="signature" />
-    <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
-    <uses-permission android:name="com.yunma.permission.MIPUSH_RECEIVE" />
-
-    <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
     <application
         android:name=".jhuo.general.MyApplication"
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <receiver android:name=".serves.NetBroadcastReceiver">
-            <intent-filter android:priority="1000">
-                <action
-                    android:name="android.net.conn.CONNECTIVITY_CHANGE"
-                    tools:ignore="BatteryLife" />
+
+        <!-- 闪屏页/启动页 -->
+        <activity
+            android:name=".jhuo.general.SplashPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </receiver>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="yunmasports.com"
+                    android:scheme="yunma" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.yunma.widget.GlideConfiguration"
+            android:value="GlideModule" />
+
+        <!-- 百度地图配置 -->
+        <!--
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="ExEGNet8FRXCETwmWaGv97ZlAogB4ADD" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+        -->
+
+
+        <!-- 高德地图（公司帐号） -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="f9d09b21e6eeefeb72f08118ae1db228" />
+
+        <!-- 设置环信应用的AppKey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="beilysport#jhuo" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -79,36 +116,21 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
-        <!-- *************** SHARE SDK ******************** -->
-        <activity
-            android:name="com.mob.tools.MobUIShell"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize">
-            <intent-filter>
-                <data android:scheme="tencent1106058796" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
-            <!-- 调用新浪原生SDK，需要注册的回调activity -->
-            <intent-filter>
-                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <!-- 微信分享回调 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wx129574b4dc257e3d" />
+            </intent-filter>
+        </activity>
 
         <!-- ****************************  Share SDK  *********************************** -->
         <activity
@@ -118,7 +140,8 @@
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -129,39 +152,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".jhuo.general.SplashPageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".jhuo.general.MyViewPage"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
             android:name=".jhuo.general.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
-        <!-- 高德（公司帐号） -->
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="f9d09b21e6eeefeb72f08118ae1db228" />
-        <!-- 定位（家中测试） -->
-        <!--
-            <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="e1b220a6c3edea2e8496c73e1f1054f1"/>
-        -->
         <!-- 图片选择 -->
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 支付宝支付 -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -173,292 +174,32 @@
             android:exported="false"
             android:screenOrientation="behind" />
 
+        <!-- 微信支付 -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <service android:name="com.amap.api.location.APSService" />
 
-        <!-- 设置环信应用的AppKey -->
-        <meta-data
-            android:name="EASEMOB_APPKEY"
-            android:value="beilysport#jhuo" />
         <!-- 声明SDK所需的service SDK核心功能 -->
-        <!-- 声明SDK所需的service SDK核心功能 -->
-        <service
-            android:name="com.hyphenate.chat.EMChatService"
-            android:exported="true" />
-        <service
-            android:name="com.hyphenate.chat.EMJobService"
-            android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-
-        <!-- 声明SDK所需的receiver -->
+        <!--
         <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
 
                 <data android:scheme="package" />
             </intent-filter>
-            <!-- 可选filter -->
+            &lt;!&ndash; 可选filter &ndash;&gt;
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
+        -->
 
-        <activity
-            android:name=".emchat.ui.EMMainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".emchat.ui.ChatActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
-
-        <!-- 添加好友 -->
-        <activity
-            android:name=".emchat.ui.AddContactActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateVisible" />
-        <!-- 群组详情 -->
-        <activity
-            android:name=".emchat.ui.GroupDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- 群组列表 -->
-        <activity
-            android:name=".emchat.ui.GroupsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-
-        <!-- 聊天室详情 -->
-        <activity
-            android:name=".emchat.ui.ChatRoomDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- 新建聊天室 -->
-        <activity
-            android:name=".emchat.ui.NewChatRoomActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-
-        <!-- 新建群组 -->
-        <activity
-            android:name=".emchat.ui.NewGroupActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <!-- 退出群组提示框 -->
-        <activity
-            android:name=".emchat.ui.ExitGroupDialog"
-            android:screenOrientation="portrait"
-            android:theme="@style/MyDialogStyleBottom" />
-        <!-- 群组选人 -->
-        <activity
-            android:name=".emchat.ui.GroupPickContactsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".emchat.ui.PickAtUserActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- 地图 -->
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-        <!-- 新的朋友邀请消息页面 -->
-        <activity
-            android:name=".emchat.ui.NewFriendsMsgActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- 转发消息用户列表页面 -->
-        <activity
-            android:name=".emchat.ui.ForwardMessageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <!-- 自定义的contextmenu -->
-        <activity
-            android:name=".emchat.ui.ContextMenuActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/MyDialogStyle" />
-        <!-- 显示下载大图页面 -->
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- 下载文件 -->
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseShowNormalFileActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- 黑名单 -->
-        <activity
-            android:name=".emchat.ui.BlacklistActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-        <!-- 公开的群聊列表 -->
-        <activity
-            android:name=".emchat.ui.PublicGroupsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".emchat.ui.PublicChatRoomsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <!-- 语音通话 -->
-        <activity
-            android:name=".emchat.ui.VoiceCallActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- 视频通话 -->
-        <activity
-            android:name=".emchat.ui.VideoCallActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- 群聊简单信息 -->
-        <activity
-            android:name=".emchat.ui.GroupSimpleDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- 群组黑名单用户列表 -->
-        <activity
-            android:name=".emchat.ui.GroupBlacklistActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".emchat.ui.GroupSearchMessageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateVisible" />
-        <activity
-            android:name=".emchat.ui.PublicGroupsSeachActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".emchat.ui.EditActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateVisible" />
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseShowVideoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <!-- choose video -->
-        <activity
-            android:name=".emchat.ui.ImageGridActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".emchat.ui.RecorderVideoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <!-- upload error log -->
-        <activity
-            android:name=".emchat.ui.DiagnoseActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".emchat.ui.UserProfileActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".emchat.ui.SetServersActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".emchat.ui.OfflinePushSettingsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".emchat.ui.OfflinePushNickActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".emchat.ui.CallOptionActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-        <!-- 开机自启动服务 -->
-        <receiver android:name=".emchat.receiver.StartServiceReceiver">
-            <intent-filter android:priority="1000">
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </receiver>
-        <!-- ############ Google推送 ########### -->
-        <receiver
-            android:name="com.hyphenate.chat.EMGCMBroadcastReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-
-                <category android:name="com.yunma" />
-            </intent-filter>
-        </receiver>
-
-        <service
-            android:name="com.hyphenate.chat.EMGCMListenerService"
-            android:exported="false" />
-
-        <receiver
-            android:name=".emchat.receiver.GCMPushBroadCast"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.hyphenate.sdk.push" />
-
-                <category android:name="com.yunma" />
-            </intent-filter>
-        </receiver>
-        <!-- ############ Google推送 ########### -->
-
-
-        <!-- ############ 小米推送 ########### -->
-        <service
-            android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
-            android:enabled="true"
-            android:exported="true"
-            tools:ignore="ExportedService" />
-        <service
-            android:name="com.xiaomi.mipush.sdk.MessageHandleService"
-            android:enabled="true" />
-
-        <receiver
-            android:name="com.hyphenate.chat.EMMipushReceiver"
-            android:exported="true"
-            tools:ignore="ExportedReceiver">
-            <intent-filter>
-                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.xiaomi.mipush.ERROR" />
-            </intent-filter>
-        </receiver>
-
-        <!-- ############ 小米推送 ########### -->
-        <!-- ############ 友盟 ########### -->
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:process=":DownloadingService" />
@@ -466,11 +207,6 @@
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
-            android:name=".emchat.ui.RobotsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
-            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <meta-data
             android:name="UMENG_APPKEY"
@@ -481,27 +217,9 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="J货" />
-        <!-- ############ 友盟 ########### -->
-        <!-- 百度地图所需的service -->
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote" />
 
-        <!--
-            <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="HYEMXIDmVLLYXOENRgErnL7cK8UCLt0i" />
-        -->
-
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="A91LKVjFUNrHuIo8IlALaXCmr3EoZyHe" />
-        //A91LKVjFUNrHuIo8IlALaXCmr3EoZyHe(家里测试)
-        <!-- 设置环信应用的AppKey -->
-        <!-- ************************************************************* -->
         <activity
-            android:name=".jhuo.general.ForgetPassWd"
+            android:name=".jhuo.general.ForgetPassWdActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateHidden" />
@@ -521,27 +239,23 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.homepage.SelfGoodsDetials"
+            android:name=".jhuo.activity.homepage.GoodsDetialsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.homepage.ConfirmOrder"
+            android:name=".jhuo.activity.homepage.ConfirmOrderForMoreActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.homepage.ReceiverManage"
+            android:name=".jhuo.activity.homepage.ReceiverManageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.homepage.AddRecipient"
+            android:name=".jhuo.activity.homepage.AddRecipientActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.homepage.GoodsMnifest"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.homepage.CarriageExplain"
+            android:name=".jhuo.activity.homepage.GoodsManifestActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -551,46 +265,25 @@
         <activity
             android:name=".jhuo.activity.homepage.SelectedPayWay"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wxd930ea5d5a258f4f" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".jhuo.activity.homepage.CompletedPayMent"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.homepage.KindredGoods"
+            android:name=".jhuo.activity.homepage.OrderDetialActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.homepage.OrderDetial"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.SearchGoodsByCode"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.EveryDayBoutique"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.NewProduct"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.HotGoods"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.EntrepotGoodsDetial"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.SelectedGoodsSizeAndNums"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoTitleTranslucentTheme"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".jhuo.activity.mine.MyWallet"
+            android:name=".jhuo.activity.SearchGoodsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -602,11 +295,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.GoodsReturnDetial"
+            android:name=".jhuo.activity.mine.ReturnDetialActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.GoodsReturnProgress"
+            android:name=".jhuo.activity.mine.ReturnProgressActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -614,25 +307,25 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.OrderTrace"
+            android:name=".jhuo.activity.mine.OrderTraceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.ApplySingleGoodsAftermarket"
+            android:name=".jhuo.activity.mine.ApplySingleAfterSalesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".jhuo.activity.mine.ApplyMoreGoodsAftermarket"
+            android:name=".jhuo.activity.mine.ApplyAfterSalesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".jhuo.activity.mine.QuickReplenish"
+            android:name=".jhuo.activity.mine.QuickReplenishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.Bookmarks"
+            android:name=".jhuo.activity.mine.MyFavoriteActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoTitleTranslucentTheme" />
         <activity
@@ -648,19 +341,19 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.SystemNotice"
+            android:name=".jhuo.activity.mine.SystemNoticeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.Feedback"
+            android:name=".jhuo.activity.mine.FeedbackActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.SystemSetting"
+            android:name=".jhuo.activity.mine.SystemSettingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.SimilarGoods"
+            android:name=".jhuo.activity.mine.SimilarGoodsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -668,18 +361,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.PersonInfos"
+            android:name=".jhuo.activity.mine.PersonInfosActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".jhuo.activity.mine.AccountManage"
+            android:name=".jhuo.activity.mine.ChangePasswdActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.AboutUs"
+            android:name=".jhuo.activity.mine.AboutUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.InvoiceInfos"
+            android:name=".jhuo.activity.mine.InvoiceInfosActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -687,56 +380,25 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoTitleTranslucentTheme" />
         <activity
-            android:name=".jhuo.activity.SelectedSizeToShoppingCart"
+            android:name=".jhuo.activity.homepage.AddToCartActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoTitleTranslucentTheme"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".jhuo.activity.homepage.ShoppingCartBySelfGoods"
+            android:name=".jhuo.activity.homepage.SizeSelectActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoTitleTranslucentTheme"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".jhuo.activity.homepage.SelfGoodsSizeNumsChoose"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoTitleTranslucentTheme"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".emchat.CustomerActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".jhuo.activity.LookOrderDetial"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".publish.PicViewerActivity"
+            android:name=".jhuo.activity.PicViewerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoTitleTranslucentTheme" />
         <activity
-            android:name=".publish.UploadMainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoTitleTranslucentTheme" />
-        <activity
-            android:name=".publish.UploadList"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            -->
-
-        </activity>
-        <activity
-            android:name=".publish.ToAddGoods"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.homepage.SelfKindredGoods"
+            android:name=".jhuo.activity.homepage.KindredGoodsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -744,89 +406,20 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".TestActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            -->
-        </activity>
-        <activity
             android:name=".jhuo.activity.mine.InvoiceListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.activity.mine.AddInvoiceActivity"
+            android:name=".jhuo.activity.mine.AddInvoicesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".jhuo.activity.mine.InvoiceDetials"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".AddMoreUser"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.mine.QuickReplenishDetial"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.homepage.BasketGoodsDetial"
+            android:name=".jhuo.activity.mine.InvoiceDetialsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".jhuo.activity.homepage.SelectTickets"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.mine.EmSettingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".publish.PublishManageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".publish.PublishGoodsDetials"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".publish.RepertoryManageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".publish.AddRepertoryActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoTitleTranslucentTheme" />
-        <activity
-            android:name=".publish.SaleOutActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoTitleTranslucentTheme" />
-        <activity
-            android:name=".publish.OffTheShelfActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoTitleTranslucentTheme" />
-        <activity
-            android:name=".publish.SelectShelfSizeNumActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoTitleTranslucentTheme" />
-        <activity
-            android:name=".jhuo.activity.mine.VolumeListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".publish.ReplaceImageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".jhuo.activity.AdInfosDetialsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -847,7 +440,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".jhuo.SelectVolumeActivity"
+            android:name=".jhuo.activity.SelectVolumeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -856,6 +449,177 @@
             android:theme="@style/NoTitleTranslucentTheme" />
         <activity
             android:name=".jhuo.general.AddCartsRemindActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.homepage.ConfirmOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".jhuo.activity.homepage.ConfirmOrderForOneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".jhuo.activity.GoodsSortsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".jhuo.activity.NewBasketActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.SaleOutDetialsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.VolumeListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.NewGoodRemindDetials"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.homepage.BrowerRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.NewVersionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.FeatureGoodsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.TomorrowPreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.TodayOnSaleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.TomorrowPreDetials"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.BannerGoodsDetial"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.AdInfosDetialsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.IntroCodeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.MyContactsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.MyIntegralActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.IntegralRuleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".jhuo.activity.IntegralCalendarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.IntegralHintActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.HomePageModelActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.ContactUsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.SelectBrandActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.SelectSizeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.mine.OperationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.mine.OperationDetialsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.DistributedAfterSaleInfo"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.TestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.NearByUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.ShareGoodsInfo"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.mine.AddressManagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.GainIntegralActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.UseIntegralActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.MyGradeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.KnowMoreGradeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.ConfirmGradeOrder"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.MyReturnActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.RebatesReturnDetialActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.InvitedUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.ShortVideoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+        <activity
+            android:name=".jhuo.activity.GoodsShareActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoTitleTranslucentTheme" ></activity>
     </application>

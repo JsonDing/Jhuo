@@ -17,7 +17,7 @@ import butterknife.*;
  * @author Json.
  */
 
-public class SelectTicketsAdapter extends BaseAdapter {
+public class SelectTicketsAdapter extends BaseAdapter{
 
     private Context mContext;
     private LayoutInflater mInflater;

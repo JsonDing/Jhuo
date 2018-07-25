@@ -15,8 +15,6 @@ public class AddShoppingCartsInterface {
         void addToBasket(Context mContext,ShoppingCartsBean shoppingCartsBean,OnAddShoppingCartsListener onListener);
     }
     public interface AddShoppingCartsView{
-        Context getContext();
-        ShoppingCartsBean getShoppingCartsBean();
         void showAddShoppingCartsInfos(SuccessResultBean resultBean,String msg);
     }
     public interface OnAddShoppingCartsListener{

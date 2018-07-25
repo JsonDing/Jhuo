@@ -24,8 +24,6 @@ public class InvoiceInterface {
         void onListener(SuccessResultBean resultBean, String msg);
     }
 
-
-
     public interface GetInvoiceModel{
         void getInvoice(Context mContext,String nums,int page,GetInvoiceListener onListener);
     }

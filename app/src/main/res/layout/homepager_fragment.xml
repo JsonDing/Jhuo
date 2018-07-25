@@ -12,13 +12,12 @@
         android:id="@+id/layouStatusBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/tittle_bar">
+        android:background="@color/b6">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp44"
-            android:background="@color/white"
-            android:clickable="true"
+            android:background="@color/b6"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -62,7 +61,7 @@
                     android:paddingEnd="@dimen/dp05"
                     android:paddingStart="@dimen/dp05"
                     android:text="@string/search_type"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="@dimen/sp12"/>
 
             </FrameLayout>
@@ -71,7 +70,6 @@
                 android:id="@+id/btnMessage"
                 android:layout_width="@dimen/dp40"
                 android:layout_height="@dimen/dp40"
-                android:background="@color/white"
                 android:visibility="visible">
 
                 <ImageView
@@ -95,55 +93,23 @@
 
         </LinearLayout>
 
-
         <com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dp44"
-            app:guidance_text_color="@color/colorPrimary"
-            app:progress_bar_color="@color/colorPrimary">
+            android:background="@color/a4"
+            android:layout_marginTop="@dimen/dp44">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/color_a4"
+                android:background="@color/a4"
                 android:overScrollMode="never">
 
             </android.support.v7.widget.RecyclerView>
 
         </com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout>
-
-        <FrameLayout
-            android:id="@+id/layoutList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dp44"
-            android:background="@color/white"
-            android:clickable="true"
-            android:visibility="gone">
-
-            <ListView
-                android:id="@+id/lvSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@null"
-                android:scrollbars="none"/>
-
-
-            <TextView
-                android:id="@+id/tvNull"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp16"
-                android:text="商品不存在，或您输入的货号有误"
-                android:textColor="@color/color_b2"
-                android:textSize="@dimen/sp15"
-                android:visibility="invisible"/>
-
-        </FrameLayout>
 
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/fab"
@@ -152,10 +118,24 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:src="@drawable/back"
-            app:fab_colorNormal="@color/color_a6"
-            app:fab_colorPressed="@color/color_b3"
-            app:fab_colorRipple="@color/color_b3"
+            app:fab_colorNormal="@color/a6"
+            app:fab_colorPressed="@color/b3"
+            app:fab_colorRipple="@color/b3"
             app:fab_type="mini"/>
+
+        <com.rey.material.widget.FloatingActionButton
+            android:layout_width="@dimen/dp26"
+            android:layout_height="@dimen/dp26"
+            android:layout_gravity="bottom|end"
+            app:fab_iconSrc="@drawable/float_btn_browers_record"
+            style="@style/Material.Widget.FloatingActionButton.Mini.Light"
+            app:fab_elevation="3dp"
+            app:fab_animDuration="200"
+            android:id="@+id/fabBrowerRecord"
+            app:fab_backgroundAnimDuration="200"
+            app:fab_backgroundColor="#80ffffff"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp64"/>
 
         <RelativeLayout
             android:id="@+id/layoutRemind"
@@ -165,6 +145,7 @@
             android:layout_marginBottom="@dimen/dp10"
             android:layout_marginEnd="@dimen/dp15"
             android:layout_marginStart="@dimen/dp15"
+            android:clickable="true"
             android:background="@drawable/bg_popup"
             android:visibility="gone">
 
@@ -196,7 +177,7 @@
                 android:ellipsize="end"
                 android:lines="1"
                 android:text="您喜欢的商品已经开售"
-                android:textColor="@color/color_b3"
+                android:textColor="@color/b3"
                 android:textSize="14sp"
                 android:textStyle="bold"/>
 

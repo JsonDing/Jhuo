@@ -5,40 +5,67 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.widget.*;
-import android.view.*;
-import android.view.animation.*;
-import android.widget.*;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import com.hyphenate.EMMessageListener;
-import com.hyphenate.chat.*;
-import com.melnykov.fab.FloatingActionButton;
+import com.rey.material.widget.FloatingActionButton;
 import com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout;
-import com.tencent.connect.auth.QQAuth;
-import com.tencent.open.wpa.WPA;
 import com.yunma.R;
 import com.yunma.adapter.GetSelfGoodsAdapter;
-import com.yunma.bean.*;
-import com.yunma.bean.GetSelfGoodsResultBean.SuccessBean.ListBean;
-import com.yunma.emchat.DemoHelper;
-import com.yunma.emchat.ui.EMMainActivity;
+import com.yunma.bean.AdInfoResultBean;
+import com.yunma.bean.NoticeBean;
+import com.yunma.bean.SelfGoodsListBean;
+import com.yunma.bean.SelfGoodsResultBean;
+import com.yunma.jhuo.activity.ContactUsActivity;
 import com.yunma.jhuo.activity.MainActivity;
-import com.yunma.jhuo.activity.SearchGoodsByCode;
-import com.yunma.jhuo.activity.homepage.SelfGoodsDetials;
-import com.yunma.jhuo.activity.homepage.ShoppingCartBySelfGoods;
+import com.yunma.jhuo.activity.SearchGoodsActivity;
+import com.yunma.jhuo.activity.homepage.BrowerRecordActivity;
+import com.yunma.jhuo.activity.homepage.GoodsDetialsActivity;
+import com.yunma.jhuo.m.GetNoticeInterFace.NoticeView;
+import com.yunma.jhuo.m.HomepageModelInterface;
 import com.yunma.jhuo.m.OnBuyClick;
-import com.yunma.jhuo.m.SelfGoodsInterFace.*;
-import com.yunma.jhuo.p.*;
-import com.yunma.utils.*;
+import com.yunma.jhuo.m.SelfGoodsInterFace.GetBannersView;
+import com.yunma.jhuo.m.SelfGoodsInterFace.GetBeforeGoodsView;
+import com.yunma.jhuo.m.SelfGoodsInterFace.GetSelfGoodsView;
+import com.yunma.jhuo.m.SelfGoodsInterFace.GetTodayGoodsView;
+import com.yunma.jhuo.m.SelfGoodsInterFace.GetTomorrowGoodsView;
+import com.yunma.jhuo.p.GetBeforeGoodsPre;
+import com.yunma.jhuo.p.GetTodayGoodsPre;
+import com.yunma.jhuo.p.GetTomorrowGoodsPre;
+import com.yunma.jhuo.p.HomepageModelPre;
+import com.yunma.jhuo.p.NoticePre;
+import com.yunma.jhuo.p.SelfGoodsPre;
+import com.yunma.jhuo.p.TopBannerPre;
+import com.yunma.utils.ConUtils;
+import com.yunma.utils.DateTimeUtils;
+import com.yunma.utils.DensityUtils;
+import com.yunma.utils.SPUtils;
+import com.yunma.utils.ToastUtils;
 import com.yunma.widget.CustomProgressDialog;
 import com.yunma.widget.SpaceItemDecoration;
 
 import net.frakbot.jumpingbeans.JumpingBeans;
 
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 /**
@@ -47,73 +74,73 @@ import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
  * @author Json.
  */
 
-public class HomepageFragment extends Fragment implements OnBuyClick,
-        GetSelfGoodsView, GetIssueView, GetBannerView,GetAdsView {
-    private final static int MSG_REFRESH = 2;
+public class HomepageFragment extends Fragment implements OnBuyClick, GetSelfGoodsView,
+        GetBannersView,NoticeView, GetTodayGoodsView, GetTomorrowGoodsView,
+        GetBeforeGoodsView, HomepageModelInterface.ShowModelDataView {
+    private static final int ONE_DAY = 24*60*60*1000;
     @BindView(R.id.layouStatusBar) FrameLayout layouStatusBar;
     @BindView(R.id.layoutSearch) FrameLayout layoutSearch;
     @BindView(R.id.btnMessage) RelativeLayout btnMessage;
     @BindView(R.id.recyclerview) RecyclerView recyclerview;
-    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.fab) com.melnykov.fab.FloatingActionButton fab;
     @BindView(R.id.imgClose) ImageView imgClose;
     @BindView(R.id.layoutRemind) View layoutRemind;
     @BindView(R.id.imgsDot) ImageView imgsDot;
+    @BindView(R.id.imgGoods) ImageView imgGoods;
+    @BindView(R.id.tvGoodsName) TextView tvGoodsName;
+    @BindView(R.id.fabBrowerRecord) FloatingActionButton fabBrowerRecord;
     @BindView(R.id.swipeRefreshLayout) SHSwipeRefreshLayout swipeRefreshLayout;
-    private List<ListBean> goodsListBeen = null;
-    private AdInfoResultBean adInfoResultBean = null;
+    private List<SelfGoodsListBean> goodsListBeen = null;
     private SelfGoodsPre mPresenter;
-    private SelfIssueGoodsPre issueGoodsPre;
     private GetSelfGoodsAdapter mAdapter;
     private CustomProgressDialog dialog = null;
     private GridLayoutManager gridLayoutManager;
     private int nextPage = 2;
-    private List<String> adList;
-    private List<String> bannerList;
     private long startDate;
-    private List<ListBean> tomorrowListBean = null;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.homepager_fragment, container, false);
         ButterKnife.bind(this, view);
-        initBanner();
         initRecyclerView();
+        initTopPicture();
         initSwipeRefreshLayout();
+        initBanner();
         return view;
+    }
+
+    private void initTopPicture() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+        String today = DateTimeUtils.getTime(System.currentTimeMillis(),formatter);
+        String tomorrow = DateTimeUtils.getTime(
+                System.currentTimeMillis() + ONE_DAY,formatter);
+        String yesterday = DateTimeUtils.getTime(
+                System.currentTimeMillis() - ONE_DAY,formatter);
+        GetTodayGoodsPre todayGoodsPre = new GetTodayGoodsPre(this);
+        todayGoodsPre.getGoods(getActivity(),"16",1,today);
+        GetTomorrowGoodsPre tomorrowGoodsPre = new GetTomorrowGoodsPre(this);
+        tomorrowGoodsPre.getGoods(getActivity(),"16",1,tomorrow);
+        GetBeforeGoodsPre beforeGoodsPre = new GetBeforeGoodsPre(this);
+        beforeGoodsPre.getGoods(getActivity(),"16",1,yesterday);
     }
 
     /**
      * 获取首页banner
      */
     private void initBanner() {
-        BannerPre bannerPre = new BannerPre(HomepageFragment.this);
-        bannerPre.getNewsBanner(getActivity());
-    }
-    /**
-     * 获取产品页插入的广告
-     */
-    private void initAds() {
-        AdsPre adsPre = new AdsPre(HomepageFragment.this);
-        adsPre.getAdInfo(getActivity());
-        issueGoodsPre.getSpecialOfferGoods(getActivity(),"issue","8", 1);
-    }
+        TopBannerPre topBannerPre = new TopBannerPre(HomepageFragment.this);
+        topBannerPre.getTopBanner(getActivity(),"v2");
 
-    /**
-     * 上架提醒
-     */
-    private void showRemind() {
-        if(SPUtils.isSaleRemind(MainActivity.mainContext)){
-            layoutRemind.setVisibility(View.VISIBLE);
-            // TODO: 2017-04-20  
-        }else{
-            layoutRemind.setVisibility(View.GONE);
-        }
+        HomepageModelPre homepageModelPre = new HomepageModelPre(this);
+        homepageModelPre.getModelData();
+
+        NoticePre noticePre = new NoticePre(HomepageFragment.this);
+        noticePre.getNotices(getActivity());
     }
 
     private void initRecyclerView() {
         progressShow();
-        int statusHeight = ScreenUtils.getStatusHeight(getActivity());
-        layouStatusBar.setPadding(0, statusHeight, 0, 0);
+        layouStatusBar.setPadding(0, SPUtils.getStatusHeight(getActivity()), 0, 0);
         recyclerview.setHasFixedSize(true);
         fab.attachToRecyclerView(recyclerview);
         fab.setShadow(true);
@@ -122,8 +149,7 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                return (mAdapter.isHeaderView(position)||mAdapter.isAdView(position)
-                        ||mAdapter.isBottomView(position)||mAdapter.isTomorrowUpdate(position)) ?
+                return (mAdapter.isHeaderView(position) ||mAdapter.isBottomView(position))?
                         gridLayoutManager.getSpanCount() : 1;
             }
         });
@@ -135,32 +161,33 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
         mAdapter = new GetSelfGoodsAdapter(getActivity(),HomepageFragment.this);
         recyclerview.setAdapter(mAdapter);
         mPresenter = new SelfGoodsPre(HomepageFragment.this);
-        issueGoodsPre = new SelfIssueGoodsPre(HomepageFragment.this);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recyclerview.smoothScrollToPosition(0);
+
+            }
+        });
+        recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(!recyclerView.canScrollVertically(-1)){
+                    fab.hide();
+                }
             }
         });
     }
 
     @Override
-    public void onBuyClickListener(int position,ListBean mBean) {
-        if(MainActivity.mainContext.isLogin()){
-            Intent intent = new Intent(getActivity(),ShoppingCartBySelfGoods.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("selfGoods",mBean);
-            intent.putExtras(bundle);
-            getActivity().startActivity(intent);
-        }else {
-            ToastUtils.showWarning(getActivity(),"请登陆后购买");
-        }
-
+    public void onBuyClickListener(int position,SelfGoodsListBean mBean) {
+        // TODO: 2017-09-07
     }
 
     @Override
-    public void onLookGoodDetial(int goodId, int itemId, ListBean mBean) {
-        Intent intent = new Intent(getActivity(), SelfGoodsDetials.class);
+    public void onLookGoodDetial(int goodId, int itemId, SelfGoodsListBean mBean) {
+        Intent intent = new Intent(getActivity(), GoodsDetialsActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("isToEnd","no");
         bundle.putInt("goodId", goodId);
@@ -169,53 +196,44 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
         getActivity().startActivity(intent);
     }
 
-    @OnClick({R.id.btnMessage,R.id.layoutSearch,R.id.imgClose})
+    @OnClick({R.id.btnMessage,R.id.layoutSearch,R.id.imgClose,R.id.fabBrowerRecord})
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnMessage:
-                if(MainActivity.mainContext.isLogin()){
-                    Intent intent = new Intent(MainActivity.mainContext, EMMainActivity.class);
-                    MainActivity.mainContext.startActivity(intent);
-                }else{
-                    QQAuth mqqAuth = QQAuth.createInstance("1106058796",MainActivity.mainContext);
-                    WPA mWPA = new WPA(MainActivity.mainContext, mqqAuth.getQQToken());
-                    String ESQ = "2252162352";  //客服QQ号
-                    int ret = mWPA.startWPAConversation(getActivity(),ESQ,null);
-                    if (ret != 0) {
-                        Toast.makeText(MainActivity.mainContext,
-                                "抱歉，联系客服出现了错误~. error:" + ret,
-                                Toast.LENGTH_LONG).show();
-                    }
-                }
+                Intent intent = new Intent(MainActivity.mainActivity, ContactUsActivity.class);
+                MainActivity.mainActivity.startActivity(intent);
                 break;
             case R.id.layoutSearch:
-                Intent intent = new Intent(MainActivity.mainContext, SearchGoodsByCode.class);
-                MainActivity.mainContext.startActivity(intent);
-                MainActivity.mainContext.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                Intent intent0 = new Intent(MainActivity.mainActivity, SearchGoodsActivity.class);
+                MainActivity.mainActivity.startActivity(intent0);
+                MainActivity.mainActivity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
             case R.id.imgClose:
                 layoutRemind.setVisibility(View.GONE);
+                break;
+            case R.id.fabBrowerRecord:
+                Intent intent1 = new Intent(MainActivity.mainActivity, BrowerRecordActivity.class);
+                MainActivity.mainActivity.startActivity(intent1);
+                MainActivity.mainActivity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
         }
     }
 
     /**
      * 显示首页推荐32款商品
-     * @param resultBean
-     * @param msg
      */
     @Override
-    public void showSpecialOfferGoods(final GetSelfGoodsResultBean resultBean, String msg) {
+    public void showSpecialOfferGoods(final SelfGoodsResultBean resultBean, String msg) {
         if(resultBean == null){
             progressDimiss();
             ToastUtils.showError(getActivity(),msg);
         }else{
             if(resultBean.getSuccess().getList()!=null){
                 nextPage = resultBean.getSuccess().getNextPage();
+                mAdapter.setTotalGoodsNums(resultBean.getSuccess().getTotal());
                 if(resultBean.getSuccess().isHasNextPage()){
                     swipeRefreshLayout.setLoadmoreEnable(true);
                 }else{
-                    mAdapter.setEnd(true);
                     swipeRefreshLayout.setLoadmoreEnable(false);
                 }
                 if (resultBean.getSuccess().getPageNum()==1) {
@@ -224,7 +242,7 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
                     if(cost>2000){
                         progressDimiss();
                         firstLoadView(resultBean);
-                    }else {
+                    } else {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -233,11 +251,12 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
                             }
                         }, 2000 - cost);
                     }
-                } else if(resultBean.getSuccess().getPageNum()<=resultBean.getSuccess().getPages()){
+                } else {
                     progressDimiss();
                     goodsListBeen.addAll(resultBean.getSuccess().getList());
                     swipeRefreshLayout.finishLoadmore();
                     mAdapter.setGoodsListBeen(goodsListBeen);
+
                 }
             }else{
                 progressDimiss();
@@ -245,7 +264,7 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
         }
     }
 
-    private void firstLoadView(GetSelfGoodsResultBean resultBean) {
+    private void firstLoadView(SelfGoodsResultBean resultBean) {
         if(goodsListBeen!=null&&goodsListBeen.size()!=0){
             goodsListBeen.clear();
         }
@@ -257,83 +276,20 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
             swipeRefreshLayout.setRefreshEnable(true);
             swipeRefreshLayout.setLoadmoreEnable(true);
         }
-        mAdapter.setDatas(bannerList,adList,adInfoResultBean,tomorrowListBean,goodsListBeen);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                showRemind();
-            }
-        },1500);
+        mAdapter.setGoodsListBeen(goodsListBeen);
     }
 
     /**
-     * 显示首页tittle banner页
-     * @param resultBean
-     * @param msg
+     * 显示首页顶部 banner页
      */
     @Override
-    public void showNewsBanner(BannerResultBean resultBean, String msg) {
-        if(resultBean==null){
-            ToastUtils.showError(getActivity(),msg);
-            initAds();
-        }else{
-            initAds();
-            for(int i=0;i<resultBean.getSuccess().size();i++){
-                if(resultBean.getSuccess().get(i).getType().equals("adword")){
-                    adList = Arrays.asList(resultBean.getSuccess()
-                            .get(i).getValue().split(","));
-                }else if(resultBean.getSuccess().get(i).getType().equals("banner")){
-                    bannerList = Arrays.asList(resultBean.getSuccess()
-                            .get(i).getValue().split(","));
-                }
-            }
-        }
-    }
-
-    /**
-     * 显示货品list插播广告页
-     * @param resultBean
-     * @param msg
-     */
-    @Override
-    public void showAdsInfo(AdInfoResultBean resultBean, String msg) {
-        if(resultBean==null){
-            mPresenter.getSpecialOfferGoods(getActivity(),"recommend","12",1);
-        }else{
-            mPresenter.getSpecialOfferGoods(getActivity(),"recommend","12",1);
-            adInfoResultBean = resultBean;
-        }
-    }
-
-    /**
-     * 显示明日带发布商品
-     * @param resultBean
-     * @param msg
-     */
-    @Override
-    public void showIssueGoods(GetSelfGoodsResultBean resultBean, String msg) {
-        if (resultBean == null){
+    public void showTopBannerInfo(AdInfoResultBean resultBean, String msg) {
+        if(resultBean == null){
             ToastUtils.showError(getActivity(),msg);
         }else{
-            if(resultBean.getSuccess().getList().size()!=0){
-                tomorrowListBean = resultBean.getSuccess().getList();
-            }
+            mAdapter.setTopBanner(resultBean.getSuccess());
         }
-    }
-
-    public void progressShow() {
-        startDate = DateTimeUtils.getCurrentTimeInLong();
-        if (dialog == null) {
-            dialog = new CustomProgressDialog(getActivity(),"加载中", R.drawable.pb_loading_logo_2);
-        }
-        dialog.show();
-    }
-
-    public void progressDimiss() {
-        if (dialog != null) {
-            dialog.dismiss();
-            dialog = null;
-        }
+        mPresenter.getSpecialOfferGoods(getActivity(),"recommend","16",1,null,null);
     }
 
     @Override
@@ -352,8 +308,8 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
         operatingAnim.setInterpolator(lin);
         final View view = inflater.inflate(R.layout.refresh_head_view, null);
         final View view1 = inflater.inflate(R.layout.refresh_view, null);
-        final ImageView imgSun = (ImageView)view.findViewById(R.id.imgSun);
-        final TextView textView2 = (TextView) view1.findViewById(R.id.title);
+        final ImageView imgSun = view.findViewById(R.id.imgSun);
+        final TextView textView2 = view1.findViewById(R.id.title);
         swipeRefreshLayout.setHeaderView(view);
         swipeRefreshLayout.setFooterView(view1);
         swipeRefreshLayout.setLoadmoreEnable(false);
@@ -361,7 +317,11 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
         swipeRefreshLayout.setOnRefreshListener(new SHSwipeRefreshLayout.SHSOnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.getSpecialOfferGoods(getActivity(),"recommend","12",1);
+                initTopPicture();
+                mAdapter.clearData();
+                mPresenter.getSpecialOfferGoods(getActivity(),"recommend","16",1,null,null);
+                HomepageModelPre homepageModelPre = new HomepageModelPre(HomepageFragment.this);
+                homepageModelPre.getModelData();
                 swipeRefreshLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -373,7 +333,7 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
 
             @Override
             public void onLoading() {
-                mPresenter.getSpecialOfferGoods(getActivity(),"recommend","12",nextPage);
+                mPresenter.getSpecialOfferGoods(getActivity(),"recommend","16",nextPage,null,null);
                 swipeRefreshLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -413,32 +373,104 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
         });
     }
 
-    public void refresh() {
-        if(!handler.hasMessages(MSG_REFRESH)){
-            handler.sendEmptyMessage(MSG_REFRESH);
+    /**
+     * 贱货动态
+     */
+    @Override
+    public void showNoticeInfo(NoticeBean noticeBean, String msg) {
+        if(noticeBean == null){
+            ToastUtils.showError(getActivity(),msg);
+        }else{
+            if(noticeBean.getSuccess().getList().size()!=0){
+                List<String> adTextList = new ArrayList<>();
+                for(int i=0;i<noticeBean.getSuccess().getList().size();i++){
+                    adTextList.add(noticeBean.getSuccess().getList().get(i).getTitle());
+                }
+                mAdapter.setAdText(adTextList);
+            }
         }
     }
 
-    protected Handler handler = new Handler(){
-        public void handleMessage(android.os.Message msg) {
-            switch (msg.what) {
-                case 0:
-                 //   onConnectionDisconnected();
-                    break;
-                case 1:
-                 //   onConnectionConnected();
-                    break;
-
-                case MSG_REFRESH:
-                {
-                    imgsDot.setVisibility(View.VISIBLE);
-                    break;
+    @Override
+    public void showTodayGoods(SelfGoodsResultBean resultBean, String msg) {
+        if(resultBean != null){
+            if(resultBean.getSuccess().getList().size()>0){
+                int position = new Random().nextInt(resultBean.getSuccess().getList().size())%
+                        (resultBean.getSuccess().getList().size()+1);
+                int repoid = resultBean.getSuccess().getList().get(position).getRepoid();
+                String url;
+                if(repoid ==1){
+                    url = ConUtils.SElF_GOODS_IMAGE_URL;
+                }else{
+                    url = ConUtils.GOODS_IMAGE_URL;
                 }
-                default:
-                    break;
+                mAdapter.setTodayPic(url +
+                        resultBean.getSuccess().getList().get(position).getPic().split(",")[0] + "/min");
             }
         }
-    };
+    }
+
+    @Override
+    public void showTomorrowGoods(SelfGoodsResultBean resultBean, String msg) {
+        if(resultBean != null){
+            if(resultBean.getSuccess().getList().size()>0){
+                int position = new Random().nextInt(resultBean.getSuccess().getList().size())%
+                        (resultBean.getSuccess().getList().size()+1);
+                int repoid = resultBean.getSuccess().getList().get(position).getRepoid();
+                String url;
+                if(repoid ==1){
+                    url = ConUtils.SElF_GOODS_IMAGE_URL;
+                }else{
+                    url = ConUtils.GOODS_IMAGE_URL;
+                }
+                mAdapter.setTomorrowPic(url +
+                        resultBean.getSuccess().getList().get(position).getPic().split(",")[0] + "/min");
+            }
+        }
+    }
+
+    @Override
+    public void showBeforeGoods(SelfGoodsResultBean resultBean, String msg) {
+        if(resultBean != null){
+            if(resultBean.getSuccess().getList().size()>0){
+                int position = new Random().nextInt(resultBean.getSuccess().getList().size())%
+                        (resultBean.getSuccess().getList().size()+1);
+                String url;
+                int repoid = resultBean.getSuccess().getList().get(position).getRepoid();
+                if(repoid ==1){
+                    url = ConUtils.SElF_GOODS_IMAGE_URL;
+                }else{
+                    url = ConUtils.GOODS_IMAGE_URL;
+                }
+                mAdapter.setBeforePic(url +
+                        resultBean.getSuccess().getList().get(position).getPic().split(",")[0] + "/min");
+            }
+        }
+    }
+
+    @Override
+    public void showModelData(AdInfoResultBean resultBean, String msg) {
+        if(resultBean == null){
+            ToastUtils.showError(getActivity(),msg);
+        }else{
+            mAdapter.setModelData(resultBean.getSuccess());
+        }
+    }
+
+    public void progressShow() {
+        startDate = DateTimeUtils.getCurrentTimeInLong();
+        if (dialog == null) {
+            dialog = new CustomProgressDialog(getActivity(),"加载中", R.drawable.pb_loading_logo_2);
+        }
+        dialog.show();
+    }
+
+    public void progressDimiss() {
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog = null;
+        }
+    }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
@@ -450,81 +482,9 @@ public class HomepageFragment extends Fragment implements OnBuyClick,
         }else{
             if(mAdapter!=null) {
                 mAdapter.getView().startAutoPlay();
+                mAdapter.animStart();
             }
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        updateUnreadLabel();
-        EMClient.getInstance().chatManager().addMessageListener(messageListener);
-    }
-
-    @Override
-    public void onStop() {
-        EMClient.getInstance().chatManager().removeMessageListener(messageListener);
-        super.onStop();
-    }
-
-    EMMessageListener messageListener = new EMMessageListener() {
-        @Override
-        public void onMessageReceived(List<EMMessage> messages) {
-            for (EMMessage message : messages) {
-                DemoHelper.getInstance().getNotifier().onNewMsg(message);
-            }
-            refreshUIWithMessage();
-        }
-
-        @Override
-        public void onCmdMessageReceived(List<EMMessage> list) {
-
-        }
-
-        @Override
-        public void onMessageRead(List<EMMessage> list) {
-
-        }
-
-        @Override
-        public void onMessageDelivered(List<EMMessage> list) {
-
-        }
-
-        @Override
-        public void onMessageChanged(EMMessage emMessage, Object o) {
-
-        }
-    };
-
-    private void refreshUIWithMessage() {
-        MainActivity.mainContext.runOnUiThread(new Runnable() {
-            public void run() {
-                // refresh unread count
-                updateUnreadLabel();
-
-            }
-        });
-    }
-
-    private void updateUnreadLabel() {
-        int count = getUnreadMsgCountTotal();
-        if (count > 0) {
-            imgsDot.setVisibility(View.VISIBLE);
-        } else {
-            imgsDot.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    private int getUnreadMsgCountTotal() {
-        int unreadMsgCountTotal = 0;
-        int chatroomUnreadMsgCount = 0;
-        unreadMsgCountTotal = EMClient.getInstance().chatManager().getUnreadMessageCount();
-        for (EMConversation conversation : EMClient.getInstance().chatManager().getAllConversations().values()) {
-            if (conversation.getType() == EMConversation.EMConversationType.ChatRoom)
-                chatroomUnreadMsgCount = chatroomUnreadMsgCount + conversation.getUnreadMsgCount();
-        }
-        return unreadMsgCountTotal - chatroomUnreadMsgCount;
     }
 
 }

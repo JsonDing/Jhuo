@@ -20,7 +20,6 @@ import org.xutils.x;
 
 public class SaveOrderImpl implements SaveOrderModel{
     private SaveOrderResultBean resultBean = null;
-    private SuccessResultBean successResultBean = null;
     private FailedResultBean failedResultBean = null;
     @Override
     public void saveOrder(final Context mContext, SaveOrderBean saveOrderBean,
@@ -30,21 +29,22 @@ public class SaveOrderImpl implements SaveOrderModel{
         String strParams = gson.toJson(saveOrderBean);
         params.setAsJsonContent(true);
         params.setBodyContent(strParams);
+        LogUtils.json("提交请求参数：" + strParams);
+        params.setConnectTimeout(10*1000);
         x.http().post(params, new Callback.CommonCallback<String>() {
             private boolean hasError = false;
             private String result = null;
-
             @Override
             public void onSuccess(String result) {
                 if (result != null) {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SaveOrderResultBean.class);
                         } catch (Exception e) {
                             onSaveOrderListener.onListener(null,"数据解析出错!");
-                            LogUtils.log("数据解析出错--------------> " + e.getMessage() + "\n" +
+                            LogUtils.json("数据解析出错--------------> " + e.getMessage() + "\n" +
                             e.getLocalizedMessage() + "\n" + e.getCause());
                             e.printStackTrace();
                             return;
@@ -52,7 +52,7 @@ public class SaveOrderImpl implements SaveOrderModel{
                         onSaveOrderListener.onListener(resultBean,"订单保存成功");
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onSaveOrderListener.onListener(null,"数据解析出错!");
@@ -73,11 +73,11 @@ public class SaveOrderImpl implements SaveOrderModel{
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     onSaveOrderListener.onListener(null,"网络异常!");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     onSaveOrderListener.onListener(null,"服务器未响应，请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause());
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause());
                 }
             }
 
@@ -90,7 +90,7 @@ public class SaveOrderImpl implements SaveOrderModel{
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("SaveOrder result: " + result);
+                //    LogUtils.json("SaveOrder result: " + result);
                 }
             }
         });

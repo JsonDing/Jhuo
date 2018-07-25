@@ -1,6 +1,5 @@
 package com.yunma.jhuo.activity.homepage;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,26 +11,25 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.yunma.R;
+import com.yunma.adapter.CompletedPayMentAdapter;
+import com.yunma.bean.SelfGoodsResultBean;
+import com.yunma.bean.SelfGoodsListBean;
 import com.yunma.jhuo.activity.LookOrderDetial;
 import com.yunma.jhuo.activity.MainActivity;
-import com.yunma.adapter.CompletedPayMentAdapter;
-import com.yunma.bean.GoodsInfoResultBean;
 import com.yunma.jhuo.general.MyCompatActivity;
-import com.yunma.jhuo.m.GetGoodsInterface;
-import com.yunma.jhuo.p.GetGoodsHotPre;
+import com.yunma.jhuo.p.SearchGoodsPre;
 import com.yunma.utils.AppManager;
 import com.yunma.utils.DensityUtils;
-import com.yunma.utils.ScreenUtils;
-import com.yunma.utils.ToastUtils;
-
+import com.yunma.utils.SPUtils;
+import com.yunma.jhuo.m.SelfGoodsInterFace.*;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CompletedPayMent extends MyCompatActivity implements
-         GetGoodsInterface.GetGoodsHotView {
+public class CompletedPayMent extends MyCompatActivity implements SearchGoodsView,
+        CompletedPayMentAdapter.OnItemClickListener {
 
     @BindView(R.id.scroll) ScrollView scroll;
     @BindView(R.id.layoutBack) LinearLayout layoutBack;
@@ -56,23 +54,23 @@ public class CompletedPayMent extends MyCompatActivity implements
         getDatas();
     }
 
+    private void initStatusBar() {
+        layouStatusBar.setPadding(0, SPUtils.getStatusHeight(this), 0, 0);
+        FrameLayout.LayoutParams fl = (FrameLayout.LayoutParams) scroll.getLayoutParams(); //取控件textView当前的布局参数
+        fl.setMargins(0, SPUtils.getStatusHeight(this) + DensityUtils.dp2px(this, 44), 0,0);
+        scroll.setLayoutParams(fl); //使设置好的布局参数应用到控件
+        mAdapter = new CompletedPayMentAdapter(this,CompletedPayMent.this);
+        gvIntro.setAdapter(mAdapter);
+    }
+
     private void getDatas() {
         Bundle bundle = getIntent().getExtras();
         orderId = bundle.getString("orderId");
         tvPayway.setText(bundle.getString("payWay"));
         tvTotalPrice.setText(bundle.getString("totalPrice"));
-        GetGoodsHotPre hotPre = new GetGoodsHotPre(this);
-        hotPre.getHotGoods("16",1);
+        SearchGoodsPre searchSelfGoodsPre = new SearchGoodsPre(this);
+        searchSelfGoodsPre.searchSelfGoodsByStocks(this,"1","8","1");
     }
-
-    private void initStatusBar() {
-        int statusHeight = ScreenUtils.getStatusHeight(CompletedPayMent.this);
-        layouStatusBar.setPadding(0, statusHeight, 0, 0);
-        FrameLayout.LayoutParams fl = (FrameLayout.LayoutParams) scroll.getLayoutParams(); //取控件textView当前的布局参数
-        fl.setMargins(0, statusHeight + DensityUtils.dp2px(this, 44), 0,0);
-        scroll.setLayoutParams(fl); //使设置好的布局参数应用到控件
-    }
-
 
     @OnClick({R.id.layoutBack, R.id.btnOrderDetial, R.id.btnBackHome})
     public void onClick(View view) {
@@ -97,26 +95,23 @@ public class CompletedPayMent extends MyCompatActivity implements
     }
 
     @Override
-    public Context getContext() {
-        return getApplicationContext();
+    public void showSearchInfos(SelfGoodsResultBean resultBean, String msg) {
+        if(resultBean !=null){
+            List<SelfGoodsListBean> listBean = resultBean.getSuccess().getList();
+            if(listBean.size()!=0){
+                mAdapter.setListBean(listBean);
+            }
+        }
     }
 
     @Override
-    public void showHotGoodsInfos(GoodsInfoResultBean resultBean, String msg) {
-        if(resultBean==null){
-            ToastUtils.showError(getApplicationContext(),msg);
-        }else {
-            if(resultBean.getSuccess().getList()!=null&&
-                    resultBean.getSuccess().getList().size()!=0){
-                List<GoodsInfoResultBean.SuccessBean.ListBean> listBean = resultBean.getSuccess().getList();
-                if(mAdapter==null){
-                    mAdapter = new CompletedPayMentAdapter(this,listBean);
-                    gvIntro.setAdapter(mAdapter);
-                    scroll.smoothScrollTo(0,0);
-                }else {
-                    mAdapter.notifyDataSetChanged();
-                }
-            }
-        }
+    public void onItemClick(int position, SelfGoodsListBean listBean) {
+        Intent intent = new Intent(this, GoodsDetialsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("isToEnd","yes");
+        bundle.putInt("goodId", listBean.getId());
+        bundle.putSerializable("goodsDetials", listBean);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }

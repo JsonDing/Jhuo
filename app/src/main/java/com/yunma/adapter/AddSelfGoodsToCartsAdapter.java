@@ -1,11 +1,14 @@
 package com.yunma.adapter;
 
 import android.content.Context;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.yunma.R;
-import com.yunma.utils.ToastUtils;
 import com.yunma.bean.StocksBean;
 
 import java.util.ArrayList;
@@ -19,14 +22,11 @@ import butterknife.ButterKnife;
  */
 
 public class AddSelfGoodsToCartsAdapter extends BaseAdapter {
-    private Context mContext;
     private LayoutInflater mInflater;
     private List<StocksBean> stocks;
     private OnNumsSelectedClick onClick;
-    public AddSelfGoodsToCartsAdapter(Context context,
+    public AddSelfGoodsToCartsAdapter(Context mContext,
                                       OnNumsSelectedClick onClick) {
-
-        this.mContext = context;
         this.onClick = onClick;
         this.stocks =  new ArrayList<>();
         mInflater = LayoutInflater.from(mContext);
@@ -59,8 +59,8 @@ public class AddSelfGoodsToCartsAdapter extends BaseAdapter {
             view.setTag(holder);
         }
         holder.tvGoodsSize.setText(stocks.get(position).getSize());
-        holder.tvGoodsRemain.setText(stocks.get(position).getNum() + "");
-        holder.tvGoodsNums.setText(stocks.get(position).getBuyNum() + "");
+        holder.tvGoodsRemain.setText(String.valueOf(stocks.get(position).getNum()));
+        holder.tvGoodsNums.setText(String.valueOf(stocks.get(position).getBuyNum()));
         final int buyNums = Integer.valueOf(holder.tvGoodsNums.getText().toString());
         final int remainNums = Integer.valueOf(holder.tvGoodsRemain.getText().toString());
         holder.layoutAddMore.setOnClickListener(new View.OnClickListener() {
@@ -71,20 +71,6 @@ public class AddSelfGoodsToCartsAdapter extends BaseAdapter {
                 }
             }
         });
-
-        holder.layoutAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(null!=onClick){
-                    if(buyNums!=0){
-                        onClick.onAddToShoppingCarts(position,buyNums,stocks);
-                    }else{
-                        ToastUtils.showError(mContext,"数量不能为0");
-                    }
-                }
-            }
-        });
-
         holder.layoutMinusMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,8 +96,6 @@ public class AddSelfGoodsToCartsAdapter extends BaseAdapter {
         TextView tvGoodsNums;
         @BindView(R.id.tvGoodsRemain)
         TextView tvGoodsRemain;
-        @BindView(R.id.layoutAdd)
-        LinearLayout layoutAdd;
         @BindView(R.id.layoutMinusMore)
         LinearLayout layoutMinusMore;
         ViewHolder(View view) {
@@ -121,7 +105,6 @@ public class AddSelfGoodsToCartsAdapter extends BaseAdapter {
 
     public interface OnNumsSelectedClick{
         void onAddMore(int position,int buyNums,int goodsRemain);
-        void onAddToShoppingCarts(int postion,int numbers,List<StocksBean> stocks);
         void onMinusMore(int position,int buyNums,int goodsRemain);
     }
 

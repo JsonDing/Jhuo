@@ -4,16 +4,25 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.widget.*;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.yunma.R;
-import com.yunma.jhuo.fragment.*;
+import com.yunma.jhuo.fragment.ServiceComplete;
+import com.yunma.jhuo.fragment.ServiceHandling;
+import com.yunma.jhuo.fragment.ServiceNotHandle;
+import com.yunma.jhuo.fragment.ServiceRejust;
 import com.yunma.jhuo.general.MyCompatActivity;
 import com.yunma.utils.AppManager;
 import com.yunma.utils.ScreenUtils;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ReturnGoodsManage extends MyCompatActivity {
     public static ReturnGoodsManage returnGoodsContext;
@@ -110,7 +119,7 @@ public class ReturnGoodsManage extends MyCompatActivity {
                 } else {
                     transaction.show(serviceNotHandle);
                 }
-                tvNotHandle.setTextColor(getResources().getColor(R.color.color_b3));
+                tvNotHandle.setTextColor(ContextCompat.getColor(mContext,R.color.b3));
                 notHandleLine.setVisibility(View.VISIBLE);
                 break;
             case 1:
@@ -120,7 +129,7 @@ public class ReturnGoodsManage extends MyCompatActivity {
                 } else {
                     transaction.show(serviceHandling);
                 }
-                tvHandling.setTextColor(getResources().getColor(R.color.color_b3));
+                tvHandling.setTextColor(ContextCompat.getColor(mContext,R.color.b3));
                 handlingLine.setVisibility(View.VISIBLE);
                 break;
             case 2:
@@ -130,7 +139,7 @@ public class ReturnGoodsManage extends MyCompatActivity {
                 } else {
                     transaction.show(serviceComplete);
                 }
-                tvComplete.setTextColor(getResources().getColor(R.color.color_b3));
+                tvComplete.setTextColor(ContextCompat.getColor(mContext,R.color.b3));
                 completeLine.setVisibility(View.VISIBLE);
                 break;
             case 3:
@@ -140,7 +149,7 @@ public class ReturnGoodsManage extends MyCompatActivity {
                 } else {
                     transaction.show(serviceRejust);
                 }
-                tvRejust.setTextColor(getResources().getColor(R.color.color_b3));
+                tvRejust.setTextColor(ContextCompat.getColor(mContext,R.color.b3));
                 rejustLine.setVisibility(View.VISIBLE);
                 break;
         }
@@ -163,10 +172,10 @@ public class ReturnGoodsManage extends MyCompatActivity {
     }
 
     private void clearSelection() {
-        tvNotHandle.setTextColor(getResources().getColor(R.color.color_b1));
-        tvHandling.setTextColor(getResources().getColor(R.color.color_b1));
-        tvComplete.setTextColor(getResources().getColor(R.color.color_b1));
-        tvRejust.setTextColor(getResources().getColor(R.color.color_b1));
+        tvNotHandle.setTextColor(ContextCompat.getColor(mContext,R.color.b1));
+        tvHandling.setTextColor(ContextCompat.getColor(mContext,R.color.b1));
+        tvComplete.setTextColor(ContextCompat.getColor(mContext,R.color.b1));
+        tvRejust.setTextColor(ContextCompat.getColor(mContext,R.color.b1));
         notHandleLine.setVisibility(View.INVISIBLE);
         handlingLine.setVisibility(View.INVISIBLE);
         completeLine.setVisibility(View.INVISIBLE);

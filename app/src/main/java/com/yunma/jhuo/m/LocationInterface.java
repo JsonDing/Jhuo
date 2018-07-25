@@ -17,9 +17,8 @@ public class LocationInterface {
     }
 
     public interface LocationView {
-        Context getContext();
-        void getLocation(List<PoiItem> poiItems);
-        void getCurrAddress(String address);
+        void showNearByLocation(List<PoiItem> poiItems);
+        void showCurrAddress(String address);
         
     }
 

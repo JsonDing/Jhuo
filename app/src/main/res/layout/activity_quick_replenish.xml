@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="快速补货"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -80,107 +80,112 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0.5"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
-    <com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_a4"
-        app:load_text="加载更多"
-        app:progress_bar_color="@color/color_a1"
-        app:refresh_text="下拉刷新"
-        app:guidance_text_color="@color/color_a2"
-        app:guidance_view_bg_color="@color/transparent">
+        android:layout_height="match_parent">
 
-        <com.scu.miomin.shswiperefresh.view.SHListView
-            android:id="@+id/lvQuickReplenish"
+        <LinearLayout
+            android:id="@+id/layoutNull"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@null"
-            android:overScrollMode="never"
-            android:background="@color/color_a4"
-            android:scrollbars="none"/>
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@color/a4">
 
-    </com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout>
-
-    <LinearLayout
-        android:id="@+id/layoutNull"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:gravity="center_horizontal"
-        android:background="@color/color_a4">
-
-        <ImageView
-            android:layout_width="@dimen/dp56"
-            android:layout_height="@dimen/dp56"
-            android:src="@drawable/no_order"
-            android:layout_marginTop="@dimen/dp96"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="您还没有浏览、付款记录"
-            android:textSize="@dimen/sp15"
-            android:textColor="@color/color_b1"
-            android:layout_marginTop="@dimen/dp39"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="赶紧去看看有哪些想买的"
-            android:textSize="@dimen/sp13"
-            android:textColor="@color/color_b2"
-            android:layout_marginTop="@dimen/dp10"/>
-
-        <RelativeLayout
-            android:id="@+id/layoutGoLook"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp44"
-            android:layout_marginTop="@dimen/dp73"
-            android:background="@color/color_a4">
+            <ImageView
+                android:layout_width="@dimen/dp56"
+                android:layout_height="@dimen/dp56"
+                android:src="@drawable/no_order"
+                android:layout_marginTop="@dimen/dp96"/>
 
             <TextView
-                android:id="@+id/text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccentHalf"
-                android:layout_centerInParent="true"
-                android:text="去看看"
-                android:textSize="@dimen/sp13"/>
+                android:text="您还没有购买记录"
+                android:textSize="@dimen/sp15"
+                android:textColor="@color/b1"
+                android:layout_marginTop="@dimen/dp39"/>
 
-            <ImageView
-                android:layout_width="@dimen/dp36"
-                android:layout_height="@dimen/dp11"
-                android:src="@drawable/decorate_right"
-                android:layout_alignTop="@+id/text1"
-                android:layout_toStartOf="@+id/text1"
-                android:layout_marginEnd="@dimen/dp15"
-                android:id="@+id/decor_content_parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="赶紧去看看有哪些想买的"
+                android:textSize="@dimen/sp13"
+                android:textColor="@color/b2"
+                android:layout_marginTop="@dimen/dp10"/>
 
-            <ImageView
-                android:layout_width="@dimen/dp36"
-                android:layout_height="@dimen/dp11"
-                android:src="@drawable/decorate_left"
-                android:layout_alignTop="@+id/text1"
-                android:layout_toEndOf="@+id/text1"
-                android:layout_marginStart="@dimen/dp15"
-                android:id="@+id/imageView1" />
+            <RelativeLayout
+                android:id="@+id/layoutGoLook"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp44"
+                android:layout_marginTop="@dimen/dp73"
+                android:background="@color/a4">
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccentHalf"
+                    android:layout_centerInParent="true"
+                    android:text="去看看"
+                    android:textSize="@dimen/sp13"/>
 
-        <!--  <com.yunma.view.MyGirdView
-              android:id="@+id/gvIntro"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:scrollbars="none"
-              android:numColumns="2"
-              android:divider="@null"
-              android:background="@color/white"/>-->
+                <ImageView
+                    android:layout_width="@dimen/dp36"
+                    android:layout_height="@dimen/dp11"
+                    android:src="@drawable/decorate_right"
+                    android:layout_alignTop="@+id/text1"
+                    android:layout_toStartOf="@+id/text1"
+                    android:layout_marginEnd="@dimen/dp15"
+                    android:id="@+id/decor_content_parent" />
+
+                <ImageView
+                    android:layout_width="@dimen/dp36"
+                    android:layout_height="@dimen/dp11"
+                    android:src="@drawable/decorate_left"
+                    android:layout_alignTop="@+id/text1"
+                    android:layout_toEndOf="@+id/text1"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:id="@+id/imageView1" />
+
+            </RelativeLayout>
+
+            <!--  <com.yunma.view.MyGirdView
+                  android:id="@+id/gvIntro"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:scrollbars="none"
+                  android:numColumns="2"
+                  android:divider="@null"
+                  android:background="@color/white"/>-->
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+        <com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/a4"
+            app:load_text="加载更多"
+            app:progress_bar_color="@color/a1"
+            app:refresh_text="下拉刷新"
+            app:guidance_text_color="@color/a2"
+            app:guidance_view_bg_color="@color/transparent">
+
+            <com.scu.miomin.shswiperefresh.view.SHListView
+                android:id="@+id/lvQuickReplenish"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:overScrollMode="never"
+                android:background="@color/a4"
+                android:scrollbars="none"/>
+
+        </com.scu.miomin.shswiperefresh.core.SHSwipeRefreshLayout>
+
+    </FrameLayout>
 
 </LinearLayout>

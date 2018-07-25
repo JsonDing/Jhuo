@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="运费说明"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp17"/>
     </LinearLayout>
 
@@ -36,14 +36,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
                 android:layout_marginTop="@dimen/dp03"
                 android:layout_marginStart="@dimen/dp15"
                 android:src="@drawable/circle_orange"/>
 
             <TextView
-                android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingMultiplier="1.5"
@@ -51,7 +50,7 @@
                 android:paddingEnd="@dimen/dp15"
                 android:paddingStart="@dimen/dp10"
                 android:text="@string/express_1"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>
@@ -65,8 +64,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
                 android:layout_marginTop="@dimen/dp03"
                 android:layout_marginStart="@dimen/dp15"
                 android:src="@drawable/circle_orange"/>
@@ -79,7 +78,7 @@
                 android:text="@string/express_0"
                 android:maxLines="4"
                 android:lineSpacingMultiplier="1.5"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>
@@ -93,8 +92,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
                 android:layout_marginTop="@dimen/dp03"
                 android:layout_marginStart="@dimen/dp15"
                 android:src="@drawable/circle_orange"/>
@@ -107,7 +106,7 @@
                 android:text="@string/express_2"
                 android:maxLines="4"
                 android:lineSpacingMultiplier="1.5"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>
@@ -121,8 +120,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
                 android:layout_marginTop="@dimen/dp03"
                 android:layout_marginStart="@dimen/dp15"
                 android:src="@drawable/circle_orange"/>
@@ -135,7 +134,7 @@
                 android:maxLines="4"
                 android:lineSpacingMultiplier="1.5"
                 android:text="@string/express_3"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>
@@ -149,8 +148,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
                 android:layout_marginTop="@dimen/dp03"
                 android:layout_marginStart="@dimen/dp15"
                 android:src="@drawable/circle_orange"/>
@@ -163,7 +162,7 @@
                 android:maxLines="4"
                 android:lineSpacingMultiplier="1.5"
                 android:text="@string/express_4"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>
@@ -177,8 +176,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
                 android:layout_marginTop="@dimen/dp03"
                 android:layout_marginStart="@dimen/dp15"
                 android:src="@drawable/circle_orange"/>
@@ -191,7 +190,7 @@
                 android:maxLines="4"
                 android:lineSpacingMultiplier="1.5"
                 android:text="@string/express_5"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>
@@ -205,8 +204,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
+                android:layout_width="@dimen/dp06"
+                android:layout_height="@dimen/dp06"
                 android:layout_marginTop="@dimen/dp03"
                 android:layout_marginStart="@dimen/dp15"
                 android:src="@drawable/circle_orange"/>
@@ -219,7 +218,7 @@
                 android:maxLines="4"
                 android:lineSpacingMultiplier="1.5"
                 android:text="@string/express_6"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
         </LinearLayout>

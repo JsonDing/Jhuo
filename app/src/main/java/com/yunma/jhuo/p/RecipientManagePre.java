@@ -1,5 +1,7 @@
 package com.yunma.jhuo.p;
 
+import android.content.Context;
+
 import com.yunma.bean.RecipientManageBean;
 import com.yunma.jhuo.i.RecipientManageModelImpl;
 import com.yunma.jhuo.m.RecipientManageInterface.*;
@@ -17,8 +19,8 @@ public class RecipientManagePre {
         this.mModel = new RecipientManageModelImpl();
     }
 
-    public void queryRecipient(){
-        mModel.onQueryRecipient(mView.getContext(), new OnListener() {
+    public void queryRecipient(Context context){
+        mModel.onQueryRecipient(context, new OnListener() {
             @Override
             public void quaryRecipientListener(RecipientManageBean bean, String msg) {
                 mView.toShowRecipientManage(bean,msg);

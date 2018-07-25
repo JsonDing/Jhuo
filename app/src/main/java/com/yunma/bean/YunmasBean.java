@@ -1,122 +1,193 @@
 package com.yunma.bean;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created on 2017-03-13
+ * Created on 2017-08-10
  *
  * @author Json.
  */
 
-public class YunmasBean extends TokenBean implements Serializable {
+public class YunmasBean {
+    private int pageNum;
+    private int pageSize;
+    private int size;
+    private int startRow;
+    private int endRow;
+    private int total;
+    private int pages;
+    private int prePage;
+    private int nextPage;
+    private boolean isFirstPage;
+    private boolean isLastPage;
+    private boolean hasPreviousPage;
+    private boolean hasNextPage;
+    private int navigatePages;
+    private int navigateFirstPage;
+    private int navigateLastPage;
+    private int firstPage;
+    private int lastPage;
+    private List<SelfGoodsListBean> list;
+    private List<Integer> navigatepageNums;
 
-    private String brand;
-    private String discount;
-    private String info;
-    private String label;
-    private String name;
-    private String number;
-    private String pic;
-    private String saleprice;
-    private String sex;
-    private String type;
-    private String ymprice;
-    private List<StocksBean> stocks;
-
-    public String getBrand() {
-        return brand;
+    public int getPageNum() {
+        return pageNum;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
     }
 
-    public String getDiscount() {
-        return discount;
+    public int getPageSize() {
+        return pageSize;
     }
 
-    public void setDiscount(String discount) {
-        this.discount = discount;
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 
-    public String getInfo() {
-        return info;
+    public int getSize() {
+        return size;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setSize(int size) {
+        this.size = size;
     }
 
-    public String getLabel() {
-        return label;
+    public int getStartRow() {
+        return startRow;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setStartRow(int startRow) {
+        this.startRow = startRow;
     }
 
-    public String getName() {
-        return name;
+    public int getEndRow() {
+        return endRow;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEndRow(int endRow) {
+        this.endRow = endRow;
     }
 
-    public String getNumber() {
-        return number;
+    public int getTotal() {
+        return total;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
-    public String getPic() {
-        return pic;
+    public int getPages() {
+        return pages;
     }
 
-    public void setPic(String pic) {
-        this.pic = pic;
+    public void setPages(int pages) {
+        this.pages = pages;
     }
 
-    public String getSaleprice() {
-        return saleprice;
+    public int getPrePage() {
+        return prePage;
     }
 
-    public void setSaleprice(String saleprice) {
-        this.saleprice = saleprice;
+    public void setPrePage(int prePage) {
+        this.prePage = prePage;
     }
 
-    public String getSex() {
-        return sex;
+    public int getNextPage() {
+        return nextPage;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setNextPage(int nextPage) {
+        this.nextPage = nextPage;
     }
 
-    public String getType() {
-        return type;
+    public boolean isIsFirstPage() {
+        return isFirstPage;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setIsFirstPage(boolean isFirstPage) {
+        this.isFirstPage = isFirstPage;
     }
 
-    public String getYmprice() {
-        return ymprice;
+    public boolean isIsLastPage() {
+        return isLastPage;
     }
 
-    public void setYmprice(String ymprice) {
-        this.ymprice = ymprice;
+    public void setIsLastPage(boolean isLastPage) {
+        this.isLastPage = isLastPage;
     }
 
-    public List<StocksBean> getStocks() {
-        return stocks;
+    public boolean isHasPreviousPage() {
+        return hasPreviousPage;
     }
 
-    public void setStocks(List<StocksBean> stocks) {
-        this.stocks = stocks;
+    public void setHasPreviousPage(boolean hasPreviousPage) {
+        this.hasPreviousPage = hasPreviousPage;
     }
+
+    public boolean isHasNextPage() {
+        return hasNextPage;
+    }
+
+    public void setHasNextPage(boolean hasNextPage) {
+        this.hasNextPage = hasNextPage;
+    }
+
+    public int getNavigatePages() {
+        return navigatePages;
+    }
+
+    public void setNavigatePages(int navigatePages) {
+        this.navigatePages = navigatePages;
+    }
+
+    public int getNavigateFirstPage() {
+        return navigateFirstPage;
+    }
+
+    public void setNavigateFirstPage(int navigateFirstPage) {
+        this.navigateFirstPage = navigateFirstPage;
+    }
+
+    public int getNavigateLastPage() {
+        return navigateLastPage;
+    }
+
+    public void setNavigateLastPage(int navigateLastPage) {
+        this.navigateLastPage = navigateLastPage;
+    }
+
+    public int getFirstPage() {
+        return firstPage;
+    }
+
+    public void setFirstPage(int firstPage) {
+        this.firstPage = firstPage;
+    }
+
+    public int getLastPage() {
+        return lastPage;
+    }
+
+    public void setLastPage(int lastPage) {
+        this.lastPage = lastPage;
+    }
+
+    public List<SelfGoodsListBean> getList() {
+        return list;
+    }
+
+    public void setList(List<SelfGoodsListBean> list) {
+        this.list = list;
+    }
+
+    public List<Integer> getNavigatepageNums() {
+        return navigatepageNums;
+    }
+
+    public void setNavigatepageNums(List<Integer> navigatepageNums) {
+        this.navigatepageNums = navigatepageNums;
+    }
+
 }

@@ -10,7 +10,6 @@ import java.util.List;
 
 public class LookOrderBean {
 
-
     private SuccessBean success;
 
     public SuccessBean getSuccess() {
@@ -30,22 +29,27 @@ public class LookOrderBean {
         private String name;
         private String addr;
         private String tel;
-        private String phone;
-        private String expressname;
-        private String expressnumber;
+        private Object phone;
+        private Object expressname;
+        private Object expressnumber;
         private double expresscost;
         private double totalmoney;
         private double totalcost;
-        private String totalnum;
+        private int totalnum;
         private int pay;
         private int send;
         private int service;
-        private String userorderid;
-        private String express;
-        private RepoBean repo;
+        private Object userorderid;
+        private Object express;
+        private Object repo;
         private UserBean user;
         private Object yunma;
         private int finished;
+        private int invoice;
+        private int cancel;
+        private String remark;
+        private double couponMoney;
+        private Object couponType;
         private List<OrderdetailsBean> orderdetails;
 
         public int getId() {
@@ -104,11 +108,11 @@ public class LookOrderBean {
             this.tel = tel;
         }
 
-        public String getPhone() {
+        public Object getPhone() {
             return phone;
         }
 
-        public void setPhone(String phone) {
+        public void setPhone(Object phone) {
             this.phone = phone;
         }
 
@@ -116,15 +120,15 @@ public class LookOrderBean {
             return expressname;
         }
 
-        public void setExpressname(String expressname) {
+        public void setExpressname(Object expressname) {
             this.expressname = expressname;
         }
 
-        public String getExpressnumber() {
+        public Object getExpressnumber() {
             return expressnumber;
         }
 
-        public void setExpressnumber(String expressnumber) {
+        public void setExpressnumber(Object expressnumber) {
             this.expressnumber = expressnumber;
         }
 
@@ -152,11 +156,11 @@ public class LookOrderBean {
             this.totalcost = totalcost;
         }
 
-        public String getTotalnum() {
+        public int getTotalnum() {
             return totalnum;
         }
 
-        public void setTotalnum(String totalnum) {
+        public void setTotalnum(int totalnum) {
             this.totalnum = totalnum;
         }
 
@@ -184,27 +188,27 @@ public class LookOrderBean {
             this.service = service;
         }
 
-        public String getUserorderid() {
+        public Object getUserorderid() {
             return userorderid;
         }
 
-        public void setUserorderid(String userorderid) {
+        public void setUserorderid(Object userorderid) {
             this.userorderid = userorderid;
         }
 
-        public String getExpress() {
+        public Object getExpress() {
             return express;
         }
 
-        public void setExpress(String express) {
+        public void setExpress(Object express) {
             this.express = express;
         }
 
-        public RepoBean getRepo() {
+        public Object getRepo() {
             return repo;
         }
 
-        public void setRepo(RepoBean repo) {
+        public void setRepo(Object repo) {
             this.repo = repo;
         }
 
@@ -232,68 +236,52 @@ public class LookOrderBean {
             this.finished = finished;
         }
 
+        public int getInvoice() {
+            return invoice;
+        }
+
+        public void setInvoice(int invoice) {
+            this.invoice = invoice;
+        }
+
+        public int getCancel() {
+            return cancel;
+        }
+
+        public void setCancel(int cancel) {
+            this.cancel = cancel;
+        }
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
+        }
+
+        public double getCouponMoney() {
+            return couponMoney;
+        }
+
+        public void setCouponMoney(double couponMoney) {
+            this.couponMoney = couponMoney;
+        }
+
+        public Object getCouponType() {
+            return couponType;
+        }
+
+        public void setCouponType(Object couponType) {
+            this.couponType = couponType;
+        }
+
         public List<OrderdetailsBean> getOrderdetails() {
             return orderdetails;
         }
 
         public void setOrderdetails(List<OrderdetailsBean> orderdetails) {
             this.orderdetails = orderdetails;
-        }
-
-        public class RepoBean {
-            /**
-             * id : 24
-             * name : 厦门耐克
-             * repoorder : null
-             * type : null
-             * row : null
-             */
-
-            private int id;
-            private String name;
-            private Object repoorder;
-            private Object type;
-            private Object row;
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public Object getRepoorder() {
-                return repoorder;
-            }
-
-            public void setRepoorder(Object repoorder) {
-                this.repoorder = repoorder;
-            }
-
-            public Object getType() {
-                return type;
-            }
-
-            public void setType(Object type) {
-                this.type = type;
-            }
-
-            public Object getRow() {
-                return row;
-            }
-
-            public void setRow(Object row) {
-                this.row = row;
-            }
         }
 
         public class UserBean {
@@ -514,7 +502,7 @@ public class LookOrderBean {
             private String info;
             private String number;
             private String size;
-            private double price;
+            private int price;
             private Object discount;
             private double userprice;
             private Object userdiscount;
@@ -572,11 +560,11 @@ public class LookOrderBean {
                 this.size = size;
             }
 
-            public double getPrice() {
+            public int getPrice() {
                 return price;
             }
 
-            public void setPrice(double price) {
+            public void setPrice(int price) {
                 this.price = price;
             }
 

@@ -14,7 +14,7 @@ public class OrderBean implements Serializable {
     private String token;
     private String addrid;
     private String yunma;
-    private List<OrderdetailsBean> orderdetails;
+    private List<OrderDetailsBean> orderdetails;
 
     public String getToken() {
         return token;
@@ -40,11 +40,11 @@ public class OrderBean implements Serializable {
         this.yunma = yunma;
     }
 
-    public List<OrderdetailsBean> getOrderdetails() {
+    public List<OrderDetailsBean> getOrderdetails() {
         return orderdetails;
     }
 
-    public void setOrderdetails(List<OrderdetailsBean> orderdetails) {
+    public void setOrderdetails(List<OrderDetailsBean> orderdetails) {
         this.orderdetails = orderdetails;
     }
 

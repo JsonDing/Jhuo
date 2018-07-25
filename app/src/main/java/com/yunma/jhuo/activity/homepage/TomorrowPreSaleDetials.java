@@ -1,43 +1,40 @@
 package com.yunma.jhuo.activity.homepage;
 
-import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.animation.ViewPropertyAnimation;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
 import com.yunma.R;
 import com.yunma.adapter.GoodsSizeAdapter;
 import com.yunma.adapter.GoodsTagAdapter;
-import com.yunma.bean.GetSelfGoodsResultBean;
 import com.yunma.bean.LocalImagePathBean;
 import com.yunma.bean.PathBean;
 import com.yunma.bean.SuccessResultBean;
+import com.yunma.bean.TomorrowUpDataResultBean;
+import com.yunma.jhuo.activity.PicViewerActivity;
 import com.yunma.jhuo.general.MyCompatActivity;
 import com.yunma.jhuo.m.SelfGoodsInterFace;
-import com.yunma.jhuo.p.AddGoodsRemindPre;
+import com.yunma.jhuo.p.AddTomorrowUpDataRemindPre;
 import com.yunma.utils.AppManager;
 import com.yunma.utils.ConUtils;
 import com.yunma.utils.DensityUtils;
+import com.yunma.utils.GlideUtils;
 import com.yunma.utils.ScreenUtils;
 import com.yunma.utils.ToastUtils;
 import com.yunma.utils.ValueUtils;
 import com.yunma.widget.FlowTagLayout;
-import com.yunma.publish.PicViewerActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +47,8 @@ import cn.carbs.android.library.MDDialog;
 
 import static com.yunma.R.id.tag_layout;
 
-public class TomorrowPreSaleDetials extends MyCompatActivity implements GoodsSizeAdapter.OnAddBasketCarts, SelfGoodsInterFace.AddSelfGoodsRemindView {
+public class TomorrowPreSaleDetials extends MyCompatActivity implements
+        GoodsSizeAdapter.OnAddBasketCarts, SelfGoodsInterFace.AddSelfGoodsRemindView {
 
     @BindView(R.id.xbanner) XBanner xbanner;
     @BindView(R.id.tvGoodsName) TextView tvGoodsName;
@@ -62,15 +60,15 @@ public class TomorrowPreSaleDetials extends MyCompatActivity implements GoodsSiz
     @BindView(tag_layout) FlowTagLayout tagLayout;
     @BindView(R.id.size_layout) FlowTagLayout sizeLayout;
     @BindView(R.id.tvExpressInfo) TextView tvExpressInfo;
-    @BindView(R.id.scroll) ScrollView scroll;
+    @BindView(R.id.scroll) NestedScrollView scroll;
     @BindView(R.id.layoutBack) LinearLayout layoutBack;
     @BindView(R.id.tvTittle) TextView tvTittle;
     @BindView(R.id.imgsRight) ImageView imgsRight;
     @BindView(R.id.layoutRight) LinearLayout layoutRight;
     @BindView(R.id.layouStatusBar) LinearLayout layouStatusBar;
     @BindView(R.id.btnRemindMe) Button btnRemindMe;
-    private  AddGoodsRemindPre addGoodsRemindPre =null;
-    private GetSelfGoodsResultBean.SuccessBean.ListBean detialsBean = null;
+    private AddTomorrowUpDataRemindPre addTomorrowUpDataRemindPre =null;
+    private TomorrowUpDataResultBean.SuccessBean.YunmaBean detialsBean = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +87,7 @@ public class TomorrowPreSaleDetials extends MyCompatActivity implements GoodsSiz
     }
 
     private void getIntentDatas() {
-        detialsBean = (GetSelfGoodsResultBean.SuccessBean.ListBean)
+        detialsBean = (TomorrowUpDataResultBean.SuccessBean.YunmaBean)
                 this.getIntent().getSerializableExtra("TomorrowPreSaleDetials");
         assert detialsBean != null;
         if(detialsBean.getLabel().contains("支持去鞋盒服务")){
@@ -102,8 +100,8 @@ public class TomorrowPreSaleDetials extends MyCompatActivity implements GoodsSiz
         }
         tvGoodsName.setText(detialsBean.getName());
         String s ="￥" +  ValueUtils.toTwoDecimal(detialsBean.getYmprice());
-        SpannableStringBuilder ss = ValueUtils.changeText(this,R.color.color_b4,s, Typeface.NORMAL,
-                DensityUtils.sp2px(this,17),1,s.indexOf("."));
+        SpannableStringBuilder ss = ValueUtils.changeText(this,R.color.b4,s, Typeface.NORMAL,
+                17,1,s.indexOf("."));
         tvGoodsPrice.setText(ss);
         tvGoodsOriPrice.setText(
                 String.valueOf("￥" + ValueUtils.toTwoDecimal(detialsBean.getSaleprice())));
@@ -134,6 +132,13 @@ public class TomorrowPreSaleDetials extends MyCompatActivity implements GoodsSiz
                 tagsList.add(aStr);
             }
         }
+        if(detialsBean.getNewRemindId()!=null){
+            btnRemindMe.setEnabled(false);
+            btnRemindMe.setText("已设置上架提醒");
+        }else{
+            btnRemindMe.setEnabled(true);
+            btnRemindMe.setText("上架提醒我");
+        }
         tagAdapter.onlyAddAll(tagsList);
         tvExpressInfo.setText(Html.fromHtml("· 邮费信息：详细见各地区" +
                 "<font color = '#1E88E5'>" + "运费模板" + "</font>"));
@@ -141,26 +146,17 @@ public class TomorrowPreSaleDetials extends MyCompatActivity implements GoodsSiz
 
     private void setDatas(final List<String> imgUrls) {
         assert imgUrls!= null;
+        final String url;
+        if(detialsBean.getRepoid()==1){
+            url = ConUtils.SElF_GOODS_IMAGE_URL;
+        }else{
+            url = ConUtils.GOODS_IMAGE_URL;
+        }
         xbanner.setData(imgUrls,null);
         xbanner.setmAdapter(new XBanner.XBannerAdapter() {
             public void loadBanner(XBanner banner, View view, int pos) {
-                ViewPropertyAnimation.Animator animationObject = new ViewPropertyAnimation.Animator() {
-                    @Override
-                    public void animate(View view) {
-                        view.setAlpha(0f);
-                        ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f);
-                        fadeAnim.setDuration(2000);
-                        fadeAnim.start();
-                    }
-                };
-                Glide.with(getApplicationContext())
-                        .load(ConUtils.SElF_GOODS_IMAGE_URL + imgUrls.get(pos))
-                        .asBitmap()
-                        .placeholder(R.drawable.banner_blank)//
-                        .error(R.drawable.banner_blank)//
-                        .animate(animationObject)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)//
-                        .into((ImageView) view);
+                GlideUtils.glidBanner(TomorrowPreSaleDetials.this,
+                        (ImageView) view, url + imgUrls.get(pos));
             }
         });
         xbanner.setPageTransformer(Transformer.Alpha);
@@ -171,7 +167,7 @@ public class TomorrowPreSaleDetials extends MyCompatActivity implements GoodsSiz
                 List<PathBean> pathBeenList = new ArrayList<>();
                 for (int i=0;i<imgUrls.size();i++){
                     PathBean pathBean = new PathBean();
-                    pathBean.setImgsPath(ConUtils.SElF_GOODS_IMAGE_URL + imgUrls.get(i));
+                    pathBean.setImgsPath(url + imgUrls.get(i));
                     pathBeenList.add(pathBean);
                 }
                 preBean.setPathBeen(pathBeenList);
@@ -192,8 +188,8 @@ public class TomorrowPreSaleDetials extends MyCompatActivity implements GoodsSiz
                 AppManager.getAppManager().finishActivity(this);
                 break;
             case R.id.btnRemindMe:
-                addGoodsRemindPre = new AddGoodsRemindPre(TomorrowPreSaleDetials.this);
-                addGoodsRemindPre.addGoodsRemind(this,detialsBean.getNumber());
+                addTomorrowUpDataRemindPre = new AddTomorrowUpDataRemindPre(TomorrowPreSaleDetials.this);
+                addTomorrowUpDataRemindPre.addGoodsRemind(this,detialsBean.getNumber());
                 break;
             case R.id.tvExpressInfo:
                 showExpressDialog();

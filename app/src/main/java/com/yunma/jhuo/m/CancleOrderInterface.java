@@ -16,7 +16,6 @@ public class CancleOrderInterface {
     }
 
     public interface CancleOrderView{
-        Context getContext();
         void showCancleInfos(SuccessResultBean resultBean, String msg);
     }
 

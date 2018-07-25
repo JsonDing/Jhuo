@@ -1,17 +1,30 @@
 package com.yunma.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.view.*;
-import android.widget.*;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.yunma.R;
 import com.yunma.bean.GetShoppingListBean;
-import com.yunma.utils.*;
+import com.yunma.utils.ConUtils;
+import com.yunma.utils.GlideUtils;
+import com.yunma.utils.ValueUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created on 2017-01-09
@@ -40,7 +53,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     }
 
     private void initSelectedPosition(int states) {
-        for (int i = 0; i < shoppingCartsList.size(); i++) {
+        int  size = shoppingCartsList.size();
+        for (int i = 0; i < size; i++) {
             if(shoppingCartsList.get(i).getStock()==0){
                 if(isEditor){
                     shoppingCartsList.get(i).setIsSelected(states);
@@ -48,6 +62,11 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
                     shoppingCartsList.get(i).setIsSelected(0);//0:未选择 1：选中
                 }
             }else{
+                int cartNum = shoppingCartsList.get(i).getCartNum();
+                int stockNum = shoppingCartsList.get(i).getStock();
+                if(cartNum > stockNum){
+                    shoppingCartsList.get(i).setCartNum(stockNum);
+                }
                 shoppingCartsList.get(i).setIsSelected(states);//0:未选择 1：选中
             }
         }
@@ -60,49 +79,75 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.tvRemain.setText("库存:" + shoppingCartsList.get(position).getStock());
-        if(shoppingCartsList.get(position).getStock()==0){
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        final int pos = holder.getLayoutPosition();
+        holder.tvRemain.setText(String.valueOf(shoppingCartsList.get(pos).getStock()));
+        if(shoppingCartsList.get(pos).getStock()==0 || shoppingCartsList.get(pos).getIssue() == 0){
             holder.layoutSaleOut.setVisibility(View.VISIBLE);
+            if (onItemClickListener != null) {
+                holder.layoutSaleOut.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        onItemClickListener.onItemLongClick(pos,
+                                shoppingCartsList.get(pos).getId());
+                        return false;
+                    }
+                });
+            }
         }else{
             holder.layoutSaleOut.setVisibility(View.GONE);
         }
-        holder.tvGoodsName.setText(shoppingCartsList.get(position).getName());
-        holder.tvGoodsType.setText("颜色：如图 "+" 尺码：" + shoppingCartsList.get(position).getCartSize());
-        holder.tvGoodsPrice.setText("￥" + shoppingCartsList.get(position).getYunmaprice());
-        holder.tvGoodsNum.setText(shoppingCartsList.get(position).getCartNum() + "");
-        if (shoppingCartsList.get(position).getRepoid() == 1) {
-            GlideUtils.glidNormleFast(mContext, holder.imgGoods, ConUtils.SElF_GOODS_IMAGE_URL +
-                    shoppingCartsList.get(position).getPic().split(",")[0]);
+        holder.tvGoodsSize.setText(shoppingCartsList.get(pos).getCartSize());
+        String s;
+        if (shoppingCartsList.get(pos).getSpecialprice() != 0.00) {
+            holder.imgSpecialOffer.setVisibility(View.VISIBLE);
+            SpannableStringBuilder span = new SpannableStringBuilder("缩进 "+shoppingCartsList.get(pos).getName());
+            span.setSpan(new ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
+                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            holder.tvGoodsName.setText(span);
+            s = ValueUtils.toTwoDecimal(shoppingCartsList.get(pos).getSpecialprice());
         } else {
-            GlideUtils.glidNormleFast(mContext, holder.imgGoods, ConUtils.GOODS_IMAGE_URL +
-                    shoppingCartsList.get(position).getNumber() + ".jpg");
+            holder.imgSpecialOffer.setVisibility(View.GONE);
+            holder.tvGoodsName.setText(shoppingCartsList.get(pos).getName());
+            s = ValueUtils.toTwoDecimal(shoppingCartsList.get(pos).getYunmaprice());
         }
-
-        if(shoppingCartsList.get(position).getIsSelected()==1){
+        SpannableStringBuilder ss = ValueUtils.changeTextSize(mContext,s,14,0,s.indexOf("."));
+        holder.tvGoodsPrice.setText(ss);
+        holder.tvGoodsNum.setText(String.valueOf(shoppingCartsList.get(pos).getCartNum()));
+        if(shoppingCartsList.get(pos).getPic() != null){
+            if (shoppingCartsList.get(pos).getRepoid() == 1) {
+                GlideUtils.glidNormleFast(mContext, holder.imgGoods, ConUtils.SElF_GOODS_IMAGE_URL +
+                        shoppingCartsList.get(pos).getPic().split(",")[0] + "/min");
+            } else {
+                GlideUtils.glidNormleFast(mContext, holder.imgGoods, ConUtils.GOODS_IMAGE_URL +
+                        shoppingCartsList.get(pos).getPic().split(",")[0] + "/min");
+            }
+        }else{
+            GlideUtils.glidLocalDrawable(mContext,holder.imgGoods,R.drawable.default_pic);
+        }
+        if(shoppingCartsList.get(pos).getIsSelected()==1){
             holder.imgSelect.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.pitch_on));
+                    ContextCompat.getDrawable(mContext,R.drawable.pitch_on));
         }else{
             holder.imgSelect.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.unchecked));
+                    ContextCompat.getDrawable(mContext,R.drawable.unchecked));
         }
-
         holder.layoutSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(null != selectGoodsClick){
-                    selectGoodsClick.selectedGoods(position,shoppingCartsList);
+                    selectGoodsClick.selectedGoods(holder.getLayoutPosition(),shoppingCartsList);
                 }
             }
         });
-        final int buyNums = Integer.valueOf(holder.tvGoodsNum.getText().toString());
-        final int remainNums = shoppingCartsList.get(position).getStock();
+        final int buyNums = shoppingCartsList.get(holder.getLayoutPosition()).getCartNum();
+        final int remainNums = shoppingCartsList.get(holder.getLayoutPosition()).getStock();
         holder.layMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(null!=onClick){
-                    if(shoppingCartsList.get(position).getIsSelected()==1){
-                        onClick.onMinusMore(position,buyNums,remainNums,shoppingCartsList);
+                    if(shoppingCartsList.get(holder.getLayoutPosition()).getIsSelected()==1){
+                        onClick.onMinusMore(holder.getLayoutPosition(),buyNums,remainNums,shoppingCartsList);
                     }
                 }
             }
@@ -111,18 +156,17 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 if(null!=onClick){
-                    if(shoppingCartsList.get(position).getIsSelected()==1){
-                        onClick.onAddMore(position,buyNums,remainNums,shoppingCartsList);
+                    if(shoppingCartsList.get(holder.getLayoutPosition()).getIsSelected()==1){
+                        onClick.onAddMore(holder.getLayoutPosition(),buyNums,remainNums,shoppingCartsList);
                     }
                 }
             }
         });
         if (onItemClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = holder.getLayoutPosition();
-                    onItemClickListener.onItemClick(holder.itemView, position);
+                    onItemClickListener.onItemClick(holder.getLayoutPosition());
                 }
             });
         }
@@ -134,17 +178,28 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         return shoppingCartsList.size();
     }
 
-    public void remove() {
+    public void removeSaleOutGoods(int position){
+        shoppingCartsList.remove(position);
+        notifyItemRemoved(position);
+        notifyDataSetChanged();
+    }
+
+    public void removeMore() {
         String ids[] = getSelectedId().split(",");
-        for(int i=0;i<ids.length;i++){
-            for(int j=0;j<shoppingCartsList.size();j++){
-                 if(shoppingCartsList.get(j).getId()==Integer.valueOf(ids[i])){
-                     shoppingCartsList.remove(j);
-                     notifyItemRemoved(j);
-                     break;
-                 }
+        for (String id : ids) {
+            for (int j = 0; j < shoppingCartsList.size(); j++) {
+                if (shoppingCartsList.get(j).getId() == Integer.valueOf(id)) {
+                    shoppingCartsList.remove(j);
+                    notifyItemRemoved(j);
+                    break;
+                }
             }
         }
+        notifyDataSetChanged();
+    }
+
+    public int getRemainDatas() {
+        return shoppingCartsList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -152,16 +207,19 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         @BindView(R.id.layoutSelected) LinearLayout layoutSelected;
         @BindView(R.id.imgGoods) ImageView imgGoods;
         @BindView(R.id.tvGoodsName) TextView tvGoodsName;
-        @BindView(R.id.tvGoodsType) TextView tvGoodsType;
+        @BindView(R.id.tvGoodsSize) TextView tvGoodsSize;
         @BindView(R.id.tvGoodsPrice) TextView tvGoodsPrice;
         @BindView(R.id.tvGoodsNum) TextView tvGoodsNum;
         @BindView(R.id.layMinus) View layMinus;
         @BindView(R.id.layoutAdd) View layoutAdd;
         @BindView(R.id.tvRemain) TextView tvRemain;
         @BindView(R.id.layoutSaleOut) View layoutSaleOut;
+        @BindView(R.id.imgSpecialOffer) ImageView imgSpecialOffer;
+        private View rootView;
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            rootView = view;
         }
     }
 
@@ -173,33 +231,34 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         return shoppingCartsList;
     }
 
-    public void setShoppingCartsList(List<GetShoppingListBean.SuccessBean> shoppingCartsList) {
-        this.shoppingCartsList.clear();
+    public void addShoppingCartsList(List<GetShoppingListBean.SuccessBean> shoppingCartsList) {
         this.shoppingCartsList = shoppingCartsList;
-        notifyItemInserted(this.shoppingCartsList.size());
+        notifyItemInserted(shoppingCartsList.size());
     }
 
-    public void selectAll() {
+    public void setCartsList(int position,List<GetShoppingListBean.SuccessBean> shoppingCartsList) {
+        this.shoppingCartsList = shoppingCartsList;
+        notifyDataSetChanged();
+    }
+
+    public void selectAll()  {
         initSelectedPosition(1);
     }
 
     public void clearAll() {
-        initSelectedPosition(0);
+        shoppingCartsList.clear();
+        notifyDataSetChanged();
     }
 
-    public void selectOpposite() {//反选
-        for (int i = 0; i < shoppingCartsList.size(); i++) {
-            if (shoppingCartsList.get(i).getIsSelected()==0) {
-                shoppingCartsList.get(i).setIsSelected(1);
-            } else {
-                shoppingCartsList.get(i).setIsSelected(0);
-            }
-        }
+    public void resetAll() {
+        initSelectedPosition(0);
+        notifyDataSetChanged();
     }
 
     public String getSelectedId() {
         String selectedId = "";
-        for (int i = 0; i < shoppingCartsList.size(); i++) {
+        int size = shoppingCartsList.size();
+        for (int i = 0; i < size; i++) {
             if (shoppingCartsList.get(i).getIsSelected()==1) {
                 selectedId = selectedId + String.valueOf("," + shoppingCartsList.get(i).getId());
             }
@@ -210,21 +269,18 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             return selectedId;
     }
 
-    public boolean isEditor() {
-        return isEditor;
-    }
-
     public void setEditor(boolean editor) {
         isEditor = editor;
     }
 
     public List<GetShoppingListBean.SuccessBean> getPaylist(){
-            List<GetShoppingListBean.SuccessBean> listBean = new ArrayList<>();
-            for (int i = 0; i < shoppingCartsList.size(); i++) {
-                if (shoppingCartsList.get(i).getIsSelected()==1) {
-                    listBean.add(shoppingCartsList.get(i));
-                }
+        List<GetShoppingListBean.SuccessBean> listBean = new ArrayList<>();
+        int size = shoppingCartsList.size();
+        for (int i = 0; i < size; i++) {
+            if (shoppingCartsList.get(i).getIsSelected() == 1) {
+                listBean.add(shoppingCartsList.get(i));
             }
+        }
         return listBean;
     }
 
@@ -236,7 +292,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick( int position);
+        void onItemLongClick(int position,int id);
     }
 }
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="match_parent" type="dimen">-1</item>
-    <item name="wrap_content" type="dimen">-2</item>
     <declare-styleable name="CircleImageView">
         <attr name="border_width" format="dimension" />
         <attr name="border_color" format="color" />

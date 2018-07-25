@@ -27,7 +27,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dp15"
                 android:textSize="@dimen/sp12"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
             <ImageView
                 android:id="@+id/imgDot"

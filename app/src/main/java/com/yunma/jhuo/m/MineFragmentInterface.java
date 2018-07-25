@@ -12,7 +12,6 @@ import com.yunma.bean.UserInfosResultBean;
 
 public class MineFragmentInterface {
     public interface UserInfosView{
-        Context getContext();
         void showUserInfos(UserInfosResultBean resultBean,String msg);
     }
 

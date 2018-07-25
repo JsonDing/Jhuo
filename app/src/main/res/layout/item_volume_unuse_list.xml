@@ -5,31 +5,20 @@
     android:paddingStart="@dimen/dp15"
     android:paddingEnd="@dimen/dp15"
     android:paddingBottom="@dimen/dp10"
-    android:background="@color/color_a4"
+    android:background="@color/a4"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-    <CheckBox
-        android:id="@+id/cbButton"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/dp08"
-        android:layout_marginEnd="@dimen/dp10"
-        android:visibility="gone"
-        style="@style/OrangeCheckBoxTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/cbButton"
         android:layout_alignParentTop="true"
         android:orientation="horizontal"
         android:background="@drawable/favorable_usable_lo">
 
         <LinearLayout
             android:id="@+id/layout"
-            android:layout_width="@dimen/dp121"
+            android:layout_width="@dimen/dp127"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
@@ -40,6 +29,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tvPriceTag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="￥"
@@ -52,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:text="20"
                     android:textStyle="bold"
-                    android:textSize="36sp"
+                    android:textSize="30sp"
                     android:textColor="@color/white"/>
 
             </LinearLayout>
@@ -70,13 +60,12 @@
 
         <RelativeLayout
             android:id="@+id/layout1"
-            android:layout_toEndOf="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tvVolumeName"
-                android:layout_width="@dimen/dp36"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="优惠卷"
                 android:textSize="10sp"
@@ -93,7 +82,7 @@
                 android:textSize="11sp"
                 android:textStyle="bold"
                 android:layout_below="@+id/tvVolumeName"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_alignStart="@+id/tvVolumeName"/>
 
@@ -104,7 +93,7 @@
                 android:text="2017.04.06 - 2017.04.30"
                 android:textSize="10sp"
                 android:layout_below="@+id/tvVolumeUseRange"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_marginStart="@dimen/dp18"/>
 
@@ -112,7 +101,7 @@
                 android:id="@+id/tvUseIntro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="卷使用说明 >"
+                android:text="券使用说明 >"
                 android:textSize="10sp"
                 android:gravity="center"
                 android:layout_below="@+id/tvVolumeUseTime"
@@ -120,7 +109,7 @@
                 android:layout_marginEnd="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp05"
                 android:layout_marginBottom="@dimen/dp10"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:layout_marginStart="@dimen/dp10"/>
 
             <ImageView
@@ -130,12 +119,11 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 android:scaleType="fitXY"
+                android:visibility="invisible"
                 android:src="@drawable/expiring_mark"/>
 
         </RelativeLayout>
 
     </LinearLayout>
-
-
 
 </RelativeLayout>

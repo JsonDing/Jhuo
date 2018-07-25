@@ -3,11 +3,20 @@ package com.yunma.utils;
 import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
-import android.content.pm.*;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Vibrator;
+import android.provider.ContactsContract;
 
-import static com.tencent.open.utils.Global.getPackageName;
+import com.yunma.bean.ContactBean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.umeng.socialize.utils.ContextUtil.getPackageName;
+
 
 /**
  * Created on 2017-03-24
@@ -74,8 +83,31 @@ public class MobileUtils {
         Vibrator vib = (Vibrator) activity.getSystemService(Service.VIBRATOR_SERVICE);
         vib.vibrate(milliseconds);
     }
+
     public static void Vibrate(final Activity activity, long[] pattern, boolean isRepeat) {
         Vibrator vib = (Vibrator) activity.getSystemService(Service.VIBRATOR_SERVICE);
         vib.vibrate(pattern, isRepeat ? 1 : -1);
+    }
+
+    public static List<ContactBean> getPhoneNumberFromMobile(Context context) {
+        // TODO Auto-generated constructor stub
+        List<ContactBean> contactBeanList = new ArrayList<>();
+        Cursor cursor = context.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                null, null, null, null);
+        if (cursor != null) {
+            //moveToNext方法返回的是一个boolean类型的数据
+            while (cursor.moveToNext()) {
+                //读取通讯录的姓名
+                String name = cursor.getString(cursor
+                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                //读取通讯录的号码
+                String number = cursor.getString(cursor
+                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                ContactBean phoneInfo = new ContactBean(name, number);
+                contactBeanList.add(phoneInfo);
+            }
+            cursor.close();
+        }
+        return contactBeanList;
     }
 }

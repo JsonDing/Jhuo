@@ -9,8 +9,6 @@ import com.yunma.bean.*;
  */
 
 public interface OnKindredGoodsClick {
-    void onSeeGoodsDatialListener(int position, GoodsInfoResultBean.SuccessBean.ListBean listBean);
-    void onSeeMoreListener(int position,String type);
-    void onSeeSelfGoodsDatialListener(int position, GetSelfGoodsResultBean.SuccessBean.ListBean listBean);
-    void onSeeSelfMoreListener(int position,String type);
+    void onSeeSelfGoodsDatialListener(int position, SelfGoodsListBean listBean);
+    void onSeeSelfMoreListener(String sex,String type);
 }

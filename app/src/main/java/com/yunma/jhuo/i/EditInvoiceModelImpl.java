@@ -30,7 +30,7 @@ public class EditInvoiceModelImpl implements EditInvoiceModel {
         Gson gson = new Gson();
         String strParams = gson.toJson(addBean);
         params.setBodyContent(strParams);
-        LogUtils.log("requst: " + strParams);
+        LogUtils.json("requst: " + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -43,7 +43,7 @@ public class EditInvoiceModelImpl implements EditInvoiceModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             onListener.onListener(null,"数据解析出错");
@@ -54,7 +54,7 @@ public class EditInvoiceModelImpl implements EditInvoiceModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onListener.onListener(null,"数据解析出错");
@@ -73,7 +73,7 @@ public class EditInvoiceModelImpl implements EditInvoiceModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     onListener.onListener(null,"网络错误");
                 }else{
@@ -91,7 +91,7 @@ public class EditInvoiceModelImpl implements EditInvoiceModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("删除增票 result: " + result);
+                  //  LogUtils.json("删除增票 result: " + result);
                 }
             }
         });

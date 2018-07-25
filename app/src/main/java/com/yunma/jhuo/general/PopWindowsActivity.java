@@ -17,21 +17,15 @@ import butterknife.OnClick;
 
 public class PopWindowsActivity extends MyCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
-    @BindView(R.id.layoutBack)
-    LinearLayout layoutBack;
-    @BindView(R.id.tvTittle)
-    TextView tvTittle;
-    @BindView(R.id.imgsRight)
-    ImageView imgsRight;
-    @BindView(R.id.layoutRight)
-    LinearLayout layoutRight;
-    @BindView(R.id.layouStatusBar)
-    LinearLayout layouStatusBar;
-    @BindView(R.id.sAddCart)
-    Switch sAddCart;
-    @BindView(R.id.sSaleRemind)
-    Switch sSaleRemind;
-
+    @BindView(R.id.layoutBack) LinearLayout layoutBack;
+    @BindView(R.id.tvTittle) TextView tvTittle;
+    @BindView(R.id.imgsRight) ImageView imgsRight;
+    @BindView(R.id.layoutRight) LinearLayout layoutRight;
+    @BindView(R.id.layouStatusBar) LinearLayout layouStatusBar;
+    @BindView(R.id.sAddCart) Switch sAddCart;
+    @BindView(R.id.sSaleRemind) Switch sSaleRemind;
+    @BindView(R.id.shareRemind) Switch shareRemind;
+    @BindView(R.id.numberRemind) Switch numberRemind;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +44,12 @@ public class PopWindowsActivity extends MyCompatActivity implements CompoundButt
     private void initSetting() {
         sAddCart.setChecked(SPUtils.isAddCartRemind(this));
         sSaleRemind.setChecked(SPUtils.isSaleRemind(this));
+        shareRemind.setChecked(SPUtils.isShareRemind(this));
+        numberRemind.setChecked(SPUtils.IsShowNumberRemind(this));
         sAddCart.setOnCheckedChangeListener(this);
         sSaleRemind.setOnCheckedChangeListener(this);
+        shareRemind.setOnCheckedChangeListener(this);
+        numberRemind.setOnCheckedChangeListener(this);
     }
 
     @OnClick(R.id.layoutBack)
@@ -67,6 +65,12 @@ public class PopWindowsActivity extends MyCompatActivity implements CompoundButt
                 break;
             case R.id.sSaleRemind:
                 SPUtils.setSaleRemind(this,isChecked);
+                break;
+            case R.id.shareRemind:
+                SPUtils.setShareRemind(this,isChecked);
+                break;
+            case R.id.numberRemind:
+                SPUtils.setIsShowNumberRemind(this,isChecked);
                 break;
         }
     }

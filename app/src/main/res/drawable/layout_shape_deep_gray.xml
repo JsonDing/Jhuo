@@ -8,9 +8,9 @@
         android:width="32dp"/>
 
     <gradient
-        android:centerColor="@color/color_a5"
-        android:startColor="@color/color_a5"
-        android:endColor="@color/color_a5" />
+        android:centerColor="@color/a5"
+        android:startColor="@color/a5"
+        android:endColor="@color/a5" />
 
 </shape>
 

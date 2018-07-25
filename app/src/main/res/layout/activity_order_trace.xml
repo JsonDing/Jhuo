@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="订单跟踪"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -53,7 +53,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:textSize="@dimen/sp13"
             android:maxLines="1"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:layout_height="wrap_content"/>
 
         <TextView
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:textSize="@dimen/sp13"
             android:maxLines="1"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:layout_height="wrap_content"/>
 
         <TextView
@@ -87,7 +87,7 @@
             android:textSize="@dimen/sp13"
             android:maxLines="1"
             android:layout_marginTop="@dimen/dp05"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
@@ -95,7 +95,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <ListView
         android:id="@+id/lvExpressRecord"
@@ -105,13 +105,38 @@
         android:scrollbars="none"
         android:divider="@null"
         android:overScrollMode="never"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
-    <View
-        android:id="@+id/layout"
+    <LinearLayout
+        android:id="@+id/layoutNoGoods"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="bottom"
-        android:background="@color/black"/>
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="@dimen/dp88"
+            android:layout_height="@dimen/dp88"
+            android:src="@drawable/no_goods"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="您购买的商品暂时缺货"
+            android:textSize="@dimen/sp13"
+            android:textColor="#bfbfbf"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp02"
+            android:text="货款已原路返还"
+            android:textSize="@dimen/sp13"
+            android:textColor="#bfbfbf"/>
+
+    </LinearLayout>
 
 </LinearLayout>

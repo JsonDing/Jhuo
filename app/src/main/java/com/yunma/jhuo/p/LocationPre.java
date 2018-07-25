@@ -1,5 +1,7 @@
 package com.yunma.jhuo.p;
 
+import android.content.Context;
+
 import com.amap.api.services.core.PoiItem;
 import com.yunma.jhuo.i.LocationModelImpl;
 import com.yunma.jhuo.m.LocationInterface.*;
@@ -20,17 +22,16 @@ public class LocationPre {
         this.locationModel = new LocationModelImpl();
     }
 
-    public void getLocation(){
-        locationModel.startLocate(lovationView.getContext(), new OnLocateListener() {
+    public void getLocation(Context context){
+        locationModel.startLocate(context, new OnLocateListener() {
             @Override
             public void getAddress(String address) {
-                lovationView.getCurrAddress(address);
+                lovationView.showCurrAddress(address);
             }
 
             @Override
             public void setLocation(List<PoiItem> poiItems) {
-                lovationView.getLocation(poiItems);
-
+                lovationView.showNearByLocation(poiItems);
             }
         });
     }

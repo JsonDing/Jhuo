@@ -2,6 +2,7 @@ package com.yunma.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 //正则验证
 public class RegexValidateUtil {
@@ -48,12 +49,14 @@ public class RegexValidateUtil {
 	 * 联通号码段:130、131、132、136、185、186、145
 	 * 电信号码段:133、153、180、189
 	 * 
-	 * @param cellphone
 	 * @return
 	 */
-	public static boolean checkCellphone(String cellphone) {
-		String regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,1,2-3,5-9]))\\d{8}$";
-		return !check(cellphone, regex);
+	public static boolean checkCellphone(String str)
+			throws PatternSyntaxException {
+		String regExp = "^((13[0-9])|(15[^4])|(18[0-9])|(17[0-8])|(147,145))\\d{8}$";
+		Pattern p = Pattern.compile(regExp);
+		Matcher m = p.matcher(str);
+		return m.matches();
 	}
 
 	/**
@@ -78,15 +81,6 @@ public class RegexValidateUtil {
 		return check(fax, regex);
 	}
 
-	/**
-	 * 验证QQ号码
-	 * 
-	 * @param QQ
-	 * @return
-	 */
-	public static boolean checkQQ(String QQ) {
-		String regex = "^[1-9][0-9]{4,} $";
-		return check(QQ, regex);
-	}
+
 
 }

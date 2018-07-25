@@ -5,7 +5,7 @@
     android:paddingStart="@dimen/dp15"
     android:paddingEnd="@dimen/dp15"
     android:paddingBottom="@dimen/dp10"
-    android:background="@color/color_a4"
+    android:background="@color/a4"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -30,6 +30,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tvPriceTag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="￥"
@@ -66,7 +67,7 @@
 
             <TextView
                 android:id="@+id/tvVolumeName"
-                android:layout_width="@dimen/dp36"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="优惠卷"
                 android:textSize="10sp"
@@ -83,7 +84,7 @@
                 android:textSize="11sp"
                 android:textStyle="bold"
                 android:layout_below="@+id/tvVolumeName"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_alignStart="@+id/tvVolumeName"/>
 
@@ -94,7 +95,7 @@
                 android:text="2017.04.06 - 2017.04.30"
                 android:textSize="10sp"
                 android:layout_below="@+id/tvVolumeUseRange"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:layout_marginBottom="@dimen/dp15"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_marginStart="@dimen/dp18"/>

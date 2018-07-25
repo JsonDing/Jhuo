@@ -30,7 +30,7 @@ public class OrderWaitToPayImpl implements OrderWaitToPayModel {
         unPayOrderBean.setSize(size);
         unPayOrderBean.setPage(page);
         String strBodyContent = new Gson().toJson(unPayOrderBean);
-        LogUtils.log("未付款订单请求: ------------>" + strBodyContent);
+        LogUtils.json("未付款订单请求: ------------>" + strBodyContent);
         params.setAsJsonContent(true);
         params.setBodyContent(strBodyContent);
         x.http().post(params, new Callback.CacheCallback<String>() {
@@ -47,9 +47,8 @@ public class OrderWaitToPayImpl implements OrderWaitToPayModel {
                 if (result != null) {
                     this.result = result;
                     if(result.contains("success")){
-                        LogUtils.log("未付款订单: " + result);
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     OrderUnPayResultBean.class);
                         } catch (Exception e) {
                             orderWaitToPayListener.orderWaitToPayListener(null,"数据解析出错!");
@@ -64,7 +63,7 @@ public class OrderWaitToPayImpl implements OrderWaitToPayModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             orderWaitToPayListener.orderWaitToPayListener(null,"数据解析出错!");
@@ -86,11 +85,11 @@ public class OrderWaitToPayImpl implements OrderWaitToPayModel {
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
                     orderWaitToPayListener.orderWaitToPayListener(null,"服务器未响应!");
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "--- responseMsg: "
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "--- responseMsg: "
                             + responseMsg + "\n" +"--- errorResult: " + errorResult);
                 } else { // 其他错误
                     orderWaitToPayListener.orderWaitToPayListener(null,"服务器未响应，请稍后再试");
-                    LogUtils.log("-----------> " + ex.getMessage() + "\n" + ex.getCause() );
+                    LogUtils.json("-----------> " + ex.getMessage() + "\n" + ex.getCause() );
                 }
             }
 
@@ -103,7 +102,7 @@ public class OrderWaitToPayImpl implements OrderWaitToPayModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("未付款订单: " + result);
+                    LogUtils.json("未付款订单: " + result);
                 }
             }
         });

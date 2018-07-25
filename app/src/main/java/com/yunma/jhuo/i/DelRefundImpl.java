@@ -33,7 +33,7 @@ public class DelRefundImpl implements GoodsRefundInterface.DelRefundModel {
         Gson gson = new Gson();
         String strParams = gson.toJson(delBean);
         params.setBodyContent(strParams);
-        LogUtils.log("requst: " + strParams);
+        LogUtils.json("requst: " + strParams);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -46,7 +46,7 @@ public class DelRefundImpl implements GoodsRefundInterface.DelRefundModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            resultBean = GsonUtils.getObject(result,
+                            resultBean = GsonUtils.GsonToBean(result,
                                     SuccessResultBean.class);
                         } catch (Exception e) {
                             ondelListener.onDelInfo(null,"数据解析出错");
@@ -59,7 +59,7 @@ public class DelRefundImpl implements GoodsRefundInterface.DelRefundModel {
                         }
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             ondelListener.onDelInfo(null,"数据解析出错");
@@ -78,7 +78,7 @@ public class DelRefundImpl implements GoodsRefundInterface.DelRefundModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                     ondelListener.onDelInfo(null,"网络错误");
                 }else{
@@ -96,7 +96,7 @@ public class DelRefundImpl implements GoodsRefundInterface.DelRefundModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("删除售后 result: " + result);
+                  //  LogUtils.json("删除售后 result: " + result);
                 }
             }
         });

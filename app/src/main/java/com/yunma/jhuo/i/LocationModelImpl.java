@@ -3,8 +3,8 @@ package com.yunma.jhuo.i;
 import android.content.Context;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
-import com.yunma.*;
 import com.yunma.jhuo.m.LocationInterface.*;
+import com.yunma.serves.MyLocationListener;
 import com.yunma.utils.LogUtils;
 
 /**
@@ -25,7 +25,7 @@ public class LocationModelImpl implements LocationModel{
     public void stopLocate() {
         if (null != locationClient) {
             locationClient.stopLocation();
-            LogUtils.log("stopLocation() --->");
+            LogUtils.json("stopLocation() --->");
         }
     }
 
@@ -35,7 +35,7 @@ public class LocationModelImpl implements LocationModel{
             locationClient.onDestroy();
             locationClient = null;
             mOption = null;
-            LogUtils.log("destroyLocation() --->");
+            LogUtils.json("destroyLocation() --->");
         }
     }
 

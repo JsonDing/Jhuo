@@ -3,21 +3,32 @@ package com.yunma.jhuo.activity.homepage;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.amap.api.services.core.AMapException;
-import com.amap.api.services.district.*;
+import com.amap.api.services.district.DistrictItem;
+import com.amap.api.services.district.DistrictResult;
+import com.amap.api.services.district.DistrictSearch;
+import com.amap.api.services.district.DistrictSearchQuery;
 import com.yunma.R;
 import com.yunma.jhuo.general.MyCompatActivity;
 import com.yunma.utils.AppManager;
+import com.yunma.utils.LogUtils;
 import com.yunma.utils.ToastUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SelectAddress extends MyCompatActivity implements AdapterView.OnItemSelectedListener,
         DistrictSearch.OnDistrictSearchListener {
@@ -45,8 +56,10 @@ public class SelectAddress extends MyCompatActivity implements AdapterView.OnIte
     private boolean isInit = false;
     @BindView(R.id.view)
     View view;
-    @BindView(R.id.imgClose)
-    ImageView imgClose;
+    @BindView(R.id.tvConfirm)
+    TextView tvConfirm;
+    @BindView(R.id.tvCancle)
+    TextView tvCancle;
     @BindView(R.id.sProvince)
     Spinner sProvince;
     @BindView(R.id.sCity)
@@ -89,20 +102,16 @@ public class SelectAddress extends MyCompatActivity implements AdapterView.OnIte
         mContext = this;
     }
 
-    @OnClick({R.id.view, R.id.imgClose})
+    @OnClick({R.id.tvCancle, R.id.tvConfirm})
     public void onClick(View view) {
         Intent mIntent;
         switch (view.getId()) {
-            case R.id.view:
+            case R.id.tvCancle:
                 view.setVisibility(View.INVISIBLE);
-                mIntent = new Intent();
-                mIntent.putExtra("address", strProvince + strCity + strDistrict);
-                // 设置结果，并进行传送
-                this.setResult(2, mIntent);
                 AppManager.getAppManager().finishActivity(this);
                 overridePendingTransition(R.anim.bottom_out,0);
                 break;
-            case R.id.imgClose:
+            case R.id.tvConfirm:
                 view.setVisibility(View.INVISIBLE);
                 mIntent = new Intent();
                 mIntent.putExtra("address", strProvince + strCity + strDistrict);
@@ -183,14 +192,11 @@ public class SelectAddress extends MyCompatActivity implements AdapterView.OnIte
         List<DistrictItem> subDistrictList  = null;
         if (result != null) {
             if (result.getAMapException().getErrorCode() == AMapException.CODE_AMAP_SUCCESS) {
-
                 List<DistrictItem> district = result.getDistrict();
-
                 if (!isInit) {
                     isInit = true;
                     currentDistrictItem = district.get(0);
                 }
-
                 // 将查询得到的区划的下级区划写入缓存
                 for (int i = 0; i < district.size(); i++) {
                     DistrictItem districtItem = district.get(i);
@@ -201,7 +207,7 @@ public class SelectAddress extends MyCompatActivity implements AdapterView.OnIte
                 subDistrictList = subDistrictMap
                         .get(currentDistrictItem.getAdcode());
                 for(int i= 0;i<subDistrictList.size();i++){
-					Log.i("--------->", "subDistrictList --------------->"
+					LogUtils.test("subDistrictList --------------->"
 							+ subDistrictList.get(i).getName());
 				}
             } else {
@@ -219,22 +225,26 @@ public class SelectAddress extends MyCompatActivity implements AdapterView.OnIte
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                     R.layout.simple_spinner_item, nameList);
-
             if (selectedLevel.equalsIgnoreCase(COUNTRY)) {
                 provinceList = subDistrictList;
+                if(nameList.size() <= 0){
+                    strProvince = "";
+                }
                 sProvince.setAdapter(adapter);
             }
-
             if (selectedLevel.equalsIgnoreCase(PROVINCE)) {
                 cityList = subDistrictList;
+                if(nameList.size() <= 0){
+                    strCity = "";
+                    strDistrict = "";
+                }
                 sCity.setAdapter(adapter);
             }
-
             if (selectedLevel.equalsIgnoreCase(CITY)) {
                 districtList = subDistrictList;
                 //如果没有区县，将区县说明置空
                 if(nameList.size() <= 0){
-                    //  tv_districtInfo.setText("");
+                    strDistrict = "";
                 }
                 sDistrict.setAdapter(adapter);
             }
@@ -266,20 +276,9 @@ public class SelectAddress extends MyCompatActivity implements AdapterView.OnIte
      * @return
      */
     private String getDistrictInfoStr(DistrictItem districtItem){
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         String name = districtItem.getName();
-       /* String adcode = districtItem.getAdcode();
-        String level = districtItem.getLevel();
-        String citycode = districtItem.getCitycode();
-        LatLonPoint center = districtItem.getCenter();*/
         sb.append( name );
-        /*sb.append("区域编码:" + adcode + "\n");
-        sb.append("城市编码:" + citycode + "\n");
-        sb.append("区划级别:" + level + "\n");*/
-       /* if (null != center) {
-            sb.append("经纬度:(" + center.getLongitude() + ", "
-                    + center.getLatitude() + ")\n");
-        }*/
         return sb.toString();
     }
 
@@ -303,10 +302,10 @@ public class SelectAddress extends MyCompatActivity implements AdapterView.OnIte
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {
             view.setVisibility(View.INVISIBLE);
-            Intent mIntent = new Intent();
+            /*Intent mIntent = new Intent();
             mIntent.putExtra("address", strProvince + strCity + strDistrict);
             // 设置结果，并进行传送
-            this.setResult(2, mIntent);
+            this.setResult(2, mIntent);*/
             AppManager.getAppManager().finishActivity(this);
             overridePendingTransition(R.anim.bottom_out,0);
             return true;

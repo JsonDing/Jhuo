@@ -35,7 +35,7 @@
             android:layout_height="@dimen/dp44"
             android:text="收件人管理"
             android:background="@color/white"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp17"/>
 
         <LinearLayout
@@ -64,14 +64,14 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp0.5"
-            android:background="@color/color_a4"/>
+            android:background="@color/a4"/>
 
         <ListView
             android:id="@+id/lvReceiverManage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"
-            android:background="@color/color_a4"
+            android:background="@color/a4"
             android:scrollbars="none"/>
 
         <LinearLayout
@@ -92,19 +92,11 @@
                 android:layout_height="wrap_content"
                 android:text="暂无数据"
                 android:layout_marginTop="@dimen/dp08"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:textSize="@dimen/sp14"/>
 
         </LinearLayout>
 
     </LinearLayout>
-
-
-
-    <View
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/black"/>
 
 </LinearLayout>

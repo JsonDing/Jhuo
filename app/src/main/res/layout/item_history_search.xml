@@ -5,18 +5,36 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvSearchNumber"
+    <LinearLayout
+        android:id="@+id/itemView"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dp08"
-        android:paddingEnd="@dimen/dp08"
-        android:paddingTop="@dimen/dp04"
-        android:paddingBottom="@dimen/dp04"
-        android:layout_marginBottom="@dimen/dp10"
-        android:layout_marginEnd="@dimen/dp10"
-        android:background="@drawable/bg_tags_gray"
-        android:textColor="@color/color_b1"
-        android:textSize="13sp"/>
+        android:gravity="center_vertical"
+        android:layout_marginStart="@dimen/dp04"
+        android:layout_marginEnd="@dimen/dp04"
+        android:layout_marginBottom="@dimen/dp08"
+        android:background="@drawable/bg_edittext_normal"
+        android:layout_height="@dimen/dp30">
+
+        <ImageView
+            android:id="@+id/imgPic"
+            android:layout_width="@dimen/dp24"
+            android:layout_height="@dimen/dp24"
+            android:layout_marginStart="@dimen/dp05"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_pic"/>
+
+        <TextView
+            android:id="@+id/tvSearchNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp04"
+            android:layout_marginEnd="@dimen/dp04"
+            android:textColor="@color/b1"
+            android:textSize="10sp"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

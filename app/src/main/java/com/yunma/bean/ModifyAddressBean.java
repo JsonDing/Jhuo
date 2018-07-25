@@ -10,28 +10,19 @@ import java.io.Serializable;
 
 public class ModifyAddressBean implements Serializable{
 
-    /**
-     * token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjYxLCJpYXQiOjE0ODY1NDE3MDEyMDcsImV4dCI6MTQ4ODAxMjkzMDEzNX0.xo6OeW07BNaBLgyygaHYhJrKr5uoQPBlLFVG8x-ib_Y
-     * id : 4
-     * name : 老刘
-     * tel : 654321
-     * regoin : 台湾
-     * addr : 中国
-     */
-
     private String token;
-    private int id;
+    private String id;
     private String name;
     private String tel;
     private String regoin;
     private String addr;
-    private int used;
+    private String used;
 
-    public int getUsed() {
+    public String getUsed() {
         return used;
     }
 
-    public void setUsed(int used) {
+    public void setUsed(String used) {
         this.used = used;
     }
 
@@ -43,11 +34,11 @@ public class ModifyAddressBean implements Serializable{
         this.token = token;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -28,15 +28,17 @@ public class GlideUtils {
             public void animate(View view) {
                 view.setAlpha( 0f );
                 ObjectAnimator fadeAnim = ObjectAnimator.ofFloat( view, "alpha", 0f, 1f );
-                fadeAnim.setDuration( 1500 );
+                fadeAnim.setDuration(1500);
                 fadeAnim.start();
             }
         };
-        Glide.with(context).load(url)//
+        Glide.with(context)
+                .load(url)//
+                .asBitmap()
                 .placeholder(R.drawable.default_pic)//
                 .error(R.drawable.default_pic)//
                 .animate(animationObject)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)//
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)//
                 .into(imageView);
     }
 
@@ -51,13 +53,13 @@ public class GlideUtils {
                 fadeAnim.start();
             }
         };
-
-        Glide.with(context).load(url)//
-                .placeholder(R.drawable.default_pic)//
-                .error(R.drawable.default_pic)//
-                .centerCrop()
+        Glide.with(context)
+                .load(url)
+                .asBitmap()
+                .placeholder(R.drawable.img_more)
+                .error(R.drawable.img_more)
                 .animate(animationObject)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)//
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(imageView);
     }
 
@@ -79,7 +81,7 @@ public class GlideUtils {
                 .placeholder(R.drawable.default_pic)//
                 .error(R.drawable.default_pic)//
                 .animate(animationObject)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)//
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)//
                 .into(imageView);
     }
 
@@ -89,7 +91,7 @@ public class GlideUtils {
             public void animate(View view) {
                 view.setAlpha( 0f );
                 ObjectAnimator fadeAnim = ObjectAnimator.ofFloat( view, "alpha", 0f, 1f );
-                fadeAnim.setDuration( 1000 );
+                fadeAnim.setDuration( 500 );
                 fadeAnim.start();
             }
         };
@@ -99,7 +101,7 @@ public class GlideUtils {
                 .placeholder(R.drawable.default_pic)//
                 .error(R.drawable.default_pic)//
                 .animate(animationObject)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)//
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)//
                 .into(imageView);
     }
 
@@ -125,15 +127,12 @@ public class GlideUtils {
                 .load(url)
                 .asBitmap()
                 .placeholder(R.drawable.banner_blank)//
-                .error(R.drawable.banner_blank)//
+                .error(R.drawable.default_pic)//
                 .animate(animationObject)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)//
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)//
                 .into(imageView);
 
     }
-
-
-
 
     //圆形裁剪
     public static void glidRoundedCorners(Context context, ImageView imageView, String url){
@@ -161,8 +160,28 @@ public class GlideUtils {
         Glide.with(context).load(url)//
                 .placeholder(R.drawable.default_pic)//
                 .bitmapTransform(new GrayscaleTransformation(context))
-                .error(R.drawable.default_pic)//
+                .error(R.drawable.pic_error)//
                 .diskCacheStrategy(DiskCacheStrategy.ALL)//BlurTransformation
+                .into(imageView);
+    }
+
+    public static void glidGrayscale(Context context, ImageView imageView, int drawableId){
+        ViewPropertyAnimation.Animator animationObject = new ViewPropertyAnimation.Animator() {
+            @Override
+            public void animate(View view) {
+                view.setAlpha(0f);
+                ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f);
+                fadeAnim.setDuration(2000);
+                fadeAnim.start();
+            }
+        };
+        Glide.with(context)
+                .load(drawableId)
+                .bitmapTransform(new GrayscaleTransformation(context))
+                .placeholder(R.drawable.default_pic)//
+                .error(R.drawable.default_pic)//
+                .animate(animationObject)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)//
                 .into(imageView);
     }
 
@@ -171,7 +190,7 @@ public class GlideUtils {
         Glide.with(context).load(url)//
                 .placeholder(R.drawable.default_pic)//
                 .bitmapTransform(new BlurTransformation(context,radius))
-                .error(R.drawable.default_pic)//
+                .error(R.drawable.pic_error)//
                 .diskCacheStrategy(DiskCacheStrategy.ALL)//
                 .into(imageView);
     }
@@ -190,8 +209,7 @@ public class GlideUtils {
                 .load(url)
                 .animate(animationObject)
                 .placeholder(R.drawable.default_pic)
-                .error(R.drawable.default_pic)
-                .centerCrop()
+                .error(R.drawable.img_error_1)//
                 .into(imageView);
 
     }

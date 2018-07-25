@@ -5,20 +5,10 @@
     android:paddingStart="@dimen/dp15"
     android:paddingEnd="@dimen/dp15"
     android:paddingBottom="@dimen/dp10"
-    android:background="@color/color_a4"
+    android:background="@color/a4"
     android:weightSum="3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-    <CheckBox
-        android:id="@+id/cbButton"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/dp08"
-        android:layout_marginEnd="@dimen/dp10"
-        android:visibility="gone"
-        style="@style/OrangeCheckBoxTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +20,7 @@
 
         <LinearLayout
             android:id="@+id/layout"
-            android:layout_width="@dimen/dp121"
+            android:layout_width="@dimen/dp127"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
@@ -86,7 +76,7 @@
                 android:paddingStart="@dimen/dp05"
                 android:paddingEnd="@dimen/dp05"
                 android:enabled="false"
-                android:layout_marginStart="@dimen/dp18"
+                android:layout_marginStart="@dimen/dp10"
                 android:background="@drawable/btn_selector_orange"/>
 
             <TextView
@@ -96,10 +86,10 @@
                 android:text="可用作购买结算时抵用现金"
                 android:textSize="11sp"
                 android:layout_below="@+id/tvVolumeName"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/dp10"
-                android:layout_marginStart="@dimen/dp18"/>
+                android:layout_marginStart="@dimen/dp10"/>
 
             <TextView
                 android:id="@+id/tvVolumeUseTime"
@@ -108,15 +98,15 @@
                 android:text="2017.04.06 - 2017.04.30"
                 android:textSize="10sp"
                 android:layout_below="@+id/tvVolumeUseRange"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:layout_marginTop="@dimen/dp10"
-                android:layout_marginStart="@dimen/dp18"/>
+                android:layout_marginStart="@dimen/dp10"/>
 
             <TextView
                 android:id="@+id/tvUseIntro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="卷使用说明 >"
+                android:text="券使用说明 >"
                 android:textSize="10sp"
                 android:gravity="center"
                 android:layout_below="@+id/tvVolumeUseTime"
@@ -124,7 +114,7 @@
                 android:layout_marginEnd="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp05"
                 android:layout_marginBottom="@dimen/dp10"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:layout_marginStart="@dimen/dp10"/>
 
             <ImageView

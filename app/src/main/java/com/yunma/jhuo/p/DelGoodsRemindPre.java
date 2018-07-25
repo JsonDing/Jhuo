@@ -23,7 +23,7 @@ public class DelGoodsRemindPre {
         this.mModel = new DelGoodsRemindImpl();
     }
 
-    public void addGoodsRemind(Context mContext, List<String> goodsIds){
+    public void delGoodsRemind(Context mContext, List<String> goodsIds){
         mModel.delGoodsRemind(mContext, goodsIds,
                 new SelfGoodsInterFace.DelGoodsRemindListener() {
                     @Override

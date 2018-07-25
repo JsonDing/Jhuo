@@ -1,8 +1,5 @@
 package com.yunma.jhuo.m;
 
-import android.content.Context;
-
-import com.yunma.bean.OrderUnPayResultBean;
 import com.yunma.bean.OrderUnPayResultBean.SuccessBean;
 
 /**
@@ -12,19 +9,6 @@ import com.yunma.bean.OrderUnPayResultBean.SuccessBean;
  */
 
 public class OrderHadConfirmInterFace {
-
-    public interface OrderHadConfirmModel {
-        void orderConfirm(Context mContext, OrderHadConfirmListener listener);
-    }
-
-    public interface OrderHadConfirmView{
-        Context getContext();
-        void showOrderInfos(OrderUnPayResultBean resultBean, String msg);
-    }
-
-    public interface OrderHadConfirmListener{
-        void orderListener(OrderUnPayResultBean resultBean, String msg);
-    }
 
     public interface OnAdapterClick{
         void onDeleteClickListener(int position,String id);

@@ -19,14 +19,17 @@ public class HistroySearch {
     private long lastUpdatasTime; //最后一次搜索时间
     @Property(nameInDb = "searchTimes")
     private int searchTimes; //搜索次数
-    @Generated(hash = 518012300)
+    @Property(nameInDb = "goodsImg")
+    private String goodsImg; //商品图片
+    @Generated(hash = 909954921)
     public HistroySearch(Long Id, String searchNumber, long searchTime,
-            long lastUpdatasTime, int searchTimes) {
+            long lastUpdatasTime, int searchTimes, String goodsImg) {
         this.Id = Id;
         this.searchNumber = searchNumber;
         this.searchTime = searchTime;
         this.lastUpdatasTime = lastUpdatasTime;
         this.searchTimes = searchTimes;
+        this.goodsImg = goodsImg;
     }
     @Generated(hash = 38093316)
     public HistroySearch() {
@@ -60,6 +63,12 @@ public class HistroySearch {
     }
     public void setSearchTimes(int searchTimes) {
         this.searchTimes = searchTimes;
+    }
+    public String getGoodsImg() {
+        return this.goodsImg;
+    }
+    public void setGoodsImg(String goodsImg) {
+        this.goodsImg = goodsImg;
     }
 
     

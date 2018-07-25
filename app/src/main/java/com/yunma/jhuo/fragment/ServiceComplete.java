@@ -33,6 +33,7 @@ import butterknife.ButterKnife;
 public class ServiceComplete extends Fragment implements GetServiceView,OnCompleteClick {
     @BindView(R.id.lvRebackGoodsList) ListView lvRebackGoodsList;
     @BindView(R.id.layoutNull) View layoutNull;
+    @BindView(R.id.layoutGoLook) View layoutGoLook;
     private Context mContext;
     private GoodsReturnCompleteAdapter mAdapter;
     private GoodsServicePre goodsServicePre = null;
@@ -49,12 +50,11 @@ public class ServiceComplete extends Fragment implements GetServiceView,OnComple
     private void getDatas() {
         goodsServicePre = new GoodsServicePre(this);
         goodsServicePre.getService(mContext,"3");
-        layoutNull.setOnClickListener(new View.OnClickListener() {
+        layoutGoLook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, SpecialPriceActivity.class);
                 mContext.startActivity(intent);
-                AppManager.getAppManager().finishActivity(ReturnGoodsManage.returnGoodsContext);
             }
         });
     }
@@ -92,14 +92,14 @@ public class ServiceComplete extends Fragment implements GetServiceView,OnComple
 
     @Override
     public void onLookDetial(ListBean listBean) {
-        Intent intent = new Intent(mContext,GoodsReturnDetial.class);
+        Intent intent = new Intent(mContext,ReturnDetialActivity.class);
         intent.putExtra("goodsDetial", listBean);
         mContext.startActivity(intent);
     }
 
     @Override
     public void onRefundStatus(ListBean listBean) {
-        Intent intent = new Intent(mContext,GoodsReturnProgress.class);
+        Intent intent = new Intent(mContext,ReturnProgressActivity.class);
         intent.putExtra("goodsDetial", listBean);
         mContext.startActivity(intent);
     }

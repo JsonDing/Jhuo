@@ -10,6 +10,7 @@ import java.util.List;
 
 public class BannerResultBean {
 
+
     private List<SuccessBean> success;
 
     public List<SuccessBean> getSuccess() {
@@ -21,10 +22,6 @@ public class BannerResultBean {
     }
 
     public class SuccessBean {
-        /**
-         * type : adword
-         * value : 明天会更好,大河向东流,你好，我也好。,乐事无极限。
-         */
 
         private String type;
         private String value;

@@ -8,9 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
-import com.yunma.jhuo.m.*;
+import com.yunma.jhuo.m.OnInitSelectedPosition;
+import com.yunma.jhuo.m.OnTagClickListener;
+import com.yunma.jhuo.m.OnTagSelectListener;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Json on 2017/4/7.

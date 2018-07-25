@@ -1,23 +1,30 @@
 package com.yunma.adapter;
 
 import android.content.Context;
-import android.view.*;
-import android.view.animation.*;
-import android.widget.*;
+import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.yunma.R;
 import com.yunma.bean.ExpressTracesBean;
 
 import java.util.List;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created on 2017-01-12
  *
  * @author Json.
  */
-public class ExpressTraceRecordAdapter extends BaseAdapter {
+public class ExpressTraceRecordAdapter  extends BaseAdapter {
    // 物流状态:0-无轨迹,1-已揽收, 2-在途中 201-到达派件城市，3-签收,4-问题件
     private Context mContext;
     private LayoutInflater inflater;
@@ -76,22 +83,22 @@ public class ExpressTraceRecordAdapter extends BaseAdapter {
                 holder.lineTop.setVisibility(View.INVISIBLE);
                 holder.lineBottom.setVisibility(View.VISIBLE);
                 holder.circlePoint.setImageDrawable(
-                        mContext.getResources().getDrawable(R.drawable.shape_yellow));
+                        ContextCompat.getDrawable(mContext,R.drawable.shape_yellow));
             }else if(position==0){
                 holder.lineTop.setVisibility(View.INVISIBLE);
                 holder.lineBottom.setVisibility(View.VISIBLE);
                 holder.circlePoint.setImageDrawable(
-                        mContext.getResources().getDrawable(R.drawable.circle_gray));
+                        ContextCompat.getDrawable(mContext,R.drawable.circle_gray));
             }else if(position == listBean.size()-1&&listBean.size()>1){
                 holder.lineTop.setVisibility(View.VISIBLE);
                 holder.lineBottom.setVisibility(View.INVISIBLE);
                 holder.circlePoint.setImageDrawable(
-                        mContext.getResources().getDrawable(R.drawable.circle_gray));
+                        ContextCompat.getDrawable(mContext,R.drawable.circle_gray));
             }else {
                 holder.lineTop.setVisibility(View.VISIBLE);
                 holder.lineBottom.setVisibility(View.VISIBLE);
                 holder.circlePoint.setImageDrawable(
-                        mContext.getResources().getDrawable(R.drawable.circle_gray));
+                        ContextCompat.getDrawable(mContext,R.drawable.circle_gray));
             }
 
         }

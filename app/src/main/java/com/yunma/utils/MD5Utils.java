@@ -1,5 +1,9 @@
 package com.yunma.utils;
 
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.Base64;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,7 +12,6 @@ import java.security.NoSuchAlgorithmException;
  * MD5
  */
 public class MD5Utils {
-	
 	public static String getMD5(String data)  {
 		MessageDigest digest = null;
 		try {
@@ -35,5 +38,21 @@ public class MD5Utils {
 		return sb.toString();
 	}
 
+	public static String makeIdToBase64(Context context,String id){
+		String enId = "" ;
+		if(!TextUtils.isEmpty(id)){
+			enId = new String(Base64.encode(id.getBytes(), Base64.DEFAULT));
+		} else {
+			ToastUtils.showShort(context,"数据解析出错!");
+		}
+		return enId;
+	}
 
+    public static String getIdFromBase64(String base64Id){
+        String result ="";
+		if(!TextUtils.isEmpty(base64Id)){
+			result = new String(Base64.decode(base64Id.getBytes(),Base64.DEFAULT));
+		}
+        return result;
+    }
 }

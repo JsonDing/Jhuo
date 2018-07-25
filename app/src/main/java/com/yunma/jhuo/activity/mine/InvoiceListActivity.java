@@ -63,7 +63,7 @@ public class InvoiceListActivity extends MyCompatActivity implements
                 AppManager.getAppManager().finishActivity(this);
                 break;
             case R.id.layoutAdd:
-                Intent intent = new Intent(InvoiceListActivity.this, AddInvoiceActivity.class);
+                Intent intent = new Intent(InvoiceListActivity.this, AddInvoicesActivity.class);
                 startActivityForResult(intent, ADD_SUCCESS);
                 break;
         }
@@ -114,7 +114,7 @@ public class InvoiceListActivity extends MyCompatActivity implements
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(InvoiceListActivity.this,InvoiceDetials.class);
+        Intent intent = new Intent(InvoiceListActivity.this,InvoiceDetialsActivity.class);
         Bundle bundle = new Bundle();
         bundle.putInt("position",position);
         bundle.putSerializable("invoiceDetials",listBean.get(position));

@@ -17,8 +17,6 @@ public class UploaderToServiceInterface {
     }
 
     public interface UploaderToServiceView{
-        Context getConText();
-        String getImageUrl();
         void showUploaderInfos(SuccessResultBean resultBean,String msg);
     }
 

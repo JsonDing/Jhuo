@@ -7,10 +7,11 @@ import android.view.animation.*;
 import android.widget.*;
 
 import com.yunma.R;
-import com.yunma.jhuo.activity.homepage.OrderDetial;
+import com.yunma.jhuo.activity.homepage.OrderDetialActivity;
 import com.yunma.bean.OrderUnPayResultBean.SuccessBean.ListBean;
 import com.yunma.jhuo.m.OrderHadConfirmInterFace.OnAdapterClick;
 import com.yunma.utils.DateTimeUtils;
+import com.yunma.utils.ValueUtils;
 import com.yunma.widget.MyListView;
 
 import java.text.SimpleDateFormat;
@@ -25,7 +26,6 @@ public class OrderWaitToReceiveAdapter extends BaseAdapter{
     private Context mContext;
     private LayoutInflater inflater;
     private List<ListBean> listBean;
-    private OrderGoodsAdapter mAdapter;
     private OnAdapterClick onAdapterClick;
     private Animation push_left_in,push_right_in;
     public OrderWaitToReceiveAdapter(Context mContext, List<ListBean> listBean,
@@ -72,14 +72,15 @@ public class OrderWaitToReceiveAdapter extends BaseAdapter{
         }
         holder.tvTime.setText(DateTimeUtils.getTime(listBean.get(position).getDate(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA)));
-        holder.tvTotalPrice.setText("￥" + listBean.get(position).getTotalcost());
+        holder.tvTotalPrice.setText(ValueUtils.toTwoDecimal(listBean.get(position).getTotalcost()));
         int totalNums = 0 ;
         for(int i=0;i<listBean.get(position).getOrderdetails().size();i++){
             totalNums = totalNums + listBean.get(position).getOrderdetails().get(i).getNum();
         }
-        holder.tvTotalNums.setText("共"+ totalNums +"件商品");
-        holder.tvOrderId.setText("订单号:" + listBean.get(position).getId());
-        mAdapter = new OrderGoodsAdapter(mContext, listBean.get(position).getOrderdetails());
+        holder.tvTotalNums.setText(String.valueOf(totalNums));
+        holder.tvOrderId.setText(/*String.valueOf("Jh"+ DateTimeUtils.getTime(listBean.get(position).getDate(),
+                new SimpleDateFormat("yyMMdd", Locale.CHINA)) + */listBean.get(position).getId() + "");
+        OrderGoodsAdapter mAdapter = new OrderGoodsAdapter(mContext, listBean.get(position).getOrderdetails());
         holder.rvGoodsList.setAdapter(mAdapter);
         holder.btnOrderTrace
                 .setOnClickListener(new View.OnClickListener() {
@@ -123,18 +124,16 @@ public class OrderWaitToReceiveAdapter extends BaseAdapter{
                 }
             }
         });
-
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, OrderDetial.class);
+                Intent intent = new Intent(mContext, OrderDetialActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("orderDetial",listBean.get(position));
                 intent.putExtras(bundle);
                 mContext.startActivity(intent);
             }
         });
-
         return view;
     }
 
@@ -149,15 +148,15 @@ public class OrderWaitToReceiveAdapter extends BaseAdapter{
         View layout;
         MyListView rvGoodsList;
         public ViewHolder(View itemView) {
-            tvTime = (TextView)itemView.findViewById(R.id.tvTime);
-            tvOrderId = (TextView)itemView.findViewById(R.id.tvOrderId);
-            tvTotalNums = (TextView)itemView.findViewById(R.id.tvTotalNums);
-            tvTotalPrice = (TextView)itemView.findViewById(R.id.tvTotalPrice);
-            btnOrderTrace = (TextView)itemView.findViewById(R.id.btnOrderTrace);
-            btnDeteleOrder = (TextView)itemView.findViewById(R.id.btnDeteleOrder);
-            btnApplyHelp = (TextView)itemView.findViewById(R.id.btnApplyHelp);
-            btnTicket = (TextView)itemView.findViewById(R.id.btnTicket);
-            rvGoodsList = (MyListView)itemView.findViewById(R.id.rvGoodsList);
+            tvTime = itemView.findViewById(R.id.tvTime);
+            tvOrderId = itemView.findViewById(R.id.tvOrderId);
+            tvTotalNums = itemView.findViewById(R.id.tvTotalNums);
+            tvTotalPrice = itemView.findViewById(R.id.tvTotalPrice);
+            btnOrderTrace = itemView.findViewById(R.id.btnOrderTrace);
+            btnDeteleOrder = itemView.findViewById(R.id.btnDeteleOrder);
+            btnApplyHelp = itemView.findViewById(R.id.btnApplyHelp);
+            btnTicket = itemView.findViewById(R.id.btnTicket);
+            rvGoodsList = itemView.findViewById(R.id.rvGoodsList);
             layout = itemView.findViewById(R.id.layout);
         }
     }

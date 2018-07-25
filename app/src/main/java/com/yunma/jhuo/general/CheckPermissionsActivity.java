@@ -38,6 +38,7 @@ public class CheckPermissionsActivity extends MyCompatActivity
 	protected String[] needPermissions = {
 			Manifest.permission.CAMERA,
 			Manifest.permission.INTERNET,
+			Manifest.permission.SEND_SMS,
 			Manifest.permission.READ_SMS,
 			Manifest.permission.RECEIVE_SMS,
 			Manifest.permission.READ_CONTACTS,
@@ -49,7 +50,7 @@ public class CheckPermissionsActivity extends MyCompatActivity
 			Manifest.permission.READ_EXTERNAL_STORAGE,
 			Manifest.permission.ACCESS_COARSE_LOCATION,
 			Manifest.permission.WRITE_EXTERNAL_STORAGE,
-			};
+	};
 	
 	private static final int PERMISSON_REQUESTCODE = 0;
 	
@@ -124,7 +125,6 @@ public class CheckPermissionsActivity extends MyCompatActivity
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("提示");
 		builder.setMessage("当前应用缺少必要权限。\\n\\n请点击\\\"设置\\\"-\\\"权限\\\"-打开所需权限。");
-
 		// 拒绝, 退出应用
 		builder.setNegativeButton("取消",
 				new DialogInterface.OnClickListener() {
@@ -133,7 +133,6 @@ public class CheckPermissionsActivity extends MyCompatActivity
 						finish();
 					}
 				});
-
 		builder.setPositiveButton("设置",
 				new DialogInterface.OnClickListener() {
 					@Override
@@ -141,9 +140,7 @@ public class CheckPermissionsActivity extends MyCompatActivity
 						startAppSettings();
 					}
 				});
-
 		builder.setCancelable(false);
-
 		builder.show();
 	}
 

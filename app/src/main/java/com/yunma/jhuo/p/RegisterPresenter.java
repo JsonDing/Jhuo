@@ -20,8 +20,8 @@ public class RegisterPresenter {
         this.registerModel = new RegisterModelImpl();
     }
 
-    public void register(Context mContext, String phone, String passwd){
-        registerModel.register(mContext,phone, passwd, new OnRegisterListener() {
+    public void register(Context mContext, String phone, String passwd,String code,String intro){
+        registerModel.register(mContext,phone, passwd,code,intro, new OnRegisterListener() {
                     @Override
                     public void registerMesage(RegisterSuccessResultBean resultBean, String msg) {
                         registerView.onShowRegisterMsg(resultBean,msg);

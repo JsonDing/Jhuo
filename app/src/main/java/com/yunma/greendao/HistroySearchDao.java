@@ -29,6 +29,7 @@ public class HistroySearchDao extends AbstractDao<HistroySearch, Long> {
         public final static Property SearchTime = new Property(2, long.class, "searchTime", false, "searchTime");
         public final static Property LastUpdatasTime = new Property(3, long.class, "lastUpdatasTime", false, "lastUpdatasTime");
         public final static Property SearchTimes = new Property(4, int.class, "searchTimes", false, "searchTimes");
+        public final static Property GoodsImg = new Property(5, String.class, "goodsImg", false, "goodsImg");
     }
 
 
@@ -48,7 +49,8 @@ public class HistroySearchDao extends AbstractDao<HistroySearch, Long> {
                 "\"searchNumber\" TEXT," + // 1: searchNumber
                 "\"searchTime\" INTEGER NOT NULL ," + // 2: searchTime
                 "\"lastUpdatasTime\" INTEGER NOT NULL ," + // 3: lastUpdatasTime
-                "\"searchTimes\" INTEGER NOT NULL );"); // 4: searchTimes
+                "\"searchTimes\" INTEGER NOT NULL ," + // 4: searchTimes
+                "\"goodsImg\" TEXT);"); // 5: goodsImg
     }
 
     /** Drops the underlying database table. */
@@ -73,6 +75,11 @@ public class HistroySearchDao extends AbstractDao<HistroySearch, Long> {
         stmt.bindLong(3, entity.getSearchTime());
         stmt.bindLong(4, entity.getLastUpdatasTime());
         stmt.bindLong(5, entity.getSearchTimes());
+ 
+        String goodsImg = entity.getGoodsImg();
+        if (goodsImg != null) {
+            stmt.bindString(6, goodsImg);
+        }
     }
 
     @Override
@@ -91,6 +98,11 @@ public class HistroySearchDao extends AbstractDao<HistroySearch, Long> {
         stmt.bindLong(3, entity.getSearchTime());
         stmt.bindLong(4, entity.getLastUpdatasTime());
         stmt.bindLong(5, entity.getSearchTimes());
+ 
+        String goodsImg = entity.getGoodsImg();
+        if (goodsImg != null) {
+            stmt.bindString(6, goodsImg);
+        }
     }
 
     @Override
@@ -105,7 +117,8 @@ public class HistroySearchDao extends AbstractDao<HistroySearch, Long> {
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // searchNumber
             cursor.getLong(offset + 2), // searchTime
             cursor.getLong(offset + 3), // lastUpdatasTime
-            cursor.getInt(offset + 4) // searchTimes
+            cursor.getInt(offset + 4), // searchTimes
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // goodsImg
         );
         return entity;
     }
@@ -117,6 +130,7 @@ public class HistroySearchDao extends AbstractDao<HistroySearch, Long> {
         entity.setSearchTime(cursor.getLong(offset + 2));
         entity.setLastUpdatasTime(cursor.getLong(offset + 3));
         entity.setSearchTimes(cursor.getInt(offset + 4));
+        entity.setGoodsImg(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
     
     @Override

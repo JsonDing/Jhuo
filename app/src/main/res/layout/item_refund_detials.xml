@@ -15,7 +15,7 @@
             android:layout_height="@dimen/dp16"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dp15"
-            android:background="@color/color_a1"/>
+            android:background="@color/a1"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/view"
             android:textSize="@dimen/sp15"
-            android:textColor="@color/color_b3"/>
+            android:textColor="@color/b3"/>
     </RelativeLayout>
 
     <View
@@ -50,7 +50,7 @@
             android:id="@+id/textview1"
             android:layout_marginStart="@dimen/dp29"
             android:layout_marginTop="@dimen/dp15"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
         <TextView
             android:id="@+id/tvRefundCode"
             android:layout_marginTop="@dimen/dp15"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp13"
             android:layout_toEndOf="@+id/textview1"
             android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
             android:id="@+id/textview2"
             android:layout_marginStart="@dimen/dp29"
             android:layout_marginTop="@dimen/dp20"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"
             android:layout_below="@+id/textview1"
             android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
 
         <TextView
             android:id="@+id/tvType"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             android:id="@+id/textview3"
             android:layout_marginStart="@dimen/dp29"
             android:layout_marginTop="@dimen/dp20"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"
             android:layout_below="@+id/textview2"
             android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
         <TextView
             android:id="@+id/tvReturnMoney"
             android:layout_marginTop="@dimen/dp20"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp13"
             android:layout_toEndOf="@+id/textview3"
             android:layout_below="@+id/textview2"
@@ -111,7 +111,7 @@
             android:id="@+id/textview4"
             android:layout_marginStart="@dimen/dp29"
             android:layout_marginTop="@dimen/dp20"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"
             android:layout_below="@+id/textview3"
             android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
         <TextView
             android:id="@+id/tvApplyTime"
             android:layout_marginTop="@dimen/dp20"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp13"
             android:layout_toEndOf="@+id/textview3"
             android:layout_below="@+id/textview3"
@@ -131,7 +131,7 @@
         <TextView
             android:layout_marginStart="@dimen/dp29"
             android:layout_marginTop="@dimen/dp20"
-            android:textColor="@color/color_b2"
+            android:textColor="@color/b2"
             android:textSize="@dimen/sp13"
             android:layout_marginBottom="@dimen/dp15"
             android:layout_below="@+id/textview4"
@@ -142,7 +142,7 @@
         <TextView
             android:id="@+id/tvReason"
             android:layout_marginTop="@dimen/dp20"
-            android:textColor="@color/color_b1"
+            android:textColor="@color/b1"
             android:textSize="@dimen/sp13"
             android:layout_marginBottom="@dimen/dp15"
             android:layout_toEndOf="@+id/textview4"
@@ -155,7 +155,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/color_a4"/>
+        android:background="@color/a4"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -167,7 +167,7 @@
             android:layout_height="@dimen/dp16"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dp15"
-            android:background="@color/color_a1"/>
+            android:background="@color/a1"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/view1"
             android:textSize="@dimen/sp15"
-            android:textColor="@color/color_b3"/>
+            android:textColor="@color/b3"/>
     </RelativeLayout>
 
     <View

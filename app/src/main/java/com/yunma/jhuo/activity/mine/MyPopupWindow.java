@@ -1,6 +1,7 @@
 package com.yunma.jhuo.activity.mine;
 
-import android.content.*;
+import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,30 +14,36 @@ import com.qiniu.android.storage.UpCompletionHandler;
 import com.yunma.R;
 import com.yunma.bean.QiniuResultBean;
 import com.yunma.bean.SuccessResultBean;
+import com.yunma.jhuo.general.CheckPermissionsActivity;
 import com.yunma.jhuo.general.MyApplication;
-import com.yunma.jhuo.general.MyCompatActivity;
 import com.yunma.jhuo.m.GetQiniuTokenInterface.GetQiniuTokenView;
 import com.yunma.jhuo.m.UploaderToServiceInterface;
 import com.yunma.jhuo.p.GetQiniuTokenPre;
 import com.yunma.jhuo.p.UpLoaderToServicePre;
-import com.yunma.utils.*;
+import com.yunma.utils.AppManager;
+import com.yunma.utils.DateTimeUtils;
+import com.yunma.utils.LogUtils;
+import com.yunma.utils.MD5Utils;
+import com.yunma.utils.ToastUtils;
 import com.yunma.widget.CustomProgressDialog;
 
 import org.json.JSONObject;
 
 import java.io.File;
 
-import butterknife.*;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import top.zibin.luban.Luban;
 import top.zibin.luban.OnCompressListener;
 
-public class MyPopupWindow extends MyCompatActivity implements GetQiniuTokenView, UploaderToServiceInterface.UploaderToServiceView {
+public class MyPopupWindow extends CheckPermissionsActivity implements GetQiniuTokenView, UploaderToServiceInterface.UploaderToServiceView {
 
     @BindView(R.id.openPhotos) Button openPhotos;
     @BindView(R.id.cancle) Button cancle;
+    private static final int CROP_CODE = 3;
     private String qiNiuToken = null;
     private CustomProgressDialog dialog = null;
-    private GetQiniuTokenPre mPresent = null;
     private UpLoaderToServicePre nPresenter = null;
     private String imgUrl = null;
 
@@ -50,7 +57,7 @@ public class MyPopupWindow extends MyCompatActivity implements GetQiniuTokenView
     }
 
     private void getQiniuToken() {
-        mPresent = new GetQiniuTokenPre(this);
+        GetQiniuTokenPre mPresent = new GetQiniuTokenPre(this);
         mPresent.getToken(getApplicationContext(),"user");
         nPresenter = new UpLoaderToServicePre(this);
     }
@@ -101,19 +108,17 @@ public class MyPopupWindow extends MyCompatActivity implements GetQiniuTokenView
      * 压缩单张图片 Listener 方式
      */
     private void compressWithLs(final File file) {
-
-        Luban.get(MyPopupWindow.this)
+        Luban.with(MyPopupWindow.this)
                 .load(file)
-                .putGear(Luban.THIRD_GEAR)
                 .setCompressListener(new OnCompressListener() {
                     @Override
                     public void onStart() {
-
+                        LogUtils.json("开始压缩--> ");
                     }
 
                     @Override
                     public void onSuccess(File file) {
-                        LogUtils.log("压缩后路径--> " + file.getAbsolutePath());
+                        LogUtils.json("压缩后路径--> " + file.getAbsolutePath());
                         upLoadToQiniu(file.getAbsolutePath());
                     }
 
@@ -122,12 +127,13 @@ public class MyPopupWindow extends MyCompatActivity implements GetQiniuTokenView
                         ToastUtils.showError(MyPopupWindow.this,"压缩失败,请稍后重试");
                     }
                 }).launch();
+
     }
 
 
     private void upLoadToQiniu(final String path) {
         final String key = "Jhuo_HeadImage_" + MD5Utils.getMD5(DateTimeUtils.getCurrentTimeInString()) + ".png";
-        LogUtils.log("key: " + key);
+        LogUtils.json("key: " + key);
         if(getQiNiuToken()!=null){
             new Thread(new Runnable() {
                 @Override
@@ -138,12 +144,12 @@ public class MyPopupWindow extends MyCompatActivity implements GetQiniuTokenView
                                 public void complete(String key, ResponseInfo info, JSONObject res) {
                                     //res包含hash、key等信息，具体字段取决于上传策略的设置
                                     if(info.isOK()) {
-                                        imgUrl = ConUtils.HEAD_IMAGE_URL + key;
-                                        LogUtils.log("Upload Success : " + key);
-                                        nPresenter.uPLoaderToService();
+                                        imgUrl = key;
+                                        LogUtils.json("Upload Success : " + key);
+                                        nPresenter.uPLoaderToService(MyPopupWindow.this,imgUrl);
                                     }else{
                                         //如果失败，这里可以把info信息上报自己的服务器，便于后面分析上传错误原因
-                                        LogUtils.log("Upload Fail : " + info.error);
+                                        LogUtils.json("Upload Fail : " + info.error);
                                         progressDimiss();
                                     }
                                 }
@@ -191,16 +197,6 @@ public class MyPopupWindow extends MyCompatActivity implements GetQiniuTokenView
 
     public void setQiNiuToken(String qiNiuToken) {
         this.qiNiuToken = qiNiuToken;
-    }
-
-    @Override
-    public Context getConText() {
-        return getApplicationContext();
-    }
-
-    @Override
-    public String getImageUrl() {
-        return imgUrl;
     }
 
     @Override

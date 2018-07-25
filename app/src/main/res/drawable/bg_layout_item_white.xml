@@ -5,8 +5,7 @@
         android:radius="6dip"/>
 
     <size
-        android:width="@dimen/dp101"
-        android:height="@dimen/dp30"/>
+        android:width="@dimen/dp101"/>
 
     <gradient
         android:startColor="@color/white"

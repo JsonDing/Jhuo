@@ -17,6 +17,15 @@ public class StocksBean implements Serializable{
     private int num;//库存
     private String size;
     private int buyNum;//购买件数
+    private int goodsId;
+
+    public int getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
+    }
 
     public int getPosition() {
         return position;
@@ -60,9 +69,6 @@ public class StocksBean implements Serializable{
 
     @Override
     public String toString() {
-        return "StocksBean{" +
-                "num=" + num +
-                ", size='" + size + '\'' +
-                '}';
+        return size + "x" + num;
     }
 }

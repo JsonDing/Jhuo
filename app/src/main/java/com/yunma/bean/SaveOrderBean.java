@@ -13,6 +13,16 @@ public class SaveOrderBean {
     private String token;
     private String addrid;
     private String remark;
+    private String couponUserid;
+    private List<OrderDetailsBean> orderdetails;
+
+    public String getCouponUserid() {
+        return couponUserid;
+    }
+
+    public void setCouponUserid(String couponUserid) {
+        this.couponUserid = couponUserid;
+    }
 
     public String getRemark() {
         return remark;
@@ -21,8 +31,6 @@ public class SaveOrderBean {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-
-    private List<OrderdetailsBean> orderdetails;
 
     public String getToken() {
         return token;
@@ -40,11 +48,11 @@ public class SaveOrderBean {
         this.addrid = addrid;
     }
 
-    public List<OrderdetailsBean> getOrderdetails() {
+    public List<OrderDetailsBean> getOrderdetails() {
         return orderdetails;
     }
 
-    public void setOrderdetails(List<OrderdetailsBean> orderdetails) {
+    public void setOrderdetails(List<OrderDetailsBean> orderdetails) {
         this.orderdetails = orderdetails;
     }
 

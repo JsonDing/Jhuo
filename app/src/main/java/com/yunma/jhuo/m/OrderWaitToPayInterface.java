@@ -23,15 +23,4 @@ public class OrderWaitToPayInterface {
         void orderWaitToPayListener(OrderUnPayResultBean resultBean, String msg);
     }
 
-    public interface CheckOrderModel {
-        void checkOrder(Context mContext,String size,String page, CheckOrderListener orderListener);
-    }
-
-    public interface CheckOrderView{
-        void checkOrderInfos(OrderUnPayResultBean resultBean, String msg);
-    }
-
-    public interface CheckOrderListener{
-        void checkOrderListener(OrderUnPayResultBean resultBean, String msg);
-    }
 }

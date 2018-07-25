@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="发票信息"
                 android:textSize="@dimen/sp17"
-                android:textColor="@color/color_b1"/>
+                android:textColor="@color/b1"/>
 
         </LinearLayout>
 
@@ -53,7 +53,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scrollbars="none"
-        android:background="@color/color_a4"
+        android:background="@color/a4"
         android:fillViewport="true">
 
         <LinearLayout
@@ -86,7 +86,7 @@
                         android:id="@+id/tvReceiver"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/color_b1"
+                        android:textColor="@color/b1"
                         android:textStyle="bold"
                         android:textSize="@dimen/sp15"/>
 
@@ -96,7 +96,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_toEndOf="@+id/tvReceiver"
-                        android:textColor="@color/color_b1"
+                        android:textColor="@color/b1"
                         android:textSize="@dimen/sp15"/>
 
                     <TextView
@@ -109,7 +109,7 @@
                         android:layout_toStartOf="@+id/layoutSelectAddress"
                         android:layout_alignStart="@+id/tvReceiver"
                         android:layout_below="@+id/tvReceiver"
-                        android:textColor="@color/color_b1"
+                        android:textColor="@color/b1"
                         android:textSize="@dimen/sp12" />
 
                     <LinearLayout
@@ -137,7 +137,7 @@
                     android:text="添加地址"
                     android:visibility="visible"
                     android:gravity="center"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="@dimen/sp20"/>
 
             </LinearLayout>
@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:text="发票类型"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"/>
+                    android:textColor="@color/b1"/>
 
                 <Button
                     android:layout_width="@dimen/dp81"
@@ -187,7 +187,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="开票金额"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp14"/>
 
                 <TextView
@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp15"
                     android:text="￥0.00"
-                    android:textColor="@color/color_b4"
+                    android:textColor="@color/b4"
                     android:textSize="14sp"/>
 
             </LinearLayout>
@@ -215,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:text="发票抬头"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"/>
+                    android:textColor="@color/b1"/>
 
                 <RadioGroup
                     android:id="@+id/radioGroupType"
@@ -231,7 +231,7 @@
                         android:theme="@style/GreenRadioButton"
                         android:checked="true"
                         android:layout_marginStart="@dimen/dp10"
-                        android:textColor="@color/color_b1"/>
+                        android:textColor="@color/b1"/>
 
                     <RadioButton
                         android:id="@+id/cbCompany"
@@ -240,7 +240,7 @@
                         android:text="单位"
                         android:theme="@style/GreenRadioButton"
                         android:layout_marginStart="@dimen/dp16"
-                        android:textColor="@color/color_b1"/>
+                        android:textColor="@color/b1"/>
                 </RadioGroup>
 
             </LinearLayout>
@@ -259,7 +259,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="4"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="13sp"
                     android:hint="输入发票内容"
                     android:gravity="top"
@@ -267,7 +267,7 @@
                     android:paddingEnd="@dimen/dp08"
                     android:paddingTop="@dimen/dp05"
                     android:paddingBottom="@dimen/dp05"
-                    android:textColorHint="@color/color_b2"
+                    android:textColorHint="@color/b2"
                     android:background="@drawable/bg_edittext_normal"/>
 
             </LinearLayout>
@@ -289,7 +289,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp10"
                     android:layout_marginTop="@dimen/dp15"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="@dimen/sp14"/>
 
                 <TextView
@@ -300,7 +300,7 @@
                     android:layout_below="@+id/tvCompanyName"
                     android:layout_marginTop="@dimen/dp30"
                     android:text="纳税人识别号："
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="14sp"/>
 
                 <TextView
@@ -310,7 +310,7 @@
                     android:layout_below="@+id/tvCompanyName"
                     android:layout_marginTop="@dimen/dp30"
                     android:layout_toEndOf="@+id/textview"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="14sp"/>
 
                 <com.yunma.widget.AlignTextView
@@ -323,7 +323,7 @@
                     android:layout_marginTop="@dimen/dp10"
                     app:text="注册地址："
                     app:suffixMode="full_width"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="14sp"/>
 
                 <TextView
@@ -333,7 +333,7 @@
                     android:layout_below="@+id/tvRatepayer"
                     android:layout_marginTop="@dimen/dp10"
                     android:layout_toEndOf="@+id/textview1"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="14sp"/>
 
                 <com.yunma.widget.AlignTextView
@@ -346,7 +346,7 @@
                     android:layout_marginTop="@dimen/dp10"
                     app:text="注册电话："
                     app:suffixMode="full_width"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="14sp"/>
 
                 <TextView
@@ -356,7 +356,7 @@
                     android:layout_alignBaseline="@+id/textview2"
                     android:layout_alignBottom="@+id/textview2"
                     android:layout_toEndOf="@+id/textview2"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="14sp"/>
 
                 <com.yunma.widget.AlignTextView
@@ -369,7 +369,7 @@
                     android:layout_marginTop="@dimen/dp10"
                     app:text="开户银行："
                     app:suffixMode="full_width"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="14sp"/>
 
                 <TextView
@@ -379,7 +379,7 @@
                     android:layout_below="@+id/tvRegisterPhone"
                     android:layout_marginTop="@dimen/dp10"
                     android:layout_toEndOf="@+id/textview3"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="14sp"/>
 
                 <com.yunma.widget.AlignTextView
@@ -393,7 +393,7 @@
                     android:layout_marginTop="@dimen/dp10"
                     app:text="银行账户："
                     app:suffixMode="full_width"
-                    android:textColor="@color/color_b2"
+                    android:textColor="@color/b2"
                     android:textSize="14sp"/>
 
                 <TextView
@@ -404,7 +404,7 @@
                     android:layout_marginBottom="@dimen/dp15"
                     android:layout_marginTop="@dimen/dp10"
                     android:layout_toEndOf="@+id/textview4"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:textSize="14sp"/>
 
             </RelativeLayout>
@@ -420,7 +420,7 @@
                     android:layout_height="wrap_content"
                     android:text="发票内容"
                     android:textSize="@dimen/sp14"
-                    android:textColor="@color/color_b1"
+                    android:textColor="@color/b1"
                     android:layout_marginTop="@dimen/dp15"
                     android:layout_marginStart="@dimen/dp15"/>
 
@@ -441,7 +441,7 @@
                         android:theme="@style/GreenRadioButton"
                         android:layout_marginTop="@dimen/dp05"
                         android:layout_marginStart="@dimen/dp10"
-                        android:textColor="@color/color_b1"/>
+                        android:textColor="@color/b1"/>
 
                     <RadioButton
                         android:id="@+id/cbShoes"
@@ -451,7 +451,7 @@
                         android:theme="@style/GreenRadioButton"
                         android:layout_marginTop="@dimen/dp05"
                         android:layout_marginStart="@dimen/dp10"
-                        android:textColor="@color/color_b1"/>
+                        android:textColor="@color/b1"/>
 
                     <RadioButton
                         android:id="@+id/cbOther"
@@ -462,7 +462,7 @@
                         android:layout_marginTop="@dimen/dp05"
                         android:layout_marginStart="@dimen/dp10"
                         android:layout_marginBottom="@dimen/dp10"
-                        android:textColor="@color/color_b1"/>
+                        android:textColor="@color/b1"/>
                 </RadioGroup>
 
             </RelativeLayout>
@@ -473,7 +473,7 @@
                 android:layout_height="0dp"
                 android:minHeight="@dimen/dp36"
                 android:layout_weight="1"
-                android:background="@color/color_a4"/>
+                android:background="@color/a4"/>
 
 
         </LinearLayout>

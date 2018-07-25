@@ -24,7 +24,7 @@
                 android:layout_marginTop="@dimen/dp07"
                 android:layout_marginStart="@dimen/dp15"
                 android:text="订单编号："
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:textSize="@dimen/sp12"/>
 
             <TextView
@@ -34,7 +34,7 @@
                 android:text="20161212236"
                 android:layout_marginTop="@dimen/dp07"
                 android:layout_toEndOf="@+id/textview1"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:textSize="@dimen/sp12"/>
 
             <TextView
@@ -45,7 +45,7 @@
                 android:text="申请时间："
                 android:layout_marginBottom="@dimen/dp07"
                 android:layout_alignParentBottom="true"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:textSize="@dimen/sp12"/>
 
             <TextView
@@ -56,7 +56,7 @@
                 android:layout_marginBottom="@dimen/dp07"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/textview2"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:textSize="@dimen/sp12"/>
 
 
@@ -68,7 +68,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:text="待处理"
-                android:textColor="@color/color_b4"
+                android:textColor="@color/b4"
                 android:textSize="@dimen/sp12"/>
 
         </RelativeLayout>
@@ -91,7 +91,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/tvRealPay"
                 android:text="交易金额"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:textSize="@dimen/sp11"/>
 
             <TextView
@@ -102,7 +102,7 @@
                 android:layout_marginEnd="@dimen/dp32"
                 android:layout_marginStart="@dimen/dp06"
                 android:layout_toStartOf="@+id/textview"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp13"/>
 
             <TextView
@@ -112,7 +112,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/tvReturnPrice"
                 android:text="退款金额"
-                android:textColor="@color/color_b2"
+                android:textColor="@color/b2"
                 android:textSize="@dimen/sp11"/>
 
             <TextView
@@ -124,7 +124,7 @@
                 android:layout_marginEnd="@dimen/dp15"
                 android:layout_marginStart="@dimen/dp06"
                 android:text="￥189"
-                android:textColor="@color/color_b4"
+                android:textColor="@color/b4"
                 android:textSize="@dimen/sp13"/>
 
         </RelativeLayout>
@@ -132,7 +132,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp0.5"
-            android:background="@color/color_a4"/>
+            android:background="@color/a4"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,7 +147,7 @@
                 android:text="退货详情"
                 android:background="@drawable/bg_button_gray"
                 android:layout_marginEnd="@dimen/dp10"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp11"/>
 
             <Button
@@ -157,7 +157,7 @@
                 android:text="取消退货"
                 android:layout_marginEnd="@dimen/dp10"
                 android:background="@drawable/bg_button_gray"
-                android:textColor="@color/color_b1"
+                android:textColor="@color/b1"
                 android:textSize="@dimen/sp11"/>
 
             <!--<Button
@@ -167,7 +167,7 @@
                 android:layout_marginEnd="@dimen/dp15"
                 android:text="钱款去向"
                 android:background="@drawable/bg_button_orange"
-                android:textColor="@color/color_b3"
+                android:textColor="@color/b3"
                 android:textSize="@dimen/sp11"/>-->
 
         </LinearLayout>
@@ -175,7 +175,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp10"
-            android:background="@color/color_a4"/>
+            android:background="@color/a4"/>
 
     </LinearLayout>
 

@@ -29,7 +29,7 @@ public class RecipientManageModelImpl implements RecipientManageModel {
         params.setAsJsonContent(true);
         Gson gson = new Gson();
         String strLogin = gson.toJson(paramsBean);
-        LogUtils.log("-----------> " + strLogin);
+        LogUtils.json("-----------> " + strLogin);
         params.setBodyContent(strLogin);
         params.setConnectTimeout(1000*5);
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -43,7 +43,7 @@ public class RecipientManageModelImpl implements RecipientManageModel {
                     this.result = result;
                     if(result.contains("success")){
                         try {
-                            recipientManageBean = GsonUtils.getObject(result,
+                            recipientManageBean = GsonUtils.GsonToBean(result,
                                     RecipientManageBean.class);
                         } catch (Exception e) {
                             onListener.quaryRecipientListener(null,"数据解析出错");
@@ -60,7 +60,7 @@ public class RecipientManageModelImpl implements RecipientManageModel {
 
                     }else{
                         try {
-                            failedResultBean = GsonUtils.getObject(result,
+                            failedResultBean = GsonUtils.GsonToBean(result,
                                     FailedResultBean.class);
                         } catch (Exception e) {
                             onListener.quaryRecipientListener(null,"数据解析出错");
@@ -80,11 +80,11 @@ public class RecipientManageModelImpl implements RecipientManageModel {
                     int responseCode = httpEx.getCode();
                     String responseMsg = httpEx.getMessage();
                     String errorResult = httpEx.getResult();
-                    LogUtils.log("responseCode: " + responseCode + "\n" + "responseMsg: " +
+                    LogUtils.json("responseCode: " + responseCode + "\n" + "responseMsg: " +
                             responseMsg + "\n" + "errorResult: " + errorResult);
                 }
                 onListener.quaryRecipientListener(null,ex.getMessage());
-                LogUtils.log("responseCode: " + ex.getMessage() );
+                LogUtils.json("responseCode: " + ex.getMessage() );
             }
 
             @Override
@@ -96,7 +96,7 @@ public class RecipientManageModelImpl implements RecipientManageModel {
             public void onFinished() {
                 if (!hasError && result != null) {
                     // 成功获取数据
-                    LogUtils.log("收件人管理result: " + result);
+                //    LogUtils.json("收件人管理result: " + result);
                 }
             }
         });

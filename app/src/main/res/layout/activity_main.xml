@@ -68,7 +68,7 @@
                 android:layout_below="@+id/imgHome"
                 android:layout_centerHorizontal="true"
                 android:text="主页"
-                android:textColor="@color/color_b3" />
+                android:textColor="@color/b6" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -97,7 +97,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_below="@+id/imgStorage"
                 android:layout_centerHorizontal="true"
-                android:text="大仓"/>
+                android:text="分类"/>
 
         </RelativeLayout>
 
@@ -120,7 +120,7 @@
                 android:id="@+id/tvBasket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="购物车"
+                android:text="结算"
                 android:textSize="@dimen/sp10"
                 android:clickable="false"
                 android:textStyle="bold"

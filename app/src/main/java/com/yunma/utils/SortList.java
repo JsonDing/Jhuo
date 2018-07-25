@@ -10,7 +10,7 @@ import java.util.*;
  * @author Json.
  */
 
-public  class SortList<T> {
+public class SortList<T> {
     /**
      * @param targetList 目标排序List
      * @param sortField 排序字段(实体类属性名)
@@ -31,9 +31,13 @@ public  class SortList<T> {
                     Method method1 = ((T)obj1).getClass().getMethod(methodStr);
                     Method method2 = ((T)obj2).getClass().getMethod(methodStr);
                     if (sortMode != null && "desc".equals(sortMode)) {
-                        retVal = method2.invoke(obj2).toString().compareTo(method1.invoke(obj1).toString()); // 倒序
+                       // retVal = method2.invoke(obj2).toString().compareTo(method1.invoke(obj1).toString()); // 倒序
+                        retVal = Integer.valueOf(method2.invoke(obj2).toString())
+                                .compareTo(Integer.valueOf(method1.invoke(obj1).toString()));
                     } else {
-                        retVal = method1.invoke(obj1).toString().compareTo(method2.invoke(obj2).toString()); // 正序
+                      //  retVal = method1.invoke(obj1).toString().compareTo(method2.invoke(obj2).toString()); // 正序
+                        retVal = Integer.valueOf(method1.invoke(obj1).toString())
+                                .compareTo(Integer.valueOf(method2.invoke(obj2).toString()));
                     }
                 } catch (Exception e) {
                     throw new RuntimeException();

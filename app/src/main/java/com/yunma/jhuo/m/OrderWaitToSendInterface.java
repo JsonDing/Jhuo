@@ -13,11 +13,10 @@ import com.yunma.bean.OrderUnPayResultBean;
 public class OrderWaitToSendInterface {
 
     public interface OrderWaitToSendModel {
-        void orderUnSend(Context mContext, OrderWaitToSendListener orderWaitToPayListener);
+        void orderUnSend(Context mContext,String nums,String page, OrderWaitToSendListener orderWaitToPayListener);
     }
 
     public interface OrderWaitToSendView{
-        Context getContext();
         void showOrderInfos(OrderUnPayResultBean resultBean, String msg);
     }
 

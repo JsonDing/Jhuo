@@ -7,7 +7,7 @@ import android.view.animation.*;
 import android.widget.*;
 
 import com.yunma.R;
-import com.yunma.jhuo.activity.homepage.OrderDetial;
+import com.yunma.jhuo.activity.homepage.OrderDetialActivity;
 import com.yunma.bean.OrderUnPayResultBean.SuccessBean.ListBean;
 import com.yunma.utils.*;
 import com.yunma.widget.MyListView;
@@ -68,20 +68,20 @@ public class OrderWaitToSendAdapter extends BaseAdapter{
         }
         holder.tvTime.setText(DateTimeUtils.getTime(listBean.get(position).getDate(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA)));
-        holder.tvTotalPrice.setText("￥" + listBean.get(position).getTotalcost());
+        holder.tvTotalPrice.setText(ValueUtils.toTwoDecimal(listBean.get(position).getTotalcost()));
         int totalNums = 0 ;
         for(int i=0;i<listBean.get(position).getOrderdetails().size();i++){
             totalNums = totalNums + listBean.get(position).getOrderdetails().get(i).getNum();
         }
-        holder.tvTotalNums.setText("共"+ totalNums +"件商品");
-        holder.tvOrderId.setText("订单号:" + listBean.get(position).getId());
+        holder.tvTotalNums.setText("共" + totalNums + "件商品");
+        holder.tvOrderId.setText(listBean.get(position).getId() + "");
         mAdapter = new OrderGoodsAdapter(mContext, listBean.get(position).getOrderdetails());
         holder.rvGoodsList.setAdapter(mAdapter);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, OrderDetial.class);
+                Intent intent = new Intent(mContext, OrderDetialActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("orderDetial",listBean.get(position));
                 intent.putExtras(bundle);
@@ -106,12 +106,12 @@ public class OrderWaitToSendAdapter extends BaseAdapter{
         View layout;
         MyListView rvGoodsList;
         public ViewHolder(View itemView) {
-            tvTime = (TextView)itemView.findViewById(R.id.tvTime);
-            tvTotalNums = (TextView)itemView.findViewById(R.id.tvTotalNums);
-            tvTotalPrice = (TextView)itemView.findViewById(R.id.tvTotalPrice);
-            tvOrderId =  (TextView)itemView.findViewById(R.id.tvOrderId);
-            btnNotSend = (Button)itemView.findViewById(R.id.btnNotSend);
-            rvGoodsList = (MyListView)itemView.findViewById(R.id.rvGoodsList);
+            tvTime = itemView.findViewById(R.id.tvTime);
+            tvTotalNums = itemView.findViewById(R.id.tvTotalNums);
+            tvTotalPrice = itemView.findViewById(R.id.tvTotalPrice);
+            tvOrderId = itemView.findViewById(R.id.tvOrderId);
+            btnNotSend = itemView.findViewById(R.id.btnNotSend);
+            rvGoodsList = itemView.findViewById(R.id.rvGoodsList);
             layout = itemView.findViewById(R.id.layout);
         }
     }
